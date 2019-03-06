@@ -360,23 +360,23 @@ template {
   display: none; }
 
 .form-block {
-  margin: 0 auto;
-  max-width: 800px; }
+  width: 100%;
+  display: none; }
+  .form-block.active {
+    display: block; }
 
 .form {
-  max-width: 800px;
-  padding: 50px 30px 30px;
-  margin: 0 auto 30px;
-  background: white; }
+  max-width: 100%; }
 
-.form-block__header h2 {
-  position: relative;
-  z-index: 5;
-  margin: 0 0 0;
-  text-align: left;
-  color: black;
-  font-size: 30px;
-  font-weight: normal; }
+.form-block__header {
+  text-align: center;
+  margin-bottom: 30px; }
+  .form-block__header h2 {
+    position: relative;
+    z-index: 5;
+    color: black;
+    font-size: 30px;
+    font-weight: normal; }
 
 h3 {
   position: relative;
@@ -391,17 +391,56 @@ h3 {
   position: relative;
   margin-bottom: 40px; }
 
+.form-group__text:before {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 2px;
+  background: grey;
+  transition: 0.3s ease-in-out;
+  opacity: 1; }
+
+.form-group__text:after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #fd7902;
+  transition: 0.3s ease-in-out;
+  opacity: 0; }
+
+.form-group__text.active:after {
+  width: 100%;
+  opacity: 1;
+  transition: 0.3s ease-in-out; }
+
 .form-group__text input {
   display: block;
   width: 100%;
   padding: 0 10px;
   line-height: 40px;
-  font-family: 'Roboto', sans-serif;
-  font-size: 20px;
+  font-family: 'MyriadPro-SemiCn', sans-serif;
+  font-size: 18px;
   background: none;
   border-width: 0;
-  border-bottom: 2px solid grey;
-  transition: all 0.2s ease; }
+  transition: all 0.2s ease;
+  position: relative; }
+  .form-group__text input:before {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background: #fd7902;
+    transition: 0.3s ease-in-out;
+    opacity: 0; }
 
 .form-group__text label {
   position: absolute;
@@ -415,8 +454,10 @@ h3 {
   white-space: nowrap; }
 
 .form-group__text input:focus {
-  outline: 0;
-  border-color: #fd7902; }
+  outline: 0; }
+  .form-group__text input:focus .form-group__text:before {
+    width: 100%;
+    opacity: 1; }
 
 .form-group__text input:focus + label, .form-group__text input:valid + label {
   transform: translateY(-60px);
@@ -544,10 +585,97 @@ input[type=file] {
     color: grey;
     transition: 200ms color; }
 
-html, body {
-  font-family: 'Proxima Nova'; }
+* {
+  box-sizing: border-box; }
 
-.form-block {
-  font-family: "MyriadPro-SemiCn", sans-serif; }
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh; }
+
+input::selection {
+  background: rgba(255, 128, 0, 0.7); }
+
+.form-wrapper {
+  font-family: "MyriadPro-SemiCn", sans-serif;
+  width: 800px;
+  border-radius: 5px;
+  background: #FFF;
+  padding: 20px;
+  box-shadow: 0 10px 10px #DDD; }
+  @media screen and (max-width: 768px) {
+    .form-wrapper {
+      width: 100%; } }
+  .form-wrapper::selection {
+    background: rgba(255, 128, 0, 0.7); }
+
+.form-btns {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0; }
+
+.form-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  border-radius: 50px;
+  height: 40px;
+  transition: 0.3s linear;
+  cursor: pointer; }
+  .form-btn__prev {
+    color: #ff8000;
+    border: 1px solid #ff8000; }
+    .form-btn__prev:hover {
+      background: #ff8000;
+      color: #FFFFFF; }
+  .form-btn__next {
+    background: grey;
+    color: #FFFFFF;
+    border: 1px solid grey;
+    pointer-events: none; }
+    .form-btn__next::selection {
+      background: rgba(128, 128, 128, 0.7);
+      color: #FFFFFF; }
+    .form-btn__next.active {
+      pointer-events: auto;
+      background: #ff8000;
+      color: #FFFFFF;
+      border: 1px solid #ff8000; }
+  .form-btn::selection {
+    background: rgba(255, 128, 0, 0.7);
+    color: #FFFFFF; }
+
+.form-cross {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  right: 15px;
+  border-radius: 50%;
+  border: 2px solid grey;
+  transform: translateY(-50%);
+  cursor: pointer; }
+  .form-cross:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    width: 10px;
+    height: 2px;
+    background: grey; }
+  .form-cross:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    width: 10px;
+    height: 2px;
+    background: grey; }
 
 /*# sourceMappingURL=maps/main.css.map */
