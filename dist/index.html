@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link rel="shortcut icon" href="img/favicons/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/main.min.css">
     <title>KVS | Ипотека</title>
   </head>
   <body>
@@ -18,26 +18,30 @@
           </div>
           <div class="form-block__content">
             <form class="form form-general">
-              <div class="form-group__text">        
-                <input type="text" required autocomplete="off" name="name" data-name>
-                <label for="name">ФИО</label>
-                <div class="form-cross"></div>
-              </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="birth-date" data-date>
-                <label for="birth-date">Дата рождения</label>
-                <div class="form-cross"></div>
-              </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="phone" data-phone>
-                <label for="phone">Телефон</label>
-                <div class="form-cross"></div>
+              <div class="form-row">
+                <div class="form-group__text">        
+                  <input type="text" required autocomplete="off" name="name" data-name>
+                  <label for="name">ФИО</label>
+                  <div class="form-cross"></div>
+                </div>
+                <div class="form-group__text">                   
+                  <input type="text" required autocomplete="off" name="birth-date" data-date>
+                  <label for="birth-date">Дата рождения</label>
+                  <div class="form-cross"></div>
+                </div>
+                <div class="form-group__text">                   
+                  <input type="text" required autocomplete="off" name="phone" data-phone>
+                  <label for="phone">Телефон</label>
+                  <div class="form-cross"></div>
+                </div>
               </div>
             </form>
           </div>
-          <div class="form-btns">
-            <div class="form-btn form-btn__prev">Назад</div>
-            <div class="form-btn form-btn__next">Вперед</div>
+          <div class="form-row_bb">
+            <div class="form-btns">
+              <div class="form-btn form-btn__prev">Назад</div>
+              <div class="form-btn form-btn__next">Вперед</div>
+            </div>
           </div>
         </div>
         <div class="form-block">
@@ -46,88 +50,124 @@
           </div>
           <div class="form-block__content">
             <form class="form form-credit-info">
-              <h3 class="credit-target">Цель кредита       </h3>
-              <div class="form-group__radio">
-                <input type="radio" id="credit-target-new" name="credit-target-new">
-                <label for="credit-target-new">Покупка квартиры в новостройке                </label>
+              <div class="form-row">
+                <h3 class="credit-target">Цель кредита</h3>
+                <div class="form-group__radio">
+                  <input type="radio" id="credit-target-new" name="credit-target-new" checked>
+                  <label for="credit-target-new">Покупка квартиры в новостройке                </label>
+                </div>
+                <div class="form-group__radio">
+                  <input type="radio" id="credit-target-ready" name="credit-target-new">
+                  <label for="credit-target-ready">Покупка квартиры в готовой недвижимости</label>
+                </div>
               </div>
-              <div class="form-group__radio">
-                <input type="radio" id="credit-target-ready" name="credit-target-new">
-                <label for="credit-target-ready">Покупка квартиры в готовой недвижимости</label>
+              <div class="form-row">
+                <h3 class="cost">Стоимость ОН</h3>
+                <div class="form-group__text">                   
+                  <input type="text" required autocomplete="off" name="cost" data-cost>
+                  <label for="cost">Стоимость</label>
+                  <div class="form-cross"></div>
+                </div>
               </div>
-              <h3 class="cost">Стоимость ОН</h3>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="cost" data-cost>
-                <label for="cost">Стоимость</label>
+              <div class="form-row">
+                <h3 class="credit-sum">Сумма кредита, руб</h3>
+                <div class="form-group__text">                   
+                  <input type="text" required autocomplete="off" name="credit-sum" data-cost data-credit-summ>
+                  <label for="credit-sum">Сумма кредита</label>
+                  <div class="form-cross"></div>
+                </div>
               </div>
-              <h3 class="credit-sum">Сумма кредита, руб</h3>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="credit-sum" data-cost>
-                <label for="credit-sum">Сумма кредита</label>
+              <div class="form-row">
+                <h3 class="initial-contribution">Первоначальный взнос, в руб</h3>
+                <div class="form-group__text">                   
+                  <input type="text" autocomplete="off" name="initial-contribution-sum" data-cost data-credit-first disabled>
+                  <label for="initial-contribution-sum">Первоначальный взнос</label>
+                  <div class="form-cross"></div>
+                </div>
+                <div class="form-group__text">                   
+                  <input type="text" autocomplete="off" name="initial-contribution-percent" data-credit-procent disabled>
+                  <label for="initial-contribution-percent">В процентах</label>
+                  <div class="form-cross">        </div>
+                </div>
               </div>
-              <h3 class="initial-contribution">Первоначальный взнос, в руб</h3>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="initial-contribution-sum" data-cost>
-                <label for="initial-contribution-sum">Первоначальный взнос</label>
+              <div class="form-row">
+                <h3 class="maternity-capital">Ипотека + материнский капитал</h3>
+                <div class="form-group_hidden">
+                  <div class="form-group__check">
+                    <input type="checkbox" id="maternity-capital" name="maternity-capital" data-hidden>
+                    <label for="maternity-capital">Мат. капитал </label>
+                  </div>
+                  <div class="form-group__text form-group__text_pt" data-hidden-content>
+                    <input type="text" autocomplete="off" name="maternity-capital-sum" data-cost>
+                    <label for="maternity-capital-sum">Размер МСК</label>
+                    <div class="form-cross"></div>
+                  </div>
+                </div>
               </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="initial-contribution-percent" data-cost>
-                <label for="initial-contribution-percent">В процентах           </label>
+              <div class="form-row">
+                <h3 class="military-loan">Военная ипотека</h3>
+                <div class="form-group_hidden">             
+                  <div class="form-group__check">                
+                    <input type="checkbox" id="military-loan" name="military-loan" data-hidden>
+                    <label for="military-loan">Военная ипотека</label>
+                  </div>
+                  <div class="form-group__text form-group__text_pt" data-hidden-content>               
+                    <input type="text" autocomplete="off" name="military-loan-sum" data-cost>
+                    <label for="military-loan-sum">Размер НИС</label>
+                    <div class="form-cross"></div>
+                  </div>
+                </div>
               </div>
-              <h3 class="maternity-capital">Ипотека + материнский капитал</h3>
-              <div class="form-group__check">
-                <input type="checkbox" id="maternity-capital" name="maternity-capital">
-                <label for="maternity-capital">Мат. капитал </label>
+              <div class="form-row">
+                <h3 class="subsidy">Субсидия</h3>
+                <div class="form-group_hidden">
+                  <div class="form-group__check">
+                    <input type="checkbox" id="subsidy" name="subsidy" data-hidden>
+                    <label for="subsidy">Субсидия</label>
+                  </div>
+                  <div class="form-group_hidden-content" data-hidden-content>
+                    <div class="form-group__text">                
+                      <input type="text" autocomplete="off" name="subsidy-sum" data-cost>
+                      <label for="subsidy-sum">Размер субсидии</label>
+                      <div class="form-cross"></div>
+                    </div>
+                    <div class="form-group__text">                   
+                      <input type="text" autocomplete="off" name="subsidy-percent" data-procent>
+                      <label for="subsidy-percent">В процентах</label>
+                      <div class="form-cross"></div>
+                    </div>
+                    <div class="form-group__text">                   
+                      <input type="text" autocomplete="off" name="subsidy-name">
+                      <label for="subsidy-name">Название субсидии</label>
+                      <div class="form-cross"></div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="form-group__text">                                  
-                <input type="text" required autocomplete="off" name="maternity-capital-sum">
-                <label for="maternity-capital-sum">Размер МСК</label>
-              </div>
-              <h3 class="military-loan">Военная ипотека                </h3>
-              <div class="form-group__check">                
-                <input type="checkbox" id="military-loan" name="military-loan">
-                <label for="military-loan">Военная ипотека</label>
-              </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="military-loan-sum">
-                <label for="military-loan-sum">Размер НИС</label>
-              </div>
-              <h3 class="subsidy">Субсидия                </h3>
-              <div class="form-group__check">
-                <input type="checkbox" id="subsidy" name="subsidy">
-                <label for="subsidy">Субсидия</label>
-              </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="subsidy-sum">
-                <label for="subsidy-sum">Размер субсидии</label>
-              </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="subsidy-percent">
-                <label for="subsidy-percent">В процентах</label>
-              </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="subsidy-name">
-                <label for="subsidy-name">Название субсидии</label>
-              </div>
-              <h3 class="insurance">Страхование                </h3>
-              <div class="form-group__check">
-                <input type="radio" id="insurance-yes" name="insurance">
-                <label for="insurance-yes">Да                </label>
-              </div>
-              <div class="form-group__check">
-                <input type="radio" id="insurance-no" name="insurance">
-                <label for="insurance-no">Нет</label>
-              </div>
-              <h3 class="loan-period">Срок кредита, количество лет</h3>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="loan-period">
-                <label for="loan-period">Срок кредита</label>
+              <div class="form-row">
+                <h3 class="insurance">Страхование                </h3>
+                <div class="form-group__check">
+                  <input type="radio" id="insurance-yes" name="insurance" checked>
+                  <label for="insurance-yes">Да                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="radio" id="insurance-no" name="insurance">
+                  <label for="insurance-no">Нет</label>
+                </div>
+                <h3 class="loan-period">Срок кредита, количество лет</h3>
+                <div class="form-group__text">                   
+                  <input type="text" required autocomplete="off" name="loan-period" data-period>
+                  <label for="loan-period">Срок кредита</label>
+                  <div class="form-cross"></div>
+                </div>
               </div>
             </form>
           </div>
-          <div class="form-btns">
-            <div class="form-btn form-btn__prev">Назад</div>
-            <div class="form-btn form-btn__next">Вперед</div>
+          <div class="form-row_bb">
+            <div class="form-btns">
+              <div class="form-btn form-btn__prev">Назад</div>
+              <div class="form-btn form-btn__next">Вперед</div>
+            </div>
           </div>
         </div>
         <div class="form-block">
@@ -136,197 +176,260 @@
           </div>
           <div class="form-block__content">
             <form class="form form-private-data">
-              <h3 class="name">ФИО</h3>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="surname">
-                <label for="surname">Фамилия</label>
+              <div class="form-row">
+                <h3 class="name">ФИО</h3>
+                <div class="form-group__text">                   
+                  <input type="text" required autocomplete="off" name="surname">
+                  <label for="surname">Фамилия</label>
+                  <div class="form-cross"></div>
+                </div>
+                <div class="form-group__text">                   
+                  <input type="text" required autocomplete="off" name="name">
+                  <label for="name">Имя</label>
+                  <div class="form-cross"></div>
+                </div>
+                <div class="form-group__text">                   
+                  <input type="text" required autocomplete="off" name="patronym">
+                  <label for="patronym">Отчество</label>
+                  <div class="form-cross"></div>
+                </div>
               </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="name">
-                <label for="name">Имя</label>
+              <div class="form-row">
+                <h3 class="passport-data">Паспортные данные</h3>
+                <div class="form-group__text">
+                  <input type="text" required autocomplete="off" name="passport-data">
+                  <div class="form-cross"></div>
+                </div>
               </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="patronym">
-                <label for="patronym">Отчество</label>
+              <div class="form-row">
+                <h3 class="birth-date">Дата рождения</h3>
+                <div class="form-group__text">
+                  <input type="text" required autocomplete="off" name="birth-date" data-date>
+                  <div class="form-cross"></div>
+                </div>
               </div>
-              <h3 class="passport-data">Паспортные данные</h3>
-              <div class="form-group__text">
-                <input type="text" required autocomplete="off" name="passport-data">
+              <div class="form-row">
+                <h3 class="sex">Пол                </h3>
+                <div class="form-group__check">
+                  <input type="radio" id="sex-male" name="sex" checked>
+                  <label for="sex-male">Мужской                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="radio" id="sex-female" name="sex">
+                  <label for="sex-female">Женский</label>
+                </div>
               </div>
-              <h3 class="birth-date">Дата рождения</h3>
-              <div class="form-group__text">
-                <input type="text" required autocomplete="off" name="birth-date">
+              <div class="form-row">
+                <h3 class="citezenship">Гражданство</h3>
+                <div class="form-group__text">
+                  <input type="text" required autocomplete="off" name="citezenship">
+                  <div class="form-cross"></div>
+                </div>
               </div>
-              <h3 class="sex">Пол                </h3>
-              <div class="form-group__check">
-                <input type="radio" id="sex-male" name="sex">
-                <label for="sex-male">Мужской                </label>
+              <div class="form-row">
+                <h3 class="citezenship">ИНН</h3>
+                <div class="form-group__text">
+                  <input type="text" required autocomplete="off" name="inn">
+                  <div class="form-cross"></div>
+                </div>
               </div>
-              <div class="form-group__check">
-                <input type="radio" id="sex-female" name="sex">
-                <label for="sex-female">Женский</label>
+              <div class="form-row">
+                <h3 class="citezenship">СНИЛС</h3>
+                <div class="form-group__text">
+                  <input type="text" required autocomplete="off" name="iian">
+                  <div class="form-cross"></div>
+                </div>
               </div>
-              <h3 class="citezenship">Гражданство</h3>
-              <div class="form-group__text">
-                <input type="text" required autocomplete="off" name="citezenship">
+              <div class="form-row">
+                <h3 class="citezenship">Контактный телефон</h3>
+                <div class="form-group__text">                   
+                  <input type="text" required autocomplete="off" name="phone-main" data-phone>
+                  <label for="phone-main">Основной</label>
+                  <div class="form-cross"></div>
+                </div>
+                <div class="form-group__text">                   
+                  <input type="text" autocomplete="off" name="phone-main" data-phone>
+                  <label for="phone-main">Дополнительный</label>
+                  <div class="form-cross"></div>
+                </div>
               </div>
-              <h3 class="citezenship">ИНН</h3>
-              <div class="form-group__text">
-                <input type="text" required autocomplete="off" name="inn">
+              <div class="form-row">
+                <h3 class="email">Email</h3>
+                <div class="form-group__text">
+                  <input type="text" autocomplete="off" name="email">
+                  <div class="form-cross"></div>
+                </div>
               </div>
-              <h3 class="citezenship">СНИЛС</h3>
-              <div class="form-group__text">
-                <input type="text" required autocomplete="off" name="iian">
+              <div class="form-row">
+                <h3 class="civil-status">Статус семейного положения                </h3>
+                <div class="form-group__check">
+                  <input type="radio" id="marriage" name="marriage">
+                  <label for="marriage">Женат / Замужем                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="radio" id="civil-marriage" name="marriage">
+                  <label for="civil-marriage">Гражданский брак                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="radio" id="single" name="marriage">
+                  <label for="single">Холост / Не замужем                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="radio" id="divorced" name="marriage">
+                  <label for="divorced">В разводе                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="radio" id="widower" name="marriage">
+                  <label for="widower">Вдовец / Вдова</label>
+                </div>
               </div>
-              <h3 class="citezenship">Контактный телефон</h3>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="phone-main">
-                <label for="phone-main">Основной</label>
+              <div class="form-row">
+                <h3 class="name-change">Менялись ли ФИО</h3>
+                <div class="form-group_hidden">
+                  <div class="form-group__check">
+                    <input type="checkbox" id="name-change" name="name-change" data-hidden>
+                    <label for="name-change">Да </label>
+                    <div class="form-group_hidden-content" data-hidden-content>
+                      <div class="form-group__text">                                  
+                        <input type="text" autocomplete="off" name="previous-name">
+                        <label for="previous-name">Прежние ФИО</label>
+                        <div class="form-cross"></div>
+                      </div>
+                      <div class="form-group__text">                                   
+                        <input type="text" autocomplete="off" name="change-date" data-date>
+                        <label for="change-date">Дата изменения</label>
+                        <div class="form-cross"></div>
+                      </div>
+                      <div class="form-group__text">                                 
+                        <input type="text" autocomplete="off" name="change-reason">
+                        <label for="change-reason">Причина</label>
+                        <div class="form-cross"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="phone-main">
-                <label for="phone-main">Дополнительный</label>
+              <div class="form-row">
+                <h3 class="children">Количество несовершеннолетних детей и иных иждевенцев</h3>
+                <div class="form-group_hidden-for-count">
+                  <div class="form-group__text">               
+                    <input type="text" autocomplete="off" name="children-number" data-count>
+                    <label for="children-number">Количество</label>
+                  </div>
+                </div>
+                <div class="form-group_hidden-wrapper" data-count-contain>
+                  <div class="form-group_hidden-content">
+                    <h3 class="child">Ребенок</h3>
+                    <div class="form-group__text">                   
+                      <input type="text" autocomplete="off" name="child-name">
+                      <label for="child-name">ФИО</label>
+                      <div class="form-cross"></div>
+                    </div>
+                    <div class="form-group__text">                   
+                      <input type="text" autocomplete="off" name="child-birth-date" data-date>
+                      <label for="child-birth-date">Дата рождения</label>
+                      <div class="form-cross"></div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <h3 class="email">Email</h3>
-              <div class="form-group__text">
-                <input type="text" required autocomplete="off" name="email">
+              <div class="form-row">
+                <h3 class="education">Образование          </h3>
+                <div class="form-group__check">
+                  <input type="checkbox" id="middle" name="middle">
+                  <label for="middle">среднее / неполное среднее                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="checkbox" id="college" name="college">
+                  <label for="college">среднее специальное                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="checkbox" id="incomplete-high" name="incomplete-high">
+                  <label for="incomplete-high">незаконченное высшее                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="checkbox" id="high" name="high">
+                  <label for="high">высшее                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="checkbox" id="science-degree" name="science-degree">
+                  <label for="science-degree">ученая степень                </label>
+                </div>
+                <div class="form-group__text form-group__text_pt">                   
+                  <input type="text" autocomplete="off" name="institution-name">
+                  <label for="institution-name">Наименование учебного заведения</label>
+                  <div class="form-cross">                  </div>
+                </div>
               </div>
-              <h3 class="civil-status">Статус семейного положения                </h3>
-              <div class="form-group__check">
-                <input type="checkbox" id="marriage" name="marriage">
-                <label for="marriage">Женат / Замужем                </label>
+              <div class="form-row">
+                <h3 class="registration-adress">Адрес регистрации</h3>
+                <div class="form-group__text">                   
+                  <input type="text" required autocomplete="off" name="zip-code">
+                  <label for="zip-code">Почтовый индекс</label>
+                </div>
+                <div class="form-group__text">                   
+                  <input type="text" required autocomplete="off" name="city">
+                  <label for="city">Город / область</label>
+                </div>
+                <div class="form-group__text">                   
+                  <input type="text" required autocomplete="off" name="street">
+                  <label for="street">Улица</label>
+                </div>
+                <div class="form-group__text">                   
+                  <input type="text" required autocomplete="off" name="building">
+                  <label for="building">Дом</label>
+                </div>
+                <div class="form-group__text">                   
+                  <input type="text" autocomplete="off" name="facility">
+                  <label for="facility">Корпус</label>
+                </div>
+                <div class="form-group__text">                   
+                  <input type="text" required autocomplete="off" name="apartment">
+                  <label for="apartment">Квартира</label>
+                </div>
               </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="civil-marriage" name="civil-marriage">
-                <label for="civil-marriage">Гражданский брак                </label>
-              </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="single" name="single">
-                <label for="single">Холост / Не замужем                </label>
-              </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="divorced" name="divorced">
-                <label for="divorced">В разводе                </label>
-              </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="widower" name="widower">
-                <label for="widower">Вдовец / Вдова</label>
-              </div>
-              <h3 class="name-change">Менялись ли ФИО                </h3>
-              <div class="form-group__check">
-                <input type="checkbox" id="name-change" name="name-change">
-                <label for="name-change">Да </label>
-              </div>
-              <div class="form-group__text">                                  
-                <input type="text" required autocomplete="off" name="previous-name">
-                <label for="previous-name">Прежние ФИО</label>
-              </div>
-              <div class="form-group__text">                                   
-                <input type="text" required autocomplete="off" name="change-date">
-                <label for="change-date">Дата изменения</label>
-              </div>
-              <div class="form-group__text">                                 
-                <input type="text" required autocomplete="off" name="change-reason">
-                <label for="change-reason">Причина </label>
-              </div>
-              <h3 class="children">Количество несовершеннолетних детей и иных иждевенцев</h3>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="children-number">
-                <label for="children-number">Количество</label>
-              </div>
-              <h3 class="child">Ребенок 1</h3>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="child-name">
-                <label for="child-name">ФИО</label>
-              </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="child-birth-date">
-                <label for="child-birth-date">Дата рождения</label>
-              </div>
-              <h3 class="education">Образование                </h3>
-              <div class="form-group__check">
-                <input type="checkbox" id="middle" name="middle">
-                <label for="middle">среднее / неполное среднее                </label>
-              </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="college" name="college">
-                <label for="college">среднее специальное                </label>
-              </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="incomplete-high" name="incomplete-high">
-                <label for="incomplete-high">незаконченное высшее                </label>
-              </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="high" name="high">
-                <label for="high">высшее                </label>
-              </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="science-degree" name="science-degree">
-                <label for="science-degree">ученая степень                </label>
-              </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="institution-name">
-                <label for="institution-name">Наименование учебного заведения                   </label>
-              </div>
-              <h3 class="registration-adress">Адрес регистрации</h3>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="zip-code">
-                <label for="zip-code">Почтовый индекс</label>
-              </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="city">
-                <label for="city">Город / область</label>
-              </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="street">
-                <label for="street">Улица</label>
-              </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="building">
-                <label for="building">Дом</label>
-              </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="facility">
-                <label for="facility">Корпус</label>
-              </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="apartment">
-                <label for="apartment">Квартира</label>
-              </div>
-              <h3 class="real-registration-adress">Адрес фактической регистрации совпадает с адресом регистрации?                </h3>
-              <div class="form-group__check">
-                <input type="checkbox" id="match" name="match">
-                <label for="match">Да</label>
-              </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="zip-code">
-                <label for="zip-code">Почтовый индекс</label>
-              </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="city">
-                <label for="city">Город / область</label>
-              </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="street">
-                <label for="street">Улица</label>
-              </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="building">
-                <label for="building">Дом</label>
-              </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="facility">
-                <label for="facility">Корпус</label>
-              </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="apartment">
-                <label for="apartment">Квартира</label>
+              <div class="form-row">
+                <h3 class="real-registration-adress">Адрес фактического проживания совпадает с адресом регистрации?  </h3>
+                <div class="form-group_show">             
+                  <div class="form-group__check">
+                    <input type="checkbox" id="match" name="match" data-show>
+                    <label for="match">Да</label>
+                  </div>
+                  <div class="form-group_show-content" data-show-content>
+                    <div class="form-group__text">                   
+                      <input type="text" required autocomplete="off" name="zip-code">
+                      <label for="zip-code">Почтовый индекс</label>
+                    </div>
+                    <div class="form-group__text">                   
+                      <input type="text" required autocomplete="off" name="city">
+                      <label for="city">Город / область</label>
+                    </div>
+                    <div class="form-group__text">                   
+                      <input type="text" required autocomplete="off" name="street">
+                      <label for="street">Улица</label>
+                    </div>
+                    <div class="form-group__text">                   
+                      <input type="text" required autocomplete="off" name="building">
+                      <label for="building">Дом</label>
+                    </div>
+                    <div class="form-group__text">                   
+                      <input type="text" required autocomplete="off" name="facility">
+                      <label for="facility">Корпус</label>
+                    </div>
+                    <div class="form-group__text">                   
+                      <input type="text" required autocomplete="off" name="apartment">
+                      <label for="apartment">Квартира</label>
+                    </div>
+                  </div>
+                </div>
               </div>
             </form>
           </div>
-          <div class="form-btns">
-            <div class="form-btn form-btn__prev">Назад</div>
-            <div class="form-btn form-btn__next">Вперед</div>
+          <div class="form-row_bb">
+            <div class="form-btns">
+              <div class="form-btn form-btn__prev">Назад</div>
+              <div class="form-btn form-btn__next">Вперед</div>
+            </div>
           </div>
         </div>
         <div class="form-block">
@@ -335,271 +438,341 @@
           </div>
           <div class="form-block__content">
             <form class="form form-job-data">
-              <h3 class="name">Постоянное место работы</h3>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="name">
-                <label for="name">Наименование</label>
+              <div class="form-row">
+                <h3 class="name">Постоянное место работы</h3>
+                <div class="form-group__text">                   
+                  <input type="text" required autocomplete="off" name="name">
+                  <label for="name">Наименование</label>
+                  <div class="form-cross"></div>
+                </div>
+                <div class="form-group__text">                   
+                  <input type="text" required autocomplete="off" name="status">
+                  <label for="status">Статус занятости</label>
+                  <div class="form-cross"></div>
+                </div>
               </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="status">
-                <label for="status">Статус занятости</label>
+              <div class="form-row">
+                <h3 class="employer-inn">ИНН работодателя</h3>
+                <div class="form-group__text">
+                  <input type="text" autocomplete="off" name="employer-inn">
+                  <div class="form-cross"></div>
+                </div>
               </div>
-              <h3 class="employer-inn">ИНН работодателя</h3>
-              <div class="form-group__text">
-                <input type="text" required autocomplete="off" name="employer-inn">
+              <div class="form-row">
+                <h3 class="employer-phone">Телефон организации-работодателя</h3>
+                <div class="form-group__text">
+                  <input type="text" autocomplete="off" name="employer-phone" data-phone>
+                  <div class="form-cross"></div>
+                </div>
               </div>
-              <h3 class="employer-phone">Телефон организации-работодателя</h3>
-              <div class="form-group__text">
-                <input type="text" required autocomplete="off" name="employer-phone">
+              <div class="form-row">
+                <h3 class="employer-site">Сайт организации-работодателя</h3>
+                <div class="form-group__text">
+                  <input type="text" autocomplete="off" name="employer-site">
+                  <div class="form-cross"></div>
+                </div>
               </div>
-              <h3 class="employer-site">Сайт организации-работодателя</h3>
-              <div class="form-group__text">
-                <input type="text" required autocomplete="off" name="employer-site">
+              <div class="form-row">
+                <h3 class="employer-adress">Юридический адрес организации и фактический адрес    </h3>
+                <h3 class="employer-adress-legal">Юридический адрес</h3>
+                <div class="form-group__text">
+                  <input type="text" required autocomplete="off" name="zip-code">
+                  <label for="zip-code">Почтовый индекс</label>
+                  <div class="form-cross"></div>
+                </div>
+                <div class="form-group__text">                   
+                  <input type="text" required autocomplete="off" name="city">
+                  <label for="city">Город / область</label>
+                  <div class="form-cross"></div>
+                </div>
+                <div class="form-group__text">                   
+                  <input type="text" required autocomplete="off" name="street">
+                  <label for="street">Улица</label>
+                  <div class="form-cross"></div>
+                </div>
+                <div class="form-group__text">                   
+                  <input type="text" required autocomplete="off" name="building">
+                  <label for="building">Дом</label>
+                  <div class="form-cross"></div>
+                </div>
+                <div class="form-group__text">                   
+                  <input type="text" required autocomplete="off" name="facility">
+                  <label for="facility">Корпус</label>
+                  <div class="form-cross"></div>
+                </div>
+                <div class="form-group__text">                   
+                  <input type="text" required autocomplete="off" name="office">
+                  <label for="office">Офис</label>
+                  <div class="form-cross"></div>
+                </div>
               </div>
-              <h3 class="employer-adress">Юридический адрес организации и фактический адрес       </h3>
-              <h3 class="employer-adress-legal">Юридический адрес        </h3>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="zip-code">
-                <label for="zip-code">Почтовый индекс</label>
+              <div class="form-row">
+                <h3 class="employer-adress-real">Фактический адрес      </h3>
+                <div class="form-group_show">         
+                  <div class="form-group__check">
+                    <input type="checkbox" id="employer-match" name="employer-match" data-show>
+                    <label for="employer-match">Совпадает с юридическим адресом  </label>
+                  </div>
+                  <div class="form-group_show-content" data-show-content>    
+                    <div class="form-group__text">                   
+                      <input type="text" autocomplete="off" name="zip-code">
+                      <label for="zip-code">Почтовый индекс</label>
+                      <div class="form-cross"></div>
+                    </div>
+                    <div class="form-group__text">                   
+                      <input type="text" autocomplete="off" name="city">
+                      <label for="city">Город / область</label>
+                      <div class="form-cross"></div>
+                    </div>
+                    <div class="form-group__text">                   
+                      <input type="text" autocomplete="off" name="street">
+                      <label for="street">Улица</label>
+                      <div class="form-cross"></div>
+                    </div>
+                    <div class="form-group__text">                   
+                      <input type="text" autocomplete="off" name="building">
+                      <label for="building">Дом</label>
+                      <div class="form-cross"></div>
+                    </div>
+                    <div class="form-group__text">                   
+                      <input type="text" autocomplete="off" name="facility">
+                      <label for="facility">Корпус</label>
+                      <div class="form-cross"></div>
+                    </div>
+                    <div class="form-group__text">                   
+                      <input type="text" autocomplete="off" name="office">
+                      <label for="office">Офис</label>
+                      <div class="form-cross"></div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="city">
-                <label for="city">Город / область</label>
+              <div class="form-row">
+                <h3 class="branch">Сфера деятельности организации                </h3>
+                <div class="form-group__check">
+                  <input type="checkbox" id="finance" name="finance">
+                  <label for="finance">Финансы / Банки / Страхование                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="checkbox" id="police" name="police">
+                  <label for="police">Правоохранительные органы                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="checkbox" id="education" name="education">
+                  <label for="education">Образование                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="checkbox" id="farming" name="farming">
+                  <label for="farming">Сельское хозяйство                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="checkbox" id="culture" name="culture">
+                  <label for="culture">Культура и искусство                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="checkbox" id="security" name="security">
+                  <label for="security">Охранная деятельность                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="checkbox" id="authorities" name="authorities">
+                  <label for="authorities">Органы власти и управления                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="checkbox" id="it" name="it">
+                  <label for="it">Информационные технологии                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="checkbox" id="trading" name="trading">
+                  <label for="trading">Оптовая и розничная торговля                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="checkbox" id="medicine" name="medicine">
+                  <label for="medicine">Медицина                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="checkbox" id="production" name="production">
+                  <label for="production">Производство                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="checkbox" id="transport" name="transport">
+                  <label for="transport">Транспорт                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="checkbox" id="industry" name="industry">
+                  <label for="industry">Промышленность                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="checkbox" id="law" name="law">
+                  <label for="law">Юриспруденция                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="checkbox" id="construction" name="construction">
+                  <label for="construction">Строительство                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="checkbox" id="science" name="science">
+                  <label for="science">Наука                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="checkbox" id="service" name="service">
+                  <label for="service">Услуги                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="checkbox" id="tourism" name="tourism">
+                  <label for="tourism">Туризм                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="checkbox" id="other" name="other" data-option>
+                  <label for="other">Иное</label>
+                </div>
+                <div class="form-group__text" data-option-field>
+                  <input type="text" autocomplete="off" name="other">
+                  <div class="form-cross"></div>
+                </div>
               </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="street">
-                <label for="street">Улица</label>
+              <div class="form-row">
+                <h3 class="employer-size">Численность персонала</h3>
+                <div class="form-group__radio">                   
+                  <input type="radio" id="employer-size-1" name="employer-size" value="size-type-1">
+                  <label for="employer-size-1">до 10</label>
+                </div>
+                <div class="form-group__radio">                   
+                  <input type="radio" id="employer-size-2" name="employer-size" value="size-type-2">
+                  <label for="employer-size-2">11-30</label>
+                </div>
+                <div class="form-group__radio">                   
+                  <input type="radio" id="employer-size-3" name="employer-size" value="size-type-3">
+                  <label for="employer-size-3">31-50</label>
+                </div>
+                <div class="form-group__radio">                   
+                  <input type="radio" id="employer-size-4" name="employer-size" value="size-type-4">
+                  <label for="employer-size-4">51-100</label>
+                </div>
+                <div class="form-group__radio">                   
+                  <input type="radio" id="employer-size-5" name="employer-size" value="size-type-5">
+                  <label for="employer-size-5">101-500</label>
+                </div>
+                <div class="form-group__radio">                   
+                  <input type="radio" id="employer-size-6" name="employer-size" value="size-type-6">
+                  <label for="employer-size-6">501-1000</label>
+                </div>
+                <div class="form-group__radio">                   
+                  <input type="radio" id="employer-size-7" name="employer-size" value="size-type-7">
+                  <label for="employer-size-7">более 1000</label>
+                </div>
               </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="building">
-                <label for="building">Дом</label>
+              <div class="form-row">
+                <h3 class="employer-duration">Трудовой стаж</h3>
+                <div class="form-group__radio">                   
+                  <input type="radio" id="employer-duration-1" name="employer-duration" value="duration-type-1">
+                  <label for="employer-duration-1">до 2-х лет</label>
+                </div>
+                <div class="form-group__radio">                   
+                  <input type="radio" id="employer-duration-2" name="employer-duration" value="duration-type-2">
+                  <label for="employer-duration-2">от 2-5 лет</label>
+                </div>
+                <div class="form-group__radio">                   
+                  <input type="radio" id="employer-duration-3" name="employer-duration" value="duration-type-3">
+                  <label for="employer-duration-3">более 5 лет </label>
+                </div>
               </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="facility">
-                <label for="facility">Корпус</label>
+              <div class="form-row">
+                <h3 class="appointment">Должность</h3>
+                <div class="form-group__text">
+                  <input type="text" required autocomplete="off" name="appointment">
+                  <div class="form-cross"></div>
+                </div>
               </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="office">
-                <label for="office">Офис</label>
+              <div class="form-row">
+                <h3 class="experience">Общий трудовой стаж</h3>
+                <div class="form-group__text">
+                  <input type="text" required autocomplete="off" name="experience">
+                  <div class="form-cross"></div>
+                </div>
               </div>
-              <h3 class="employer-adress-real">Фактический адрес                </h3>
-              <div class="form-group__check">
-                <input type="checkbox" id="employer-match" name="employer-match">
-                <label for="employer-match">Совпадает с юридическим адресом       </label>
+              <div class="form-row">
+                <h3 class="current-experience">Стаж по текущему месту работы</h3>
+                <div class="form-group__text">
+                  <input type="text" required autocomplete="off" name="current-experience">
+                  <div class="form-cross"></div>
+                </div>
               </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="zip-code">
-                <label for="zip-code">Почтовый индекс</label>
+              <div class="form-row">
+                <h3 class="job-number">Мест работы за последние 3 (три) года</h3>
+                <div class="form-group__text">
+                  <input type="text" required autocomplete="off" name="job-number">
+                  <div class="form-cross"></div>
+                </div>
               </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="city">
-                <label for="city">Город / область</label>
+              <div class="form-row">
+                <h3 class="income-confimation">Справка о доходе</h3>
+                <div class="form-group__radio">                   
+                  <input type="radio" checked id="income-confimation-1" name="income-confimation" value="confirmation-type-1">
+                  <label for="income-confimation-1">2-НДФЛ</label>
+                </div>
+                <div class="form-group__radio">                   
+                  <input type="radio" id="income-confimation-2" name="income-confimation" value="confirmation-type-2">
+                  <label for="income-confimation-2">Справка по форме банка</label>
+                </div>
+                <div class="form-group__radio">                   
+                  <input type="radio" id="income-confimation-3" name="income-confimation" value="confirmation-type-3">
+                  <label for="income-confimation-3">Без подтверждения дохода - по двум документам</label>
+                </div>
               </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="street">
-                <label for="street">Улица</label>
+              <div class="form-row">
+                <h3 class="income">Среднемесячный доход, руб</h3>
+                <div class="form-group__text">
+                  <input type="text" required autocomplete="off" name="income" data-cost>
+                  <div class="form-cross"></div>
+                </div>
               </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="building">
-                <label for="building">Дом</label>
+              <div class="form-row">
+                <h3 class="additional-income">Дополнительный доход (необязательно)        </h3>
+                <div class="form-group__text">                   
+                  <input type="text" autocomplete="off" name="additional-employer-name">
+                  <label for="additional-employer-name">Наименование работодателя</label>
+                  <div class="form-cross"></div>
+                </div>
+                <div class="form-group__text">                   
+                  <input type="text" autocomplete="off" name="additional-appointment">
+                  <label for="additional-appointment">Должность</label>
+                  <div class="form-cross"></div>
+                </div>
+                <div class="form-group__text">                   
+                  <input type="text" autocomplete="off" name="additional-employer-inn">
+                  <label for="additional-employer-inn">ИНН работодателя</label>
+                  <div class="form-cross"></div>
+                </div>
+                <div class="form-group__text">                   
+                  <input type="text" autocomplete="off" name="additional-employer-real-adress">
+                  <label for="additional-employer-real-adress">Фактический адрес</label>
+                  <div class="form-cross"></div>
+                </div>
+                <div class="form-group__text">                   
+                  <input type="text" autocomplete="off" name="additional-employer-branch">
+                  <label for="additional-employer-branch">Сфера деятельности организации</label>
+                  <div class="form-cross"></div>
+                </div>
+                <div class="form-group__text">                   
+                  <input type="text" autocomplete="off" name="additional-income">
+                  <label for="additional-income">Доход по совместительству</label>
+                  <div class="form-cross"></div>
+                </div>
               </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="facility">
-                <label for="facility">Корпус</label>
-              </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="office">
-                <label for="office">Офис</label>
-              </div>
-              <h3 class="branch">Сфера деятельности организации                </h3>
-              <div class="form-group__check">
-                <input type="checkbox" id="finance" name="finance">
-                <label for="finance">Финансы / Банки / Страхование                </label>
-              </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="police" name="police">
-                <label for="police">Правоохранительные органы                </label>
-              </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="education" name="education">
-                <label for="education">Образование                </label>
-              </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="farming" name="farming">
-                <label for="farming">Сельское хозяйство                </label>
-              </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="culture" name="culture">
-                <label for="culture">Культура и искусство                </label>
-              </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="security" name="security">
-                <label for="security">Охранная деятельность                </label>
-              </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="authorities" name="authorities">
-                <label for="authorities">Органы власти и управления                </label>
-              </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="it" name="it">
-                <label for="it">Информационные технологии                </label>
-              </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="trading" name="trading">
-                <label for="trading">Оптовая и розничная торговля                </label>
-              </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="medicine" name="medicine">
-                <label for="medicine">Медицина                </label>
-              </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="production" name="production">
-                <label for="production">Производство                </label>
-              </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="transport" name="transport">
-                <label for="transport">Транспорт                </label>
-              </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="industry" name="industry">
-                <label for="industry">Промышленность                </label>
-              </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="law" name="law">
-                <label for="law">Юриспруденция                </label>
-              </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="construction" name="construction">
-                <label for="construction">Строительство                </label>
-              </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="science" name="science">
-                <label for="science">Наука                </label>
-              </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="service" name="service">
-                <label for="service">Услуги                </label>
-              </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="tourism" name="tourism">
-                <label for="tourism">Туризм                </label>
-              </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="other" name="other">
-                <label for="other">Иное</label>
-              </div>
-              <div class="form-group__text">
-                <input type="text" required autocomplete="off" name="other">
-              </div>
-              <h3 class="employer-size">Численность персонала</h3>
-              <div class="form-group__radio">                   
-                <input type="radio" id="employer-size-1" name="employer-size" value="size-type-1">
-                <label for="employer-size-1">до 10</label>
-              </div>
-              <div class="form-group__radio">                   
-                <input type="radio" id="employer-size-2" name="employer-size" value="size-type-2">
-                <label for="employer-size-2">11-30</label>
-              </div>
-              <div class="form-group__radio">                   
-                <input type="radio" id="employer-size-3" name="employer-size" value="size-type-3">
-                <label for="employer-size-3">31-50</label>
-              </div>
-              <div class="form-group__radio">                   
-                <input type="radio" id="employer-size-4" name="employer-size" value="size-type-4">
-                <label for="employer-size-4">51-100</label>
-              </div>
-              <div class="form-group__radio">                   
-                <input type="radio" id="employer-size-5" name="employer-size" value="size-type-5">
-                <label for="employer-size-5">101-500</label>
-              </div>
-              <div class="form-group__radio">                   
-                <input type="radio" id="employer-size-6" name="employer-size" value="size-type-6">
-                <label for="employer-size-6">501-1000</label>
-              </div>
-              <div class="form-group__radio">                   
-                <input type="radio" id="employer-size-7" name="employer-size" value="size-type-7">
-                <label for="employer-size-7">более 1000</label>
-              </div>
-              <h3 class="employer-duration">Численность персонала</h3>
-              <div class="form-group__radio">                   
-                <input type="radio" id="employer-duration-1" name="employer-duration" value="duration-type-1">
-                <label for="employer-duration-1">до 2-х лет</label>
-              </div>
-              <div class="form-group__radio">                   
-                <input type="radio" id="employer-duration-2" name="employer-duration" value="duration-type-2">
-                <label for="employer-duration-2">от 2-5 лет</label>
-              </div>
-              <div class="form-group__radio">                   
-                <input type="radio" id="employer-duration-3" name="employer-duration" value="duration-type-3">
-                <label for="employer-duration-3">более 5 лет </label>
-              </div>
-              <h3 class="appointment">Должность</h3>
-              <div class="form-group__text">
-                <input type="text" required autocomplete="off" name="appointment">
-              </div>
-              <h3 class="experience">Общий трудовой стаж</h3>
-              <div class="form-group__text">
-                <input type="text" required autocomplete="off" name="experience">
-              </div>
-              <h3 class="current-experience">Стаж по текущему месту работы</h3>
-              <div class="form-group__text">
-                <input type="text" required autocomplete="off" name="current-experience">
-              </div>
-              <h3 class="job-number">Мест работы за последние 3 (три) года</h3>
-              <div class="form-group__text">
-                <input type="text" required autocomplete="off" name="job-number">
-              </div>
-              <h3 class="income-confimation">Численность персонала</h3>
-              <div class="form-group__radio">                   
-                <input type="radio" id="income-confimation-1" name="income-confimation" value="confirmation-type-1">
-                <label for="income-confimation-1">2-НДФЛ</label>
-              </div>
-              <div class="form-group__radio">                   
-                <input type="radio" id="income-confimation-2" name="income-confimation" value="confirmation-type-2">
-                <label for="income-confimation-2">Справка по форме банка</label>
-              </div>
-              <div class="form-group__radio">                   
-                <input type="radio" id="naincome-confimationme-3" name="income-confimation" value="confirmation-type-3">
-                <label for="income-confimation-3">Без подтверждения дохода - по двум документам</label>
-              </div>
-              <h3 class="income">Среднемесячный доход, руб</h3>
-              <div class="form-group__text">
-                <input type="text" required autocomplete="off" name="income">
-              </div>
-              <h3 class="additional-income">Дополнительный доход (необязательно)        </h3>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="additional-employer-name">
-                <label for="additional-employer-name">Наименование работодателя</label>
-              </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="additional-appointment">
-                <label for="additional-appointment">Должность</label>
-              </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="additional-employer-inn">
-                <label for="additional-employer-inn">ИНН работодателя</label>
-              </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="additional-employer-real-adress">
-                <label for="additional-employer-real-adress">Фактический адрес</label>
-              </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="additional-employer-branch">
-                <label for="additional-employer-branch">Сфера деятельности организации</label>
-              </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="additional-income">
-                <label for="additional-income">Доход по совместительству</label>
-              </div>
-              <h3 class="sberbank-number">Номер карты сбербанка (если Вы являетесь з/п клиентом банка, или у вас начисляется пенсия на карту ПАО Сбербанк)</h3>
-              <div class="form-group__text">
-                <input type="text" required autocomplete="off" name="sberbank-number">
+              <div class="form-row">
+                <h3 class="sberbank-number">Номер карты сбербанка (если Вы являетесь з/п клиентом банка, или у вас начисляется пенсия на карту ПАО Сбербанк)</h3>
+                <div class="form-group__text">
+                  <input type="text" autocomplete="off" name="sberbank-number">
+                  <div class="form-cross"></div>
+                </div>
               </div>
             </form>
           </div>
-          <div class="form-btns">
-            <div class="form-btn form-btn__prev">Назад</div>
-            <div class="form-btn form-btn__next">Вперед</div>
+          <div class="form-row_bb">
+            <div class="form-btns">
+              <div class="form-btn form-btn__prev">Назад</div>
+              <div class="form-btn form-btn__next">Вперед</div>
+            </div>
           </div>
         </div>
         <div class="form-block">
@@ -608,53 +781,75 @@
           </div>
           <div class="form-block__content">
             <form class="form form-resources">
-              <h3 class="realty">Недвижимость                </h3>
-              <div class="form-group__check">
-                <input type="checkbox" id="apartment" name="apartment">
-                <label for="apartment">Квартира                </label>
+              <div class="form-row">
+                <h3 class="realty">Недвижимость                </h3>
+                <div class="form-group__check">
+                  <input type="checkbox" id="apartment" name="apartment">
+                  <label for="apartment">Квартира                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="checkbox" id="room" name="room">
+                  <label for="room">Комната                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="checkbox" id="house" name="house">
+                  <label for="house">Дом                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="checkbox" id="land" name="land">
+                  <label for="land">Земельный участок                        </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="checkbox" id="share-property" name="share-property" data-option>
+                  <label for="share-property">Долевая собственность                </label>
+                </div>
+                <div class="form-group__text form-group__text_pt" data-option-field>
+                  <input type="text" autocomplete="off" name="share-size">
+                  <label for="share-size">Указать размер доли</label>
+                  <div class="form-cross"></div>
+                </div>
+                <div class="form-group_hidden">               
+                  <div class="form-group__check">
+                    <input type="checkbox" id="private-property" name="private-property" data-hidden>
+                    <label for="private-property">Частная собственность</label>
+                  </div>
+                  <div class="form-group_hidden-content" data-hidden-content>
+                    <div class="form-group__text">                  
+                      <input type="text" autocomplete="off" name="adress">
+                      <label for="adress">Адрес</label>
+                      <div class="form-cross"></div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="room" name="room">
-                <label for="room">Комната                </label>
-              </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="house" name="house">
-                <label for="house">Дом                </label>
-              </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="land" name="land">
-                <label for="land">Земельный участок                        </label>
-              </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="share-property" name="share-property">
-                <label for="share-property">Долевая собственность                </label>
-              </div>
-              <div class="form-group__text">
-                <input type="text" required autocomplete="off" name="share-size">
-                <label for="share-size">Указать размер доли                </label>
-              </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="private-property" name="private-property">
-                <label for="private-property">Частная собственность</label>
-              </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="adress">
-                <label for="adress">Адрес</label>
-              </div>
-              <h3 class="auto">Транспорт в собственности</h3>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="model">
-                <label for="model">Марка / модель</label>
-              </div>
-              <div class="form-group__text">                   
-                <input type="text" required autocomplete="off" name="age">
-                <label for="age">Год выпуска / год приобретения</label>
+              <div class="form-row">
+                <h3 class="auto">Транспорт в собственности</h3>
+                <div class="form-group_hidden">
+                  <div class="form-group__check">
+                    <input type="checkbox" id="auto-property" name="auto-property" data-hidden>
+                    <label for="auto-property">Транспорт в собственности</label>
+                  </div>
+                  <div class="form-group_hidden-content" data-hidden-content>
+                    <div class="form-group__text"> 
+                      <input type="text" autocomplete="off" name="model">
+                      <label for="model">Марка / модель</label>
+                      <div class="form-cross"></div>
+                    </div>
+                    <div class="form-group__text">                   
+                      <input type="text" autocomplete="off" name="age">
+                      <label for="age">Год выпуска / год приобретения</label>
+                      <div class="form-cross"></div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </form>
           </div>
-          <div class="form-btns">
-            <div class="form-btn form-btn__prev">Назад</div>
-            <div class="form-btn form-btn__next">Вперед</div>
+          <div class="form-row_bb">
+            <div class="form-btns">
+              <div class="form-btn form-btn__prev">Назад</div>
+              <div class="form-btn form-btn__next active">Вперед</div>
+            </div>
           </div>
         </div>
         <div class="form-block">
@@ -663,78 +858,104 @@
           </div>
           <div class="form-block__content">
             <form class="form form-credit-history">
-              <h3 class="credit-type">Вид кредита                </h3>
-              <div class="form-group__check">
-                <input type="checkbox" id="mortgage" name="mortgage">
-                <label for="mortgage">ипотечный                </label>
+              <div class="form-row">
+                <h3 class="credit-type">Вид кредита                </h3>
+                <div class="form-group__check">
+                  <input type="radio" id="mortgage" name="type-credit">
+                  <label for="mortgage">ипотечный                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="radio" id="car" name="type-credit">
+                  <label for="car">автокредит                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="radio" id="consumer" name="type-credit">
+                  <label for="consumer">потребительский                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="radio" id="credit-card" name="type-credit">
+                  <label for="credit-card">кредитная карта</label>
+                </div>
               </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="car" name="car">
-                <label for="car">автокредит                </label>
+              <div class="form-row">
+                <h3 class="bank">Банк</h3>
+                <div class="form-group__text">
+                  <input type="text" required autocomplete="off" name="bank">
+                  <div class="form-cross"></div>
+                </div>
               </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="consumer" name="consumer">
-                <label for="consumer">потребительский                </label>
+              <div class="form-row">
+                <h3 class="currency">Валюта кредита                </h3>
+                <div class="form-group__check">
+                  <input type="radio" checked id="rubles" name="money">
+                  <label for="rubles">рубли РФ                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="radio" id="dollars" name="money">
+                  <label for="dollars">доллары США                </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="radio" id="euro" name="money">
+                  <label for="euro">евро</label>
+                </div>
               </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="credit-card" name="credit-card">
-                <label for="credit-card">кредитная карта</label>
+              <div class="form-row">
+                <h3 class="credit-sum">Сумма кредита</h3>
+                <div class="form-group__text">
+                  <input type="text" required autocomplete="off" name="credit-sum" data-cost>
+                  <div class="form-cross"></div>
+                </div>
               </div>
-              <h3 class="bank">Банк</h3>
-              <div class="form-group__text">
-                <input type="text" required autocomplete="off" name="bank">
+              <div class="form-row">
+                <h3 class="monthly-payment">Ежемесячная сумма к погашению</h3>
+                <div class="form-group__text">
+                  <input type="text" required autocomplete="off" name="monthly-payment" data-cost>
+                  <div class="form-cross"></div>
+                </div>
               </div>
-              <h3 class="currency">Валюта кредита                </h3>
-              <div class="form-group__check">
-                <input type="checkbox" id="rubles" name="rubles">
-                <label for="rubles">рубли РФ                </label>
+              <div class="form-row">
+                <h3 class="loan-balance">Остаток непогашенной задолженности</h3>
+                <div class="form-group__text">
+                  <input type="text" required autocomplete="off" name="loan-balance" data-cost>
+                  <div class="form-cross"></div>
+                </div>
               </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="dollars" name="dollars">
-                <label for="dollars">доллары США                </label>
-              </div>
-              <div class="form-group__check">
-                <input type="checkbox" id="euro" name="euro">
-                <label for="euro">евро</label>
-              </div>
-              <h3 class="credit-sum">Сумма кредита</h3>
-              <div class="form-group__text">
-                <input type="text" required autocomplete="off" name="credit-sum">
-              </div>
-              <h3 class="monthly-payment">Ежемесячная сумма к погашению</h3>
-              <div class="form-group__text">
-                <input type="text" required autocomplete="off" name="monthly-payment">
-              </div>
-              <h3 class="loan-balance">Остаток непогашенной задолженности</h3>
-              <div class="form-group__text">
-                <input type="text" required autocomplete="off" name="loan-balance">
-              </div>
-              <h3 class="repayment-period">Срок погашения</h3>
-              <div class="form-group__text">
-                <input type="text" required autocomplete="off" name="repayment-period">
+              <div class="form-row">
+                <h3 class="repayment-period">Срок погашения</h3>
+                <div class="form-group__text">
+                  <input type="text" required autocomplete="off" name="repayment-period">
+                  <div class="form-cross"></div>
+                </div>
               </div>
             </form>
           </div>
-          <div class="form-btns">
-            <div class="form-btn form-btn__prev">Назад</div>
-            <div class="form-btn form-btn__next">Вперед</div>
+          <div class="form-row_bb">
+            <div class="form-btns">
+              <div class="form-btn form-btn__prev">Назад</div>
+              <div class="form-btn form-btn__next">Вперед</div>
+            </div>
           </div>
         </div>
         <div class="form-block">
           <div class="form-block__header">
-            <h2>Дополнительная информация (Ваши личные пожелания в какие банки отправить заявку на ипотеку и любая другая полезная информация)</h2>
+            <h2>Дополнительная информация <span class="form-head-description">(Ваши личные пожелания в какие банки отправить заявку на ипотеку и любая другая полезная информация)</span></h2>
           </div>
           <div class="form-block__content">
             <form class="form form-additional-info">
-              <h3 class="comments">Коментарии</h3>
-              <div class="form-group__text">
-                <input type="text" required autocomplete="off" name="comments">
+              <div class="form-row">
+                <h3 class="comments">Коментарии</h3>
+                <div class="form-group__text">
+                  <input type="text" autocomplete="off" name="comments">
+                  <div class="form-cross"></div>
+                </div>
               </div>
             </form>
           </div>
-          <div class="form-btns">
-            <div class="form-btn form-btn__prev">Назад</div>
-            <div class="form-btn form-btn__next">Вперед</div>
+          <div class="form-row_bb">
+            <div class="form-btns">
+              <div class="form-btn form-btn__prev">Назад</div>
+              <div class="form-btn form-btn__next active">Вперед</div>
+            </div>
           </div>
         </div>
         <div class="form-block">
@@ -743,59 +964,63 @@
           </div>
           <div class="form-block__content">
             <form class="form form-documents">
-              <h3 class="passport">Паспорт</h3>
-              <div class="form-group__file">
-                <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить паспорт</span>
-                  <input type="file" name="passport" multiple>
-                </label>
-              </div>
-              <h3 class="passport">Трудовая книга</h3>
-              <div class="form-group__file">
-                <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить трудовую книгу</span>
-                  <input type="file" name="passport" multiple>
-                </label>
-              </div>
-              <h3 class="passport">Свидетельство о браке</h3>
-              <div class="form-group__file">
-                <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить свидетельство о браке</span>
-                  <input type="file" name="passport" multiple>
-                </label>
-              </div>
-              <h3 class="passport">Свидетельство о рождении детей</h3>
-              <div class="form-group__file">
-                <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить свидетельство о рождении детей</span>
-                  <input type="file" name="passport" multiple>
-                </label>
-              </div>
-              <h3 class="passport">СНИЛС</h3>
-              <div class="form-group__file">
-                <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить СНИЛС</span>
-                  <input type="file" name="passport" multiple>
-                </label>
-              </div>
-              <h3 class="passport">ИНН</h3>
-              <div class="form-group__file">
-                <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить ИНН</span>
-                  <input type="file" name="passport" multiple>
-                </label>
-              </div>
-              <h3 class="passport">Документ, подтверждающий доход</h3>
-              <div class="form-group__file">
-                <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить документ, подтверждающий доход</span>
-                  <input type="file" name="passport" multiple>
-                </label>
-              </div>
-              <h3 class="passport">НИС, МСК, выписка со счета МСК, субсидии, памятки</h3>
-              <div class="form-group__file">
-                <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить другие документы</span>
-                  <input type="file" name="passport" multiple>
-                </label>
+              <div class="form-row form-row-center">
+                <h3 class="passport">Паспорт</h3>
+                <div class="form-group__file">
+                  <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить паспорт</span>
+                    <input type="file" name="passport" multiple>
+                  </label>
+                </div>
+                <h3 class="passport">Трудовая книга</h3>
+                <div class="form-group__file">
+                  <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить трудовую книгу</span>
+                    <input type="file" name="passport" multiple>
+                  </label>
+                </div>
+                <h3 class="passport">Свидетельство о браке</h3>
+                <div class="form-group__file">
+                  <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить свидетельство о браке</span>
+                    <input type="file" name="passport" multiple>
+                  </label>
+                </div>
+                <h3 class="passport">Свидетельство о рождении детей</h3>
+                <div class="form-group__file">
+                  <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить свидетельство о рождении детей</span>
+                    <input type="file" name="passport" multiple>
+                  </label>
+                </div>
+                <h3 class="passport">СНИЛС</h3>
+                <div class="form-group__file">
+                  <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить СНИЛС</span>
+                    <input type="file" name="passport" multiple>
+                  </label>
+                </div>
+                <h3 class="passport">ИНН</h3>
+                <div class="form-group__file">
+                  <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить ИНН</span>
+                    <input type="file" name="passport" multiple>
+                  </label>
+                </div>
+                <h3 class="passport">Документ, подтверждающий доход</h3>
+                <div class="form-group__file">
+                  <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить документ, подтверждающий доход</span>
+                    <input type="file" name="passport" multiple>
+                  </label>
+                </div>
+                <h3 class="passport">НИС, МСК, выписка со счета МСК, субсидии, памятки</h3>
+                <div class="form-group__file">
+                  <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить другие документы</span>
+                    <input type="file" name="passport" multiple>
+                  </label>
+                </div>
               </div>
             </form>
           </div>
-          <div class="form-btns">
-            <div class="form-btn form-btn__prev">Назад</div>
-            <div class="form-btn form-btn__next">Вперед</div>
+          <div class="form-row_bb">
+            <div class="form-btns">
+              <div class="form-btn form-btn__prev">Назад</div>
+              <input class="form-btn form-btn-submit" type="submit" value="Отправить анкету">
+            </div>
           </div>
         </div>
       </div>
