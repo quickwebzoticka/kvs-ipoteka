@@ -12,7 +12,7 @@ block contain
                 form.form.form-general
                     .form-row
                         div.form-group__text         
-                            input(type="text", required, autocomplete="off", name="name", data-name)
+                            input(type="text", required, autocomplete="off", name="name", data-name id="main-name")
                             label(for="name") ФИО
                             .form-cross
                         div.form-group__text                    
@@ -46,14 +46,8 @@ block contain
                     .form-row
                         h3.cost Стоимость ОН
                         div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="cost" data-cost)
+                            input(type="text", required, autocomplete="off", name="cost" data-cost data-credit-main)
                             label(for="cost") Стоимость
-                            .form-cross
-                    .form-row
-                        h3.credit-sum Сумма кредита, руб
-                        div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="credit-sum" data-cost data-credit-summ)
-                            label(for="credit-sum") Сумма кредита
                             .form-cross
                     .form-row
                         h3.initial-contribution Первоначальный взнос, в руб
@@ -64,7 +58,14 @@ block contain
                         div.form-group__text                    
                             input(type="text", autocomplete="off", name="initial-contribution-percent" data-credit-procent disabled) 
                             label(for="initial-contribution-percent") В процентах
-                            .form-cross         
+                            .form-cross  
+                    .form-row
+                        h3.credit-sum Сумма кредита, руб
+                        div.form-group__text                    
+                            input(type="text", required, autocomplete="off", name="credit-sum" data-cost data-credit-summ disabled)
+                            label(for="credit-sum") Сумма кредита
+                            .form-cross
+                               
                     
                     .form-row
                         h3.maternity-capital Ипотека + материнский капитал
@@ -73,9 +74,20 @@ block contain
                                 input(type="checkbox", id="maternity-capital", name="maternity-capital" data-hidden)
                                 label(for="maternity-capital") Мат. капитал 
                             div.form-group__text.form-group__text_pt(data-hidden-content)
-                                input(type="text", autocomplete="off", name="maternity-capital-sum" data-cost)
+                                input(type="text", autocomplete="off", name="maternity-capital-sum" data-cost data-maternity-summ)
                                 label(for="maternity-capital-sum") Размер МСК
                                 .form-cross
+                            div(data-hidden-radio-content)
+                                div.form-group__text(data-hidden-content)
+                                    input(type="text", autocomplete="off", name="maternity-capital-procent" data-procent data-maternity-procent)
+                                    label(for="maternity-capital-procent") В процентах
+                                    .form-cross
+                            div.form-group__radio(data-hidden-content)
+                                input(type="radio", id="maternity-capital-usage-PV", name="maternity-capital-usage" data-hidden-radio)
+                                label(for="maternity-capital-usage-PV") Использовать как Первоначальный Взнос
+                            div.form-group__radio(data-hidden-content)
+                                input(type="radio", id="maternity-capital-usage-time", name="maternity-capital-usage" checked)
+                                label(for="maternity-capital-usage-time") Использовать как досрочное погашение по кредиту 
                     .form-row
                         h3.military-loan Военная ипотека
                         .form-group_hidden              
@@ -83,8 +95,12 @@ block contain
                                 input(type="checkbox", id="military-loan", name="military-loan" data-hidden)
                                 label(for="military-loan") Военная ипотека
                             div.form-group__text.form-group__text_pt(data-hidden-content)                
-                                input(type="text", autocomplete="off", name="military-loan-sum" data-cost)
+                                input(type="text", autocomplete="off", name="military-loan-sum" data-cost data-military-summ)
                                 label(for="military-loan-sum") Размер НИС
+                                .form-cross
+                            div.form-group__text(data-hidden-content)
+                                input(type="text", autocomplete="off", name="military-loan-percent" data-procent data-military-procent) 
+                                label(for="initial-contribution-percent") В процентах
                                 .form-cross
                     .form-row
                         h3.subsidy Субсидия
@@ -94,11 +110,11 @@ block contain
                                 label(for="subsidy") Субсидия
                             .form-group_hidden-content(data-hidden-content)
                                 div.form-group__text                 
-                                    input(type="text", autocomplete="off", name="subsidy-sum" data-cost)
+                                    input(type="text", autocomplete="off", name="subsidy-sum" data-cost data-subsidy-summ)
                                     label(for="subsidy-sum") Размер субсидии
                                     .form-cross
                                 div.form-group__text                    
-                                    input(type="text", autocomplete="off", name="subsidy-percent" data-procent)
+                                    input(type="text", autocomplete="off", name="subsidy-percent" data-procent data-subsidy-procent)
                                     label(for="subsidy-percent") В процентах
                                     .form-cross
                                 div.form-group__text                    
@@ -106,7 +122,7 @@ block contain
                                     label(for="subsidy-name") Название субсидии
                                     .form-cross
                     .form-row
-                        h3.insurance Страхование                
+                        h3.insurance Страхование квартиры    
                         div.form-group__check
                             input(type="radio", id="insurance-yes", name="insurance", checked)
                             label(for="insurance-yes") Да                
@@ -132,17 +148,26 @@ block contain
             div.form-block__content
                 form.form.form-private-data
                     .form-row
+                        div.form-group__radio
+                            input(type="radio", id="private-data-person", name="private-data" checked)
+                            label(for="private-data-person") Заёмщик
+                        div.form-group__radio
+                            input(type="radio", id="private-data-person-1", name="private-data")
+                            label(for="private-data-person-1") Созаемщик
+                        div.form-group__radio
+                            input(type="radio", id="private-data-person-2", name="private-data")
+                            label(for="private-data-person-2") Поручитель
                         h3.name ФИО
                         div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="surname")
+                            input(type="text", required, autocomplete="off", name="surname" id="main-name-surname")
                             label(for="surname") Фамилия
                             .form-cross
                         div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="name")
+                            input(type="text", required, autocomplete="off", name="name" id="main-name-name")
                             label(for="name") Имя
                             .form-cross
                         div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="patronym")
+                            input(type="text", required, autocomplete="off", name="patronym" id="main-name-patronym")
                             label(for="patronym") Отчество
                             .form-cross
                     .form-row
@@ -515,7 +540,7 @@ block contain
                             input(type="text", required, autocomplete="off", name="experience")
                             .form-cross
                     .form-row
-                        h3.current-experience Стаж по текущему месту работы
+                        h3.current-experience Стаж в текущей сфере деятельности
                         div.form-group__text
                             input(type="text", required, autocomplete="off", name="current-experience")
                             .form-cross
@@ -586,14 +611,14 @@ block contain
                     .form-row
                         h3.realty Недвижимость                
                         div.form-group__check
-                            input(type="checkbox", id="apartment", name="apartment")
+                            input(type="checkbox", id="apartment", name="apartment" data-)
                             label(for="apartment") Квартира                
                         div.form-group__check
                             input(type="checkbox", id="room", name="room")
-                            label(for="room") Комната                
+                            label(for="room") Комната
                         div.form-group__check
                             input(type="checkbox", id="house", name="house")
-                            label(for="house") Дом                
+                            label(for="house") Дом             
                         div.form-group__check
                             input(type="checkbox", id="land", name="land")
                             label(for="land") Земельный участок                        
@@ -632,7 +657,7 @@ block contain
                 .form-btns
                     .form-btn.form-btn__prev
                         | Назад
-                    .form-btn.form-btn__next.active
+                    .form-btn__next_static
                         | Вперед
         
         div.form-block
@@ -694,7 +719,7 @@ block contain
                 .form-btns
                     .form-btn.form-btn__prev
                         | Назад
-                    .form-btn.form-btn__next
+                    .form-btn__next_static
                         | Вперед
         
         div.form-block

@@ -20,7 +20,7 @@
             <form class="form form-general">
               <div class="form-row">
                 <div class="form-group__text">        
-                  <input type="text" required autocomplete="off" name="name" data-name>
+                  <input type="text" required autocomplete="off" name="name" data-name id="main-name">
                   <label for="name">ФИО</label>
                   <div class="form-cross"></div>
                 </div>
@@ -64,16 +64,8 @@
               <div class="form-row">
                 <h3 class="cost">Стоимость ОН</h3>
                 <div class="form-group__text">                   
-                  <input type="text" required autocomplete="off" name="cost" data-cost>
+                  <input type="text" required autocomplete="off" name="cost" data-cost data-credit-main>
                   <label for="cost">Стоимость</label>
-                  <div class="form-cross"></div>
-                </div>
-              </div>
-              <div class="form-row">
-                <h3 class="credit-sum">Сумма кредита, руб</h3>
-                <div class="form-group__text">                   
-                  <input type="text" required autocomplete="off" name="credit-sum" data-cost data-credit-summ>
-                  <label for="credit-sum">Сумма кредита</label>
                   <div class="form-cross"></div>
                 </div>
               </div>
@@ -87,7 +79,15 @@
                 <div class="form-group__text">                   
                   <input type="text" autocomplete="off" name="initial-contribution-percent" data-credit-procent disabled>
                   <label for="initial-contribution-percent">В процентах</label>
-                  <div class="form-cross">        </div>
+                  <div class="form-cross"> </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <h3 class="credit-sum">Сумма кредита, руб</h3>
+                <div class="form-group__text">                   
+                  <input type="text" required autocomplete="off" name="credit-sum" data-cost data-credit-summ disabled>
+                  <label for="credit-sum">Сумма кредита</label>
+                  <div class="form-cross"></div>
                 </div>
               </div>
               <div class="form-row">
@@ -98,9 +98,24 @@
                     <label for="maternity-capital">Мат. капитал </label>
                   </div>
                   <div class="form-group__text form-group__text_pt" data-hidden-content>
-                    <input type="text" autocomplete="off" name="maternity-capital-sum" data-cost>
+                    <input type="text" autocomplete="off" name="maternity-capital-sum" data-cost data-maternity-summ>
                     <label for="maternity-capital-sum">Размер МСК</label>
                     <div class="form-cross"></div>
+                  </div>
+                  <div data-hidden-radio-content>
+                    <div class="form-group__text" data-hidden-content>
+                      <input type="text" autocomplete="off" name="maternity-capital-procent" data-procent data-maternity-procent>
+                      <label for="maternity-capital-procent">В процентах</label>
+                      <div class="form-cross"></div>
+                    </div>
+                  </div>
+                  <div class="form-group__radio" data-hidden-content>
+                    <input type="radio" id="maternity-capital-usage-PV" name="maternity-capital-usage" data-hidden-radio>
+                    <label for="maternity-capital-usage-PV">Использовать как Первоначальный Взнос</label>
+                  </div>
+                  <div class="form-group__radio" data-hidden-content>
+                    <input type="radio" id="maternity-capital-usage-time" name="maternity-capital-usage" checked>
+                    <label for="maternity-capital-usage-time">Использовать как досрочное погашение по кредиту </label>
                   </div>
                 </div>
               </div>
@@ -112,8 +127,13 @@
                     <label for="military-loan">Военная ипотека</label>
                   </div>
                   <div class="form-group__text form-group__text_pt" data-hidden-content>               
-                    <input type="text" autocomplete="off" name="military-loan-sum" data-cost>
+                    <input type="text" autocomplete="off" name="military-loan-sum" data-cost data-military-summ>
                     <label for="military-loan-sum">Размер НИС</label>
+                    <div class="form-cross"></div>
+                  </div>
+                  <div class="form-group__text" data-hidden-content>
+                    <input type="text" autocomplete="off" name="military-loan-percent" data-procent data-military-procent>
+                    <label for="initial-contribution-percent">В процентах</label>
                     <div class="form-cross"></div>
                   </div>
                 </div>
@@ -127,12 +147,12 @@
                   </div>
                   <div class="form-group_hidden-content" data-hidden-content>
                     <div class="form-group__text">                
-                      <input type="text" autocomplete="off" name="subsidy-sum" data-cost>
+                      <input type="text" autocomplete="off" name="subsidy-sum" data-cost data-subsidy-summ>
                       <label for="subsidy-sum">Размер субсидии</label>
                       <div class="form-cross"></div>
                     </div>
                     <div class="form-group__text">                   
-                      <input type="text" autocomplete="off" name="subsidy-percent" data-procent>
+                      <input type="text" autocomplete="off" name="subsidy-percent" data-procent data-subsidy-procent>
                       <label for="subsidy-percent">В процентах</label>
                       <div class="form-cross"></div>
                     </div>
@@ -145,7 +165,7 @@
                 </div>
               </div>
               <div class="form-row">
-                <h3 class="insurance">Страхование                </h3>
+                <h3 class="insurance">Страхование квартиры    </h3>
                 <div class="form-group__check">
                   <input type="radio" id="insurance-yes" name="insurance" checked>
                   <label for="insurance-yes">Да                </label>
@@ -177,19 +197,31 @@
           <div class="form-block__content">
             <form class="form form-private-data">
               <div class="form-row">
+                <div class="form-group__radio">
+                  <input type="radio" id="private-data-person" name="private-data" checked>
+                  <label for="private-data-person">Заёмщик</label>
+                </div>
+                <div class="form-group__radio">
+                  <input type="radio" id="private-data-person-1" name="private-data">
+                  <label for="private-data-person-1">Созаемщик</label>
+                </div>
+                <div class="form-group__radio">
+                  <input type="radio" id="private-data-person-2" name="private-data">
+                  <label for="private-data-person-2">Поручитель</label>
+                </div>
                 <h3 class="name">ФИО</h3>
                 <div class="form-group__text">                   
-                  <input type="text" required autocomplete="off" name="surname">
+                  <input type="text" required autocomplete="off" name="surname" id="main-name-surname">
                   <label for="surname">Фамилия</label>
                   <div class="form-cross"></div>
                 </div>
                 <div class="form-group__text">                   
-                  <input type="text" required autocomplete="off" name="name">
+                  <input type="text" required autocomplete="off" name="name" id="main-name-name">
                   <label for="name">Имя</label>
                   <div class="form-cross"></div>
                 </div>
                 <div class="form-group__text">                   
-                  <input type="text" required autocomplete="off" name="patronym">
+                  <input type="text" required autocomplete="off" name="patronym" id="main-name-patronym">
                   <label for="patronym">Отчество</label>
                   <div class="form-cross"></div>
                 </div>
@@ -691,7 +723,7 @@
                 </div>
               </div>
               <div class="form-row">
-                <h3 class="current-experience">Стаж по текущему месту работы</h3>
+                <h3 class="current-experience">Стаж в текущей сфере деятельности</h3>
                 <div class="form-group__text">
                   <input type="text" required autocomplete="off" name="current-experience">
                   <div class="form-cross"></div>
@@ -784,16 +816,16 @@
               <div class="form-row">
                 <h3 class="realty">Недвижимость                </h3>
                 <div class="form-group__check">
-                  <input type="checkbox" id="apartment" name="apartment">
+                  <input type="checkbox" id="apartment" name="apartment" data->
                   <label for="apartment">Квартира                </label>
                 </div>
                 <div class="form-group__check">
                   <input type="checkbox" id="room" name="room">
-                  <label for="room">Комната                </label>
+                  <label for="room">Комната</label>
                 </div>
                 <div class="form-group__check">
                   <input type="checkbox" id="house" name="house">
-                  <label for="house">Дом                </label>
+                  <label for="house">Дом             </label>
                 </div>
                 <div class="form-group__check">
                   <input type="checkbox" id="land" name="land">
@@ -848,7 +880,7 @@
           <div class="form-row_bb">
             <div class="form-btns">
               <div class="form-btn form-btn__prev">Назад</div>
-              <div class="form-btn form-btn__next active">Вперед</div>
+              <div class="form-btn__next_static">Вперед</div>
             </div>
           </div>
         </div>
@@ -932,7 +964,7 @@
           <div class="form-row_bb">
             <div class="form-btns">
               <div class="form-btn form-btn__prev">Назад</div>
-              <div class="form-btn form-btn__next">Вперед</div>
+              <div class="form-btn__next_static">Вперед</div>
             </div>
           </div>
         </div>

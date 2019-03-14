@@ -107,31 +107,119 @@ $(document).ready(function() {
 	$('[data-date]').inputmask({"mask": "99.99.9999", showMaskOnHover: false,});
 	$('[data-phone]').inputmask({"mask": "+7 (999) 999-9999", showMaskOnHover: false,});
 	$('[data-count]').inputmask({"mask": "9[9]", showMaskOnHover: false,});
-	$('[data-procent]').inputmask({"mask": "9[9] %", showMaskOnHover: false,});
+	// $('[data-procent]').inputmask({"mask": "999 %", showMaskOnHover: false,});
 	$('[data-period]').inputmask({"mask": "9[9] год(а)/лет", showMaskOnHover: false,});
 
 	$('[data-hidden-content]').hide();
 	$('[data-count-contain]').hide();
 	$('[data-option-field]').hide();
+	$('[data-hidden-radio-content]').hide();
 
-	$(document).on('change', '[data-credit-summ]', function () {
-		if ($('[data-credit-summ]').val().length > 1) {
+	$(document).on('change', '[data-credit-main]', function() {
+		if ($('[data-credit-main]').val().length > 1) {
+
 			$('[data-credit-first]').attr('disabled', false);
 			$('[data-credit-procent]').attr('disabled', false);
+			$('[data-credit-summ]').attr('disabled', false);
 			return false;
+
 		} 
 		if (parseInt($('[data-credit-summ]').val()) == 0) {
+
 			$('[data-credit-first]').val('');
 			$('[data-credit-procent]').val('');
+			$('[data-credit-summ]').val('');
+
+
 			$('[data-credit-first]').attr('disabled', true);
 			$('[data-credit-procent]').attr('disabled', true);
+			$('[data-credit-summ]').attr('disabled', true);
+
 		}
 	});
 
-	$(document).on('change', '[data-credit-first]', function() {
-		if (parseInt($('[data-credit-summ]').val()) > 0) {
+	const clearInputsName = function () {
+		$('#main-name-surname').val('');
+		$('#main-name-name').val('');
+		$('#main-name-patronym').val('');
+	}
+
+	const copyName = function() {
+		let tempMainName = $('#main-name').val();
+
+		tempMainName = tempMainName.split(' ');
+
+		$('#main-name-surname').val(tempMainName[0]);
+		$('#main-name-name').val(tempMainName[1]);
+		$('#main-name-patronym').val(tempMainName[2]);
+	}
+
+	$(document).on('change', '#private-data-person-1', clearInputsName);
+	$(document).on('change', '#private-data-person-2', clearInputsName);
+	$(document).on('change', '#private-data-person', copyName);
+
+	$(document).on('change', '#main-name', copyName);
+
+	$(document).on('change', '#maternity-capital-usage-PV', function() {
+		if ($(this).prop('checked', true)) {
+			$('[data-hidden-radio-content]').slideDown(300);
+			return false;
+		}
+	});
+	$(document).on('change', '#maternity-capital-usage-time', function() {
+		if ($(this).prop('checked', true)) {
+			$('[data-hidden-radio-content]').slideUp(300);
+			return false;
+		}
+	});
+
+	$(document).on('change', '[data-credit-summ]', function () {
+		if (parseInt($('[data-credit-main]').val()) > 0) {
+			let tempCredit = $(this).val();
+			let tempTotal = $('[data-credit-main]').val();
+			let tempFirst = $('[data-credit-first]').val();
+			let tempProcent;
+
+			tempCredit = tempCredit || 0;
+
+			tempCredit = tempCredit.replace(/\s+/g,'');
+			tempCredit = parseInt(tempCredit);
+
+			tempTotal = tempTotal.replace(/\s+/g,'');
+			tempTotal = parseInt(tempTotal);
+
+			if (tempCredit > tempTotal) {
+					$(this).val('Сумма кредита не может быть больше стоимости ОН');
+					return false;
+			}
+
+			tempFirst = tempTotal - tempCredit;
+
+
+			tempProcent = (tempFirst * 100) / tempTotal;
+
+			tempProcent = Math.round(tempProcent);
+
+
+			$('[data-credit-first]').val(`${tempFirst.toLocaleString()} руб`);
+
+
+			if (tempProcent >= 0) {
+				$('[data-credit-procent]').val(`${tempProcent} %`);
+				return false;
+			} else {
+				$(this).val(`0`);
+				$('[data-credit-procent]').val(`0 %`);
+				return false;
+			}
+		}
+	});
+
+	$(document).on('change', '[data-military-summ]', function () {
+		if (parseInt($('[data-credit-main]').val()) > 0) {
 			let tempFirst = $(this).val();
-			let tempTotal = $('[data-credit-summ]').val();
+			let tempTotal = $('[data-credit-main]').val();
+			let tempProcent;
 
 			tempFirst = tempFirst.replace(/\s+/g,'');
 			tempFirst = parseInt(tempFirst);
@@ -139,11 +227,220 @@ $(document).ready(function() {
 			tempTotal = tempTotal.replace(/\s+/g,'');
 			tempTotal = parseInt(tempTotal);
 
+			if (tempFirst > tempTotal) {
+					$(this).val('НИС не может быть больше стоимости ОН');
+					return false;
+			}
+
+			tempProcent = (tempFirst * 100) / tempTotal;
+			tempProcent = Math.round(tempProcent);
+
+			if (tempProcent > 0) {
+				$('[data-military-procent]').val(`${tempProcent} %`);
+				return false;
+			} else {
+				$(this).val(`0`);
+				$('[data-military-procent]').val(`0 %`);
+				return false;
+			}
+		}
+	});
+
+	$(document).on('change', '[data-military-procent]', function() {
+		if (parseInt($('[data-credit-main]').val()) > 0) {
+			let tempFirst ;
+			let tempTotal = $('[data-credit-main]').val();
+			let tempProcent = $(this).val();
+
+			tempProcent = tempProcent.replace(/\s+/g,'');
+			tempProcent = parseInt(tempProcent);
+
+			tempTotal = tempTotal.replace(/\s+/g,'');
+			tempTotal = parseInt(tempTotal);
+
+			if (tempProcent > 100) {
+					$(this).val('Не может быть больше 100%');
+					return false;
+			}
+
+			tempFirst = (tempTotal / 100) * tempProcent;
+			tempFirst = Math.round(tempFirst);
+
+			if ($(this).val() == 0 || $(this).val().length <= 0) {
+				$(this).val(`0 %`);
+				$('[data-military-summ]').val(`0 руб`);
+				return false;
+			}
+
+			$(this).val(`${tempProcent} %`);
+			$('[data-military-summ]').val(`${tempFirst.toLocaleString()} руб`);
+		}
+	});
+
+	$(document).on('change', '[data-subsidy-summ]', function () {
+		if (parseInt($('[data-credit-main]').val()) > 0) {
+			let tempFirst = $(this).val();
+			let tempTotal = $('[data-credit-main]').val();
 			let tempProcent;
+
+			tempFirst = tempFirst.replace(/\s+/g,'');
+			tempFirst = parseInt(tempFirst);
+
+			tempTotal = tempTotal.replace(/\s+/g,'');
+			tempTotal = parseInt(tempTotal);
+
+			if (tempFirst > tempTotal) {
+					$(this).val('Размер субсидии не может быть больше стоимости ОН');
+					return false;
+			}
+
+			tempProcent = (tempFirst * 100) / tempTotal;
+			tempProcent = Math.round(tempProcent);
+
+			if (tempProcent > 0) {
+				$('[data-subsidy-procent]').val(`${tempProcent} %`);
+				return false;
+			} else {
+				$(this).val(`0`);
+				$('[data-subsidy-procent]').val(`0 %`);
+				return false;
+			}
+		}
+	});
+
+	$(document).on('change', '[data-subsidy-procent]', function() {
+		if (parseInt($('[data-credit-main]').val()) > 0) {
+			let tempFirst ;
+			let tempTotal = $('[data-credit-main]').val();
+			let tempProcent = $(this).val();
+
+			tempProcent = tempProcent.replace(/\s+/g,'');
+			tempProcent = parseInt(tempProcent);
+
+			tempTotal = tempTotal.replace(/\s+/g,'');
+			tempTotal = parseInt(tempTotal);
+
+			if (tempProcent > 100) {
+					$(this).val('Не может быть больше 100%');
+					return false;
+			}
+
+			tempFirst = (tempTotal / 100) * tempProcent;
+			tempFirst = Math.round(tempFirst);
+
+			if ($(this).val() == 0 || $(this).val().length <= 0) {
+				$(this).val(`0 %`);
+				$('[data-subsidy-summ]').val(`0 руб`);
+				return false;
+			}
+
+			$(this).val(`${tempProcent} %`);
+			$('[data-subsidy-summ]').val(`${tempFirst.toLocaleString()} руб`);
+		}
+	});
+
+		$(document).on('change', '[data-maternity-summ]', function () {
+		if (parseInt($('[data-credit-main]').val()) > 0) {
+			let tempFirst = $(this).val();
+			let tempTotal = $('[data-credit-main]').val();
+			let tempProcent;
+
+			tempFirst = tempFirst.replace(/\s+/g,'');
+			tempFirst = parseInt(tempFirst);
+
+			tempTotal = tempTotal.replace(/\s+/g,'');
+			tempTotal = parseInt(tempTotal);
+
+			if (tempFirst > tempTotal) {
+					$(this).val('Размер МСК не может быть больше стоимости ОН');
+					return false;
+			}
+
+			if (tempFirst > 453026) {
+					$(this).val('Размер МСК не может быть больше 453 026');
+					return false;
+			}
+
+			tempProcent = (tempFirst * 100) / tempTotal;
+			tempProcent = Math.round(tempProcent);
+
+			if (tempProcent > 0) {
+				$('[data-maternity-procent]').val(`${tempProcent} %`);
+				return false;
+			} else {
+				$(this).val(`0`);
+				$('[data-maternity-procent]').val(`0 %`);
+				return false;
+			}
+		}
+	});
+
+	$(document).on('change', '[data-maternity-procent]', function() {
+		if (parseInt($('[data-credit-main]').val()) > 0) {
+			let tempFirst ;
+			let tempTotal = $('[data-credit-main]').val();
+			let tempProcent = $(this).val();
+
+			tempProcent = tempProcent.replace(/\s+/g,'');
+			tempProcent = parseInt(tempProcent);
+
+			tempTotal = tempTotal.replace(/\s+/g,'');
+			tempTotal = parseInt(tempTotal);
+
+			if (tempProcent > 100) {
+					$(this).val('Не может быть больше 100%');
+					return false;
+			}
+
+			tempFirst = (tempTotal / 100) * tempProcent;
+			tempFirst = Math.round(tempFirst);
+
+			if (tempFirst > 453026) {
+					$('[data-maternity-summ]').val('Размер МСК не может быть больше 453 026 руб');
+					return false;
+			}
+
+			if ($(this).val() == 0 || $(this).val().length <= 0) {
+				$(this).val(`0 %`);
+				$('[data-maternity-summ]').val(`0 руб`);
+				return false;
+			}
+
+			$(this).val(`${tempProcent} %`);
+			$('[data-maternity-summ]').val(`${tempFirst.toLocaleString()} руб`);
+		}
+	});
+
+	$(document).on('change', '[data-credit-first]', function() {
+		if (parseInt($('[data-credit-main]').val()) > 0) {
+			let tempFirst = $(this).val();
+			let tempTotal = $('[data-credit-main]').val();
+			let tempCredit = $('[data-credit-summ]').val();
+			let tempProcent;
+
+			tempCredit = tempCredit || 0;
+
+			tempFirst = tempFirst.replace(/\s+/g,'');
+			tempFirst = parseInt(tempFirst);
+
+			tempTotal = tempTotal.replace(/\s+/g,'');
+			tempTotal = parseInt(tempTotal);
+
+			if (tempFirst > tempTotal) {
+					$(this).val('Первоначальный взнос не может быть больше стоимости ОН');
+					return false;
+			}
+
+			tempCredit = tempTotal - tempFirst;
+
 
 			tempProcent = (tempFirst * 100) / tempTotal;
 
 			tempProcent = Math.round(tempProcent);
+
+
+			$('[data-credit-summ]').val(`${tempCredit.toLocaleString()} руб`);
+
 
 			if (tempProcent > 0) {
 				$('[data-credit-procent]').val(`${tempProcent} %`);
@@ -157,22 +454,33 @@ $(document).ready(function() {
 	});
 
 	$(document).on('change', '[data-credit-procent]', function() {
-		if (parseInt($('[data-credit-summ]').val()) > 0) {
+		if (parseInt($('[data-credit-main]').val()) > 0) {
 			let tempProcent = $(this).val();
-			let tempTotal = $('[data-credit-summ]').val();
+			let tempTotal = $('[data-credit-main]').val();
+			let tempCredit = $('[data-credit-summ]').val();
+			let tempFirst;
+
+			tempCredit = tempCredit || 0;
 
 			tempProcent = tempProcent.replace(/\s+/g,'');
 			tempProcent = parseInt(tempProcent);
 
+			if (tempProcent > 100) {
+				$(this).val('Не может быть больше 100%');
+				return false;
+			}
+
 			tempTotal = tempTotal.replace(/\s+/g,'');
 			tempTotal = parseInt(tempTotal);
 
-			let tempFirst;
+			tempFirst = (tempTotal / 100) * tempProcent;
 
-			tempFirst = (tempTotal / 100) * tempProcent ;
+			tempCredit = tempTotal - tempFirst;
 
 			tempFirst = Math.round(tempFirst);
 			tempFirst = tempFirst.toLocaleString('ru');
+
+			$('[data-credit-summ]').val(`${tempCredit.toLocaleString()} руб`);
 
 			if ($(this).val() == 0 || $(this).val().length <= 0) {
 				$(this).val(`0 %`);
@@ -228,6 +536,7 @@ $(document).ready(function() {
 				   .val('')
 				   .closest('.form-group__text')
 				   .removeClass('active');
+			$(document).find('[data-credit-summ]').val('');
 		}
 		if ($(this).closest('.form-group__text').siblings().find('[data-credit-first]').length > 0) {
 			$(this).closest('.form-group__text')
@@ -236,6 +545,17 @@ $(document).ready(function() {
 				   .val('')
 				   .closest('.form-group__text')
 				   .removeClass('active');
+			$(document).find('[data-credit-summ]').val('');
+		}
+		if ($(this).closest('.form-group__text').find('[data-credit-summ]').length > 0) {
+			$(this).closest('.form-group__text')
+				   .siblings()
+				   .find('[data-credit-summ]')
+				   .val('')
+				   .closest('.form-group__text')
+				   .removeClass('active');
+			$(document).find('[data-credit-first]').val('');
+			$(document).find('[data-credit-procent]').val('');
 		}
 	});
 
@@ -248,11 +568,16 @@ $(document).ready(function() {
 				return countFilledInputs++;
 			}
 		});
-		console.log(`${countInputs}  :  ${countFilledInputs}`)
-		countInputs == countFilledInputs ? $(this).closest('.form-block').find('.form-btn.form-btn__next').addClass('active') : $(this).closest('.form-block').find('.form-btn.form-btn__next').removeClass('active')
+		let compare = countInputs == countFilledInputs;
+		if (compare) {
+			$(this).closest('.form-block').find('.form-btn.form-btn__next').addClass('active');
+		} else {
+			$(this).closest('.form-block').find('.form-btn.form-btn__next').removeClass('active');
+		}
 	});
 
-	$(document).on('click', '.form-btn.form-btn__next.active', function() {
+	const nextPage = () => {
+
 		let temp = $('.form-block.active').index('.form-block');
 		let allFormBlock = ($('.form-block').length - 1);
 		let winodwOffsetTop = $('.wrapper').offset().top;
@@ -264,7 +589,10 @@ $(document).ready(function() {
 		}
 		$('.form-block').eq(temp).removeClass('active');
 		$('html, body').animate({scrollTop: winodwOffsetTop}, 1000);
-	});
+	
+	}
+	$(document).on('click', '.form-btn__next_static', nextPage);
+	$(document).on('click', '.form-btn.form-btn__next.active', nextPage);
 
 	$(document).on('click', '.form-btn.form-btn__prev', function() {
 		let temp = $('.form-block.active').index('.form-block');
