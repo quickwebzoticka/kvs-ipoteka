@@ -145,7 +145,14 @@ $(document).ready(function() {
 
 			tempProcent = Math.round(tempProcent);
 
-			$('[data-credit-procent]').val(`${tempProcent} %`);
+			if (tempProcent > 0) {
+				$('[data-credit-procent]').val(`${tempProcent} %`);
+				return false;
+			} else {
+				$(this).val(`0`);
+				$('[data-credit-procent]').val(`0 %`);
+				return false;
+			}
 		}
 	});
 
@@ -241,7 +248,7 @@ $(document).ready(function() {
 				return countFilledInputs++;
 			}
 		});
-		console.log(`${countInputs}  :  ${countFilledInputs}`)
+		console.log(`${countInputs}  :  ${countFilledInputs}`);
 		countInputs == countFilledInputs ? $(this).closest('.form-block').find('.form-btn.form-btn__next').addClass('active') : $(this).closest('.form-block').find('.form-btn.form-btn__next').removeClass('active')
 	});
 
@@ -313,7 +320,7 @@ $(document).ready(function() {
 
 	let childForm = $('[data-count-contain]').find('.form-group_hidden-content');
 
-	$(document).on('change', '[data-count]', function() {
+	$(document).on('input', '[data-count]', function() {
 		let temp = $(this).val();
 		let i = 0;
 
