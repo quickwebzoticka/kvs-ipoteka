@@ -110,6 +110,8 @@ $(document).ready(function() {
 	// $('[data-procent]').inputmask({"mask": "999 %", showMaskOnHover: false,});
 	$('[data-period]').inputmask({"mask": "9[9] год(а)/лет", showMaskOnHover: false,});
 
+	$('select').SumoSelect();
+
 	$('[data-hidden-content]').hide();
 	$('[data-count-contain]').hide();
 	$('[data-option-field]').hide();
@@ -589,7 +591,7 @@ $(document).ready(function() {
 		}
 		$('.form-block').eq(temp).removeClass('active');
 		$('html, body').animate({scrollTop: winodwOffsetTop}, 1000);
-	
+
 	}
 	$(document).on('click', '.form-btn__next_static', nextPage);
 	$(document).on('click', '.form-btn.form-btn__next.active', nextPage);
@@ -661,6 +663,49 @@ $(document).ready(function() {
 				$('.form-group_hidden-wrapper').append(childForm.clone());
 			}
 			$('.form-group_hidden-wrapper').slideDown(300);
+		}
+	});
+
+	$('[data-phone-city]').on('keydown', function(e){
+		let temp = e.key;
+		let tempLength = $(this).val().split('_').length - 1;
+
+		if (temp !== "9" && tempLength == 0) {
+				$(this).inputmask('');			
+		}
+		if (temp == "9" && $(this).val().length == 0) {
+			$(this).inputmask({"mask": "+7 (999) 999-9999", showMaskOnHover: false,});
+		}
+	});
+
+	$(document).on('change', '[data-active]', function() {
+		let trigger = 0;
+
+		$('[data-active]').each(function(index, element) {
+			if (element.checked) {
+				++trigger;
+			}
+		});
+
+		if (trigger) {
+			$('.form-group__active').slideDown(300);
+		} else {
+			$('.form-group__active').slideUp(300);
+		}
+
+	});
+
+
+	$(document).on('change', '[data-credit-trigger]', function() {
+		let temp = $(this).index('[data-credit-trigger]');
+
+		console.log(temp);
+
+
+		if (temp == 0) {
+			$('.form-hidden-content').slideUp(300);
+		} else {
+			$('.form-hidden-content').slideDown(300);			
 		}
 	});
 });

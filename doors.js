@@ -34,9 +34,12 @@ $(document).ready(function(){
 
 		$(this).find('.door').addClass('opened');
 		$(this).find('.door-description').addClass('active');
-		// if ($('.door-description.active').offset().left > 1000) {
-		// 	$('.door-description.active').addClass('door-description_left');
-		// }
+		if ($('.door-description.active').length) {
+			if ($('.door-description.active').offset().left > 750) {
+				$('.door-description.active').addClass('door-description_left');
+			}
+		}
+		
 		$(this).find('.doors-inn-item').addClass('visible');
 
 		$(this).find('.door-item').css({left: '0px', transform: 'translateX(-70%)'});
@@ -69,12 +72,22 @@ $(document).ready(function(){
 		temp = temp[temp.length-2];
 		temp = parseInt(temp) - 327;
 
+		let tempCalc = temp - 327;
+
+		console.log(tempCalc);
+		console.log(tempCalc <= tempResult);
+
+		if (tempCalc <= tempResult) {
+
+			$('.doors-wrapper-arrow_next').addClass('disabled');
+
+			} else {
+
+			$('.doors-wrapper-arrow_next').removeClass('disabled');
+		}
 
 		if (temp <= tempResult) {
-			$('.doors-wrapper-arrow_next').addClass('disabled');
 			return false;
-		} else {
-			$('.doors-wrapper-arrow_next').removeClass('disabled');
 		}
 
 		$('.doors-wrapper-track').css({transform: `translateX(${temp}px)`});
@@ -94,12 +107,19 @@ $(document).ready(function(){
 		temp = temp[temp.length-2];
 		temp = parseInt(temp) + 327;
 
-		if (temp > 0) {
-			$('.doors-wrapper-arrow_prev').addClass('disabled');
+		let tempCalc = temp + 327;
 
-			return false;
+		console.log(tempCalc);
+		console.log(tempCalc > 0);
+
+		if (tempCalc > 0) {
+			$('.doors-wrapper-arrow_prev').addClass('disabled');
 		} else {
 			$('.doors-wrapper-arrow_prev').removeClass('disabled');
+		}
+
+		if (temp > 0) {
+			return false;
 		}
 
 		$('.doors-wrapper-track').css({transform: `translateX(${temp}px)`});

@@ -2,7 +2,8 @@
 @import "base/mixins";
 @import "base/typography";
 @import "vendor/normalize";
-@import "vendor/app.scss";
+@import "vendor/sumoselect";
+@import "vendor/app";
 
 * {
 	box-sizing: border-box;
@@ -178,4 +179,41 @@ input::selection {
 	&:before {
 		display: none;
 	}
+}
+
+.SumoSelect > .optWrapper > .options li label {
+	pointer-events: auto;
+	position: static;
+	color: grey;
+	transform: none;
+}
+
+.SumoSelect > .CaptionCont > label {
+	left: unset;
+	transform: none;
+}
+
+.SumoSelect:focus > .CaptionCont, .SumoSelect:hover > .CaptionCont, .SumoSelect.open > .CaptionCont {
+  box-shadow: 0 0 2px #fd7902;
+  border-color: #fd7902;
+}
+
+.SumoSelect > .optWrapper > .options li.opt:hover {
+	background-color: #fd7902;
+	label {
+		color: #FFFFFF;
+	}
+}
+
+.SumoSelect {
+	width: 100%;
+}
+
+.form-group__active {
+	display: none;
+	padding-top: 20px;
+}
+
+.form-hidden-content {
+	display: none;
 }

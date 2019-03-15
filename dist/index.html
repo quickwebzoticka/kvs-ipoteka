@@ -229,7 +229,7 @@
               <div class="form-row">
                 <h3 class="passport-data">Паспортные данные</h3>
                 <div class="form-group__text">
-                  <input type="text" required autocomplete="off" name="passport-data">
+                  <input type="text" required autocomplete="off" name="passport-data" placeholder="00 00 000000">
                   <div class="form-cross"></div>
                 </div>
               </div>
@@ -254,21 +254,21 @@
               <div class="form-row">
                 <h3 class="citezenship">Гражданство</h3>
                 <div class="form-group__text">
-                  <input type="text" required autocomplete="off" name="citezenship">
+                  <input type="text" required autocomplete="off" name="citezenship" placeholder="Россия">
                   <div class="form-cross"></div>
                 </div>
               </div>
               <div class="form-row">
                 <h3 class="citezenship">ИНН</h3>
                 <div class="form-group__text">
-                  <input type="text" required autocomplete="off" name="inn">
+                  <input type="text" required autocomplete="off" name="inn" placeholder="000000000000">
                   <div class="form-cross"></div>
                 </div>
               </div>
               <div class="form-row">
                 <h3 class="citezenship">СНИЛС</h3>
                 <div class="form-group__text">
-                  <input type="text" required autocomplete="off" name="iian">
+                  <input type="text" required autocomplete="off" name="iian" placeholder="000 000 000 00">
                   <div class="form-cross"></div>
                 </div>
               </div>
@@ -288,7 +288,7 @@
               <div class="form-row">
                 <h3 class="email">Email</h3>
                 <div class="form-group__text">
-                  <input type="text" autocomplete="off" name="email">
+                  <input type="text" autocomplete="off" name="email" placeholder="example@mail.com">
                   <div class="form-cross"></div>
                 </div>
               </div>
@@ -388,7 +388,7 @@
                   <label for="science-degree">ученая степень                </label>
                 </div>
                 <div class="form-group__text form-group__text_pt">                   
-                  <input type="text" autocomplete="off" name="institution-name">
+                  <input type="text" autocomplete="off" name="institution-name" placeholder="СПБГУ">
                   <label for="institution-name">Наименование учебного заведения</label>
                   <div class="form-cross">                  </div>
                 </div>
@@ -477,30 +477,32 @@
                   <label for="name">Наименование</label>
                   <div class="form-cross"></div>
                 </div>
-                <div class="form-group__text">                   
-                  <input type="text" required autocomplete="off" name="status">
-                  <label for="status">Статус занятости</label>
-                  <div class="form-cross"></div>
+                <div class="form-group__text form-group__text_bb">
+                  <select>
+                    <option value="Полная занятость">Полная занятость</option>
+                    <option value="Частичная занятость">Частичная занятость</option>
+                    <option value="Не занят">Не занят</option>
+                  </select>
                 </div>
               </div>
               <div class="form-row">
                 <h3 class="employer-inn">ИНН работодателя</h3>
                 <div class="form-group__text">
-                  <input type="text" autocomplete="off" name="employer-inn">
+                  <input type="text" autocomplete="off" name="employer-inn" placeholder="000000000000">
                   <div class="form-cross"></div>
                 </div>
               </div>
               <div class="form-row">
                 <h3 class="employer-phone">Телефон организации-работодателя</h3>
                 <div class="form-group__text">
-                  <input type="text" autocomplete="off" name="employer-phone" data-phone>
+                  <input type="text" autocomplete="off" name="employer-phone" data-phone data-phone-city>
                   <div class="form-cross"></div>
                 </div>
               </div>
               <div class="form-row">
                 <h3 class="employer-site">Сайт организации-работодателя</h3>
                 <div class="form-group__text">
-                  <input type="text" autocomplete="off" name="employer-site">
+                  <input type="text" autocomplete="off" name="employer-site" placeholder="google.ru">
                   <div class="form-cross"></div>
                 </div>
               </div>
@@ -711,28 +713,28 @@
               <div class="form-row">
                 <h3 class="appointment">Должность</h3>
                 <div class="form-group__text">
-                  <input type="text" required autocomplete="off" name="appointment">
+                  <input type="text" required autocomplete="off" name="appointment" placeholder="Веб-разработчик">
                   <div class="form-cross"></div>
                 </div>
               </div>
               <div class="form-row">
                 <h3 class="experience">Общий трудовой стаж</h3>
                 <div class="form-group__text">
-                  <input type="text" required autocomplete="off" name="experience">
+                  <input type="text" required autocomplete="off" name="experience" placeholder="10 лет">
                   <div class="form-cross"></div>
                 </div>
               </div>
               <div class="form-row">
                 <h3 class="current-experience">Стаж в текущей сфере деятельности</h3>
                 <div class="form-group__text">
-                  <input type="text" required autocomplete="off" name="current-experience">
+                  <input type="text" required autocomplete="off" name="current-experience" placeholder="5 лет">
                   <div class="form-cross"></div>
                 </div>
               </div>
               <div class="form-row">
                 <h3 class="job-number">Мест работы за последние 3 (три) года</h3>
                 <div class="form-group__text">
-                  <input type="text" required autocomplete="off" name="job-number">
+                  <input type="text" required autocomplete="off" name="job-number" placeholder="1">
                   <div class="form-cross"></div>
                 </div>
               </div>
@@ -754,39 +756,39 @@
               <div class="form-row">
                 <h3 class="income">Среднемесячный доход, руб</h3>
                 <div class="form-group__text">
-                  <input type="text" required autocomplete="off" name="income" data-cost>
+                  <input type="text" required autocomplete="off" name="income" data-cost placeholder="15 000 руб">
                   <div class="form-cross"></div>
                 </div>
               </div>
               <div class="form-row">
                 <h3 class="additional-income">Дополнительный доход (необязательно)        </h3>
                 <div class="form-group__text">                   
-                  <input type="text" autocomplete="off" name="additional-employer-name">
+                  <input type="text" autocomplete="off" name="additional-employer-name" placeholder="ОАО Газпром">
                   <label for="additional-employer-name">Наименование работодателя</label>
                   <div class="form-cross"></div>
                 </div>
                 <div class="form-group__text">                   
-                  <input type="text" autocomplete="off" name="additional-appointment">
+                  <input type="text" autocomplete="off" name="additional-appointment" placeholder="Директор">
                   <label for="additional-appointment">Должность</label>
                   <div class="form-cross"></div>
                 </div>
                 <div class="form-group__text">                   
-                  <input type="text" autocomplete="off" name="additional-employer-inn">
+                  <input type="text" autocomplete="off" name="additional-employer-inn" placeholder="000000000000">
                   <label for="additional-employer-inn">ИНН работодателя</label>
                   <div class="form-cross"></div>
                 </div>
                 <div class="form-group__text">                   
-                  <input type="text" autocomplete="off" name="additional-employer-real-adress">
+                  <input type="text" autocomplete="off" name="additional-employer-real-adress" placeholder="Россия г.Москва ул.Ленина д 21">
                   <label for="additional-employer-real-adress">Фактический адрес</label>
                   <div class="form-cross"></div>
                 </div>
                 <div class="form-group__text">                   
-                  <input type="text" autocomplete="off" name="additional-employer-branch">
+                  <input type="text" autocomplete="off" name="additional-employer-branch" placeholder="Глобальная энергетическая компания">
                   <label for="additional-employer-branch">Сфера деятельности организации</label>
                   <div class="form-cross"></div>
                 </div>
                 <div class="form-group__text">                   
-                  <input type="text" autocomplete="off" name="additional-income">
+                  <input type="text" autocomplete="off" name="additional-income" placeholder="50 000 руб" data-cost>
                   <label for="additional-income">Доход по совместительству</label>
                   <div class="form-cross"></div>
                 </div>
@@ -794,7 +796,7 @@
               <div class="form-row">
                 <h3 class="sberbank-number">Номер карты сбербанка (если Вы являетесь з/п клиентом банка, или у вас начисляется пенсия на карту ПАО Сбербанк)</h3>
                 <div class="form-group__text">
-                  <input type="text" autocomplete="off" name="sberbank-number">
+                  <input type="text" autocomplete="off" name="sberbank-number" placeholder="4276 0000 0000 0000">
                   <div class="form-cross"></div>
                 </div>
               </div>
@@ -816,41 +818,41 @@
               <div class="form-row">
                 <h3 class="realty">Недвижимость                </h3>
                 <div class="form-group__check">
-                  <input type="checkbox" id="apartment" name="apartment" data->
+                  <input type="checkbox" id="apartment" name="apartment" data-active>
                   <label for="apartment">Квартира                </label>
                 </div>
                 <div class="form-group__check">
-                  <input type="checkbox" id="room" name="room">
+                  <input type="checkbox" id="room" name="room" data-active>
                   <label for="room">Комната</label>
                 </div>
                 <div class="form-group__check">
-                  <input type="checkbox" id="house" name="house">
+                  <input type="checkbox" id="house" name="house" data-active>
                   <label for="house">Дом             </label>
                 </div>
                 <div class="form-group__check">
-                  <input type="checkbox" id="land" name="land">
-                  <label for="land">Земельный участок                        </label>
+                  <input type="checkbox" id="land" name="land" data-active>
+                  <label for="land">Земельный участок</label>
                 </div>
-                <div class="form-group__check">
-                  <input type="checkbox" id="share-property" name="share-property" data-option>
-                  <label for="share-property">Долевая собственность                </label>
-                </div>
-                <div class="form-group__text form-group__text_pt" data-option-field>
-                  <input type="text" autocomplete="off" name="share-size">
-                  <label for="share-size">Указать размер доли</label>
-                  <div class="form-cross"></div>
-                </div>
-                <div class="form-group_hidden">               
-                  <div class="form-group__check">
-                    <input type="checkbox" id="private-property" name="private-property" data-hidden>
-                    <label for="private-property">Частная собственность</label>
+                <div class="form-group__active">
+                  <div class="form-group__text">                  
+                    <input type="text" autocomplete="off" name="adress">
+                    <label for="adress">Адрес</label>
+                    <div class="form-cross"></div>
                   </div>
-                  <div class="form-group_hidden-content" data-hidden-content>
-                    <div class="form-group__text">                  
-                      <input type="text" autocomplete="off" name="adress">
-                      <label for="adress">Адрес</label>
-                      <div class="form-cross"></div>
+                  <div class="form-group_hidden">               
+                    <div class="form-group__check">
+                      <input type="checkbox" id="private-property" name="private-property" data-hidden>
+                      <label for="private-property">Частная собственность</label>
                     </div>
+                  </div>
+                  <div class="form-group__check">
+                    <input type="checkbox" id="share-property" name="share-property" data-option>
+                    <label for="share-property">Долевая собственность                </label>
+                  </div>
+                  <div class="form-group__text form-group__text_pt" data-option-field>
+                    <input type="text" autocomplete="off" name="share-size">
+                    <label for="share-size">Указать размер доли</label>
+                    <div class="form-cross"></div>
                   </div>
                 </div>
               </div>
@@ -891,72 +893,78 @@
           <div class="form-block__content">
             <form class="form form-credit-history">
               <div class="form-row">
-                <h3 class="credit-type">Вид кредита                </h3>
+                <h3 class="credit-type">Вид кредита</h3>
                 <div class="form-group__check">
-                  <input type="radio" id="mortgage" name="type-credit">
+                  <input type="radio" id="no-credits" name="type-credit" checked data-credit-trigger data-nocredits>
+                  <label for="no-credits">не было кредитов              </label>
+                </div>
+                <div class="form-group__check">
+                  <input type="radio" id="mortgage" name="type-credit" data-credit-trigger>
                   <label for="mortgage">ипотечный                </label>
                 </div>
                 <div class="form-group__check">
-                  <input type="radio" id="car" name="type-credit">
+                  <input type="radio" id="car" name="type-credit" data-credit-trigger>
                   <label for="car">автокредит                </label>
                 </div>
                 <div class="form-group__check">
-                  <input type="radio" id="consumer" name="type-credit">
+                  <input type="radio" id="consumer" name="type-credit" data-credit-trigger>
                   <label for="consumer">потребительский                </label>
                 </div>
                 <div class="form-group__check">
-                  <input type="radio" id="credit-card" name="type-credit">
+                  <input type="radio" id="credit-card" name="type-credit" data-credit-trigger>
                   <label for="credit-card">кредитная карта</label>
                 </div>
               </div>
-              <div class="form-row">
-                <h3 class="bank">Банк</h3>
-                <div class="form-group__text">
-                  <input type="text" required autocomplete="off" name="bank">
-                  <div class="form-cross"></div>
+              <div class="form-hidden-content">
+                <div class="form-row">
+                  <h3 class="bank">Банк</h3>
+                  <div class="form-group__text">
+                    <input type="text" required autocomplete="off" name="bank" placeholder="Сбербанк">
+                    <div class="form-cross"></div>
+                  </div>
                 </div>
-              </div>
-              <div class="form-row">
-                <h3 class="currency">Валюта кредита                </h3>
-                <div class="form-group__check">
-                  <input type="radio" checked id="rubles" name="money">
-                  <label for="rubles">рубли РФ                </label>
+                <div class="form-row">
+                  <h3 class="currency">Валюта кредита                </h3>
+                  <div class="form-group__check">
+                    <input type="radio" checked id="rubles" name="money">
+                    <label for="rubles">рубли РФ                </label>
+                  </div>
+                  <div class="form-group__check">
+                    <input type="radio" id="dollars" name="money">
+                    <label for="dollars">доллары США                </label>
+                  </div>
+                  <div class="form-group__check">
+                    <input type="radio" id="euro" name="money">
+                    <label for="euro">евро</label>
+                  </div>
                 </div>
-                <div class="form-group__check">
-                  <input type="radio" id="dollars" name="money">
-                  <label for="dollars">доллары США                </label>
+                <div class="form-row">
+                  <h3 class="credit-sum">Сумма кредита</h3>
+                  <div class="form-group__text">
+                    <input type="text" required autocomplete="off" name="credit-sum" data-cost data-minimum>
+                    <div class="form-cross"></div>
+                  </div>
                 </div>
-                <div class="form-group__check">
-                  <input type="radio" id="euro" name="money">
-                  <label for="euro">евро</label>
+                <div class="form-row">
+                  <h3 class="monthly-payment">Ежемесячная сумма к погашению</h3>
+                  <div class="form-group__text">
+                    <input type="text" required autocomplete="off" name="monthly-payment" data-cost data-minimum>
+                    <div class="form-cross"></div>
+                  </div>
                 </div>
-              </div>
-              <div class="form-row">
-                <h3 class="credit-sum">Сумма кредита</h3>
-                <div class="form-group__text">
-                  <input type="text" required autocomplete="off" name="credit-sum" data-cost>
-                  <div class="form-cross"></div>
+                <div class="form-row">
+                  <h3 class="loan-balance">Остаток непогашенной задолженности</h3>
+                  <div class="form-group__text">
+                    <input type="text" required autocomplete="off" name="loan-balance" data-cost data-minimum>
+                    <div class="form-cross"></div>
+                  </div>
                 </div>
-              </div>
-              <div class="form-row">
-                <h3 class="monthly-payment">Ежемесячная сумма к погашению</h3>
-                <div class="form-group__text">
-                  <input type="text" required autocomplete="off" name="monthly-payment" data-cost>
-                  <div class="form-cross"></div>
-                </div>
-              </div>
-              <div class="form-row">
-                <h3 class="loan-balance">Остаток непогашенной задолженности</h3>
-                <div class="form-group__text">
-                  <input type="text" required autocomplete="off" name="loan-balance" data-cost>
-                  <div class="form-cross"></div>
-                </div>
-              </div>
-              <div class="form-row">
-                <h3 class="repayment-period">Срок погашения</h3>
-                <div class="form-group__text">
-                  <input type="text" required autocomplete="off" name="repayment-period">
-                  <div class="form-cross"></div>
+                <div class="form-row">
+                  <h3 class="repayment-period">Срок погашения</h3>
+                  <div class="form-group__text">
+                    <input type="text" required autocomplete="off" name="repayment-period">
+                    <div class="form-cross"></div>
+                  </div>
                 </div>
               </div>
             </form>
@@ -1058,6 +1066,7 @@
       </div>
     </div>
     <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.sumoselect.min.js"></script>
     <script src="js/jquery.inputmask.bundle.js"></script>
     <script src="js/main.js"></script>
   </body>

@@ -173,7 +173,7 @@ block contain
                     .form-row
                         h3.passport-data Паспортные данные
                         div.form-group__text
-                            input(type="text", required, autocomplete="off", name="passport-data")
+                            input(type="text", required, autocomplete="off", name="passport-data" placeholder="00 00 000000")
                             .form-cross
                     .form-row
                         h3.birth-date Дата рождения
@@ -191,17 +191,17 @@ block contain
                     .form-row
                         h3.citezenship Гражданство
                         div.form-group__text
-                            input(type="text", required, autocomplete="off", name="citezenship")
+                            input(type="text", required, autocomplete="off", name="citezenship" placeholder="Россия")
                             .form-cross
                     .form-row
                         h3.citezenship ИНН
                         div.form-group__text
-                            input(type="text", required, autocomplete="off", name="inn")
+                            input(type="text", required, autocomplete="off", name="inn" placeholder="000000000000")
                             .form-cross
                     .form-row
                         h3.citezenship СНИЛС
                         div.form-group__text
-                            input(type="text", required, autocomplete="off", name="iian")
+                            input(type="text", required, autocomplete="off", name="iian" placeholder="000 000 000 00")
                             .form-cross
                     .form-row
                         h3.citezenship Контактный телефон
@@ -216,7 +216,7 @@ block contain
                     .form-row
                         h3.email Email
                         div.form-group__text
-                            input(type="text", autocomplete="off", name="email")
+                            input(type="text", autocomplete="off", name="email" placeholder="example@mail.com")
                             .form-cross
                     .form-row
                         h3.civil-status Статус семейного положения                
@@ -290,7 +290,7 @@ block contain
                             input(type="checkbox", id="science-degree", name="science-degree")
                             label(for="science-degree") ученая степень                
                         div.form-group__text.form-group__text_pt                    
-                            input(type="text",  autocomplete="off", name="institution-name") 
+                            input(type="text",  autocomplete="off", name="institution-name" placeholder="СПБГУ") 
                             label(for="institution-name") Наименование учебного заведения
                             .form-cross                   
                     .form-row
@@ -356,24 +356,29 @@ block contain
                             input(type="text", required, autocomplete="off", name="name")
                             label(for="name") Наименование
                             .form-cross
-                        div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="status")
-                            label(for="status") Статус занятости
-                            .form-cross
+                        //- div.form-group__text                    
+                        //-     input(type="text", required, autocomplete="off", name="status")
+                        //-     label(for="status") Статус занятости
+                        //-     .form-cross
+                        div.form-group__text.form-group__text_bb
+                            select
+                                option(value="Полная занятость") Полная занятость
+                                option(value="Частичная занятость") Частичная занятость
+                                option(value="Не занят") Не занят
                     .form-row
                         h3.employer-inn ИНН работодателя
                         div.form-group__text
-                            input(type="text", autocomplete="off", name="employer-inn")
+                            input(type="text", autocomplete="off", name="employer-inn" placeholder="000000000000")
                             .form-cross
                     .form-row
                         h3.employer-phone Телефон организации-работодателя
                         div.form-group__text
-                            input(type="text", autocomplete="off", name="employer-phone" data-phone)
+                            input(type="text", autocomplete="off", name="employer-phone" data-phone data-phone-city)
                             .form-cross
                     .form-row
                         h3.employer-site Сайт организации-работодателя
                         div.form-group__text
-                            input(type="text", autocomplete="off", name="employer-site")
+                            input(type="text", autocomplete="off", name="employer-site" placeholder="google.ru")
                             .form-cross
                     .form-row
                         h3.employer-adress Юридический адрес организации и фактический адрес    
@@ -532,22 +537,22 @@ block contain
                     .form-row
                         h3.appointment Должность
                         div.form-group__text
-                            input(type="text", required, autocomplete="off", name="appointment")
+                            input(type="text", required, autocomplete="off", name="appointment" placeholder="Веб-разработчик")
                             .form-cross
                     .form-row
                         h3.experience Общий трудовой стаж
                         div.form-group__text
-                            input(type="text", required, autocomplete="off", name="experience")
+                            input(type="text", required, autocomplete="off", name="experience" placeholder="10 лет")
                             .form-cross
                     .form-row
                         h3.current-experience Стаж в текущей сфере деятельности
                         div.form-group__text
-                            input(type="text", required, autocomplete="off", name="current-experience")
+                            input(type="text", required, autocomplete="off", name="current-experience" placeholder="5 лет")
                             .form-cross
                     .form-row
                         h3.job-number Мест работы за последние 3 (три) года
                         div.form-group__text
-                            input(type="text", required, autocomplete="off", name="job-number")
+                            input(type="text", required, autocomplete="off", name="job-number" placeholder="1")
                             .form-cross
                     .form-row
                         h3.income-confimation Справка о доходе
@@ -563,38 +568,38 @@ block contain
                     .form-row
                         h3.income Среднемесячный доход, руб
                         div.form-group__text
-                            input(type="text", required, autocomplete="off", name="income" data-cost)
+                            input(type="text", required, autocomplete="off", name="income" data-cost placeholder="15 000 руб")
                             .form-cross
                     .form-row
                         h3.additional-income Дополнительный доход (необязательно)        
                         div.form-group__text                    
-                            input(type="text", autocomplete="off", name="additional-employer-name")
+                            input(type="text", autocomplete="off", name="additional-employer-name" placeholder="ОАО Газпром")
                             label(for="additional-employer-name") Наименование работодателя
                             .form-cross
                         div.form-group__text                    
-                            input(type="text", autocomplete="off", name="additional-appointment")
+                            input(type="text", autocomplete="off", name="additional-appointment" placeholder="Директор")
                             label(for="additional-appointment") Должность
                             .form-cross
                         div.form-group__text                    
-                            input(type="text", autocomplete="off", name="additional-employer-inn")
+                            input(type="text", autocomplete="off", name="additional-employer-inn"  placeholder="000000000000")
                             label(for="additional-employer-inn") ИНН работодателя
                             .form-cross
                         div.form-group__text                    
-                            input(type="text", autocomplete="off", name="additional-employer-real-adress")
+                            input(type="text", autocomplete="off", name="additional-employer-real-adress" placeholder="Россия г.Москва ул.Ленина д 21")
                             label(for="additional-employer-real-adress") Фактический адрес
                             .form-cross
                         div.form-group__text                    
-                            input(type="text", autocomplete="off", name="additional-employer-branch")
+                            input(type="text", autocomplete="off", name="additional-employer-branch" placeholder="Глобальная энергетическая компания")
                             label(for="additional-employer-branch") Сфера деятельности организации
                             .form-cross
                         div.form-group__text                    
-                            input(type="text", autocomplete="off", name="additional-income")
+                            input(type="text", autocomplete="off", name="additional-income" placeholder="50 000 руб" data-cost)
                             label(for="additional-income") Доход по совместительству
                             .form-cross
                     .form-row
                         h3.sberbank-number Номер карты сбербанка (если Вы являетесь з/п клиентом банка, или у вас начисляется пенсия на карту ПАО Сбербанк)
                         div.form-group__text
-                            input(type="text", autocomplete="off", name="sberbank-number")
+                            input(type="text", autocomplete="off", name="sberbank-number" placeholder="4276 0000 0000 0000")
                             .form-cross
             .form-row_bb
                 .form-btns
@@ -611,33 +616,34 @@ block contain
                     .form-row
                         h3.realty Недвижимость                
                         div.form-group__check
-                            input(type="checkbox", id="apartment", name="apartment" data-)
+                            input(type="checkbox", id="apartment", name="apartment" data-active)
                             label(for="apartment") Квартира                
                         div.form-group__check
-                            input(type="checkbox", id="room", name="room")
+                            input(type="checkbox", id="room", name="room" data-active)
                             label(for="room") Комната
                         div.form-group__check
-                            input(type="checkbox", id="house", name="house")
+                            input(type="checkbox", id="house", name="house" data-active)
                             label(for="house") Дом             
                         div.form-group__check
-                            input(type="checkbox", id="land", name="land")
-                            label(for="land") Земельный участок                        
-                        div.form-group__check
-                            input(type="checkbox", id="share-property", name="share-property" data-option)
-                            label(for="share-property") Долевая собственность                
-                        div.form-group__text.form-group__text_pt(data-option-field)
-                            input(type="text", autocomplete="off", name="share-size")
-                            label(for="share-size") Указать размер доли
-                            .form-cross
-                        .form-group_hidden                
+                            input(type="checkbox", id="land", name="land" data-active)
+                            label(for="land") Земельный участок
+                        .form-group__active
+                            div.form-group__text                   
+                                input(type="text", autocomplete="off", name="adress")
+                                label(for="adress") Адрес
+                                .form-cross
+                            .form-group_hidden                
+                                div.form-group__check
+                                    input(type="checkbox", id="private-property", name="private-property" data-hidden)
+                                    label(for="private-property") Частная собственность
                             div.form-group__check
-                                input(type="checkbox", id="private-property", name="private-property" data-hidden)
-                                label(for="private-property") Частная собственность
-                            .form-group_hidden-content(data-hidden-content)
-                                div.form-group__text                   
-                                    input(type="text", autocomplete="off", name="adress")
-                                    label(for="adress") Адрес
-                                    .form-cross
+                                input(type="checkbox", id="share-property", name="share-property" data-option)
+                                label(for="share-property") Долевая собственность                
+                            div.form-group__text.form-group__text_pt(data-option-field)
+                                input(type="text", autocomplete="off", name="share-size")
+                                label(for="share-size") Указать размер доли
+                                .form-cross
+                            
                     .form-row
                         h3.auto Транспорт в собственности
                         .form-group_hidden
@@ -666,55 +672,59 @@ block contain
             div.form-block__content
                 form.form.form-credit-history
                     .form-row
-                        h3.credit-type Вид кредита                
+                        h3.credit-type Вид кредита
                         div.form-group__check
-                            input(type="radio", id="mortgage", name="type-credit")
+                            input(type="radio", id="no-credits", name="type-credit" checked data-credit-trigger data-nocredits)
+                            label(for="no-credits") не было кредитов              
+                        div.form-group__check
+                            input(type="radio", id="mortgage", name="type-credit" data-credit-trigger)
                             label(for="mortgage") ипотечный                
                         div.form-group__check
-                            input(type="radio", id="car", name="type-credit")
+                            input(type="radio", id="car", name="type-credit" data-credit-trigger)
                             label(for="car") автокредит                
                         div.form-group__check
-                            input(type="radio", id="consumer", name="type-credit")
+                            input(type="radio", id="consumer", name="type-credit" data-credit-trigger)
                             label(for="consumer") потребительский                
                         div.form-group__check
-                            input(type="radio", id="credit-card", name="type-credit")
+                            input(type="radio", id="credit-card", name="type-credit" data-credit-trigger)
                             label(for="credit-card") кредитная карта
-                    .form-row
-                        h3.bank Банк
-                        div.form-group__text
-                            input(type="text", required, autocomplete="off", name="bank")
-                            .form-cross
-                    .form-row
-                        h3.currency Валюта кредита                
-                        div.form-group__check
-                            input(type="radio", checked id="rubles", name="money")
-                            label(for="rubles") рубли РФ                
-                        div.form-group__check
-                            input(type="radio", id="dollars", name="money")
-                            label(for="dollars") доллары США                
-                        div.form-group__check
-                            input(type="radio", id="euro", name="money")
-                            label(for="euro") евро
-                    .form-row
-                        h3.credit-sum Сумма кредита
-                        div.form-group__text
-                            input(type="text", required, autocomplete="off", name="credit-sum" data-cost)
-                            .form-cross
-                    .form-row
-                        h3.monthly-payment Ежемесячная сумма к погашению
-                        div.form-group__text
-                            input(type="text", required, autocomplete="off", name="monthly-payment"  data-cost)
-                            .form-cross
-                    .form-row
-                        h3.loan-balance Остаток непогашенной задолженности
-                        div.form-group__text
-                            input(type="text", required, autocomplete="off", name="loan-balance"  data-cost)
-                            .form-cross
-                    .form-row
-                        h3.repayment-period Срок погашения
-                        div.form-group__text
-                            input(type="text", required, autocomplete="off", name="repayment-period")
-                            .form-cross
+                    .form-hidden-content
+                        .form-row
+                            h3.bank Банк
+                            div.form-group__text
+                                input(type="text", required, autocomplete="off", name="bank" placeholder="Сбербанк")
+                                .form-cross
+                        .form-row
+                            h3.currency Валюта кредита                
+                            div.form-group__check
+                                input(type="radio", checked id="rubles", name="money")
+                                label(for="rubles") рубли РФ                
+                            div.form-group__check
+                                input(type="radio", id="dollars", name="money")
+                                label(for="dollars") доллары США                
+                            div.form-group__check
+                                input(type="radio", id="euro", name="money")
+                                label(for="euro") евро
+                        .form-row
+                            h3.credit-sum Сумма кредита
+                            div.form-group__text
+                                input(type="text", required, autocomplete="off", name="credit-sum" data-cost data-minimum)
+                                .form-cross
+                        .form-row
+                            h3.monthly-payment Ежемесячная сумма к погашению
+                            div.form-group__text
+                                input(type="text", required, autocomplete="off", name="monthly-payment"  data-cost data-minimum)
+                                .form-cross
+                        .form-row
+                            h3.loan-balance Остаток непогашенной задолженности
+                            div.form-group__text
+                                input(type="text", required, autocomplete="off", name="loan-balance"  data-cost data-minimum)
+                                .form-cross
+                        .form-row
+                            h3.repayment-period Срок погашения
+                            div.form-group__text
+                                input(type="text", required, autocomplete="off", name="repayment-period")
+                                .form-cross
             .form-row_bb
                 .form-btns
                     .form-btn.form-btn__prev
