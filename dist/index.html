@@ -11,13 +11,13 @@
   </head>
   <body>
     <div class="wrapper">
-      <div class="form-wrapper">
+      <form class="form-wrapper" method="post" id="form-ipotek-main" action="ipoteka.php">
         <div class="form-block active">
           <div class="form-block__header">
             <h2>Единая анкета</h2>
           </div>
           <div class="form-block__content">
-            <form class="form form-general">
+            <div class="form form-general">
               <div class="form-row">
                 <div class="form-group__text">        
                   <input type="text" required autocomplete="off" name="name" data-name id="main-name">
@@ -35,7 +35,7 @@
                   <div class="form-cross"></div>
                 </div>
               </div>
-            </form>
+            </div>
           </div>
           <div class="form-row_bb">
             <div class="form-btns">
@@ -49,7 +49,7 @@
             <h2>Информация о запрашиваемом кредите</h2>
           </div>
           <div class="form-block__content">
-            <form class="form form-credit-info">
+            <div class="form form-credit-info">
               <div class="form-row">
                 <h3 class="credit-target">Цель кредита</h3>
                 <div class="form-group__radio">
@@ -85,7 +85,7 @@
               <div class="form-row">
                 <h3 class="credit-sum">Сумма кредита, руб</h3>
                 <div class="form-group__text">                   
-                  <input type="text" required autocomplete="off" name="credit-sum" data-cost data-credit-summ disabled>
+                  <input type="text" autocomplete="off" name="credit-sum" data-cost data-credit-summ disabled>
                   <label for="credit-sum">Сумма кредита</label>
                   <div class="form-cross"></div>
                 </div>
@@ -181,7 +181,7 @@
                   <div class="form-cross"></div>
                 </div>
               </div>
-            </form>
+            </div>
           </div>
           <div class="form-row_bb">
             <div class="form-btns">
@@ -195,7 +195,7 @@
             <h2>Личные данные Заёмщика / Созаемщика / Поручителя</h2>
           </div>
           <div class="form-block__content">
-            <form class="form form-private-data">
+            <div class="form form-private-data">
               <div class="form-row">
                 <div class="form-group__radio">
                   <input type="radio" id="private-data-person" name="private-data" checked>
@@ -455,7 +455,7 @@
                   </div>
                 </div>
               </div>
-            </form>
+            </div>
           </div>
           <div class="form-row_bb">
             <div class="form-btns">
@@ -469,7 +469,7 @@
             <h2>Сведения о работе Заемщика / Созаемщика / Поручителя</h2>
           </div>
           <div class="form-block__content">
-            <form class="form form-job-data">
+            <div class="form form-job-data">
               <div class="form-row">
                 <h3 class="name">Постоянное место работы</h3>
                 <div class="form-group__text">                   
@@ -800,7 +800,7 @@
                   <div class="form-cross"></div>
                 </div>
               </div>
-            </form>
+            </div>
           </div>
           <div class="form-row_bb">
             <div class="form-btns">
@@ -814,7 +814,7 @@
             <h2>Активы Заемщика / Созаемщика / Поручителя</h2>
           </div>
           <div class="form-block__content">
-            <form class="form form-resources">
+            <div class="form form-resources">
               <div class="form-row">
                 <h3 class="realty">Недвижимость                </h3>
                 <div class="form-group__check">
@@ -877,7 +877,7 @@
                   </div>
                 </div>
               </div>
-            </form>
+            </div>
           </div>
           <div class="form-row_bb">
             <div class="form-btns">
@@ -891,7 +891,7 @@
             <h2>Данные о кредитной истории Заемщика / Созаемщика / Поручителя</h2>
           </div>
           <div class="form-block__content">
-            <form class="form form-credit-history">
+            <div class="form form-credit-history">
               <div class="form-row">
                 <h3 class="credit-type">Вид кредита</h3>
                 <div class="form-group__check">
@@ -919,7 +919,7 @@
                 <div class="form-row">
                   <h3 class="bank">Банк</h3>
                   <div class="form-group__text">
-                    <input type="text" required autocomplete="off" name="bank" placeholder="Сбербанк">
+                    <input type="text" autocomplete="off" name="bank" placeholder="Сбербанк">
                     <div class="form-cross"></div>
                   </div>
                 </div>
@@ -941,33 +941,33 @@
                 <div class="form-row">
                   <h3 class="credit-sum">Сумма кредита</h3>
                   <div class="form-group__text">
-                    <input type="text" required autocomplete="off" name="credit-sum" data-cost data-minimum>
+                    <input type="text" autocomplete="off" name="credit-sum" data-cost data-minimum>
                     <div class="form-cross"></div>
                   </div>
                 </div>
                 <div class="form-row">
                   <h3 class="monthly-payment">Ежемесячная сумма к погашению</h3>
                   <div class="form-group__text">
-                    <input type="text" required autocomplete="off" name="monthly-payment" data-cost data-minimum>
+                    <input type="text" autocomplete="off" name="monthly-payment" data-cost data-minimum>
                     <div class="form-cross"></div>
                   </div>
                 </div>
                 <div class="form-row">
                   <h3 class="loan-balance">Остаток непогашенной задолженности</h3>
                   <div class="form-group__text">
-                    <input type="text" required autocomplete="off" name="loan-balance" data-cost data-minimum>
+                    <input type="text" autocomplete="off" name="loan-balance" data-cost data-minimum>
                     <div class="form-cross"></div>
                   </div>
                 </div>
                 <div class="form-row">
                   <h3 class="repayment-period">Срок погашения</h3>
                   <div class="form-group__text">
-                    <input type="text" required autocomplete="off" name="repayment-period">
+                    <input type="text" autocomplete="off" name="repayment-period">
                     <div class="form-cross"></div>
                   </div>
                 </div>
               </div>
-            </form>
+            </div>
           </div>
           <div class="form-row_bb">
             <div class="form-btns">
@@ -981,7 +981,7 @@
             <h2>Дополнительная информация <span class="form-head-description">(Ваши личные пожелания в какие банки отправить заявку на ипотеку и любая другая полезная информация)</span></h2>
           </div>
           <div class="form-block__content">
-            <form class="form form-additional-info">
+            <div class="form form-additional-info">
               <div class="form-row">
                 <h3 class="comments">Коментарии</h3>
                 <div class="form-group__text">
@@ -989,7 +989,7 @@
                   <div class="form-cross"></div>
                 </div>
               </div>
-            </form>
+            </div>
           </div>
           <div class="form-row_bb">
             <div class="form-btns">
@@ -1003,7 +1003,7 @@
             <h2>Документы</h2>
           </div>
           <div class="form-block__content">
-            <form class="form form-documents">
+            <div class="form form-documents">
               <div class="form-row form-row-center">
                 <h3 class="passport">Паспорт</h3>
                 <div class="form-group__file">
@@ -1054,7 +1054,7 @@
                   </label>
                 </div>
               </div>
-            </form>
+            </div>
           </div>
           <div class="form-row_bb">
             <div class="form-btns">
@@ -1063,7 +1063,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </form>
     </div>
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery.sumoselect.min.js"></script>

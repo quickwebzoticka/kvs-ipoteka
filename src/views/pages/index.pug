@@ -4,12 +4,12 @@ block title
     title KVS | Ипотека
 
 block contain
-    .form-wrapper
+    form.form-wrapper(method="post" id="form-ipotek-main" action="ipoteka.php")
         div.form-block.active
             div.form-block__header
                 h2 Единая анкета
             div.form-block__content
-                form.form.form-general
+               .form.form-general
                     .form-row
                         div.form-group__text         
                             input(type="text", required, autocomplete="off", name="name", data-name id="main-name")
@@ -34,7 +34,7 @@ block contain
             div.form-block__header
                 h2 Информация о запрашиваемом кредите
             div.form-block__content
-                form.form.form-credit-info
+                .form.form-credit-info
                     .form-row
                         h3.credit-target Цель кредита
                         div.form-group__radio
@@ -62,7 +62,7 @@ block contain
                     .form-row
                         h3.credit-sum Сумма кредита, руб
                         div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="credit-sum" data-cost data-credit-summ disabled)
+                            input(type="text", autocomplete="off", name="credit-sum" data-cost data-credit-summ disabled)
                             label(for="credit-sum") Сумма кредита
                             .form-cross
                                
@@ -146,7 +146,7 @@ block contain
             div.form-block__header
                 h2 Личные данные Заёмщика / Созаемщика / Поручителя
             div.form-block__content
-                form.form.form-private-data
+                .form.form-private-data
                     .form-row
                         div.form-group__radio
                             input(type="radio", id="private-data-person", name="private-data" checked)
@@ -349,7 +349,7 @@ block contain
             div.form-block__header
                 h2 Сведения о работе Заемщика / Созаемщика / Поручителя
             div.form-block__content
-                form.form.form-job-data
+                .form.form-job-data
                     .form-row
                         h3.name Постоянное место работы
                         div.form-group__text                    
@@ -612,7 +612,7 @@ block contain
             div.form-block__header
                 h2 Активы Заемщика / Созаемщика / Поручителя
             div.form-block__content
-                form.form.form-resources
+                .form.form-resources
                     .form-row
                         h3.realty Недвижимость                
                         div.form-group__check
@@ -670,7 +670,7 @@ block contain
             div.form-block__header
                 h2 Данные о кредитной истории Заемщика / Созаемщика / Поручителя
             div.form-block__content
-                form.form.form-credit-history
+                .form.form-credit-history
                     .form-row
                         h3.credit-type Вид кредита
                         div.form-group__check
@@ -692,7 +692,7 @@ block contain
                         .form-row
                             h3.bank Банк
                             div.form-group__text
-                                input(type="text", required, autocomplete="off", name="bank" placeholder="Сбербанк")
+                                input(type="text", autocomplete="off", name="bank" placeholder="Сбербанк")
                                 .form-cross
                         .form-row
                             h3.currency Валюта кредита                
@@ -708,22 +708,22 @@ block contain
                         .form-row
                             h3.credit-sum Сумма кредита
                             div.form-group__text
-                                input(type="text", required, autocomplete="off", name="credit-sum" data-cost data-minimum)
+                                input(type="text", autocomplete="off", name="credit-sum" data-cost data-minimum)
                                 .form-cross
                         .form-row
                             h3.monthly-payment Ежемесячная сумма к погашению
                             div.form-group__text
-                                input(type="text", required, autocomplete="off", name="monthly-payment"  data-cost data-minimum)
+                                input(type="text", autocomplete="off", name="monthly-payment"  data-cost data-minimum)
                                 .form-cross
                         .form-row
                             h3.loan-balance Остаток непогашенной задолженности
                             div.form-group__text
-                                input(type="text", required, autocomplete="off", name="loan-balance"  data-cost data-minimum)
+                                input(type="text", autocomplete="off", name="loan-balance"  data-cost data-minimum)
                                 .form-cross
                         .form-row
                             h3.repayment-period Срок погашения
                             div.form-group__text
-                                input(type="text", required, autocomplete="off", name="repayment-period")
+                                input(type="text", autocomplete="off", name="repayment-period")
                                 .form-cross
             .form-row_bb
                 .form-btns
@@ -736,7 +736,7 @@ block contain
             div.form-block__header
                 h2 Дополнительная информация <span class="form-head-description">(Ваши личные пожелания в какие банки отправить заявку на ипотеку и любая другая полезная информация)</span>
             div.form-block__content
-                form.form.form-additional-info
+                .form.form-additional-info
                     .form-row
                         h3.comments Коментарии
                         div.form-group__text
@@ -753,7 +753,7 @@ block contain
             div.form-block__header
                 h2 Документы
             div.form-block__content
-                form.form.form-documents
+                .form.form-documents
                     .form-row.form-row-center
                         h3.passport Паспорт
                         div.form-group__file

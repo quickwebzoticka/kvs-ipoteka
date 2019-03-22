@@ -708,4 +708,35 @@ $(document).ready(function() {
 			$('.form-hidden-content').slideDown(300);			
 		}
 	});
+
+
+
+
+
+
+
+
+
+
+
+
+	$(document).on('submit', '#form-ipoteka-main', function() {
+		var form = $(this);
+        $.ajax({
+          type: form.attr('method'),
+          url: form.attr('action'),
+          data: form.serialize()
+        }).done(function() {
+        	//
+        	// Тут будет вызов попапа с удачной отправкой
+        	//
+          console.log('Ушла ипотека')
+        }).fail(function() {
+        	//
+        	// Тут будет вызов попапа с неудачей
+        	//
+          console.log('Осталась ипотека');
+        });
+        e.preventDefault(); 
+	});
 });
