@@ -13,7 +13,7 @@ block contain
                     .form-row
                         div.form-group__text         
                             input(type="text", required, autocomplete="off", name="name", data-name id="main-name")
-                            label(for="name") ФИО
+                            label(for="name") Фамилия Имя Отчество
                             .form-cross
                         div.form-group__text                    
                             input(type="text", required, autocomplete="off", name="birth-date", data-date)
@@ -38,11 +38,14 @@ block contain
                     .form-row
                         h3.credit-target Цель кредита
                         div.form-group__radio
-                            input(type="radio", id="credit-target-new", name="credit-target-new", checked)
-                            label(for="credit-target-new") Покупка квартиры в новостройке                
+                            input(type="radio", id="credit-target-new", name="credit-target-new" value="credit-target-new[0]", checked)
+                            label(for="credit-target-new") Покупка квартиры в новостройке
                         div.form-group__radio
-                            input(type="radio", id="credit-target-ready", name="credit-target-new")
+                            input(type="radio", id="credit-target-ready", name="credit-target-new" value="credit-target-new[1]")
                             label(for="credit-target-ready") Покупка квартиры в готовой недвижимости
+                        div.form-group__radio
+                            input(type="radio", id="credit-target-commers", name="credit-target-new" value="credit-target-new[2]")
+                            label(for="credit-target-commers") Покупка коммерческой недвижимости
                     .form-row
                         h3.cost Стоимость ОН
                         div.form-group__text                    
@@ -50,7 +53,7 @@ block contain
                             label(for="cost") Стоимость
                             .form-cross
                     .form-row
-                        h3.initial-contribution Первоначальный взнос, в руб
+                        h3.initial-contribution Первоначальный взнос, в руб.
                         div.form-group__text                    
                             input(type="text", autocomplete="off", name="initial-contribution-sum" data-cost data-credit-first disabled)
                             label(for="initial-contribution-sum") Первоначальный взнос
@@ -60,7 +63,7 @@ block contain
                             label(for="initial-contribution-percent") В процентах
                             .form-cross  
                     .form-row
-                        h3.credit-sum Сумма кредита, руб
+                        h3.credit-sum Сумма кредита, руб.
                         div.form-group__text                    
                             input(type="text", autocomplete="off", name="credit-sum" data-cost data-credit-summ disabled)
                             label(for="credit-sum") Сумма кредита
@@ -72,10 +75,10 @@ block contain
                         .form-group_hidden
                             div.form-group__check
                                 input(type="checkbox", id="maternity-capital", name="maternity-capital" data-hidden)
-                                label(for="maternity-capital") Мат. капитал 
+                                label(for="maternity-capital") Материнский капитал 
                             div.form-group__text.form-group__text_pt(data-hidden-content)
                                 input(type="text", autocomplete="off", name="maternity-capital-sum" data-cost data-maternity-summ)
-                                label(for="maternity-capital-sum") Размер МСК
+                                label(for="maternity-capital-sum") Размер Материнского капитала
                                 .form-cross
                             div(data-hidden-radio-content)
                                 div.form-group__text(data-hidden-content)
@@ -83,10 +86,10 @@ block contain
                                     label(for="maternity-capital-procent") В процентах
                                     .form-cross
                             div.form-group__radio(data-hidden-content)
-                                input(type="radio", id="maternity-capital-usage-PV", name="maternity-capital-usage" data-hidden-radio)
+                                input(type="radio", id="maternity-capital-usage-PV", name="maternity-capital-usage" value="maternity-capital-usage[0]" data-hidden-radio)
                                 label(for="maternity-capital-usage-PV") Использовать как Первоначальный Взнос
                             div.form-group__radio(data-hidden-content)
-                                input(type="radio", id="maternity-capital-usage-time", name="maternity-capital-usage" checked)
+                                input(type="radio", id="maternity-capital-usage-time", name="maternity-capital-usage" value="maternity-capital-usage[0]" checked)
                                 label(for="maternity-capital-usage-time") Использовать как досрочное погашение по кредиту 
                     .form-row
                         h3.military-loan Военная ипотека
@@ -96,7 +99,7 @@ block contain
                                 label(for="military-loan") Военная ипотека
                             div.form-group__text.form-group__text_pt(data-hidden-content)                
                                 input(type="text", autocomplete="off", name="military-loan-sum" data-cost data-military-summ)
-                                label(for="military-loan-sum") Размер НИС
+                                label(for="military-loan-sum") Размер Накопительной Ипотечной Системы
                                 .form-cross
                             div.form-group__text(data-hidden-content)
                                 input(type="text", autocomplete="off", name="military-loan-percent" data-procent data-military-procent) 
@@ -124,10 +127,10 @@ block contain
                     .form-row
                         h3.insurance Страхование квартиры    
                         div.form-group__check
-                            input(type="radio", id="insurance-yes", name="insurance", checked)
+                            input(type="radio", id="insurance-yes", name="insurance" value="insurance[0]", checked)
                             label(for="insurance-yes") Да                
                         div.form-group__check
-                            input(type="radio", id="insurance-no", name="insurance")
+                            input(type="radio", id="insurance-no", name="insurance" value="insurance[1]")
                             label(for="insurance-no") Нет
                     
                         h3.loan-period Срок кредита, количество лет
@@ -149,44 +152,44 @@ block contain
                 .form.form-private-data
                     .form-row
                         div.form-group__radio
-                            input(type="radio", id="private-data-person", name="private-data" checked)
+                            input(type="radio", id="private-data-person", name="private-data" value="private-data[0]" checked)
                             label(for="private-data-person") Заёмщик
                         div.form-group__radio
-                            input(type="radio", id="private-data-person-1", name="private-data")
+                            input(type="radio", id="private-data-person-1", name="private-data" value="private-data[1]")
                             label(for="private-data-person-1") Созаемщик
                         div.form-group__radio
-                            input(type="radio", id="private-data-person-2", name="private-data")
+                            input(type="radio", id="private-data-person-2", name="private-data" value="private-data[2]")
                             label(for="private-data-person-2") Поручитель
                         h3.name ФИО
                         div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="surname" id="main-name-surname")
+                            input(type="text", required, autocomplete="off", name="surname-personal" id="main-name-surname")
                             label(for="surname") Фамилия
                             .form-cross
                         div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="name" id="main-name-name")
+                            input(type="text", required, autocomplete="off", name="name-personal" id="main-name-name")
                             label(for="name") Имя
                             .form-cross
                         div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="patronym" id="main-name-patronym")
+                            input(type="text", required, autocomplete="off", name="patronym-personal" id="main-name-patronym")
                             label(for="patronym") Отчество
                             .form-cross
                     .form-row
                         h3.passport-data Паспортные данные
                         div.form-group__text
-                            input(type="text", required, autocomplete="off", name="passport-data" placeholder="00 00 000000")
+                            input(type="text", required, autocomplete="off", name="passport-data" placeholder="0000 000000" data-passport)
                             .form-cross
                     .form-row
                         h3.birth-date Дата рождения
                         div.form-group__text
-                            input(type="text", required, autocomplete="off", name="birth-date" data-date)
+                            input(type="text", required, autocomplete="off", name="birth-date-personal" data-date)
                             .form-cross
                     .form-row
                         h3.sex Пол                
                         div.form-group__check
-                            input(type="radio", id="sex-male", name="sex" checked)
+                            input(type="radio", id="sex-male", name="sex" value="sex[0]" checked)
                             label(for="sex-male") Мужской                
                         div.form-group__check
-                            input(type="radio", id="sex-female", name="sex")
+                            input(type="radio", id="sex-female", name="sex" value="sex[1]")
                             label(for="sex-female") Женский
                     .form-row
                         h3.citezenship Гражданство
@@ -196,12 +199,12 @@ block contain
                     .form-row
                         h3.citezenship ИНН
                         div.form-group__text
-                            input(type="text", required, autocomplete="off", name="inn" placeholder="000000000000")
+                            input(type="text", required, autocomplete="off", name="inn" placeholder="000000000000" data-inn)
                             .form-cross
                     .form-row
                         h3.citezenship СНИЛС
                         div.form-group__text
-                            input(type="text", required, autocomplete="off", name="iian" placeholder="000 000 000 00")
+                            input(type="text", required, autocomplete="off", name="iian" placeholder="000 000 000 00" data-snils)
                             .form-cross
                     .form-row
                         h3.citezenship Контактный телефон
@@ -209,31 +212,31 @@ block contain
                             input(type="text", required, autocomplete="off", name="phone-main" data-phone)
                             label(for="phone-main") Основной
                             .form-cross
-                        div.form-group__text                    
-                            input(type="text", autocomplete="off", name="phone-main" data-phone)
+                        div.form-group__text
+                            input(type="text", autocomplete="off", name="phone-main-add" data-phone)
                             label(for="phone-main") Дополнительный
                             .form-cross
                     .form-row
                         h3.email Email
                         div.form-group__text
-                            input(type="text", autocomplete="off", name="email" placeholder="example@mail.com")
+                            input(type="text", autocomplete="off", name="email" placeholder="example@mail.com" data-email)
                             .form-cross
                     .form-row
                         h3.civil-status Статус семейного положения                
                         div.form-group__check
-                            input(type="radio", id="marriage", name="marriage")
-                            label(for="marriage") Женат / Замужем                
+                            input(type="radio", id="marriage", name="marriage" value="marriage[0]")
+                            label(for="marriage") Женат / Замужем          
                         div.form-group__check
-                            input(type="radio", id="civil-marriage", name="marriage")
+                            input(type="radio", id="civil-marriage", name="marriage" value="marriage[1]")
                             label(for="civil-marriage") Гражданский брак                
                         div.form-group__check
-                            input(type="radio", id="single", name="marriage")
+                            input(type="radio", id="single", name="marriage" value="marriage[2]")
                             label(for="single") Холост / Не замужем                
                         div.form-group__check
-                            input(type="radio", id="divorced", name="marriage")
+                            input(type="radio", id="divorced", name="marriage" value="marriage[3]")
                             label(for="divorced") В разводе                
                         div.form-group__check
-                            input(type="radio", id="widower", name="marriage")
+                            input(type="radio", id="widower", name="marriage" value="marriage[4]")
                             label(for="widower") Вдовец / Вдова
                     .form-row
                         h3.name-change Менялись ли ФИО
@@ -262,32 +265,32 @@ block contain
                                 input(type="text", autocomplete="off", name="children-number" data-count)
                                 label(for="children-number") Количество
                         .form-group_hidden-wrapper(data-count-contain)
-                            .form-group_hidden-content
+                            .form-group_hidden-content(data-children-form)
                                 h3.child Ребенок
                                 div.form-group__text                    
                                     input(type="text", autocomplete="off", name="child-name")
                                     label(for="child-name") ФИО
                                     .form-cross
                                 div.form-group__text                    
-                                    input(type="text", autocomplete="off", name="child-birth-date" data-date)
+                                    input(type="text", autocomplete="off", name="child-birth-date-children" data-date)
                                     label(for="child-birth-date") Дата рождения
                                     .form-cross
                     .form-row
                         h3.education Образование          
                         div.form-group__check
-                            input(type="checkbox", id="middle", name="middle")
+                            input(type="radio", id="middle", name="education" value="education[0]" data-education)
                             label(for="middle") среднее / неполное среднее                
                         div.form-group__check
-                            input(type="checkbox", id="college", name="college")
+                            input(type="radio", id="college", name="education" value="education[1]" data-education)
                             label(for="college") среднее специальное                
                         div.form-group__check
-                            input(type="checkbox", id="incomplete-high", name="incomplete-high")
+                            input(type="radio", id="incomplete-high", name="education" value="education[2]" data-education)
                             label(for="incomplete-high") незаконченное высшее                
                         div.form-group__check
-                            input(type="checkbox", id="high", name="high")
+                            input(type="radio", id="high", name="education" value="education[3]" data-education)
                             label(for="high") высшее                
                         div.form-group__check
-                            input(type="checkbox", id="science-degree", name="science-degree")
+                            input(type="checkbox", id="science-degree", name="science-degree" disabled data-education data-science)
                             label(for="science-degree") ученая степень                
                         div.form-group__text.form-group__text_pt                    
                             input(type="text",  autocomplete="off", name="institution-name" placeholder="СПБГУ") 
@@ -321,22 +324,22 @@ block contain
                                 label(for="match") Да
                             .form-group_show-content(data-show-content)
                                 div.form-group__text                    
-                                    input(type="text", required autocomplete="off", name="zip-code")
+                                    input(type="text", required autocomplete="off", name="zip-code-fact")
                                     label(for="zip-code") Почтовый индекс
                                 div.form-group__text                    
-                                    input(type="text", required autocomplete="off", name="city")
+                                    input(type="text", required autocomplete="off", name="city-fact")
                                     label(for="city") Город / область
                                 div.form-group__text                    
-                                    input(type="text", required autocomplete="off", name="street")
+                                    input(type="text", required autocomplete="off", name="street-fact")
                                     label(for="street") Улица
                                 div.form-group__text                    
-                                    input(type="text", required autocomplete="off", name="building")
+                                    input(type="text", required autocomplete="off", name="building-fact")
                                     label(for="building") Дом
                                 div.form-group__text                    
-                                    input(type="text", required autocomplete="off", name="facility")
+                                    input(type="text", required autocomplete="off", name="facility-fact")
                                     label(for="facility") Корпус
                                 div.form-group__text                    
-                                    input(type="text", required autocomplete="off", name="apartment")
+                                    input(type="text", required autocomplete="off", name="apartment-fact")
                                     label(for="apartment") Квартира
             .form-row_bb
                 .form-btns
@@ -353,7 +356,7 @@ block contain
                     .form-row
                         h3.name Постоянное место работы
                         div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="name")
+                            input(type="text", required, autocomplete="off", name="name-location-job")
                             label(for="name") Наименование
                             .form-cross
                         //- div.form-group__text                    
@@ -361,14 +364,14 @@ block contain
                         //-     label(for="status") Статус занятости
                         //-     .form-cross
                         div.form-group__text.form-group__text_bb
-                            select
+                            select(name="job-time")
                                 option(value="Полная занятость") Полная занятость
                                 option(value="Частичная занятость") Частичная занятость
                                 option(value="Не занят") Не занят
                     .form-row
                         h3.employer-inn ИНН работодателя
                         div.form-group__text
-                            input(type="text", autocomplete="off", name="employer-inn" placeholder="000000000000")
+                            input(type="text", autocomplete="off", name="employer-inn" placeholder="000000000000" data-inn)
                             .form-cross
                     .form-row
                         h3.employer-phone Телефон организации-работодателя
@@ -384,27 +387,27 @@ block contain
                         h3.employer-adress Юридический адрес организации и фактический адрес    
                         h3.employer-adress-legal Юридический адрес
                         div.form-group__text
-                            input(type="text", required, autocomplete="off", name="zip-code")
+                            input(type="text", required, autocomplete="off", name="zip-code-uri")
                             label(for="zip-code") Почтовый индекс
                             .form-cross
                         div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="city")
+                            input(type="text", required, autocomplete="off", name="city-uri")
                             label(for="city") Город / область
                             .form-cross
                         div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="street")
+                            input(type="text", required, autocomplete="off", name="street-uri")
                             label(for="street") Улица
                             .form-cross
                         div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="building")
+                            input(type="text", required, autocomplete="off", name="building-uri")
                             label(for="building") Дом
                             .form-cross
                         div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="facility")
+                            input(type="text", required, autocomplete="off", name="facility-uri")
                             label(for="facility") Корпус
                             .form-cross
                         div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="office")
+                            input(type="text", required, autocomplete="off", name="office-uri")
                             label(for="office") Офис
                             .form-cross
                     .form-row
@@ -415,27 +418,27 @@ block contain
                                 label(for="employer-match") Совпадает с юридическим адресом  
                             .form-group_show-content(data-show-content)     
                                 div.form-group__text                    
-                                    input(type="text",  autocomplete="off", name="zip-code")
+                                    input(type="text",  autocomplete="off", name="zip-code-uri-fact")
                                     label(for="zip-code") Почтовый индекс
                                     .form-cross
                                 div.form-group__text                    
-                                    input(type="text",  autocomplete="off", name="city")
+                                    input(type="text",  autocomplete="off", name="city-uri-fact")
                                     label(for="city") Город / область
                                     .form-cross
                                 div.form-group__text                    
-                                    input(type="text",  autocomplete="off", name="street")
+                                    input(type="text",  autocomplete="off", name="street-uri-fact")
                                     label(for="street") Улица
                                     .form-cross
                                 div.form-group__text                    
-                                    input(type="text",  autocomplete="off", name="building")
+                                    input(type="text",  autocomplete="off", name="building-uri-fact")
                                     label(for="building") Дом
                                     .form-cross
                                 div.form-group__text                    
-                                    input(type="text",  autocomplete="off", name="facility")
+                                    input(type="text",  autocomplete="off", name="facility-uri-fact")
                                     label(for="facility") Корпус
                                     .form-cross
                                 div.form-group__text                    
-                                    input(type="text",  autocomplete="off", name="office")
+                                    input(type="text",  autocomplete="off", name="office-uri-fact")
                                     label(for="office") Офис
                                     .form-cross
                     .form-row
@@ -498,41 +501,41 @@ block contain
                             input(type="checkbox", id="other", name="other" data-option)
                             label(for="other") Иное
                         div.form-group__text(data-option-field)
-                            input(type="text", autocomplete="off", name="other")
+                            input(type="text", autocomplete="off", name="other-text")
                             .form-cross
                     .form-row
                         h3.employer-size Численность персонала
                         div.form-group__radio                    
-                            input(type="radio", id="employer-size-1", name="employer-size", value="size-type-1")
+                            input(type="radio", id="employer-size-1", name="employer-size", value="size-type[0]")
                             label(for="employer-size-1") до 10
                         div.form-group__radio                    
-                            input(type="radio", id="employer-size-2", name="employer-size", value="size-type-2")
+                            input(type="radio", id="employer-size-2", name="employer-size", value="size-type[1]")
                             label(for="employer-size-2") 11-30
                         div.form-group__radio                    
-                            input(type="radio", id="employer-size-3", name="employer-size", value="size-type-3")
+                            input(type="radio", id="employer-size-3", name="employer-size", value="size-type[2]")
                             label(for="employer-size-3") 31-50
                         div.form-group__radio                    
-                            input(type="radio", id="employer-size-4", name="employer-size", value="size-type-4")
+                            input(type="radio", id="employer-size-4", name="employer-size", value="size-type[3]")
                             label(for="employer-size-4") 51-100
                         div.form-group__radio                    
-                            input(type="radio", id="employer-size-5", name="employer-size", value="size-type-5")
+                            input(type="radio", id="employer-size-5", name="employer-size", value="size-type[4]")
                             label(for="employer-size-5") 101-500
                         div.form-group__radio                    
-                            input(type="radio", id="employer-size-6", name="employer-size", value="size-type-6")
+                            input(type="radio", id="employer-size-6", name="employer-size", value="size-type[5]")
                             label(for="employer-size-6") 501-1000
                         div.form-group__radio                    
-                            input(type="radio", id="employer-size-7", name="employer-size", value="size-type-7")
+                            input(type="radio", id="employer-size-7", name="employer-size", value="size-type[6]")
                             label(for="employer-size-7") более 1000
                     .form-row
                         h3.employer-duration Трудовой стаж
                         div.form-group__radio                    
-                            input(type="radio", id="employer-duration-1", name="employer-duration", value="duration-type-1")
+                            input(type="radio", id="employer-duration-1", name="employer-duration", value="duration-type[0]")
                             label(for="employer-duration-1") до 2-х лет
                         div.form-group__radio                    
-                            input(type="radio", id="employer-duration-2", name="employer-duration", value="duration-type-2")
+                            input(type="radio", id="employer-duration-2", name="employer-duration", value="duration-type[1]")
                             label(for="employer-duration-2") от 2-5 лет
                         div.form-group__radio                    
-                            input(type="radio", id="employer-duration-3", name="employer-duration", value="duration-type-3")
+                            input(type="radio", id="employer-duration-3", name="employer-duration", value="duration-type[2]")
                             label(for="employer-duration-3") более 5 лет 
                     .form-row
                         h3.appointment Должность
@@ -557,18 +560,18 @@ block contain
                     .form-row
                         h3.income-confimation Справка о доходе
                         div.form-group__radio                    
-                            input(type="radio", checked id="income-confimation-1", name="income-confimation", value="confirmation-type-1")
+                            input(type="radio", checked id="income-confimation-1", name="income-confimation", value="confirmation-type[0]")
                             label(for="income-confimation-1") 2-НДФЛ
                         div.form-group__radio                    
-                            input(type="radio", id="income-confimation-2", name="income-confimation", value="confirmation-type-2")
+                            input(type="radio", id="income-confimation-2", name="income-confimation", value="confirmation-type[1]")
                             label(for="income-confimation-2") Справка по форме банка
                         div.form-group__radio                    
-                            input(type="radio", id="income-confimation-3", name="income-confimation", value="confirmation-type-3")
+                            input(type="radio", id="income-confimation-3", name="income-confimation", value="confirmation-type[2]")
                             label(for="income-confimation-3") Без подтверждения дохода - по двум документам
                     .form-row
-                        h3.income Среднемесячный доход, руб
+                        h3.income Среднемесячный доход, руб.
                         div.form-group__text
-                            input(type="text", required, autocomplete="off", name="income" data-cost placeholder="15 000 руб")
+                            input(type="text", required, autocomplete="off", name="income" data-cost placeholder="15 000 руб.")
                             .form-cross
                     .form-row
                         h3.additional-income Дополнительный доход (необязательно)        
@@ -581,7 +584,7 @@ block contain
                             label(for="additional-appointment") Должность
                             .form-cross
                         div.form-group__text                    
-                            input(type="text", autocomplete="off", name="additional-employer-inn"  placeholder="000000000000")
+                            input(type="text", autocomplete="off", name="additional-employer-inn"  placeholder="000000000000" data-inn)
                             label(for="additional-employer-inn") ИНН работодателя
                             .form-cross
                         div.form-group__text                    
@@ -593,7 +596,7 @@ block contain
                             label(for="additional-employer-branch") Сфера деятельности организации
                             .form-cross
                         div.form-group__text                    
-                            input(type="text", autocomplete="off", name="additional-income" placeholder="50 000 руб" data-cost)
+                            input(type="text", autocomplete="off", name="additional-income" placeholder="50 000 руб." data-cost)
                             label(for="additional-income") Доход по совместительству
                             .form-cross
                     .form-row
@@ -674,19 +677,19 @@ block contain
                     .form-row
                         h3.credit-type Вид кредита
                         div.form-group__check
-                            input(type="radio", id="no-credits", name="type-credit" checked data-credit-trigger data-nocredits)
+                            input(type="radio", id="no-credits", name="type-credit" value="type-credit[0]" checked data-credit-trigger data-nocredits)
                             label(for="no-credits") не было кредитов              
                         div.form-group__check
-                            input(type="radio", id="mortgage", name="type-credit" data-credit-trigger)
+                            input(type="radio", id="mortgage", name="type-credit" value="type-credit[1]" data-credit-trigger)
                             label(for="mortgage") ипотечный                
                         div.form-group__check
-                            input(type="radio", id="car", name="type-credit" data-credit-trigger)
+                            input(type="radio", id="car", name="type-credit" value="type-credit[2]" data-credit-trigger)
                             label(for="car") автокредит                
                         div.form-group__check
-                            input(type="radio", id="consumer", name="type-credit" data-credit-trigger)
+                            input(type="radio", id="consumer", name="type-credit" value="type-credit[3]" data-credit-trigger)
                             label(for="consumer") потребительский                
                         div.form-group__check
-                            input(type="radio", id="credit-card", name="type-credit" data-credit-trigger)
+                            input(type="radio", id="credit-card", name="type-credit" value="type-credit[4]" data-credit-trigger)
                             label(for="credit-card") кредитная карта
                     .form-hidden-content
                         .form-row
@@ -697,18 +700,18 @@ block contain
                         .form-row
                             h3.currency Валюта кредита                
                             div.form-group__check
-                                input(type="radio", checked id="rubles", name="money")
+                                input(type="radio", checked id="rubles", name="money" value="money[0]")
                                 label(for="rubles") рубли РФ                
                             div.form-group__check
-                                input(type="radio", id="dollars", name="money")
+                                input(type="radio", id="dollars", name="money" value="money[1]")
                                 label(for="dollars") доллары США                
                             div.form-group__check
-                                input(type="radio", id="euro", name="money")
+                                input(type="radio", id="euro", name="money" value="money[2]")
                                 label(for="euro") евро
                         .form-row
                             h3.credit-sum Сумма кредита
                             div.form-group__text
-                                input(type="text", autocomplete="off", name="credit-sum" data-cost data-minimum)
+                                input(type="text", autocomplete="off", name="credit-sum-history" data-cost data-minimum)
                                 .form-cross
                         .form-row
                             h3.monthly-payment Ежемесячная сумма к погашению
@@ -766,43 +769,43 @@ block contain
                             label.form-group__file-label
                                 i.material-icons attach_file
                                 span.file-title Загрузить трудовую книгу
-                                input(type="file", name="passport", multiple)
+                                input(type="file", name="passport-book", multiple)
                         h3.passport Свидетельство о браке
                         div.form-group__file
                             label.form-group__file-label
                                 i.material-icons attach_file
                                 span.file-title Загрузить свидетельство о браке
-                                input(type="file", name="passport", multiple)
+                                input(type="file", name="passport-marriage", multiple)
                         h3.passport Свидетельство о рождении детей
                         div.form-group__file
                             label.form-group__file-label
                                 i.material-icons attach_file
                                 span.file-title Загрузить свидетельство о рождении детей
-                                input(type="file", name="passport", multiple)
+                                input(type="file", name="passport-children", multiple)
                         h3.passport СНИЛС
                         div.form-group__file
                             label.form-group__file-label
                                 i.material-icons attach_file
                                 span.file-title Загрузить СНИЛС
-                                input(type="file", name="passport", multiple)
+                                input(type="file", name="passport-snils", multiple)
                         h3.passport ИНН
                         div.form-group__file
                             label.form-group__file-label
                                 i.material-icons attach_file
                                 span.file-title Загрузить ИНН
-                                input(type="file", name="passport", multiple)
+                                input(type="file", name="passport-inn", multiple)
                         h3.passport Документ, подтверждающий доход
                         div.form-group__file
                             label.form-group__file-label
                                 i.material-icons attach_file
                                 span.file-title Загрузить документ, подтверждающий доход
-                                input(type="file", name="passport", multiple)
-                        h3.passport НИС, МСК, выписка со счета МСК, субсидии, памятки
+                                input(type="file", name="passport-income", multiple)
+                        h3.passport Накопительная Ипотечная Система, Материнский капитал, выписка со счета Материнского капитала, субсидии, памятки
                         div.form-group__file
                             label.form-group__file-label
                                 i.material-icons attach_file
                                 span.file-title Загрузить другие документы
-                                input(type="file", name="passport", multiple)
+                                input(type="file", name="passport-other", multiple)
             .form-row_bb
                 .form-btns
                     .form-btn.form-btn__prev

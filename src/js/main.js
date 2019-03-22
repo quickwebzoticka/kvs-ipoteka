@@ -103,12 +103,18 @@ $(document).ready(function() {
 	// 	})
 	// })
 
+	$('[data-name]').inputmask({"mask": "Aa{1,} Aa{1,} Aa{1,}", showMaskOnHover: false})
+	$('[data-date]').inputmask({"mask": "99.99.9999", showMaskOnHover: false});
+	$('[data-phone]').inputmask({"mask": "+7 (999) 999-9999", showMaskOnHover: false});
+	$('[data-count]').inputmask({"mask": "9[9]", showMaskOnHover: false});
+	$('[data-period]').inputmask({"mask": "9[9] год(а)/лет", showMaskOnHover: false});
+	$('[data-passport]').inputmask({"mask": "9999 999999", showMaskOnHover: false});
+	$('[data-inn]').inputmask({"mask": "999999999999", showMaskOnHover: false});
+	$('[data-snils]').inputmask({"mask": "999 999 999 99", showMaskOnHover: false});
+	$('[data-email]').inputmask({"mask": "*{1,}@*{1,}.*{1,}"});
 
-	$('[data-date]').inputmask({"mask": "99.99.9999", showMaskOnHover: false,});
-	$('[data-phone]').inputmask({"mask": "+7 (999) 999-9999", showMaskOnHover: false,});
-	$('[data-count]').inputmask({"mask": "9[9]", showMaskOnHover: false,});
-	// $('[data-procent]').inputmask({"mask": "999 %", showMaskOnHover: false,});
-	$('[data-period]').inputmask({"mask": "9[9] год(а)/лет", showMaskOnHover: false,});
+	//aa7777777 - passport
+	//a88888888 - passport
 
 	$('select').SumoSelect();
 
@@ -116,6 +122,38 @@ $(document).ready(function() {
 	$('[data-count-contain]').hide();
 	$('[data-option-field]').hide();
 	$('[data-hidden-radio-content]').hide();
+
+
+	$(document).on('change', '[data-education]', function() {
+		if ($('#high[data-education]').prop('checked')) {
+			$('[data-science]').prop('disabled', 0);
+		}
+	});
+
+
+	$(document).on('change', '[data-date]', function(){
+			let val = $(this).val();
+
+			val = val.split('.');
+
+			if (val[0] > 31) {
+				val[0] = 31;
+			}
+
+			if (val[1] > 12) {
+				val[1] = 12;
+			}
+
+			if (val[2] > 2001) {
+				val[2] = 2001;
+			}
+
+			console.log(val);
+
+			val = val.join('.');
+
+			$(this).val(val);
+	});
 
 	$(document).on('change', '[data-credit-main]', function() {
 		if ($('[data-credit-main]').val().length > 1) {
@@ -203,7 +241,7 @@ $(document).ready(function() {
 			tempProcent = Math.round(tempProcent);
 
 
-			$('[data-credit-first]').val(`${tempFirst.toLocaleString()} руб`);
+			$('[data-credit-first]').val(`${tempFirst.toLocaleString()} руб.`);
 
 
 			if (tempProcent >= 0) {
@@ -270,12 +308,12 @@ $(document).ready(function() {
 
 			if ($(this).val() == 0 || $(this).val().length <= 0) {
 				$(this).val(`0 %`);
-				$('[data-military-summ]').val(`0 руб`);
+				$('[data-military-summ]').val(`0 руб.`);
 				return false;
 			}
 
 			$(this).val(`${tempProcent} %`);
-			$('[data-military-summ]').val(`${tempFirst.toLocaleString()} руб`);
+			$('[data-military-summ]').val(`${tempFirst.toLocaleString()} руб.`);
 		}
 	});
 
@@ -332,12 +370,12 @@ $(document).ready(function() {
 
 			if ($(this).val() == 0 || $(this).val().length <= 0) {
 				$(this).val(`0 %`);
-				$('[data-subsidy-summ]').val(`0 руб`);
+				$('[data-subsidy-summ]').val(`0 руб.`);
 				return false;
 			}
 
 			$(this).val(`${tempProcent} %`);
-			$('[data-subsidy-summ]').val(`${tempFirst.toLocaleString()} руб`);
+			$('[data-subsidy-summ]').val(`${tempFirst.toLocaleString()} руб.`);
 		}
 	});
 
@@ -398,18 +436,18 @@ $(document).ready(function() {
 			tempFirst = Math.round(tempFirst);
 
 			if (tempFirst > 453026) {
-					$('[data-maternity-summ]').val('Размер МСК не может быть больше 453 026 руб');
+					$('[data-maternity-summ]').val('Размер МСК не может быть больше 453 026 руб.');
 					return false;
 			}
 
 			if ($(this).val() == 0 || $(this).val().length <= 0) {
 				$(this).val(`0 %`);
-				$('[data-maternity-summ]').val(`0 руб`);
+				$('[data-maternity-summ]').val(`0 руб.`);
 				return false;
 			}
 
 			$(this).val(`${tempProcent} %`);
-			$('[data-maternity-summ]').val(`${tempFirst.toLocaleString()} руб`);
+			$('[data-maternity-summ]').val(`${tempFirst.toLocaleString()} руб.`);
 		}
 	});
 
@@ -441,7 +479,7 @@ $(document).ready(function() {
 			tempProcent = Math.round(tempProcent);
 
 
-			$('[data-credit-summ]').val(`${tempCredit.toLocaleString()} руб`);
+			$('[data-credit-summ]').val(`${tempCredit.toLocaleString()} руб.`);
 
 
 			if (tempProcent > 0) {
@@ -482,16 +520,16 @@ $(document).ready(function() {
 			tempFirst = Math.round(tempFirst);
 			tempFirst = tempFirst.toLocaleString('ru');
 
-			$('[data-credit-summ]').val(`${tempCredit.toLocaleString()} руб`);
+			$('[data-credit-summ]').val(`${tempCredit.toLocaleString()} руб.`);
 
 			if ($(this).val() == 0 || $(this).val().length <= 0) {
 				$(this).val(`0 %`);
-				$('[data-credit-first]').val(`0 руб`);
+				$('[data-credit-first]').val(`0 руб.`);
 				return false;
 			}
 
 			$(this).val(`${tempProcent} %`);
-			$('[data-credit-first]').val(`${tempFirst} руб`);
+			$('[data-credit-first]').val(`${tempFirst} руб.`);
 		}
 	});
 
@@ -514,7 +552,7 @@ $(document).ready(function() {
 		let temp = $(this).val();
 
 		if (temp) {
-			$(this).val(`${temp} руб`)
+			$(this).val(`${temp} руб.`)
 		}
 	});
 
@@ -567,6 +605,15 @@ $(document).ready(function() {
 
 		$(document).find('.form-block.active').find('input[required]').each(function(){
 			if ($(this).val()) {
+				if(this.hasAttribute('data-date') 
+				|| this.hasAttribute('data-phone') 
+				|| this.hasAttribute('data-count') 
+				|| this.hasAttribute('data-period')) {
+					if($(this).inputmask("isComplete")) {
+						return countFilledInputs++;
+					}
+					return false;
+				}
 				return countFilledInputs++;
 			}
 		});
@@ -662,7 +709,17 @@ $(document).ready(function() {
 			for ( i ; i < temp; i++) {
 				$('.form-group_hidden-wrapper').append(childForm.clone());
 			}
+
 			$('.form-group_hidden-wrapper').slideDown(300);
+			
+			let childrenForms = $('[data-children-form]');
+
+			childrenForms.each(function(index, element) {
+				console.log(element)
+				let temp = $(element).find('input');
+				temp.eq(0).attr('name', `child-name-${index}`);
+				temp.eq(1).attr('name', `child-birth-date-children-${index}`);
+			})
 		}
 	});
 
