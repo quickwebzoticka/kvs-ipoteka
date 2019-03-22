@@ -103,7 +103,7 @@ $(document).ready(function() {
 	// 	})
 	// })
 
-	$('[data-name]').inputmask({"mask": "Aa{1,} Aa{1,} Aa{1,}", showMaskOnHover: false})
+	$('[data-name]').inputmask({"mask": "Aa{1,} Aa{1,} Aa{1,}", showMaskOnHover: false});
 	$('[data-date]').inputmask({"mask": "99.99.9999", showMaskOnHover: false});
 	$('[data-phone]').inputmask({"mask": "+7 (999) 999-9999", showMaskOnHover: false});
 	$('[data-count]').inputmask({"mask": "9[9]", showMaskOnHover: false});
@@ -111,7 +111,10 @@ $(document).ready(function() {
 	$('[data-passport]').inputmask({"mask": "9999 999999", showMaskOnHover: false});
 	$('[data-inn]').inputmask({"mask": "999999999999", showMaskOnHover: false});
 	$('[data-snils]').inputmask({"mask": "999 999 999 99", showMaskOnHover: false});
-	$('[data-email]').inputmask({"mask": "*{1,}@*{1,}.*{1,}"});
+	$('[data-email]').inputmask({"mask": "*{1,}@*{1,}.*{1,}", showMaskOnHover: false});
+
+
+	
 
 	//aa7777777 - passport
 	//a88888888 - passport
@@ -122,6 +125,19 @@ $(document).ready(function() {
 	$('[data-count-contain]').hide();
 	$('[data-option-field]').hide();
 	$('[data-hidden-radio-content]').hide();
+
+
+	$(document).on('change', '[name="credit-target-new"]', function() {
+		let temp = $(this).index('[name="credit-target-new"]')
+
+		console.log(temp);
+
+		if (temp == 0) return $('.cost').text('Стоимость ОН в новостройке')
+		if (temp == 1) return $('.cost').text('Стоимость ОН в готовой недвижимости')
+		if (temp == 2) return $('.cost').text('Стоимость коммерческой недвижимости')
+
+
+	});
 
 
 	$(document).on('change', '[data-education]', function() {
@@ -608,7 +624,11 @@ $(document).ready(function() {
 				if(this.hasAttribute('data-date') 
 				|| this.hasAttribute('data-phone') 
 				|| this.hasAttribute('data-count') 
-				|| this.hasAttribute('data-period')) {
+				|| this.hasAttribute('data-period')
+				|| this.hasAttribute('data-passport')
+				|| this.hasAttribute('data-inn')
+				|| this.hasAttribute('data-snils')
+				|| this.hasAttribute('data-email')) {
 					if($(this).inputmask("isComplete")) {
 						return countFilledInputs++;
 					}
@@ -651,6 +671,7 @@ $(document).ready(function() {
 			return false;
 		} else {
 			$('.form-block').eq((temp - 1)).addClass('active');
+			$('input[required]').trigger('input');
 		}
 		$('.form-block').eq(temp).removeClass('active');
 		$('html, body').animate({scrollTop: winodwOffsetTop}, 1000);
@@ -711,7 +732,7 @@ $(document).ready(function() {
 			}
 
 			$('.form-group_hidden-wrapper').slideDown(300);
-			
+
 			let childrenForms = $('[data-children-form]');
 
 			childrenForms.each(function(index, element) {
