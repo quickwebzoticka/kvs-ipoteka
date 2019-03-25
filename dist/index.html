@@ -12,7 +12,7 @@
   <body>
     <div class="wrapper">
       <form class="form-wrapper" method="post" id="form-ipotek-main" action="ipoteka.php">
-        <div class="form-block active">
+        <div class="form-block active" data-step-name="Единая анкета">
           <div class="form-block__header">
             <h2>Единая анкета</h2>
           </div>
@@ -20,18 +20,23 @@
             <div class="form form-general">
               <div class="form-row">
                 <div class="form-group__text">        
-                  <input type="text" required autocomplete="off" name="name" data-name id="main-name">
-                  <label for="name">Фамилия Имя Отчество</label>
+                  <input type="text" required autocomplete="off" name="lastname" data-name id="main-name-1">
+                  <label for="name">Фамилия</label>
+                  <div class="form-cross"></div>
+                </div>
+                <div class="form-group__text">        
+                  <input type="text" required autocomplete="off" name="Имя" data-name id="main-name-2">
+                  <label for="name">Имя</label>
+                  <div class="form-cross"></div>
+                </div>
+                <div class="form-group__text">        
+                  <input type="text" required autocomplete="off" name="middlename" data-name id="main-name-3">
+                  <label for="name">Отчество</label>
                   <div class="form-cross"></div>
                 </div>
                 <div class="form-group__text">                   
                   <input type="text" required autocomplete="off" name="birth-date" data-date>
                   <label for="birth-date">Дата рождения</label>
-                  <div class="form-cross"></div>
-                </div>
-                <div class="form-group__text">                   
-                  <input type="text" required autocomplete="off" name="phone" data-phone>
-                  <label for="phone">Телефон</label>
                   <div class="form-cross"></div>
                 </div>
               </div>
@@ -44,7 +49,7 @@
             </div>
           </div>
         </div>
-        <div class="form-block">
+        <div class="form-block" data-step-name="Информация о запрашиваемом кредите">
           <div class="form-block__header">
             <h2>Информация о запрашиваемом кредите</h2>
           </div>
@@ -66,7 +71,7 @@
                 </div>
               </div>
               <div class="form-row">
-                <h3 class="cost">Стоимость ОН</h3>
+                <h3 class="cost">Стоимость ОН в новостройке</h3>
                 <div class="form-group__text">                   
                   <input type="text" required autocomplete="off" name="cost" data-cost data-credit-main>
                   <label for="cost">Стоимость</label>
@@ -194,53 +199,26 @@
             </div>
           </div>
         </div>
-        <div class="form-block">
+        <div class="form-block" data-step-name="Личные данные Заёмщика">
           <div class="form-block__header">
-            <h2>Личные данные Заёмщика / Созаемщика / Поручителя</h2>
+            <h2>Личные данные Заёмщика / Созаемщика</h2>
           </div>
           <div class="form-block__content">
             <div class="form form-private-data">
               <div class="form-row">
                 <div class="form-group__radio">
-                  <input type="radio" id="private-data-person" name="private-data" value="private-data[0]" checked>
+                  <input type="radio" id="private-data-person" name="private-data" value="zaemschik" checked>
                   <label for="private-data-person">Заёмщик</label>
                 </div>
                 <div class="form-group__radio">
                   <input type="radio" id="private-data-person-1" name="private-data" value="private-data[1]">
                   <label for="private-data-person-1">Созаемщик</label>
                 </div>
-                <div class="form-group__radio">
-                  <input type="radio" id="private-data-person-2" name="private-data" value="private-data[2]">
-                  <label for="private-data-person-2">Поручитель</label>
-                </div>
-                <h3 class="name">ФИО</h3>
-                <div class="form-group__text">                   
-                  <input type="text" required autocomplete="off" name="surname-personal" id="main-name-surname">
-                  <label for="surname">Фамилия</label>
-                  <div class="form-cross"></div>
-                </div>
-                <div class="form-group__text">                   
-                  <input type="text" required autocomplete="off" name="name-personal" id="main-name-name">
-                  <label for="name">Имя</label>
-                  <div class="form-cross"></div>
-                </div>
-                <div class="form-group__text">                   
-                  <input type="text" required autocomplete="off" name="patronym-personal" id="main-name-patronym">
-                  <label for="patronym">Отчество</label>
-                  <div class="form-cross"></div>
-                </div>
               </div>
               <div class="form-row">
                 <h3 class="passport-data">Паспортные данные</h3>
                 <div class="form-group__text">
                   <input type="text" required autocomplete="off" name="passport-data" placeholder="0000 000000" data-passport>
-                  <div class="form-cross"></div>
-                </div>
-              </div>
-              <div class="form-row">
-                <h3 class="birth-date">Дата рождения</h3>
-                <div class="form-group__text">
-                  <input type="text" required autocomplete="off" name="birth-date-personal" data-date>
                   <div class="form-cross"></div>
                 </div>
               </div>
@@ -292,7 +270,7 @@
               <div class="form-row">
                 <h3 class="email">Email</h3>
                 <div class="form-group__text">
-                  <input type="text" autocomplete="off" name="email" placeholder="example@mail.com" data-email>
+                  <input type="text" autocomplete="off" name="email" placeholder="example@mail.com" data-email data-inputmask-regex="[A-Za-z0-9]{1,}@[A-Za-z0-9]{1,}[.][A-Za-z]{1,}">
                   <div class="form-cross"></div>
                 </div>
               </div>
@@ -387,7 +365,7 @@
                   <input type="radio" id="high" name="education" value="education[3]" data-education>
                   <label for="high">высшее                </label>
                 </div>
-                <div class="form-group__check">
+                <div class="form-group__check form-group__check_sd disabled">
                   <input type="checkbox" id="science-degree" name="science-degree" disabled data-education data-science>
                   <label for="science-degree">ученая степень                </label>
                 </div>
@@ -490,9 +468,9 @@
             </div>
           </div>
         </div>
-        <div class="form-block">
+        <div class="form-block" data-step-name="Сведения о работе Заёмщика">
           <div class="form-block__header">
-            <h2>Сведения о работе Заемщика / Созаемщика / Поручителя</h2>
+            <h2>Сведения о работе Заемщика / Созаемщика</h2>
           </div>
           <div class="form-block__content">
             <div class="form form-job-data">
@@ -845,9 +823,9 @@
             </div>
           </div>
         </div>
-        <div class="form-block">
+        <div class="form-block" data-step-name="Активы Заемщика">
           <div class="form-block__header">
-            <h2>Активы Заемщика / Созаемщика / Поручителя</h2>
+            <h2>Активы Заемщика / Созаемщика</h2>
           </div>
           <div class="form-block__content">
             <div class="form form-resources">
@@ -877,18 +855,18 @@
                   </div>
                   <div class="form-group_hidden">               
                     <div class="form-group__check">
-                      <input type="checkbox" id="private-property" name="private-property" data-hidden>
+                      <input type="radio" id="private-property" name="private-property" value="private-property" data-close>
                       <label for="private-property">Частная собственность</label>
                     </div>
-                  </div>
-                  <div class="form-group__check">
-                    <input type="checkbox" id="share-property" name="share-property" data-option>
-                    <label for="share-property">Долевая собственность                </label>
-                  </div>
-                  <div class="form-group__text form-group__text_pt" data-option-field>
-                    <input type="text" autocomplete="off" name="share-size">
-                    <label for="share-size">Указать размер доли</label>
-                    <div class="form-cross"></div>
+                    <div class="form-group__check">
+                      <input type="radio" id="share-property" name="private-property" value="share-property" data-option>
+                      <label for="share-property">Долевая собственность</label>
+                    </div>
+                    <div class="form-group__text form-group__text_pt" data-option-field>
+                      <input type="text" autocomplete="off" name="share-size">
+                      <label for="share-size">Указать размер доли</label>
+                      <div class="form-cross"></div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -922,9 +900,9 @@
             </div>
           </div>
         </div>
-        <div class="form-block">
+        <div class="form-block" data-step-name="Данные о кредитной истории Заемщика">
           <div class="form-block__header">
-            <h2>Данные о кредитной истории Заемщика / Созаемщика / Поручителя</h2>
+            <h2>Данные о кредитной истории Заемщика / Созаемщика</h2>
           </div>
           <div class="form-block__content">
             <div class="form form-credit-history">
@@ -1012,7 +990,7 @@
             </div>
           </div>
         </div>
-        <div class="form-block">
+        <div class="form-block" data-step-name="Дополнительная информация">
           <div class="form-block__header">
             <h2>Дополнительная информация <span class="form-head-description">(Ваши личные пожелания в какие банки отправить заявку на ипотеку и любая другая полезная информация)</span></h2>
           </div>
@@ -1034,7 +1012,7 @@
             </div>
           </div>
         </div>
-        <div class="form-block">
+        <div class="form-block" data-step-name="Документы">
           <div class="form-block__header">
             <h2>Документы</h2>
           </div>

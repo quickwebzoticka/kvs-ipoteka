@@ -103,7 +103,7 @@ $(document).ready(function() {
 	// 	})
 	// })
 
-	$('[data-name]').inputmask({"mask": "Aa{1,} Aa{1,} Aa{1,}", showMaskOnHover: false});
+	$('[data-name]').inputmask({"mask": "Aa{1,}[-Aa{1,}]", showMaskOnHover: false, greedy: false});
 	$('[data-date]').inputmask({"mask": "99.99.9999", showMaskOnHover: false});
 	$('[data-phone]').inputmask({"mask": "+7 (999) 999-9999", showMaskOnHover: false});
 	$('[data-count]').inputmask({"mask": "9[9]", showMaskOnHover: false});
@@ -111,13 +111,8 @@ $(document).ready(function() {
 	$('[data-passport]').inputmask({"mask": "9999 999999", showMaskOnHover: false});
 	$('[data-inn]').inputmask({"mask": "999999999999", showMaskOnHover: false});
 	$('[data-snils]').inputmask({"mask": "999 999 999 99", showMaskOnHover: false});
-	$('[data-email]').inputmask({"mask": "*{1,}@*{1,}.*{1,}", showMaskOnHover: false});
-
-
-	
-
-	//aa7777777 - passport
-	//a88888888 - passport
+	$('[data-email]').inputmask();
+	//{"mask": "*{1,}@*{1,}.*{1,}", showMaskOnHover: false}
 
 	$('select').SumoSelect();
 
@@ -130,8 +125,6 @@ $(document).ready(function() {
 	$(document).on('change', '[name="credit-target-new"]', function() {
 		let temp = $(this).index('[name="credit-target-new"]')
 
-		console.log(temp);
-
 		if (temp == 0) return $('.cost').text('Стоимость ОН в новостройке')
 		if (temp == 1) return $('.cost').text('Стоимость ОН в готовой недвижимости')
 		if (temp == 2) return $('.cost').text('Стоимость коммерческой недвижимости')
@@ -140,9 +133,13 @@ $(document).ready(function() {
 	});
 
 
-	$(document).on('change', '[data-education]', function() {
+	$(document).on('change', '[name="education"]', function() {
 		if ($('#high[data-education]').prop('checked')) {
 			$('[data-science]').prop('disabled', 0);
+			$('.form-group__check_sd').removeClass('disabled');
+		} else {
+			$('[data-science]').prop('disabled', 1).prop('checked', 0);
+			$('.form-group__check_sd').addClass('disabled');
 		}
 	});
 
@@ -163,8 +160,6 @@ $(document).ready(function() {
 			if (val[2] > 2001) {
 				val[2] = 2001;
 			}
-
-			console.log(val);
 
 			val = val.join('.');
 
@@ -201,9 +196,11 @@ $(document).ready(function() {
 	}
 
 	const copyName = function() {
-		let tempMainName = $('#main-name').val();
+		let tempMainName = [];
 
-		tempMainName = tempMainName.split(' ');
+		tempMainName.push($('#main-name-1').val());
+		tempMainName.push($('#main-name-2').val());
+		tempMainName.push($('#main-name-3').val());
 
 		$('#main-name-surname').val(tempMainName[0]);
 		$('#main-name-name').val(tempMainName[1]);
@@ -214,7 +211,7 @@ $(document).ready(function() {
 	$(document).on('change', '#private-data-person-2', clearInputsName);
 	$(document).on('change', '#private-data-person', copyName);
 
-	$(document).on('change', '#main-name', copyName);
+	$(document).on('change', '#main-name-1, #main-name-2, #main-name-3', copyName);
 
 	$(document).on('change', '#maternity-capital-usage-PV', function() {
 		if ($(this).prop('checked', true)) {
@@ -408,12 +405,12 @@ $(document).ready(function() {
 			tempTotal = parseInt(tempTotal);
 
 			if (tempFirst > tempTotal) {
-					$(this).val('Размер МСК не может быть больше стоимости ОН');
+					$(this).val('Размер материнского капитала не может быть больше стоимости ОН');
 					return false;
 			}
 
 			if (tempFirst > 453026) {
-					$(this).val('Размер МСК не может быть больше 453 026');
+					$(this).val('Размер материнского капитала не может быть больше 453 026');
 					return false;
 			}
 
@@ -678,16 +675,36 @@ $(document).ready(function() {
 	});
 
 	$(document).on('change', '[data-hidden]', function() {
+		console.log(1);
 		if ($(this).prop('checked')) {
+			console.log(12);
 			$(this).closest('.form-group_hidden').find('.form-group__text').find('input').attr('required', true);
 			$(this).closest('.form-group_hidden').find('[data-hidden-content]').slideDown(300);
 			$('input[required]').trigger('input');
 		} else {
+			console.log(22);
 			$(this).closest('.form-group_hidden').find('[data-hidden-content]').slideUp(300, function() {
 			$(this).closest('.form-group_hidden').find('.form-group__text').find('input').attr('required', false);
 			$('input[required]').trigger('input');
 			});
 		}
+	});
+
+	$(document).on('change', '[data-close]', function() {
+		console.log(1);
+			if ($(this).prop('checked')) {
+				console.log(12);
+				console.log($(this).closest('.form-group_hidden').find('[data-hidden-content]'))
+				$(this).closest('.form-group_hidden').find('.form-group__text').slideUp(300, function() {
+				$(this).closest('.form-group_hidden').find('.form-group__text').find('input').attr('required', false);
+				$('input[required]').trigger('input');
+				});
+			} else {
+				console.log(22);
+				$(this).closest('.form-group_hidden').find('.form-group__text').find('input').attr('required', true);
+				$(this).closest('.form-group_hidden').find('.form-group__text').slideDown(300);
+				$('input[required]').trigger('input');
+			}
 	});
 
 	$(document).on('change', '[data-show]', function() {

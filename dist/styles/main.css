@@ -1186,4 +1186,7 @@ input::selection {
 .form-hidden-content {
   display: none; }
 
+.form-group__check_sd.disabled label {
+  color: #999; }
+
 /*# sourceMappingURL=maps/main.css.map */

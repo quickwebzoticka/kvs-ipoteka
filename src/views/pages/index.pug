@@ -5,24 +5,32 @@ block title
 
 block contain
     form.form-wrapper(method="post" id="form-ipotek-main" action="ipoteka.php")
-        div.form-block.active
+        div.form-block(data-step-name="Единая анкета").active
             div.form-block__header
                 h2 Единая анкета
             div.form-block__content
                .form.form-general
                     .form-row
                         div.form-group__text         
-                            input(type="text", required, autocomplete="off", name="name", data-name id="main-name")
-                            label(for="name") Фамилия Имя Отчество
+                            input(type="text", required, autocomplete="off", name="lastname", data-name id="main-name-1")
+                            label(for="name") Фамилия
+                            .form-cross
+                        div.form-group__text         
+                            input(type="text", required, autocomplete="off", name="Имя", data-name id="main-name-2")
+                            label(for="name") Имя
+                            .form-cross
+                        div.form-group__text         
+                            input(type="text", required, autocomplete="off", name="middlename", data-name id="main-name-3")
+                            label(for="name") Отчество
                             .form-cross
                         div.form-group__text                    
                             input(type="text", required, autocomplete="off", name="birth-date", data-date)
                             label(for="birth-date") Дата рождения
                             .form-cross
-                        div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="phone", data-phone)
-                            label(for="phone") Телефон
-                            .form-cross
+                        //- div.form-group__text                    
+                        //-     input(type="text", required, autocomplete="off", name="phone", data-phone)
+                        //-     label(for="phone") Телефон
+                        //-     .form-cross
             .form-row_bb
                 .form-btns
                     .form-btn.form-btn__prev
@@ -30,7 +38,7 @@ block contain
                     .form-btn.form-btn__next
                         | Вперед
         
-        div.form-block
+        div.form-block(data-step-name="Информация о запрашиваемом кредите")
             div.form-block__header
                 h2 Информация о запрашиваемом кредите
             div.form-block__content
@@ -47,7 +55,7 @@ block contain
                             input(type="radio", id="credit-target-commers", name="credit-target-new" value="credit-target-new[2]")
                             label(for="credit-target-commers") Покупка коммерческой недвижимости
                     .form-row
-                        h3.cost Стоимость ОН
+                        h3.cost Стоимость ОН в новостройке
                         div.form-group__text                    
                             input(type="text", required, autocomplete="off", name="cost" data-cost data-credit-main)
                             label(for="cost") Стоимость
@@ -145,44 +153,44 @@ block contain
                     .form-btn.form-btn__next
                         | Вперед
 
-        div.form-block
+        div.form-block(data-step-name="Личные данные Заёмщика")
             div.form-block__header
-                h2 Личные данные Заёмщика / Созаемщика / Поручителя
+                h2 Личные данные Заёмщика / Созаемщика
             div.form-block__content
                 .form.form-private-data
                     .form-row
                         div.form-group__radio
-                            input(type="radio", id="private-data-person", name="private-data" value="private-data[0]" checked)
+                            input(type="radio", id="private-data-person", name="private-data" value="zaemschik" checked)
                             label(for="private-data-person") Заёмщик
                         div.form-group__radio
                             input(type="radio", id="private-data-person-1", name="private-data" value="private-data[1]")
                             label(for="private-data-person-1") Созаемщик
-                        div.form-group__radio
-                            input(type="radio", id="private-data-person-2", name="private-data" value="private-data[2]")
-                            label(for="private-data-person-2") Поручитель
-                        h3.name ФИО
-                        div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="surname-personal" id="main-name-surname")
-                            label(for="surname") Фамилия
-                            .form-cross
-                        div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="name-personal" id="main-name-name")
-                            label(for="name") Имя
-                            .form-cross
-                        div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="patronym-personal" id="main-name-patronym")
-                            label(for="patronym") Отчество
-                            .form-cross
+                        //- div.form-group__radio
+                        //-     input(type="radio", id="private-data-person-2", name="private-data" value="private-data[2]")
+                        //-     label(for="private-data-person-2") Поручитель
+                        //- h3.name ФИО
+                        //- div.form-group__text                    
+                        //-     input(type="text", required, autocomplete="off", name="surname-personal" id="main-name-surname")
+                        //-     label(for="surname") Фамилия
+                        //-     .form-cross
+                        //- div.form-group__text                    
+                        //-     input(type="text", required, autocomplete="off", name="name-personal" id="main-name-name")
+                        //-     label(for="name") Имя
+                        //-     .form-cross
+                        //- div.form-group__text                    
+                        //-     input(type="text", required, autocomplete="off", name="patronym-personal" id="main-name-patronym")
+                        //-     label(for="patronym") Отчество
+                        //-     .form-cross
                     .form-row
                         h3.passport-data Паспортные данные
                         div.form-group__text
                             input(type="text", required, autocomplete="off", name="passport-data" placeholder="0000 000000" data-passport)
                             .form-cross
-                    .form-row
-                        h3.birth-date Дата рождения
-                        div.form-group__text
-                            input(type="text", required, autocomplete="off", name="birth-date-personal" data-date)
-                            .form-cross
+                    //- .form-row
+                    //-     h3.birth-date Дата рождения
+                    //-     div.form-group__text
+                    //-         input(type="text", required, autocomplete="off", name="birth-date-personal" data-date)
+                    //-         .form-cross
                     .form-row
                         h3.sex Пол                
                         div.form-group__check
@@ -219,7 +227,7 @@ block contain
                     .form-row
                         h3.email Email
                         div.form-group__text
-                            input(type="text", autocomplete="off", name="email" placeholder="example@mail.com" data-email)
+                            input(type="text", autocomplete="off", name="email" placeholder="example@mail.com" data-email data-inputmask-regex="[A-Za-z0-9]{1,}@[A-Za-z0-9]{1,}[.][A-Za-z]{1,}")
                             .form-cross
                     .form-row
                         h3.civil-status Статус семейного положения                
@@ -289,7 +297,7 @@ block contain
                         div.form-group__check
                             input(type="radio", id="high", name="education" value="education[3]" data-education)
                             label(for="high") высшее                
-                        div.form-group__check
+                        div.form-group__check.form-group__check_sd.disabled
                             input(type="checkbox", id="science-degree", name="science-degree" disabled data-education data-science)
                             label(for="science-degree") ученая степень                
                         div.form-group__text.form-group__text_pt                    
@@ -368,9 +376,9 @@ block contain
                     .form-btn.form-btn__next
                         | Вперед
         
-        div.form-block
+        div.form-block(data-step-name="Сведения о работе Заёмщика")
             div.form-block__header
-                h2 Сведения о работе Заемщика / Созаемщика / Поручителя
+                h2 Сведения о работе Заемщика / Созаемщика
             div.form-block__content
                 .form.form-job-data
                     .form-row
@@ -635,9 +643,9 @@ block contain
                     .form-btn.form-btn__next
                         | Вперед
         
-        div.form-block
+        div.form-block(data-step-name="Активы Заемщика")
             div.form-block__header
-                h2 Активы Заемщика / Созаемщика / Поручителя
+                h2 Активы Заемщика / Созаемщика
             div.form-block__content
                 .form.form-resources
                     .form-row
@@ -661,15 +669,15 @@ block contain
                                 .form-cross
                             .form-group_hidden                
                                 div.form-group__check
-                                    input(type="checkbox", id="private-property", name="private-property" data-hidden)
+                                    input(type="radio", id="private-property", name="private-property" value="private-property" data-close)
                                     label(for="private-property") Частная собственность
-                            div.form-group__check
-                                input(type="checkbox", id="share-property", name="share-property" data-option)
-                                label(for="share-property") Долевая собственность                
-                            div.form-group__text.form-group__text_pt(data-option-field)
-                                input(type="text", autocomplete="off", name="share-size")
-                                label(for="share-size") Указать размер доли
-                                .form-cross
+                                div.form-group__check
+                                    input(type="radio", id="share-property", name="private-property" value="share-property" data-option)
+                                    label(for="share-property") Долевая собственность
+                                div.form-group__text.form-group__text_pt(data-option-field)
+                                    input(type="text", autocomplete="off", name="share-size")
+                                    label(for="share-size") Указать размер доли
+                                    .form-cross
                             
                     .form-row
                         h3.auto Транспорт в собственности
@@ -693,9 +701,9 @@ block contain
                     .form-btn__next_static
                         | Вперед
         
-        div.form-block
+        div.form-block(data-step-name="Данные о кредитной истории Заемщика")
             div.form-block__header
-                h2 Данные о кредитной истории Заемщика / Созаемщика / Поручителя
+                h2 Данные о кредитной истории Заемщика / Созаемщика
             div.form-block__content
                 .form.form-credit-history
                     .form-row
@@ -759,7 +767,7 @@ block contain
                     .form-btn__next_static
                         | Вперед
         
-        div.form-block
+        div.form-block(data-step-name="Дополнительная информация")
             div.form-block__header
                 h2 Дополнительная информация <span class="form-head-description">(Ваши личные пожелания в какие банки отправить заявку на ипотеку и любая другая полезная информация)</span>
             div.form-block__content
@@ -776,7 +784,7 @@ block contain
                     .form-btn.form-btn__next.active
                         | Вперед
         
-        div.form-block
+        div.form-block(data-step-name="Документы")
             div.form-block__header
                 h2 Документы
             div.form-block__content
