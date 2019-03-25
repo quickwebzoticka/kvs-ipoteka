@@ -112,7 +112,8 @@ $(document).ready(function() {
 	$('[data-inn]').inputmask({"mask": "999999999999", showMaskOnHover: false});
 	$('[data-snils]').inputmask({"mask": "999 999 999 99", showMaskOnHover: false});
 	$('[data-email]').inputmask();
-	//{"mask": "*{1,}@*{1,}.*{1,}", showMaskOnHover: false}
+	$('[data-passport-date]').inputmask({"mask": "99.99.9999", showMaskOnHover: false});
+	$('[data-passport-cod]').inputmask({"mask": "999-999", showMaskOnHover: false});
 
 	$('select').SumoSelect();
 
@@ -120,6 +121,58 @@ $(document).ready(function() {
 	$('[data-count-contain]').hide();
 	$('[data-option-field]').hide();
 	$('[data-hidden-radio-content]').hide();
+
+	let anketa = $('.form-tabs-container').clone();
+	let link = $('.form-tabs-nav__link-add').clone();
+
+	anketa.removeClass('active');
+	link.removeClass('active');
+
+	$('.form-tabs-nav__link-add').remove();
+
+	$(document).on('click', '.form-tabs-nav__btn', function() {
+		let count = $('.form-tabs-nav__link').length;
+
+
+		if ($('.form-tabs-nav__link-add').length < 3) {
+			$('.form-tabs-nav__link-wrapper').append(link.clone());
+			$('.form-tabs-container-wrapper').append(anketa.clone());
+
+			$('.form-tabs-container').eq(count).find('input').each(function(index) {
+
+				if (!$(this).attr('id') == 0) {
+
+					let temp = $(this).attr('id');
+
+					$(this).attr('id', `${temp}-${count}`);
+					$(this).siblings('label').attr('for', `${temp}-${count}`);
+				}
+			})
+
+			$('.form-tabs-container').eq(count).find('input[type="radio"]').each(function(index) {
+				console.log($(this).attr('name'))
+				if (!$(this).attr('name') == 0) {
+
+					let temp = $(this).attr('name');
+
+					$(this).attr('name', `${temp}-${count}`);
+					// $(this).siblings('label').attr('for', `${temp}-${count}`);
+				}
+			})
+		}
+		
+	});
+
+	$(document).on('click', '.form-tabs-nav__link:not(.active)', function() {
+		$('.form-tabs-nav__link').removeClass('active');
+		$(this).addClass('active');
+
+		let thisIndex = $(this).index('.form-tabs-nav__link');
+
+		console.log(thisIndex);
+
+		$('.form-tabs-container').removeClass('active').eq(thisIndex).addClass('active');
+	});
 
 
 	$(document).on('change', '[name="credit-target-new"]', function() {
@@ -133,14 +186,52 @@ $(document).ready(function() {
 	});
 
 
-	$(document).on('change', '[name="education"]', function() {
-		if ($('#high[data-education]').prop('checked')) {
-			$('[data-science]').prop('disabled', 0);
-			$('.form-group__check_sd').removeClass('disabled');
+	$(document).on('change', '[name="ТипОбразования"]', function() {
+
+		console.log($(this));
+
+		console.log($(this).closest('.form-row'));
+
+		let trigger = $(this).closest('.form-row').find('[data-education-trigger]');
+		let science = $(this).closest('.form-row').find('[data-science]');
+		let scienceWrapper = $(this).closest('.form-row').find('.form-group__check_sd');
+
+
+
+		if (trigger.prop('checked')) {
+			science.prop('disabled', 0);
+			scienceWrapper.removeClass('disabled');
 		} else {
-			$('[data-science]').prop('disabled', 1).prop('checked', 0);
-			$('.form-group__check_sd').addClass('disabled');
+			science.prop('disabled', 1).prop('checked', 0);
+			scienceWrapper.addClass('disabled');
 		}
+	});
+
+	$(document).on('change', '[data-passport-date]', function(){
+			let val = $(this).val();
+			let date = new Date();
+
+			let currentYear = date.getFullYear();
+			let currentMonth = date.getMonth();
+			let currentDay = date.getDate();
+
+			val = val.split('.');
+
+			if (val[0] > 31) {
+				val[0] = 31;
+			}
+
+			if (val[1] > 12) {
+				val[1] = 12;
+			}
+
+			if (val[2] > currentYear) {
+				val[2] = currentYear;
+			}
+
+			val = val.join('.');
+
+			$(this).val(val);
 	});
 
 
@@ -206,12 +297,6 @@ $(document).ready(function() {
 		$('#main-name-name').val(tempMainName[1]);
 		$('#main-name-patronym').val(tempMainName[2]);
 	}
-
-	$(document).on('change', '#private-data-person-1', clearInputsName);
-	$(document).on('change', '#private-data-person-2', clearInputsName);
-	$(document).on('change', '#private-data-person', copyName);
-
-	$(document).on('change', '#main-name-1, #main-name-2, #main-name-3', copyName);
 
 	$(document).on('change', '#maternity-capital-usage-PV', function() {
 		if ($(this).prop('checked', true)) {

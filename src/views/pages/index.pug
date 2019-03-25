@@ -12,23 +12,23 @@ block contain
                .form.form-general
                     .form-row
                         div.form-group__text         
-                            input(type="text", required, autocomplete="off", name="lastname", data-name id="main-name-1")
+                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="lastname", data-name id="main-name-1")
                             label(for="name") Фамилия
                             .form-cross
                         div.form-group__text         
-                            input(type="text", required, autocomplete="off", name="Имя", data-name id="main-name-2")
+                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="Имя", data-name id="main-name-2")
                             label(for="name") Имя
                             .form-cross
                         div.form-group__text         
-                            input(type="text", required, autocomplete="off", name="middlename", data-name id="main-name-3")
+                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="middlename", data-name id="main-name-3")
                             label(for="name") Отчество
                             .form-cross
                         div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="birth-date", data-date)
+                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="birth-date", data-date)
                             label(for="birth-date") Дата рождения
                             .form-cross
                         //- div.form-group__text                    
-                        //-     input(type="text", required, autocomplete="off", name="phone", data-phone)
+                        //-     input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="phone", data-phone)
                         //-     label(for="phone") Телефон
                         //-     .form-cross
             .form-row_bb
@@ -57,7 +57,7 @@ block contain
                     .form-row
                         h3.cost Стоимость ОН в новостройке
                         div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="cost" data-cost data-credit-main)
+                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="cost" data-cost data-credit-main)
                             label(for="cost") Стоимость
                             .form-cross
                     .form-row
@@ -143,7 +143,7 @@ block contain
                     
                         h3.loan-period Срок кредита, количество лет
                         div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="loan-period" data-period)
+                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="loan-period" data-period)
                             label(for="loan-period") Срок кредита
                             .form-cross
             .form-row_bb
@@ -159,216 +159,233 @@ block contain
             div.form-block__content
                 .form.form-private-data
                     .form-row
-                        div.form-group__radio
-                            input(type="radio", id="private-data-person", name="private-data" value="zaemschik" checked)
-                            label(for="private-data-person") Заёмщик
-                        div.form-group__radio
-                            input(type="radio", id="private-data-person-1", name="private-data" value="private-data[1]")
-                            label(for="private-data-person-1") Созаемщик
-                        //- div.form-group__radio
-                        //-     input(type="radio", id="private-data-person-2", name="private-data" value="private-data[2]")
-                        //-     label(for="private-data-person-2") Поручитель
-                        //- h3.name ФИО
-                        //- div.form-group__text                    
-                        //-     input(type="text", required, autocomplete="off", name="surname-personal" id="main-name-surname")
-                        //-     label(for="surname") Фамилия
-                        //-     .form-cross
-                        //- div.form-group__text                    
-                        //-     input(type="text", required, autocomplete="off", name="name-personal" id="main-name-name")
-                        //-     label(for="name") Имя
-                        //-     .form-cross
-                        //- div.form-group__text                    
-                        //-     input(type="text", required, autocomplete="off", name="patronym-personal" id="main-name-patronym")
-                        //-     label(for="patronym") Отчество
-                        //-     .form-cross
-                    .form-row
-                        h3.passport-data Паспортные данные
-                        div.form-group__text
-                            input(type="text", required, autocomplete="off", name="passport-data" placeholder="0000 000000" data-passport)
-                            .form-cross
-                    //- .form-row
-                    //-     h3.birth-date Дата рождения
-                    //-     div.form-group__text
-                    //-         input(type="text", required, autocomplete="off", name="birth-date-personal" data-date)
-                    //-         .form-cross
-                    .form-row
-                        h3.sex Пол                
-                        div.form-group__check
-                            input(type="radio", id="sex-male", name="sex" value="sex[0]" checked)
-                            label(for="sex-male") Мужской                
-                        div.form-group__check
-                            input(type="radio", id="sex-female", name="sex" value="sex[1]")
-                            label(for="sex-female") Женский
-                    .form-row
-                        h3.citezenship Гражданство
-                        div.form-group__text
-                            input(type="text", required, autocomplete="off", name="citezenship" placeholder="Россия")
-                            .form-cross
-                    .form-row
-                        h3.citezenship ИНН
-                        div.form-group__text
-                            input(type="text", required, autocomplete="off", name="inn" placeholder="000000000000" data-inn)
-                            .form-cross
-                    .form-row
-                        h3.citezenship СНИЛС
-                        div.form-group__text
-                            input(type="text", required, autocomplete="off", name="iian" placeholder="000 000 000 00" data-snils)
-                            .form-cross
-                    .form-row
-                        h3.citezenship Контактный телефон
-                        div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="phone-main" data-phone)
-                            label(for="phone-main") Основной
-                            .form-cross
-                        div.form-group__text
-                            input(type="text", autocomplete="off", name="phone-main-add" data-phone)
-                            label(for="phone-main") Дополнительный
-                            .form-cross
-                    .form-row
-                        h3.email Email
-                        div.form-group__text
-                            input(type="text", autocomplete="off", name="email" placeholder="example@mail.com" data-email data-inputmask-regex="[A-Za-z0-9]{1,}@[A-Za-z0-9]{1,}[.][A-Za-z]{1,}")
-                            .form-cross
-                    .form-row
-                        h3.civil-status Статус семейного положения                
-                        div.form-group__check
-                            input(type="radio", id="marriage", name="marriage" value="marriage[0]")
-                            label(for="marriage") Женат / Замужем          
-                        div.form-group__check
-                            input(type="radio", id="civil-marriage", name="marriage" value="marriage[1]")
-                            label(for="civil-marriage") Гражданский брак                
-                        div.form-group__check
-                            input(type="radio", id="single", name="marriage" value="marriage[2]")
-                            label(for="single") Холост / Не замужем                
-                        div.form-group__check
-                            input(type="radio", id="divorced", name="marriage" value="marriage[3]")
-                            label(for="divorced") В разводе                
-                        div.form-group__check
-                            input(type="radio", id="widower", name="marriage" value="marriage[4]")
-                            label(for="widower") Вдовец / Вдова
-                    .form-row
-                        h3.name-change Менялись ли ФИО
-                        .form-group_hidden
-                            div.form-group__check
-                                input(type="checkbox", id="name-change", name="name-change" data-hidden)
-                                label(for="name-change") Да 
-                                .form-group_hidden-content(data-hidden-content)
-                                    div.form-group__text                                   
-                                        input(type="text", autocomplete="off", name="previous-name")
-                                        label(for="previous-name") Прежние ФИО
-                                        .form-cross
-                                    div.form-group__text                                    
-                                        input(type="text", autocomplete="off", name="change-date" data-date)
-                                        label(for="change-date") Дата изменения
-                                        .form-cross
-                                    div.form-group__text                                  
-                                        input(type="text", autocomplete="off", name="change-reason")
-                                        label(for="change-reason") Причина
-                                        .form-cross
-                    
-                    .form-row
-                        h3.children Количество несовершеннолетних детей и иных иждевенцев
-                        .form-group_hidden-for-count
-                            div.form-group__text                
-                                input(type="text", autocomplete="off", name="children-number" data-count)
-                                label(for="children-number") Количество
-                        .form-group_hidden-wrapper(data-count-contain)
-                            .form-group_hidden-content(data-children-form)
-                                h3.child Ребенок
-                                div.form-group__text                    
-                                    input(type="text", autocomplete="off", name="child-name")
-                                    label(for="child-name") ФИО
-                                    .form-cross
-                                div.form-group__text                    
-                                    input(type="text", autocomplete="off", name="child-birth-date-children" data-date)
-                                    label(for="child-birth-date") Дата рождения
-                                    .form-cross
-                    .form-row
-                        h3.education Образование          
-                        div.form-group__check
-                            input(type="radio", id="middle", name="education" value="education[0]" data-education)
-                            label(for="middle") среднее / неполное среднее                
-                        div.form-group__check
-                            input(type="radio", id="college", name="education" value="education[1]" data-education)
-                            label(for="college") среднее специальное                
-                        div.form-group__check
-                            input(type="radio", id="incomplete-high", name="education" value="education[2]" data-education)
-                            label(for="incomplete-high") незаконченное высшее                
-                        div.form-group__check
-                            input(type="radio", id="high", name="education" value="education[3]" data-education)
-                            label(for="high") высшее                
-                        div.form-group__check.form-group__check_sd.disabled
-                            input(type="checkbox", id="science-degree", name="science-degree" disabled data-education data-science)
-                            label(for="science-degree") ученая степень                
-                        div.form-group__text.form-group__text_pt                    
-                            input(type="text",  autocomplete="off", name="institution-name" placeholder="СПБГУ") 
-                            label(for="institution-name") Наименование учебного заведения
-                            .form-cross                   
-                    .form-row
-                        h3.registration-adress Адрес регистрации
-                        div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="zip-code")
-                            label(for="zip-code") Почтовый индекс
-                            .form-cross
-                        div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="area")
-                            label(for="city") Республика/Край/Область
-                            .form-cross
-                        div.form-group__text
-                            input(type="text", required, autocomplete="off", name="city")
-                            label(for="city") Город
-                            .form-cross
-                        div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="street")
-                            label(for="street") Улица
-                            .form-cross
-                        div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="building")
-                            label(for="building") Дом
-                            .form-cross
-                        div.form-group__text                    
-                            input(type="text", autocomplete="off", name="facility")
-                            label(for="facility") Корпус
-                            .form-cross
-                        div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="apartment")
-                            label(for="apartment") Квартира
-                            .form-cross
-                    .form-row
-                        h3.real-registration-adress Адрес фактического проживания совпадает с адресом регистрации?  
-                        .form-group_show              
-                            div.form-group__check
-                                input(type="checkbox", id="match", name="match" data-show)
-                                label(for="match") Да
-                            .form-group_show-content(data-show-content)
-                                div.form-group__text                    
-                                    input(type="text", required autocomplete="off", name="zip-code-fact")
-                                    label(for="zip-code") Почтовый индекс
-                                    .form-cross
-                                div.form-group__text                    
-                                    input(type="text", required, autocomplete="off", name="area-fact")
-                                    label(for="city") Республика/Край/Область
-                                    .form-cross
-                                div.form-group__text                    
-                                    input(type="text", required autocomplete="off", name="city-fact")
-                                    label(for="city") Город
-                                    .form-cross
-                                div.form-group__text                    
-                                    input(type="text", required autocomplete="off", name="street-fact")
-                                    label(for="street") Улица
-                                    .form-cross
-                                div.form-group__text                    
-                                    input(type="text", required autocomplete="off", name="building-fact")
-                                    label(for="building") Дом
-                                    .form-cross
-                                div.form-group__text                    
-                                    input(type="text", required autocomplete="off", name="facility-fact")
-                                    label(for="facility") Корпус
-                                    .form-cross
-                                div.form-group__text                    
-                                    input(type="text", required autocomplete="off", name="apartment-fact")
-                                    label(for="apartment") Квартира
-                                    .form-cross
+                        .form-tabs
+                            .form-tabs-nav
+                                .form-tabs-nav__link-wrapper
+                                    .form-tabs-nav__link.active
+                                        | Заёмщик
+                                    .form-tabs-nav__link.form-tabs-nav__link-add
+                                        | Созаёмщик
+                                .form-tabs-nav__btn
+                                    | Добавить созаёмщика
+                                //- div.form-group__radio
+                                //-     input(type="radio", id="private-data-person", name="private-data" value="zaemschik" checked)
+                                //-     label(for="private-data-person") Заёмщик
+                                //- div.form-group__radio
+                                //-     input(type="radio", id="private-data-person-1", name="private-data" value="private-data[1]")
+                                //-     label(for="private-data-person-1") Созаемщик
+                            .form-tabs-container-wrapper
+                                .form-tabs-container.active
+                                    //- h3.name ФИО
+                                    //- div.form-group__text                    
+                                    //-     input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="surname-personal" id="main-name-surname")
+                                    //-     label(for="surname") Фамилия
+                                    //-     .form-cross
+                                    //- div.form-group__text                    
+                                    //-     input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="name-personal" id="main-name-name")
+                                    //-     label(for="name") Имя
+                                    //-     .form-cross
+                                    //- div.form-group__text                    
+                                    //-     input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="patronym-personal" id="main-name-patronym")
+                                    //-     label(for="patronym") Отчество
+                                    //-     .form-cross
+                                    .form-row
+                                        h3.passport-data Паспортные данные
+                                        div.form-group__text
+                                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="Паспорт" placeholder="0000 000000" data-passport)
+                                            .form-cross
+                                        div.form-group__text
+                                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="ПаспортКод" placeholder="000-000" data-passport-cod)
+                                            .form-cross
+                                        div.form-group__text
+                                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="ПаспортКем" placeholder="Кем выдан" data-passport-who)
+                                            .form-cross
+                                        div.form-group__text
+                                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="ПаспортДата" placeholder="Дата выдачи" data-passport-date)
+                                            .form-cross
+                                    //- .form-row
+                                    //-     h3.birth-date Дата рождения
+                                    //-     div.form-group__text
+                                    //-         input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="birth-date-personal" data-date)
+                                    //-         .form-cross
+                                    .form-row
+                                        h3.sex Пол                
+                                        div.form-group__check
+                                            input(type="radio", id="sex-male", name="Пол" value="Мужской" checked)
+                                            label(for="sex-male") Мужской                
+                                        div.form-group__check
+                                            input(type="radio", id="sex-female", name="Пол" value="Женский")
+                                            label(for="sex-female") Женский
+                                    .form-row
+                                        h3.citezenship Гражданство
+                                        div.form-group__text
+                                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="Гражданство" placeholder="Россия")
+                                            .form-cross
+                                    .form-row
+                                        h3.citezenship ИНН
+                                        div.form-group__text
+                                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="ИНН" placeholder="000000000000" data-inn)
+                                            .form-cross
+                                    .form-row
+                                        h3.citezenship СНИЛС
+                                        div.form-group__text
+                                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="СНИЛС" placeholder="000 000 000 00" data-snils)
+                                            .form-cross
+                                    .form-row
+                                        h3.citezenship Контактный телефон
+                                        div.form-group__text                    
+                                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="Телефон" data-phone)
+                                            label(for="phone-main") Основной
+                                            .form-cross
+                                        div.form-group__text
+                                            input(type="text", autocomplete="off", name="ДопТелефон" data-phone)
+                                            label(for="phone-main") Дополнительный
+                                            .form-cross
+                                    .form-row
+                                        h3.email Email
+                                        div.form-group__text
+                                            input(type="text", autocomplete="off", name="Почта" placeholder="example@mail.com" data-email data-inputmask-regex="[A-Za-z0-9]{1,}@[A-Za-z0-9]{1,}[.][A-Za-z]{1,}")
+                                            .form-cross
+                                    .form-row
+                                        h3.civil-status Статус семейного положения                
+                                        div.form-group__check
+                                            input(type="radio", id="marriage", name="СемейноеПоложение" value="Женат / Замужем ")
+                                            label(for="marriage") Женат / Замужем          
+                                        div.form-group__check
+                                            input(type="radio", id="civil-marriage", name="СемейноеПоложение" value="Гражданский брак ")
+                                            label(for="civil-marriage") Гражданский брак                
+                                        div.form-group__check
+                                            input(type="radio", id="single", name="СемейноеПоложение" value="Холост / Не замужем ")
+                                            label(for="single") Холост / Не замужем                
+                                        div.form-group__check
+                                            input(type="radio", id="divorced", name="СемейноеПоложение" value="В разводе")
+                                            label(for="divorced") В разводе                
+                                        div.form-group__check
+                                            input(type="radio", id="widower", name="СемейноеПоложение" value="Вдовец / Вдова")
+                                            label(for="widower") Вдовец / Вдова
+                                    .form-row
+                                        h3.name-change Менялись ли ФИО
+                                        .form-group_hidden
+                                            div.form-group__check
+                                                input(type="checkbox", id="name-change", name="ИзменениеФамилии" data-hidden)
+                                                label(for="name-change") Да 
+                                                .form-group_hidden-content(data-hidden-content)
+                                                    div.form-group__text                                   
+                                                        input(type="text", autocomplete="off", name="ФИО")
+                                                        label(for="previous-name") Прежние ФИО
+                                                        .form-cross
+                                                    div.form-group__text                                    
+                                                        input(type="text", autocomplete="off", name="ДатаИзменения" data-date)
+                                                        label(for="change-date") Дата изменения
+                                                        .form-cross
+                                                    div.form-group__text                                  
+                                                        input(type="text", autocomplete="off", name="Причина")
+                                                        label(for="change-reason") Причина
+                                                        .form-cross
+                                    
+                                    .form-row.children-wrapper
+                                        h3.children Количество несовершеннолетних детей и иных иждевенцев
+                                        .form-group_hidden-for-count
+                                            div.form-group__text                
+                                                input(type="text", autocomplete="off", name="КоличествоДетей" data-count)
+                                                label(for="children-number") Количество
+                                        .form-group_hidden-wrapper(data-count-contain)
+                                            .form-group_hidden-content(data-children-form)
+                                                h3.child Ребенок
+                                                div.form-group__text                    
+                                                    input(type="text", autocomplete="off", name="ФИО")
+                                                    label(for="child-name") ФИО
+                                                    .form-cross
+                                                div.form-group__text                    
+                                                    input(type="text", autocomplete="off", name="ДатаРождения" data-date)
+                                                    label(for="child-birth-date") Дата рождения
+                                                    .form-cross
+                                    .form-row
+                                        h3.education Образование          
+                                        div.form-group__check
+                                            input(type="radio", id="middle", name="ТипОбразования" value="среднее / неполное среднее" data-education)
+                                            label(for="middle") среднее / неполное среднее                
+                                        div.form-group__check
+                                            input(type="radio", id="college", name="ТипОбразования" value="среднее специальное " data-education)
+                                            label(for="college") среднее специальное                
+                                        div.form-group__check
+                                            input(type="radio", id="incomplete-high", name="ТипОбразования" value="незаконченное высшее " data-education)
+                                            label(for="incomplete-high") незаконченное высшее                
+                                        div.form-group__check
+                                            input(type="radio", id="high", name="ТипОбразования" value="высшее" data-education data-education-trigger)
+                                            label(for="high") высшее                
+                                        div.form-group__check.form-group__check_sd.disabled
+                                            input(type="checkbox", id="science-degree", name="УченаяСтепень" disabled data-education data-science)
+                                            label(for="science-degree") ученая степень                
+                                        div.form-group__text.form-group__text_pt                    
+                                            input(type="text",  autocomplete="off", name="НаимУчебЗавед" placeholder="СПБГУ") 
+                                            label(for="institution-name") Наименование учебного заведения
+                                            .form-cross                   
+                                    .form-row
+                                        h3.registration-adress Адрес регистрации
+                                        div.form-group__text                    
+                                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="Индекс")
+                                            label(for="zip-code") Почтовый индекс
+                                            .form-cross
+                                        div.form-group__text                    
+                                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="СубъектФедерации")
+                                            label(for="city") Республика/Край/Область
+                                            .form-cross
+                                        div.form-group__text
+                                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="Город")
+                                            label(for="city") Город
+                                            .form-cross
+                                        div.form-group__text                    
+                                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="Улица")
+                                            label(for="street") Улица
+                                            .form-cross
+                                        div.form-group__text                    
+                                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="Дом")
+                                            label(for="building") Дом
+                                            .form-cross
+                                        div.form-group__text                    
+                                            input(type="text", autocomplete="off", name="Корпус")
+                                            label(for="facility") Корпус
+                                            .form-cross
+                                        div.form-group__text                    
+                                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="Квартира")
+                                            label(for="apartment") Квартира
+                                            .form-cross
+                                    .form-row
+                                        h3.real-registration-adress Адрес фактического проживания совпадает с адресом регистрации?  
+                                        .form-group_show              
+                                            div.form-group__check
+                                                input(type="checkbox", id="match", name="СовпадаетСРегистрацией" data-show)
+                                                label(for="match") Да
+                                            .form-group_show-content(data-show-content)
+                                                div.form-group__text                    
+                                                    input(type="text", required data-required="1" data-type-required="" autocomplete="off", name="Индекс")
+                                                    label(for="zip-code") Почтовый индекс
+                                                    .form-cross
+                                                div.form-group__text                    
+                                                    input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="СубъектФедерации")
+                                                    label(for="city") Республика/Край/Область
+                                                    .form-cross
+                                                div.form-group__text                    
+                                                    input(type="text", required data-required="1" data-type-required="" autocomplete="off", name="Город")
+                                                    label(for="city") Город
+                                                    .form-cross
+                                                div.form-group__text                    
+                                                    input(type="text", required data-required="1" data-type-required="" autocomplete="off", name="Улица")
+                                                    label(for="street") Улица
+                                                    .form-cross
+                                                div.form-group__text                    
+                                                    input(type="text", required data-required="1" data-type-required="" autocomplete="off", name="Дом")
+                                                    label(for="building") Дом
+                                                    .form-cross
+                                                div.form-group__text                    
+                                                    input(type="text", required data-required="1" data-type-required="" autocomplete="off", name="Корпус")
+                                                    label(for="facility") Корпус
+                                                    .form-cross
+                                                div.form-group__text                    
+                                                    input(type="text", required data-required="1" data-type-required="" autocomplete="off", name="Квартира")
+                                                    label(for="apartment") Квартира
+                                                    .form-cross
             .form-row_bb
                 .form-btns
                     .form-btn.form-btn__prev
@@ -384,7 +401,7 @@ block contain
                     .form-row
                         h3.name Постоянное место работы
                         div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="name-location-job")
+                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="name-location-job")
                             label(for="name") Наименование
                             .form-cross
                         div.form-group__text.form-group__text_bb
@@ -411,31 +428,31 @@ block contain
                         h3.employer-adress Юридический адрес организации и фактический адрес    
                         h3.employer-adress-legal Юридический адрес
                         div.form-group__text
-                            input(type="text", required, autocomplete="off", name="zip-code-uri")
+                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="zip-code-uri")
                             label(for="zip-code") Почтовый индекс
                             .form-cross
                         div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="area-uri")
+                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="area-uri")
                             label(for="city") Республика/Край/Область
                             .form-cross
                         div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="city-uri")
+                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="city-uri")
                             label(for="city") Город
                             .form-cross
                         div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="street-uri")
+                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="street-uri")
                             label(for="street") Улица
                             .form-cross
                         div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="building-uri")
+                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="building-uri")
                             label(for="building") Дом
                             .form-cross
                         div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="facility-uri")
+                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="facility-uri")
                             label(for="facility") Корпус
                             .form-cross
                         div.form-group__text                    
-                            input(type="text", required, autocomplete="off", name="office-uri")
+                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="office-uri")
                             label(for="office") Офис
                             .form-cross
                     .form-row
@@ -450,7 +467,7 @@ block contain
                                     label(for="zip-code") Почтовый индекс
                                     .form-cross
                                 div.form-group__text                    
-                                    input(type="text", required, autocomplete="off", name="area-uri-fact")
+                                    input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="area-uri-fact")
                                     label(for="city") Республика/Край/Область
                                     .form-cross
                                 div.form-group__text                    
@@ -572,22 +589,22 @@ block contain
                     .form-row
                         h3.appointment Должность
                         div.form-group__text
-                            input(type="text", required, autocomplete="off", name="appointment" placeholder="Веб-разработчик")
+                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="appointment" placeholder="Веб-разработчик")
                             .form-cross
                     .form-row
                         h3.experience Общий трудовой стаж
                         div.form-group__text
-                            input(type="text", required, autocomplete="off", name="experience" placeholder="10 лет")
+                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="experience" placeholder="10 лет")
                             .form-cross
                     .form-row
                         h3.current-experience Стаж в текущей сфере деятельности
                         div.form-group__text
-                            input(type="text", required, autocomplete="off", name="current-experience" placeholder="5 лет")
+                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="current-experience" placeholder="5 лет")
                             .form-cross
                     .form-row
                         h3.job-number Мест работы за последние 3 (три) года
                         div.form-group__text
-                            input(type="text", required, autocomplete="off", name="job-number" placeholder="1")
+                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="job-number" placeholder="1")
                             .form-cross
                     .form-row
                         h3.income-confimation Справка о доходе
@@ -603,7 +620,7 @@ block contain
                     .form-row
                         h3.income Среднемесячный доход, руб.
                         div.form-group__text
-                            input(type="text", required, autocomplete="off", name="income" data-cost placeholder="15 000 руб.")
+                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="income" data-cost placeholder="15 000 руб.")
                             .form-cross
                     .form-row
                         h3.additional-income Дополнительный доход (необязательно)        

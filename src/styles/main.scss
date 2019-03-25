@@ -225,3 +225,57 @@ input::selection {
 		color: #999;
 	}
 }
+
+.form-tabs-container {
+	display: none;
+
+	&.active {
+		display: block;
+	}
+}
+
+.form-tabs-nav {
+	display: flex;
+	align-items: center;
+	padding: 20px;
+
+	&__link {
+		padding: 10px 20px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 3px;
+		border: 1px solid #999;
+		cursor: pointer;
+		margin-right: 10px;
+
+
+		&:last-child {
+			margin-right: 0px;
+		}
+
+		&-wrapper {
+			display: flex;
+			align-items: center;
+			margin-right: 20px;
+		}
+
+
+		&.active {
+			border: 1px solid #fd7902;
+			color: #fd7902;
+		}
+	}
+
+	&__btn {
+		color: #999;
+		font-size: 14px;
+		transition: .3s;
+		cursor: pointer;
+
+
+		&:hover {
+			color: #fd7902;
+		}
+	}
+}

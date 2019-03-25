@@ -1189,4 +1189,39 @@ input::selection {
 .form-group__check_sd.disabled label {
   color: #999; }
 
+.form-tabs-container {
+  display: none; }
+  .form-tabs-container.active {
+    display: block; }
+
+.form-tabs-nav {
+  display: flex;
+  align-items: center;
+  padding: 20px; }
+  .form-tabs-nav__link {
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    border: 1px solid #999;
+    cursor: pointer;
+    margin-right: 10px; }
+    .form-tabs-nav__link:last-child {
+      margin-right: 0px; }
+    .form-tabs-nav__link-wrapper {
+      display: flex;
+      align-items: center;
+      margin-right: 20px; }
+    .form-tabs-nav__link.active {
+      border: 1px solid #fd7902;
+      color: #fd7902; }
+  .form-tabs-nav__btn {
+    color: #999;
+    font-size: 14px;
+    transition: .3s;
+    cursor: pointer; }
+    .form-tabs-nav__btn:hover {
+      color: #fd7902; }
+
 /*# sourceMappingURL=maps/main.css.map */
