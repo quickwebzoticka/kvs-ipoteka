@@ -175,8 +175,8 @@ $(document).ready(function() {
 	});
 
 
-	$(document).on('change', '[name="credit-target-new"]', function() {
-		let temp = $(this).index('[name="credit-target-new"]')
+	$(document).on('change', '[name="ЦельКредита"]', function() {
+		let temp = $(this).index('[name="ЦельКредита"]')
 
 		if (temp == 0) return $('.cost').text('Стоимость ОН в новостройке')
 		if (temp == 1) return $('.cost').text('Стоимость ОН в готовой недвижимости')
