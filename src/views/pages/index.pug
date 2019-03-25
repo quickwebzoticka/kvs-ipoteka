@@ -301,21 +301,31 @@ block contain
                         div.form-group__text                    
                             input(type="text", required, autocomplete="off", name="zip-code")
                             label(for="zip-code") Почтовый индекс
+                            .form-cross
                         div.form-group__text                    
+                            input(type="text", required, autocomplete="off", name="area")
+                            label(for="city") Республика/Край/Область
+                            .form-cross
+                        div.form-group__text
                             input(type="text", required, autocomplete="off", name="city")
-                            label(for="city") Город / область
+                            label(for="city") Город
+                            .form-cross
                         div.form-group__text                    
                             input(type="text", required, autocomplete="off", name="street")
                             label(for="street") Улица
+                            .form-cross
                         div.form-group__text                    
                             input(type="text", required, autocomplete="off", name="building")
                             label(for="building") Дом
+                            .form-cross
                         div.form-group__text                    
                             input(type="text", autocomplete="off", name="facility")
                             label(for="facility") Корпус
+                            .form-cross
                         div.form-group__text                    
                             input(type="text", required, autocomplete="off", name="apartment")
                             label(for="apartment") Квартира
+                            .form-cross
                     .form-row
                         h3.real-registration-adress Адрес фактического проживания совпадает с адресом регистрации?  
                         .form-group_show              
@@ -326,21 +336,31 @@ block contain
                                 div.form-group__text                    
                                     input(type="text", required autocomplete="off", name="zip-code-fact")
                                     label(for="zip-code") Почтовый индекс
+                                    .form-cross
+                                div.form-group__text                    
+                                    input(type="text", required, autocomplete="off", name="area-fact")
+                                    label(for="city") Республика/Край/Область
+                                    .form-cross
                                 div.form-group__text                    
                                     input(type="text", required autocomplete="off", name="city-fact")
-                                    label(for="city") Город / область
+                                    label(for="city") Город
+                                    .form-cross
                                 div.form-group__text                    
                                     input(type="text", required autocomplete="off", name="street-fact")
                                     label(for="street") Улица
+                                    .form-cross
                                 div.form-group__text                    
                                     input(type="text", required autocomplete="off", name="building-fact")
                                     label(for="building") Дом
+                                    .form-cross
                                 div.form-group__text                    
                                     input(type="text", required autocomplete="off", name="facility-fact")
                                     label(for="facility") Корпус
+                                    .form-cross
                                 div.form-group__text                    
                                     input(type="text", required autocomplete="off", name="apartment-fact")
                                     label(for="apartment") Квартира
+                                    .form-cross
             .form-row_bb
                 .form-btns
                     .form-btn.form-btn__prev
@@ -359,10 +379,6 @@ block contain
                             input(type="text", required, autocomplete="off", name="name-location-job")
                             label(for="name") Наименование
                             .form-cross
-                        //- div.form-group__text                    
-                        //-     input(type="text", required, autocomplete="off", name="status")
-                        //-     label(for="status") Статус занятости
-                        //-     .form-cross
                         div.form-group__text.form-group__text_bb
                             select(name="job-time")
                                 option(value="Полная занятость") Полная занятость
@@ -391,8 +407,12 @@ block contain
                             label(for="zip-code") Почтовый индекс
                             .form-cross
                         div.form-group__text                    
+                            input(type="text", required, autocomplete="off", name="area-uri")
+                            label(for="city") Республика/Край/Область
+                            .form-cross
+                        div.form-group__text                    
                             input(type="text", required, autocomplete="off", name="city-uri")
-                            label(for="city") Город / область
+                            label(for="city") Город
                             .form-cross
                         div.form-group__text                    
                             input(type="text", required, autocomplete="off", name="street-uri")
@@ -422,8 +442,12 @@ block contain
                                     label(for="zip-code") Почтовый индекс
                                     .form-cross
                                 div.form-group__text                    
+                                    input(type="text", required, autocomplete="off", name="area-uri-fact")
+                                    label(for="city") Республика/Край/Область
+                                    .form-cross
+                                div.form-group__text                    
                                     input(type="text",  autocomplete="off", name="city-uri-fact")
-                                    label(for="city") Город / область
+                                    label(for="city") Город
                                     .form-cross
                                 div.form-group__text                    
                                     input(type="text",  autocomplete="off", name="street-uri-fact")
