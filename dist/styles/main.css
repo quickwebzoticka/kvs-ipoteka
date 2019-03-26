@@ -1224,4 +1224,12 @@ input::selection {
     .form-tabs-nav__btn:hover {
       color: #fd7902; }
 
+.form-content-credit__head {
+  position: relative;
+  z-index: 5;
+  color: black;
+  font-size: 25px;
+  font-weight: normal;
+  color: #fd7902; }
+
 /*# sourceMappingURL=maps/main.css.map */

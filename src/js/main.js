@@ -103,6 +103,9 @@ $(document).ready(function() {
 	// 	})
 	// })
 
+
+function init() {
+
 	$('[data-name]').inputmask({"mask": "Aa{1,}[-Aa{1,}]", showMaskOnHover: false, greedy: false});
 	$('[data-date]').inputmask({"mask": "99.99.9999", showMaskOnHover: false});
 	$('[data-phone]').inputmask({"mask": "+7 (999) 999-9999", showMaskOnHover: false});
@@ -115,12 +118,22 @@ $(document).ready(function() {
 	$('[data-passport-date]').inputmask({"mask": "99.99.9999", showMaskOnHover: false});
 	$('[data-passport-cod]').inputmask({"mask": "999-999", showMaskOnHover: false});
 
+}
+
+	init();
+
 	$('select').SumoSelect();
 
 	$('[data-hidden-content]').hide();
 	$('[data-count-contain]').hide();
 	$('[data-option-field]').hide();
 	$('[data-hidden-radio-content]').hide();
+
+
+	$(document).on('click', '[data-mono]', function() {
+
+	});
+
 
 	let anketa = $('.form-tabs-container').clone();
 	let link = $('.form-tabs-nav__link-add').clone();
@@ -136,7 +149,10 @@ $(document).ready(function() {
 
 		if ($('.form-tabs-nav__link-add').length < 3) {
 			$('.form-tabs-nav__link-wrapper').append(link.clone());
-			$('.form-tabs-container-wrapper').append(anketa.clone());
+			$('.form-tabs-container-wrapper').append(anketa.clone().addClass("soz"));
+			$(document).find('.soz').find('.form-row.children-wrapper').remove();
+
+
 
 			$('.form-tabs-container').eq(count).find('input').each(function(index) {
 
@@ -147,7 +163,7 @@ $(document).ready(function() {
 					$(this).attr('id', `${temp}-${count}`);
 					$(this).siblings('label').attr('for', `${temp}-${count}`);
 				}
-			})
+			});
 
 			$('.form-tabs-container').eq(count).find('input[type="radio"]').each(function(index) {
 				console.log($(this).attr('name'))
@@ -156,9 +172,11 @@ $(document).ready(function() {
 					let temp = $(this).attr('name');
 
 					$(this).attr('name', `${temp}-${count}`);
-					// $(this).siblings('label').attr('for', `${temp}-${count}`);
 				}
-			})
+			});
+
+			init();
+			$('input[required]').trigger('input');
 		}
 		
 	});
@@ -186,15 +204,13 @@ $(document).ready(function() {
 	});
 
 
-	$(document).on('change', '[name="ТипОбразования"]', function() {
-
-		console.log($(this));
-
-		console.log($(this).closest('.form-row'));
+	$(document).on('change', '[data-add-name="ТипОбразования"]', function() {
 
 		let trigger = $(this).closest('.form-row').find('[data-education-trigger]');
 		let science = $(this).closest('.form-row').find('[data-science]');
 		let scienceWrapper = $(this).closest('.form-row').find('.form-group__check_sd');
+
+		console.log(11);
 
 
 
@@ -720,10 +736,10 @@ $(document).ready(function() {
 			}
 		});
 		let compare = countInputs == countFilledInputs;
-		if (compare) {
-			$(this).closest('.form-block').find('.form-btn.form-btn__next').addClass('active');
+		if (compare || (countInputs == 0 && countFilledInputs == 0)) {
+			$(this).closest('.form-block.active').find('.form-btn.form-btn__next').addClass('active');
 		} else {
-			$(this).closest('.form-block').find('.form-btn.form-btn__next').removeClass('active');
+			$(this).closest('.form-block.active').find('.form-btn.form-btn__next').removeClass('active');
 		}
 	});
 
@@ -760,14 +776,15 @@ $(document).ready(function() {
 	});
 
 	$(document).on('change', '[data-hidden]', function() {
-		console.log(1);
 		if ($(this).prop('checked')) {
-			console.log(12);
+			$(this).closest('.form-block__content').find('[data-mono]').prop('checked', false);
+			$(this).prop('checked', true);
+			$(this).closest('.form-block__content').find('[data-hidden-content]').slideUp(300);
+			$(this).closest('.form-block__content').find('.form-group_hidden').find('.form-group__text').find('input').attr('required', false);
 			$(this).closest('.form-group_hidden').find('.form-group__text').find('input').attr('required', true);
 			$(this).closest('.form-group_hidden').find('[data-hidden-content]').slideDown(300);
 			$('input[required]').trigger('input');
 		} else {
-			console.log(22);
 			$(this).closest('.form-group_hidden').find('[data-hidden-content]').slideUp(300, function() {
 			$(this).closest('.form-group_hidden').find('.form-group__text').find('input').attr('required', false);
 			$('input[required]').trigger('input');
@@ -776,16 +793,12 @@ $(document).ready(function() {
 	});
 
 	$(document).on('change', '[data-close]', function() {
-		console.log(1);
 			if ($(this).prop('checked')) {
-				console.log(12);
-				console.log($(this).closest('.form-group_hidden').find('[data-hidden-content]'))
 				$(this).closest('.form-group_hidden').find('.form-group__text').slideUp(300, function() {
 				$(this).closest('.form-group_hidden').find('.form-group__text').find('input').attr('required', false);
 				$('input[required]').trigger('input');
 				});
 			} else {
-				console.log(22);
 				$(this).closest('.form-group_hidden').find('.form-group__text').find('input').attr('required', true);
 				$(this).closest('.form-group_hidden').find('.form-group__text').slideDown(300);
 				$('input[required]').trigger('input');
@@ -833,12 +846,13 @@ $(document).ready(function() {
 				$('.form-group_hidden-wrapper').append(childForm.clone());
 			}
 
+			init();
+
 			$('.form-group_hidden-wrapper').slideDown(300);
 
 			let childrenForms = $('[data-children-form]');
 
 			childrenForms.each(function(index, element) {
-				console.log(element)
 				let temp = $(element).find('input');
 				temp.eq(0).attr('name', `child-name-${index}`);
 				temp.eq(1).attr('name', `child-birth-date-children-${index}`);
@@ -859,64 +873,284 @@ $(document).ready(function() {
 	});
 
 	$(document).on('change', '[data-active]', function() {
-		let trigger = 0;
+		if ($(this).prop('checked')) {
+			$(this).closest('.data-active-wrapper').find('.form-group__active').slideDown(300, function() {
+				$(this).closest('.data-active-wrapper').find('.form-group__active').find('input').attr('required', true);
+				$('input[required]').trigger('input');
+			});
+		} else {
+			$(this).closest('.data-active-wrapper').find('.form-group__active').slideUp(300, function() {
+				$(this).closest('.data-active-wrapper').find('.form-group__active').find('input').attr('required', false);
+				$('input[required]').trigger('input');
+			});
+		}
+	});
 
-		$('[data-active]').each(function(index, element) {
-			if (element.checked) {
-				++trigger;
+
+	$(document).on('change', '[data-step-name="Активы"] label', function() {
+
+	});
+
+
+	let creditHistory = $('.form-content-credit').clone();
+
+	$('.form-content-credit').remove();
+
+
+	$(document).on('change', '[data-credit-trigger]', function(e) {
+		let tempIndex = $(this).index('[data-credit-trigger]');
+		let tempWrapper = $(this).closest('.form-block__content').find('.form-hidden-content');
+
+		if (!tempIndex == 0 && $(this).prop('checked')) {
+			$('[data-credit-trigger]').eq(0).prop('checked', false);
+			let tempContent = creditHistory.clone();
+
+			tempContent.attr('data-credit-type', `${tempIndex}`);
+			tempContent.find('input[type="radio"]').each(function() {
+				let tempName = $(this).attr('id');
+				$(this).attr('id', `${tempName}-${tempIndex}`);
+				$(this).siblings('label').attr('for', `${tempName}-${tempIndex}`);
+			});
+
+			if (tempIndex == 1) {
+				tempContent.find('.form-content-credit__head').text('Ипотечный кредит');
 			}
-		});
 
-		if (trigger) {
-			$('.form-group__active').slideDown(300);
-		} else {
-			$('.form-group__active').slideUp(300);
+			if (tempIndex == 2) {
+				tempContent.find('.form-content-credit__head').text('Автокредит');
+			}
+
+			if (tempIndex == 3) {
+				tempContent.find('.form-content-credit__head').text('Потребительский кредит');
+			}
+
+			if (tempIndex == 4) {
+				tempContent.find('.form-content-credit__head').text('Кредитная карта');
+			}
+
+			tempWrapper.append(tempContent);
+			tempWrapper.slideDown(300);
 		}
 
+		if (tempIndex !== 0 && !$(this).prop('checked')) {
+			$(document).find(`[data-credit-type="${tempIndex}"]`).slideUp(300, function() {
+				$(this).remove();
+			})
+		}
+
+		if (tempIndex == 0 && $(this).prop('checked')) {
+			e.preventDefault();
+			tempWrapper.slideUp(300, function() {
+				$('.form-content-credit').remove();
+			});
+			$('[data-credit-trigger]').prop('checked', false);
+			$(this).prop('checked', true);
+			return false;
+		}
+
+		if (tempIndex == 0 && !$(this).prop('checked')) {
+			e.preventDefault();
+			tempWrapper.slideUp(300, function() {
+				$('.form-content-credit').remove();
+			});
+			$('[data-credit-trigger]').prop('checked', false);
+			$(this).prop('checked', true);
+			return false;
+		}
 	});
 
 
-	$(document).on('change', '[data-credit-trigger]', function() {
-		let temp = $(this).index('[data-credit-trigger]');
+	$(document).on('change', '[data-procenty]', function() {
+		let val = $(this).val()
 
-		console.log(temp);
+		val = val.replace(/\s+/g,'');
+		val = parseInt(val);
 
-
-		if (temp == 0) {
-			$('.form-hidden-content').slideUp(300);
-		} else {
-			$('.form-hidden-content').slideDown(300);			
+		if (val > 100) {
+			$(this).val('Не может быть больше 100%');
+			return false;
 		}
+
+		$(this).val(`${val} %`);
+		
 	});
 
 
+//------------------------------------------------------------ILIYA-CODER-IN-ACTIVE-----------------------------------
 
 
 
+function getChildrenInfo() {
+        var massDopData = {};
+        var data = $('.form-block[data-step-name="ЛичныеДанные"]'),
+            children = data.find(".form-tabs-container:not(.soz) .children-wrapper");
+
+        massDopData = {};
+        var item = {};
+        var i = 0;
+        children.find("[data-children-form]").each(function () {
+            $(this).find("input").each(function () {
+                var namefild = $(this).attr("name"), value = $(this).val();
+                if(value){
+                    item[namefild] = value;
+                }else{
+                    item = false;
+                }
+            });
+            if(item){
+                massDopData[i] = item;
+                item = {};
+                i++;
+            }
+        });
+        return massDopData;
+    }
+
+    function getDocument() {
+        /*Документы START*/
+        var formDataFile = new FormData();
+        data = $('.form-block[data-step-name="Документы"]');
+        data.find('input[type="file"]').each(function () {
+            var name = $(this).attr("name");
+            var filesArray = this.files;
+            if(filesArray.length){
+                $.each(filesArray,function (index,item) {
+                    formDataFile.append(name+"["+index+"]", item);
+                });
+            }
+        });
+        return formDataFile;
+        /*Документы END*/
+    }
+
+    function readForm(){
+        /*Чтение данных START*/
+        var massData = {}
+        $(".form-block").each(function () {
+
+            if($(this).data("step-name") == "Документы") return;
+            if($(this).data("step-name") == "ЛичныеДанные") return;
+
+            nameStep = $(this).data("step-name");
+            massData[nameStep] = {};
+            $(this).find(".form-row:not(.children-wrapper):not([data-group]) input, .form-row:not(.children-wrapper):not([data-group]) select").each(function () {
+                var namefild = $(this).attr("name");
+                if(!massData[nameStep][namefild]) massData[nameStep][namefild] = {};
+                if(namefild) {
+                    massData[nameStep][namefild] = $(this).val();
+                }
+            })
+        });
+        /*Чтение данных END*/
+
+        /*ЛичныеДанные START*/
+        nameStep = "ЛичныеДанные";
+        massData[nameStep] = {};
+        var data = $('.form-block[data-step-name="ЛичныеДанные"]');
+        data.find(".form-tabs-container:not(.soz) .form-row:not(.children-wrapper):not([data-group]) input, .form-tabs-container:not(.soz) .form-row:not(.children-wrapper):not([data-group]) select").each(function () {
+          var namefild = $(this).attr("name");
+            if(!massData[nameStep][namefild]) massData[nameStep][namefild] = {};
+            if(namefild) {
+                massData[nameStep][namefild] = $(this).val();
+            }
+        });
+        /*ЛичныеДанные END*/
 
 
+/*Созаемщики START*/
+      nameStep = "Созаемщики";
+      massData[nameStep] = {};
+      data = $('.form-block[data-step-name="ЛичныеДанные"] .form-tabs-container.soz');
+      $.each(data,function (key,value) {
+        massData[nameStep][key] = {};
+        $(this).find(".form-row:not(.children-wrapper):not([data-group]) input,.form-row:not(.children-wrapper):not([data-group]) select").each(function () {
+            var namefild = $(this).attr("name");
+            if(!massData[nameStep][key][namefild]) massData[nameStep][key][namefild] = {};
+            if(namefild) {
+                massData[nameStep][key][namefild] = $(this).val();
+            }
+        });
+        $(this).find("[data-group]").each(function () {
+            var stepName = nameStep;
+            var groupName = $(this).data("group");
+            if(!massData[stepName][key][groupName]) massData[stepName][key][groupName] = {};
+            $(this).find(" input, select").each(function () {
+                var namefild = $(this).attr("name");
+                if(!massData[stepName][key][groupName][namefild]) massData[stepName][key][groupName][namefild] = {};
+                if(namefild) {
+                    massData[stepName][key][groupName][namefild] = $(this).val();
+                }
+            });
+        });
+    })
+        /*Созаемщики END*/
 
+    /*Чтение групп*/
+    $("[data-group]").each(function () {
+      var stepName = $(this).parents(".form-block").data("step-name");
+      var groupName = $(this).data("group");
+            var type = "";
+            if(!massData[stepName][groupName]) massData[stepName][groupName] = {};
+            $(this).find("input,select").each(function () {
+                var namefild = $(this).attr("name");
+                if(namefild) {
+                    inputgroup = $(this).attr('data-input-group');
+                  if (typeof inputgroup !== typeof undefined && inputgroup !== false) {
+                        type = $(this).attr("type");
+                        id = $(this).attr("id");
+            switch (type) {
+              case "checkbox":
+                var label = $("label[for="+id+"]");
+                if(id && label.length && $(this).prop('checked')) {
+                    str = $(label).text().replace(/\s+/g, '');
+                    massData[stepName][groupName][inputgroup] += massData[stepName][groupName][inputgroup] ? str : ", " + str;
+                }
+              break;
+                        }
+                    }else{
+                        massData[stepName][groupName][namefild] = $(this).val();
+          }
+                }
+            });
+        });
+        /*Чтение групп*/
+        var children = getChildrenInfo();
+    if(children){
+      massData["ЛичныеДанные"]["Дети"] = children;
+    }
 
+    return massData;
+  }
 
+  function mainReadForm() {
+        var formData = getDocument();
+        jsondata = JSON.stringify(readForm());
+        formData.append('data', jsondata);
+        return formData;
+    }
 
 
 	$(document).on('submit', '#form-ipoteka-main', function() {
 		var form = $(this);
-        $.ajax({
-          type: form.attr('method'),
-          url: form.attr('action'),
-          data: form.serialize()
-        }).done(function() {
-        	//
-        	// Тут будет вызов попапа с удачной отправкой
-        	//
-          console.log('Ушла ипотека')
-        }).fail(function() {
-        	//
-        	// Тут будет вызов попапа с неудачей
-        	//
-          console.log('Осталась ипотека');
-        });
-        e.preventDefault(); 
+    $.ajax({
+      type: form.attr('method'),
+      url: form.attr('action'),
+      data: mainReadForm(),
+      dataType: 'json',
+      cache: false,
+      contentType: false, // важно - убираем форматирование данных по умолчанию
+      processData: false, // важно - убираем преобразование строк по умолчанию
+    }).done(function() {
+    	//
+    	// Тут будет вызов попапа с удачной отправкой
+    	//
+      console.log('Ушла ипотека')
+    }).fail(function() {
+    	//
+    	// Тут будет вызов попапа с неудачей
+    	//
+      console.log('Осталась ипотека');
+    });
+    e.preventDefault(); 
 	});
 });

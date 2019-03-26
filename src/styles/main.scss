@@ -279,3 +279,15 @@ input::selection {
 		}
 	}
 }
+
+
+.form-content-credit {
+	&__head {
+    position: relative;
+    z-index: 5;
+    color: black;
+    font-size: 25px;
+    font-weight: normal;
+    color: #fd7902;
+	}
+}

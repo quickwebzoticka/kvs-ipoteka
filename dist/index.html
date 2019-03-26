@@ -59,15 +59,15 @@
                 <h3 class="credit-target">Цель кредита</h3>
                 <div class="form-group__radio">
                   <input type="radio" id="credit-target-new" name="ЦельКредита" value="Покупка квартиры в новостройке" checked>
-                  <label for="Покупка квартиры в новостройке">Покупка квартиры в новостройке</label>
+                  <label for="credit-target-new">Покупка квартиры в новостройке</label>
                 </div>
                 <div class="form-group__radio">
                   <input type="radio" id="credit-target-ready" name="ЦельКредита" value="Покупка квартиры в готовой недвижимости">
-                  <label for="Покупка квартиры в готовой недвижимости">Покупка квартиры в готовой недвижимости</label>
+                  <label for="credit-target-ready">Покупка квартиры в готовой недвижимости</label>
                 </div>
                 <div class="form-group__radio">
                   <input type="radio" id="credit-target-commers" name="ЦельКредита" value="Покупка коммерческой недвижимости">
-                  <label for="Покупка коммерческой недвижимости">Покупка коммерческой недвижимости</label>
+                  <label for="credit-target-commers">Покупка коммерческой недвижимости</label>
                 </div>
               </div>
               <div class="form-row">
@@ -103,8 +103,8 @@
                 <h3 class="maternity-capital">Ипотека + материнский капитал</h3>
                 <div class="form-group_hidden">
                   <div class="form-group__check">
-                    <input type="checkbox" id="maternity-capital" name="МатерискийКапитал" data-hidden>
-                    <label for="МатерискийКапитал">Материнский капитал </label>
+                    <input type="checkbox" id="maternity-capital" name="МатерискийКапитал" data-hidden data-mono>
+                    <label for="maternity-capital">Материнский капитал </label>
                   </div>
                   <div class="form-group__text form-group__text_pt" data-hidden-content>
                     <input type="text" autocomplete="off" name="МатерискийКапиталСумма" data-cost data-maternity-summ>
@@ -132,7 +132,7 @@
                 <h3 class="military-loan">Военная ипотека</h3>
                 <div class="form-group_hidden">             
                   <div class="form-group__check">                
-                    <input type="checkbox" id="military-loan" name="ВоеннаяИпотека" data-hidden>
+                    <input type="checkbox" id="military-loan" name="ВоеннаяИпотека" data-hidden data-mono>
                     <label for="military-loan">Военная ипотека</label>
                   </div>
                   <div class="form-group__text form-group__text_pt" data-hidden-content>               
@@ -151,8 +151,8 @@
                 <h3 class="subsidy">Субсидия</h3>
                 <div class="form-group_hidden">
                   <div class="form-group__check">
-                    <input type="checkbox" id="subsidy" name="Субсидии" data-hidden>
-                    <label for="Субсидии">Субсидия</label>
+                    <input type="checkbox" id="subsidy" name="Субсидии" data-hidden data-mono>
+                    <label for="subsidy">Субсидия</label>
                   </div>
                   <div class="form-group_hidden-content" data-hidden-content>
                     <div class="form-group__text">                
@@ -847,42 +847,116 @@
           <div class="form-block__content">
             <div class="form form-resources">
               <div class="form-row">
-                <h3 class="realty">Недвижимость                </h3>
-                <div class="form-group__check">
-                  <input type="checkbox" id="apartment" name="Квартира" data-active>
-                  <label for="apartment">Квартира                </label>
-                </div>
-                <div class="form-group__check">
-                  <input type="checkbox" id="room" name="Комната" data-active>
-                  <label for="room">Комната</label>
-                </div>
-                <div class="form-group__check">
-                  <input type="checkbox" id="house" name="Дом" data-active>
-                  <label for="house">Дом             </label>
-                </div>
-                <div class="form-group__check">
-                  <input type="checkbox" id="land" name="ЗемельныйУчасток" data-active>
-                  <label for="land">Земельный участок</label>
-                </div>
-                <div class="form-group__active">
-                  <div class="form-group__text">                  
-                    <input type="text" autocomplete="off" name="Адрес">
-                    <label for="Адрес">Адрес</label>
-                    <div class="form-cross"></div>
+                <h3 class="realty">Недвижимость</h3>
+                <div class="data-active-wrapper">      
+                  <div class="form-group__check">
+                    <input type="checkbox" id="apartment" name="Квартира" data-active>
+                    <label for="apartment">Квартира</label>
                   </div>
-                  <div class="form-group_hidden">               
-                    <div class="form-group__check">
-                      <input type="radio" id="private-property" name="ТипСобственности" value="Частная собственность" data-close>
-                      <label for="private-property">Частная собственность</label>
-                    </div>
-                    <div class="form-group__check">
-                      <input type="radio" id="share-property" name="ТипСобственности" value="Долевая собственность" data-option>
-                      <label for="share-property">Долевая собственность</label>
-                    </div>
-                    <div class="form-group__text form-group__text_pt" data-option-field>
-                      <input type="text" autocomplete="off" name="РазмерДоли">
-                      <label for="РазмерДоли">Указать размер доли</label>
+                  <div class="form-group__active">
+                    <div class="form-group__text">                  
+                      <input type="text" autocomplete="off" name="Адрес">
+                      <label for="Адрес">Адрес</label>
                       <div class="form-cross"></div>
+                    </div>
+                    <div class="form-group_hidden">               
+                      <div class="form-group__check">
+                        <input type="radio" id="private-property" name="ТипСобственности" data-add-name="ТипСобственности" value="Частная собственность" data-close>
+                        <label for="private-property">Частная собственность</label>
+                      </div>
+                      <div class="form-group__check">
+                        <input type="radio" id="share-property" name="ТипСобственности" data-add-name="ТипСобственности" value="Долевая собственность" data-option>
+                        <label for="share-property">Долевая собственность</label>
+                      </div>
+                      <div class="form-group__text form-group__text_pt" data-option-field>
+                        <input type="text" autocomplete="off" name="РазмерДоли" data-procenty>
+                        <label for="РазмерДоли">Указать размер доли</label>
+                        <div class="form-cross"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="data-active-wrapper">              
+                  <div class="form-group__check">
+                    <input type="checkbox" id="room" name="Комната" data-active>
+                    <label for="room">Комната</label>
+                  </div>
+                  <div class="form-group__active">
+                    <div class="form-group__text">                  
+                      <input type="text" autocomplete="off" name="Адрес">
+                      <label for="Адрес">Адрес</label>
+                      <div class="form-cross"></div>
+                    </div>
+                    <div class="form-group_hidden">               
+                      <div class="form-group__check">
+                        <input type="radio" id="private-property-1" name="ТипСобственности1" data-add-name="ТипСобственности" value="Частная собственность" data-close>
+                        <label for="private-property-1">Частная собственность</label>
+                      </div>
+                      <div class="form-group__check">
+                        <input type="radio" id="share-property-1" name="ТипСобственности1" data-add-name="ТипСобственности" value="Долевая собственность" data-option>
+                        <label for="share-property-1">Долевая собственность</label>
+                      </div>
+                      <div class="form-group__text form-group__text_pt" data-option-field>
+                        <input type="text" autocomplete="off" name="РазмерДоли" data-procenty>
+                        <label for="РазмерДоли">Указать размер доли</label>
+                        <div class="form-cross"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="data-active-wrapper"> 
+                  <div class="form-group__check">
+                    <input type="checkbox" id="house" name="Дом" data-active>
+                    <label for="house">Дом</label>
+                  </div>
+                  <div class="form-group__active">
+                    <div class="form-group__text">                  
+                      <input type="text" autocomplete="off" name="Адрес">
+                      <label for="Адрес">Адрес</label>
+                      <div class="form-cross"></div>
+                    </div>
+                    <div class="form-group_hidden">               
+                      <div class="form-group__check">
+                        <input type="radio" id="private-property-2" name="ТипСобственности2" data-add-name="ТипСобственности" value="Частная собственность" data-close>
+                        <label for="private-property-2">Частная собственность</label>
+                      </div>
+                      <div class="form-group__check">
+                        <input type="radio" id="share-property-2" name="ТипСобственности2" data-add-name="ТипСобственности" value="Долевая собственность" data-option>
+                        <label for="share-property-2">Долевая собственность</label>
+                      </div>
+                      <div class="form-group__text form-group__text_pt" data-option-field>
+                        <input type="text" autocomplete="off" name="РазмерДоли" data-procenty>
+                        <label for="РазмерДоли">Указать размер доли</label>
+                        <div class="form-cross"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="data-active-wrapper">           
+                  <div class="form-group__check">
+                    <input type="checkbox" id="land" name="ЗемельныйУчасток" data-active>
+                    <label for="land">Земельный участок</label>
+                  </div>
+                  <div class="form-group__active">
+                    <div class="form-group__text">                  
+                      <input type="text" autocomplete="off" name="Адрес">
+                      <label for="Адрес">Адрес</label>
+                      <div class="form-cross"></div>
+                    </div>
+                    <div class="form-group_hidden">               
+                      <div class="form-group__check">
+                        <input type="radio" id="private-property-3" name="ТипСобственности3" data-add-name="ТипСобственности" value="Частная собственность" data-close>
+                        <label for="private-property-3">Частная собственность</label>
+                      </div>
+                      <div class="form-group__check">
+                        <input type="radio" id="share-property-3" name="ТипСобственности3" data-add-name="ТипСобственности" value="Долевая собственность" data-option>
+                        <label for="share-property-3">Долевая собственность</label>
+                      </div>
+                      <div class="form-group__text form-group__text_pt" data-option-field>
+                        <input type="text" autocomplete="off" name="РазмерДоли" data-procenty>
+                        <label for="РазмерДоли">Указать размер доли</label>
+                        <div class="form-cross"></div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -913,7 +987,7 @@
           <div class="form-row_bb">
             <div class="form-btns">
               <div class="form-btn form-btn__prev">Назад</div>
-              <div class="form-btn__next_static">Вперед</div>
+              <div class="form-btn form-btn__next">Вперед</div>
             </div>
           </div>
         </div>
@@ -926,7 +1000,7 @@
               <div class="form-row">
                 <h3 class="credit-type">Вид кредита</h3>
                 <div class="form-group__check">
-                  <input type="checkbox" id="no-credits" name="ВидКредита" value="не было кредитов " checked data-credit-trigger data-nocredits>
+                  <input type="checkbox" id="no-credits" name="ВидКредита" value="не было кредитов" checked data-credit-trigger data-nocredits>
                   <label for="no-credits">не было кредитов              </label>
                 </div>
                 <div class="form-group__check">
@@ -947,54 +1021,59 @@
                 </div>
               </div>
               <div class="form-hidden-content">
-                <div class="form-row">
-                  <h3 class="bank">Банк</h3>
-                  <div class="form-group__text">
-                    <input type="text" autocomplete="off" name="Банк" data-add-name="Банк" placeholder="Сбербанк">
-                    <div class="form-cross"></div>
+                <div class="form-content-credit">
+                  <div class="form-row">
+                    <div class="form-content-credit__head">Ипотечный кредит</div>
                   </div>
-                </div>
-                <div class="form-row">
-                  <h3 class="currency">Валюта кредита                </h3>
-                  <div class="form-group__check">
-                    <input type="radio" checked id="rubles" name="ВалютаКредита" data-add-name="ВалютаКредита" value="рубли РФ">
-                    <label for="rubles">рубли РФ                </label>
+                  <div class="form-row">
+                    <h3 class="bank">Банк</h3>
+                    <div class="form-group__text">
+                      <input type="text" autocomplete="off" name="Банк" data-add-name="Банк" placeholder="Сбербанк">
+                      <div class="form-cross"></div>
+                    </div>
                   </div>
-                  <div class="form-group__check">
-                    <input type="radio" id="dollars" name="ВалютаКредита" data-add-name="ВалютаКредита" value="доллары США">
-                    <label for="dollars">доллары США                </label>
+                  <div class="form-row">
+                    <h3 class="currency">Валюта кредита                </h3>
+                    <div class="form-group__check">
+                      <input type="radio" checked id="rubles" name="ВалютаКредита" data-add-name="ВалютаКредита" value="рубли РФ">
+                      <label for="rubles">рубли РФ                </label>
+                    </div>
+                    <div class="form-group__check">
+                      <input type="radio" id="dollars" name="ВалютаКредита" data-add-name="ВалютаКредита" value="доллары США">
+                      <label for="dollars">доллары США                </label>
+                    </div>
+                    <div class="form-group__check">
+                      <input type="radio" id="euro" name="ВалютаКредита" data-add-name="ВалютаКредита" value="евро">
+                      <label for="euro">евро</label>
+                    </div>
                   </div>
-                  <div class="form-group__check">
-                    <input type="radio" id="euro" name="ВалютаКредита" data-add-name="ВалютаКредита" value="евро">
-                    <label for="euro">евро</label>
+                  <div class="form-row">
+                    <h3 class="credit-sum">Сумма кредита</h3>
+                    <div class="form-group__text">
+                      <input type="text" autocomplete="off" name="СуммаКредита" data-add-name="СуммаКредита" data-cost data-minimum placeholder="1 000 000 руб.">
+                      <div class="form-cross"></div>
+                    </div>
                   </div>
-                </div>
-                <div class="form-row">
-                  <h3 class="credit-sum">Сумма кредита</h3>
-                  <div class="form-group__text">
-                    <input type="text" autocomplete="off" name="СуммаКредита" data-add-name="СуммаКредита" data-cost data-minimum>
-                    <div class="form-cross"></div>
+                  <div class="form-row">
+                    <h3 class="monthly-payment">Ежемесячная сумма к погашению</h3>
+                    <div class="form-group__text">
+                      <input type="text" autocomplete="off" name="ЕжемСуммаПогашения" data-add-name="ЕжемСуммаПогашения" data-cost data-minimum placeholder="20 000 руб.">
+                      <div class="form-cross"></div>
+                    </div>
                   </div>
-                </div>
-                <div class="form-row">
-                  <h3 class="monthly-payment">Ежемесячная сумма к погашению</h3>
-                  <div class="form-group__text">
-                    <input type="text" autocomplete="off" name="ЕжемСуммаПогашения" data-add-name="ЕжемСуммаПогашения" data-cost data-minimum>
-                    <div class="form-cross"></div>
+                  <div class="form-row">
+                    <h3 class="loan-balance">Остаток непогашенной задолженности</h3>
+                    <div class="form-group__text">
+                      <input type="text" autocomplete="off" name="ОстатокЗадолжности" data-add-name="ОстатокЗадолжности" data-cost data-minimum placeholder="300 000 руб.">
+                      <div class="form-cross"></div>
+                    </div>
                   </div>
-                </div>
-                <div class="form-row">
-                  <h3 class="loan-balance">Остаток непогашенной задолженности</h3>
-                  <div class="form-group__text">
-                    <input type="text" autocomplete="off" name="ОстатокЗадолжности" data-add-name="ОстатокЗадолжности" data-cost data-minimum>
-                    <div class="form-cross"></div>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <h3 class="repayment-period">Срок погашения</h3>
-                  <div class="form-group__text">
-                    <input type="text" autocomplete="off" name="СрокПогашения" data-add-name="СрокПогашения">
-                    <div class="form-cross"></div>
+                  <div class="form-row">
+                    <h3 class="repayment-period">Срок погашения</h3>
+                    <div class="form-group__text">
+                      <input type="text" autocomplete="off" name="СрокПогашения" data-add-name="СрокПогашения" placeholder="2 года">
+                      <div class="form-cross"></div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1003,7 +1082,7 @@
           <div class="form-row_bb">
             <div class="form-btns">
               <div class="form-btn form-btn__prev">Назад</div>
-              <div class="form-btn__next_static">Вперед</div>
+              <div class="form-btn form-btn__next">Вперед</div>
             </div>
           </div>
         </div>

@@ -47,13 +47,13 @@ block contain
                         h3.credit-target Цель кредита
                         div.form-group__radio
                             input(type="radio", id="credit-target-new", name="ЦельКредита" value="Покупка квартиры в новостройке", checked)
-                            label(for="Покупка квартиры в новостройке") Покупка квартиры в новостройке
+                            label(for="credit-target-new") Покупка квартиры в новостройке
                         div.form-group__radio
                             input(type="radio", id="credit-target-ready", name="ЦельКредита" value="Покупка квартиры в готовой недвижимости")
-                            label(for="Покупка квартиры в готовой недвижимости") Покупка квартиры в готовой недвижимости
+                            label(for="credit-target-ready") Покупка квартиры в готовой недвижимости
                         div.form-group__radio
                             input(type="radio", id="credit-target-commers", name="ЦельКредита" value="Покупка коммерческой недвижимости")
-                            label(for="Покупка коммерческой недвижимости") Покупка коммерческой недвижимости
+                            label(for="credit-target-commers") Покупка коммерческой недвижимости
                     .form-row
                         h3.cost Стоимость ОН в новостройке
                         div.form-group__text                    
@@ -82,8 +82,8 @@ block contain
                         h3.maternity-capital Ипотека + материнский капитал
                         .form-group_hidden
                             div.form-group__check
-                                input(type="checkbox", id="maternity-capital", name="МатерискийКапитал" data-hidden)
-                                label(for="МатерискийКапитал") Материнский капитал 
+                                input(type="checkbox", id="maternity-capital", name="МатерискийКапитал" data-hidden data-mono)
+                                label(for="maternity-capital") Материнский капитал 
                             div.form-group__text.form-group__text_pt(data-hidden-content)
                                 input(type="text", autocomplete="off", name="МатерискийКапиталСумма" data-cost data-maternity-summ)
                                 label(for="МатерискийКапиталСумма") Размер Материнского капитала
@@ -103,7 +103,7 @@ block contain
                         h3.military-loan Военная ипотека
                         .form-group_hidden              
                             div.form-group__check                 
-                                input(type="checkbox", id="military-loan", name="ВоеннаяИпотека" data-hidden)
+                                input(type="checkbox", id="military-loan", name="ВоеннаяИпотека" data-hidden data-mono)
                                 label(for="military-loan") Военная ипотека
                             div.form-group__text.form-group__text_pt(data-hidden-content)                
                                 input(type="text", autocomplete="off", name="ВоеннаяИпотекаСумма" data-cost data-military-summ)
@@ -117,8 +117,8 @@ block contain
                         h3.subsidy Субсидия
                         .form-group_hidden
                             div.form-group__check
-                                input(type="checkbox", id="subsidy", name="Субсидии" data-hidden)
-                                label(for="Субсидии") Субсидия
+                                input(type="checkbox", id="subsidy", name="Субсидии" data-hidden data-mono)
+                                label(for="subsidy") Субсидия
                             .form-group_hidden-content(data-hidden-content)
                                 div.form-group__text                 
                                     input(type="text", autocomplete="off", name="СубсидииСумма" data-cost data-subsidy-summ)
@@ -666,35 +666,87 @@ block contain
             div.form-block__content
                 .form.form-resources
                     .form-row
-                        h3.realty Недвижимость                
-                        div.form-group__check
-                            input(type="checkbox", id="apartment", name="Квартира" data-active)
-                            label(for="apartment") Квартира                
-                        div.form-group__check
-                            input(type="checkbox", id="room", name="Комната" data-active)
-                            label(for="room") Комната
-                        div.form-group__check
-                            input(type="checkbox", id="house", name="Дом" data-active)
-                            label(for="house") Дом             
-                        div.form-group__check
-                            input(type="checkbox", id="land", name="ЗемельныйУчасток" data-active)
-                            label(for="land") Земельный участок
-                        .form-group__active
-                            div.form-group__text                   
-                                input(type="text", autocomplete="off", name="Адрес")
-                                label(for="Адрес") Адрес
-                                .form-cross
-                            .form-group_hidden                
-                                div.form-group__check
-                                    input(type="radio", id="private-property", name="ТипСобственности" value="Частная собственность" data-close)
-                                    label(for="private-property") Частная собственность
-                                div.form-group__check
-                                    input(type="radio", id="share-property", name="ТипСобственности" value="Долевая собственность" data-option)
-                                    label(for="share-property") Долевая собственность
-                                div.form-group__text.form-group__text_pt(data-option-field)
-                                    input(type="text", autocomplete="off", name="РазмерДоли")
-                                    label(for="РазмерДоли") Указать размер доли
+                        h3.realty Недвижимость
+                        .data-active-wrapper       
+                            div.form-group__check
+                                input(type="checkbox", id="apartment", name="Квартира" data-active)
+                                label(for="apartment") Квартира
+                            .form-group__active
+                                div.form-group__text                   
+                                    input(type="text", autocomplete="off", name="Адрес")
+                                    label(for="Адрес") Адрес
                                     .form-cross
+                                .form-group_hidden                
+                                    div.form-group__check
+                                        input(type="radio", id="private-property", name="ТипСобственности" data-add-name="ТипСобственности" value="Частная собственность" data-close)
+                                        label(for="private-property") Частная собственность
+                                    div.form-group__check
+                                        input(type="radio", id="share-property", name="ТипСобственности" data-add-name="ТипСобственности" value="Долевая собственность" data-option)
+                                        label(for="share-property") Долевая собственность
+                                    div.form-group__text.form-group__text_pt(data-option-field)
+                                        input(type="text", autocomplete="off", name="РазмерДоли" data-procenty)
+                                        label(for="РазмерДоли") Указать размер доли
+                                        .form-cross
+                        .data-active-wrapper               
+                            div.form-group__check
+                                input(type="checkbox", id="room", name="Комната" data-active)
+                                label(for="room") Комната
+                            .form-group__active
+                                div.form-group__text                   
+                                    input(type="text", autocomplete="off", name="Адрес")
+                                    label(for="Адрес") Адрес
+                                    .form-cross
+                                .form-group_hidden                
+                                    div.form-group__check
+                                        input(type="radio", id="private-property-1", name="ТипСобственности1" data-add-name="ТипСобственности" value="Частная собственность" data-close)
+                                        label(for="private-property-1") Частная собственность
+                                    div.form-group__check
+                                        input(type="radio", id="share-property-1", name="ТипСобственности1" data-add-name="ТипСобственности" value="Долевая собственность" data-option)
+                                        label(for="share-property-1") Долевая собственность
+                                    div.form-group__text.form-group__text_pt(data-option-field)
+                                        input(type="text", autocomplete="off", name="РазмерДоли" data-procenty)
+                                        label(for="РазмерДоли") Указать размер доли
+                                        .form-cross
+                        .data-active-wrapper 
+                            div.form-group__check
+                                input(type="checkbox", id="house", name="Дом" data-active)
+                                label(for="house") Дом
+                            .form-group__active
+                                div.form-group__text                   
+                                    input(type="text", autocomplete="off", name="Адрес")
+                                    label(for="Адрес") Адрес
+                                    .form-cross
+                                .form-group_hidden                
+                                    div.form-group__check
+                                        input(type="radio", id="private-property-2", name="ТипСобственности2" data-add-name="ТипСобственности" value="Частная собственность" data-close)
+                                        label(for="private-property-2") Частная собственность
+                                    div.form-group__check
+                                        input(type="radio", id="share-property-2", name="ТипСобственности2" data-add-name="ТипСобственности" value="Долевая собственность" data-option)
+                                        label(for="share-property-2") Долевая собственность
+                                    div.form-group__text.form-group__text_pt(data-option-field)
+                                        input(type="text", autocomplete="off", name="РазмерДоли" data-procenty)
+                                        label(for="РазмерДоли") Указать размер доли
+                                        .form-cross
+                        .data-active-wrapper            
+                            div.form-group__check
+                                input(type="checkbox", id="land", name="ЗемельныйУчасток" data-active)
+                                label(for="land") Земельный участок
+                            .form-group__active
+                                div.form-group__text                   
+                                    input(type="text", autocomplete="off", name="Адрес")
+                                    label(for="Адрес") Адрес
+                                    .form-cross
+                                .form-group_hidden                
+                                    div.form-group__check
+                                        input(type="radio", id="private-property-3", name="ТипСобственности3" data-add-name="ТипСобственности" value="Частная собственность" data-close)
+                                        label(for="private-property-3") Частная собственность
+                                    div.form-group__check
+                                        input(type="radio", id="share-property-3", name="ТипСобственности3" data-add-name="ТипСобственности" value="Долевая собственность" data-option)
+                                        label(for="share-property-3") Долевая собственность
+                                    div.form-group__text.form-group__text_pt(data-option-field)
+                                        input(type="text", autocomplete="off", name="РазмерДоли" data-procenty)
+                                        label(for="РазмерДоли") Указать размер доли
+                                        .form-cross
                             
                     .form-row
                         h3.auto Транспорт в собственности
@@ -715,8 +767,10 @@ block contain
                 .form-btns
                     .form-btn.form-btn__prev
                         | Назад
-                    .form-btn__next_static
+                    .form-btn.form-btn__next
                         | Вперед
+                    //- .form-btn__next_static
+                    //-     | Вперед
         
         div.form-block(data-step-name="КредитнаяИстори")
             div.form-block__header
@@ -726,7 +780,7 @@ block contain
                     .form-row
                         h3.credit-type Вид кредита
                         div.form-group__check
-                            input(type="checkbox", id="no-credits", name="ВидКредита" value="не было кредитов " checked data-credit-trigger data-nocredits)
+                            input(type="checkbox", id="no-credits", name="ВидКредита" value="не было кредитов" checked data-credit-trigger data-nocredits)
                             label(for="no-credits") не было кредитов              
                         div.form-group__check
                             input(type="checkbox", id="mortgage", name="ВидКредита" value="ипотечный" data-credit-trigger)
@@ -741,48 +795,53 @@ block contain
                             input(type="checkbox", id="credit-card", name="ВидКредита" value="кредитная карта" data-credit-trigger)
                             label(for="credit-card") кредитная карта
                     .form-hidden-content
-                        .form-row
-                            h3.bank Банк
-                            div.form-group__text
-                                input(type="text", autocomplete="off", name="Банк" data-add-name="Банк" placeholder="Сбербанк")
-                                .form-cross
-                        .form-row
-                            h3.currency Валюта кредита                
-                            div.form-group__check
-                                input(type="radio", checked id="rubles", name="ВалютаКредита" data-add-name="ВалютаКредита" value="рубли РФ")
-                                label(for="rubles") рубли РФ                
-                            div.form-group__check
-                                input(type="radio", id="dollars", name="ВалютаКредита" data-add-name="ВалютаКредита" value="доллары США")
-                                label(for="dollars") доллары США                
-                            div.form-group__check
-                                input(type="radio", id="euro", name="ВалютаКредита" data-add-name="ВалютаКредита" value="евро")
-                                label(for="euro") евро
-                        .form-row
-                            h3.credit-sum Сумма кредита
-                            div.form-group__text
-                                input(type="text", autocomplete="off", name="СуммаКредита" data-add-name="СуммаКредита" data-cost data-minimum)
-                                .form-cross
-                        .form-row
-                            h3.monthly-payment Ежемесячная сумма к погашению
-                            div.form-group__text
-                                input(type="text", autocomplete="off", name="ЕжемСуммаПогашения" data-add-name="ЕжемСуммаПогашения"  data-cost data-minimum)
-                                .form-cross
-                        .form-row
-                            h3.loan-balance Остаток непогашенной задолженности
-                            div.form-group__text
-                                input(type="text", autocomplete="off", name="ОстатокЗадолжности" data-add-name="ОстатокЗадолжности"  data-cost data-minimum)
-                                .form-cross
-                        .form-row
-                            h3.repayment-period Срок погашения
-                            div.form-group__text
-                                input(type="text", autocomplete="off", name="СрокПогашения" data-add-name="СрокПогашения")
-                                .form-cross
+                        .form-content-credit
+                            .form-row
+                                .form-content-credit__head Ипотечный кредит
+                            .form-row
+                                h3.bank Банк
+                                div.form-group__text
+                                    input(type="text", autocomplete="off", name="Банк" data-add-name="Банк" placeholder="Сбербанк")
+                                    .form-cross
+                            .form-row
+                                h3.currency Валюта кредита                
+                                div.form-group__check
+                                    input(type="radio", checked id="rubles", name="ВалютаКредита" data-add-name="ВалютаКредита" value="рубли РФ")
+                                    label(for="rubles") рубли РФ                
+                                div.form-group__check
+                                    input(type="radio", id="dollars", name="ВалютаКредита" data-add-name="ВалютаКредита" value="доллары США")
+                                    label(for="dollars") доллары США                
+                                div.form-group__check
+                                    input(type="radio", id="euro", name="ВалютаКредита" data-add-name="ВалютаКредита" value="евро")
+                                    label(for="euro") евро
+                            .form-row
+                                h3.credit-sum Сумма кредита
+                                div.form-group__text
+                                    input(type="text", autocomplete="off", name="СуммаКредита" data-add-name="СуммаКредита" data-cost data-minimum placeholder="1 000 000 руб.")
+                                    .form-cross
+                            .form-row
+                                h3.monthly-payment Ежемесячная сумма к погашению
+                                div.form-group__text
+                                    input(type="text", autocomplete="off", name="ЕжемСуммаПогашения" data-add-name="ЕжемСуммаПогашения"  data-cost data-minimum placeholder="20 000 руб.")
+                                    .form-cross
+                            .form-row
+                                h3.loan-balance Остаток непогашенной задолженности
+                                div.form-group__text
+                                    input(type="text", autocomplete="off", name="ОстатокЗадолжности" data-add-name="ОстатокЗадолжности"  data-cost data-minimum placeholder="300 000 руб.")
+                                    .form-cross
+                            .form-row
+                                h3.repayment-period Срок погашения
+                                div.form-group__text
+                                    input(type="text", autocomplete="off", name="СрокПогашения" data-add-name="СрокПогашения" placeholder="2 года")
+                                    .form-cross
             .form-row_bb
                 .form-btns
                     .form-btn.form-btn__prev
                         | Назад
-                    .form-btn__next_static
+                    .form-btn.form-btn__next
                         | Вперед
+                    //- .form-btn__next_static
+                    //-     | Вперед
         
         div.form-block(data-step-name="ДополнительнаяИнформация")
             div.form-block__header
