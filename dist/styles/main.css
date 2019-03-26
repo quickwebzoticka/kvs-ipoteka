@@ -1242,4 +1242,17 @@ input::selection {
   max-width: 300px;
   overflow: hidden; }
 
+.form-chunk-wrapper {
+  padding: 10px 0; }
+  .form-chunk-wrapper-item {
+    padding: 10px 0; }
+
+.form-chunk-btn {
+  color: #fd7902;
+  cursor: pointer;
+  padding: 10px 0;
+  transition: .3s; }
+  .form-chunk-btn:hover {
+    text-shadow: 0px 0px 3px #fd7902; }
+
 /*# sourceMappingURL=maps/main.css.map */

@@ -687,10 +687,10 @@
                   <label for="tourism">Туризм</label>
                 </div>
                 <div class="form-group__check">
-                  <input type="checkbox" id="other" name="СДОрганизацииИное" data-option data-input-group="SDO">
+                  <input type="checkbox" id="other" name="СДОрганизацииИное" data-option-1 data-input-group="SDO">
                   <label for="other">Иное</label>
                 </div>
-                <div class="form-group__text" data-option-field>
+                <div class="form-group__text" data-option-field-1>
                   <input type="text" autocomplete="off" name="СДОрганизацииИное" data-input-group="SDO">
                   <div class="form-cross"></div>
                 </div>
@@ -854,25 +854,32 @@
                     <label for="apartment">Квартира</label>
                   </div>
                   <div class="form-group__active">
-                    <div class="form-group__text">                  
-                      <input type="text" autocomplete="off" name="Адрес">
-                      <label for="Адрес">Адрес</label>
-                      <div class="form-cross"></div>
-                    </div>
-                    <div class="form-group_hidden">               
-                      <div class="form-group__check">
-                        <input type="radio" id="private-property" name="ТипСобственности" data-add-name="ТипСобственности" value="Частная собственность" data-close>
-                        <label for="private-property">Частная собственность</label>
+                    <div class="form-chunk">
+                      <div class="form-chunk-wrapper">
+                        <div class="form-chunk-wrapper-item">
+                          <div class="form-group__text">                  
+                            <input type="text" autocomplete="off" name="Адрес">
+                            <label for="Адрес">Адрес</label>
+                            <div class="form-cross"></div>
+                          </div>
+                          <div class="form-group_hidden">               
+                            <div class="form-group__check">
+                              <input type="radio" id="private-property" name="ТипСобственности" data-add-name="ТипСобственности" value="Частная собственность" data-close>
+                              <label for="private-property">Частная собственность</label>
+                            </div>
+                            <div class="form-group__check">
+                              <input type="radio" id="share-property" name="ТипСобственности" data-add-name="ТипСобственности" value="Долевая собственность" data-option>
+                              <label for="share-property">Долевая собственность</label>
+                            </div>
+                            <div class="form-group__text form-group__text_pt" data-option-field>
+                              <input type="text" autocomplete="off" name="РазмерДоли" data-procenty>
+                              <label for="РазмерДоли">Указать размер доли</label>
+                              <div class="form-cross"></div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div class="form-group__check">
-                        <input type="radio" id="share-property" name="ТипСобственности" data-add-name="ТипСобственности" value="Долевая собственность" data-option>
-                        <label for="share-property">Долевая собственность</label>
-                      </div>
-                      <div class="form-group__text form-group__text_pt" data-option-field>
-                        <input type="text" autocomplete="off" name="РазмерДоли" data-procenty>
-                        <label for="РазмерДоли">Указать размер доли</label>
-                        <div class="form-cross"></div>
-                      </div>
+                      <div class="form-chunk-btn">Добавить</div>
                     </div>
                   </div>
                 </div>
@@ -882,25 +889,32 @@
                     <label for="room">Комната</label>
                   </div>
                   <div class="form-group__active">
-                    <div class="form-group__text">                  
-                      <input type="text" autocomplete="off" name="Адрес">
-                      <label for="Адрес">Адрес</label>
-                      <div class="form-cross"></div>
-                    </div>
-                    <div class="form-group_hidden">               
-                      <div class="form-group__check">
-                        <input type="radio" id="private-property-1" name="ТипСобственности1" data-add-name="ТипСобственности" value="Частная собственность" data-close>
-                        <label for="private-property-1">Частная собственность</label>
+                    <div class="form-chunk">
+                      <div class="form-chunk-wrapper">
+                        <div class="form-chunk-wrapper-item">
+                          <div class="form-group__text">                  
+                            <input type="text" autocomplete="off" name="Адрес">
+                            <label for="Адрес">Адрес</label>
+                            <div class="form-cross"></div>
+                          </div>
+                          <div class="form-group_hidden">               
+                            <div class="form-group__check">
+                              <input type="radio" id="private-property-1" name="ТипСобственности1" data-add-name="ТипСобственности" value="Частная собственность" data-close>
+                              <label for="private-property-1">Частная собственность</label>
+                            </div>
+                            <div class="form-group__check">
+                              <input type="radio" id="share-property-1" name="ТипСобственности1" data-add-name="ТипСобственности" value="Долевая собственность" data-option>
+                              <label for="share-property-1">Долевая собственность</label>
+                            </div>
+                            <div class="form-group__text form-group__text_pt" data-option-field>
+                              <input type="text" autocomplete="off" name="РазмерДоли" data-procenty>
+                              <label for="РазмерДоли">Указать размер доли</label>
+                              <div class="form-cross"></div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div class="form-group__check">
-                        <input type="radio" id="share-property-1" name="ТипСобственности1" data-add-name="ТипСобственности" value="Долевая собственность" data-option>
-                        <label for="share-property-1">Долевая собственность</label>
-                      </div>
-                      <div class="form-group__text form-group__text_pt" data-option-field>
-                        <input type="text" autocomplete="off" name="РазмерДоли" data-procenty>
-                        <label for="РазмерДоли">Указать размер доли</label>
-                        <div class="form-cross"></div>
-                      </div>
+                      <div class="form-chunk-btn">Добавить</div>
                     </div>
                   </div>
                 </div>
@@ -910,25 +924,32 @@
                     <label for="house">Дом</label>
                   </div>
                   <div class="form-group__active">
-                    <div class="form-group__text">                  
-                      <input type="text" autocomplete="off" name="Адрес">
-                      <label for="Адрес">Адрес</label>
-                      <div class="form-cross"></div>
-                    </div>
-                    <div class="form-group_hidden">               
-                      <div class="form-group__check">
-                        <input type="radio" id="private-property-2" name="ТипСобственности2" data-add-name="ТипСобственности" value="Частная собственность" data-close>
-                        <label for="private-property-2">Частная собственность</label>
+                    <div class="form-chunk">
+                      <div class="form-chunk-wrapper">
+                        <div class="form-chunk-wrapper-item">
+                          <div class="form-group__text">                  
+                            <input type="text" autocomplete="off" name="Адрес">
+                            <label for="Адрес">Адрес</label>
+                            <div class="form-cross"></div>
+                          </div>
+                          <div class="form-group_hidden">               
+                            <div class="form-group__check">
+                              <input type="radio" id="private-property-2" name="ТипСобственности2" data-add-name="ТипСобственности" value="Частная собственность" data-close>
+                              <label for="private-property-2">Частная собственность</label>
+                            </div>
+                            <div class="form-group__check">
+                              <input type="radio" id="share-property-2" name="ТипСобственности2" data-add-name="ТипСобственности" value="Долевая собственность" data-option>
+                              <label for="share-property-2">Долевая собственность</label>
+                            </div>
+                            <div class="form-group__text form-group__text_pt" data-option-field>
+                              <input type="text" autocomplete="off" name="РазмерДоли" data-procenty>
+                              <label for="РазмерДоли">Указать размер доли</label>
+                              <div class="form-cross"></div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div class="form-group__check">
-                        <input type="radio" id="share-property-2" name="ТипСобственности2" data-add-name="ТипСобственности" value="Долевая собственность" data-option>
-                        <label for="share-property-2">Долевая собственность</label>
-                      </div>
-                      <div class="form-group__text form-group__text_pt" data-option-field>
-                        <input type="text" autocomplete="off" name="РазмерДоли" data-procenty>
-                        <label for="РазмерДоли">Указать размер доли</label>
-                        <div class="form-cross"></div>
-                      </div>
+                      <div class="form-chunk-btn">Добавить</div>
                     </div>
                   </div>
                 </div>
@@ -938,25 +959,32 @@
                     <label for="land">Земельный участок</label>
                   </div>
                   <div class="form-group__active">
-                    <div class="form-group__text">                  
-                      <input type="text" autocomplete="off" name="Адрес">
-                      <label for="Адрес">Адрес</label>
-                      <div class="form-cross"></div>
-                    </div>
-                    <div class="form-group_hidden">               
-                      <div class="form-group__check">
-                        <input type="radio" id="private-property-3" name="ТипСобственности3" data-add-name="ТипСобственности" value="Частная собственность" data-close>
-                        <label for="private-property-3">Частная собственность</label>
+                    <div class="form-chunk">
+                      <div class="form-chunk-wrapper">
+                        <div class="form-chunk-wrapper-item">
+                          <div class="form-group__text">                  
+                            <input type="text" autocomplete="off" name="Адрес">
+                            <label for="Адрес">Адрес</label>
+                            <div class="form-cross"></div>
+                          </div>
+                          <div class="form-group_hidden">
+                            <div class="form-group__check">
+                              <input type="radio" id="private-property-3" name="ТипСобственности3" data-add-name="ТипСобственности" value="Частная собственность" data-close>
+                              <label for="private-property-3">Частная собственность</label>
+                            </div>
+                            <div class="form-group__check">
+                              <input type="radio" id="share-property-3" name="ТипСобственности3" data-add-name="ТипСобственности" value="Долевая собственность" data-option>
+                              <label for="share-property-3">Долевая собственность</label>
+                            </div>
+                            <div class="form-group__text form-group__text_pt" data-option-field>
+                              <input type="text" autocomplete="off" name="РазмерДоли" data-procenty>
+                              <label for="РазмерДоли">Указать размер доли</label>
+                              <div class="form-cross"></div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div class="form-group__check">
-                        <input type="radio" id="share-property-3" name="ТипСобственности3" data-add-name="ТипСобственности" value="Долевая собственность" data-option>
-                        <label for="share-property-3">Долевая собственность</label>
-                      </div>
-                      <div class="form-group__text form-group__text_pt" data-option-field>
-                        <input type="text" autocomplete="off" name="РазмерДоли" data-procenty>
-                        <label for="РазмерДоли">Указать размер доли</label>
-                        <div class="form-cross"></div>
-                      </div>
+                      <div class="form-chunk-btn">Добавить</div>
                     </div>
                   </div>
                 </div>
@@ -969,15 +997,22 @@
                     <label for="auto-property">Транспорт в собственности</label>
                   </div>
                   <div class="form-group_hidden-content" data-hidden-content>
-                    <div class="form-group__text"> 
-                      <input type="text" autocomplete="off" name="МодельАвто">
-                      <label for="model">Марка / модель</label>
-                      <div class="form-cross"></div>
-                    </div>
-                    <div class="form-group__text">                   
-                      <input type="text" autocomplete="off" name="ГодВыпускаАвто">
-                      <label for="age">Год выпуска / год приобретения</label>
-                      <div class="form-cross"></div>
+                    <div class="form-chunk">
+                      <div class="form-chunk-wrapper">
+                        <div class="form-chunk-wrapper-item">
+                          <div class="form-group__text"> 
+                            <input type="text" autocomplete="off" name="МодельАвто">
+                            <label for="model">Марка / модель</label>
+                            <div class="form-cross"></div>
+                          </div>
+                          <div class="form-group__text">                   
+                            <input type="text" autocomplete="off" name="ГодВыпускаАвто">
+                            <label for="age">Год выпуска / год приобретения</label>
+                            <div class="form-cross"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-chunk-btn">Добавить</div>
                     </div>
                   </div>
                 </div>

@@ -127,6 +127,7 @@ function init() {
 	$('[data-hidden-content]').hide();
 	$('[data-count-contain]').hide();
 	$('[data-option-field]').hide();
+	$('[data-option-field-1]').hide();
 	$('[data-hidden-radio-content]').hide();
 
 
@@ -823,14 +824,31 @@ function init() {
 
 	$(document).on('change', '[data-option]', function() {
 		if ($(this).prop('checked')) {
-			$(this).closest('.data-active-wrapper').find('[data-option-field]').find('input').each(function() {
+			$(this).closest('.form-chunk-wrapper-item').find('[data-option-field]').find('input').each(function() {
 				$(this).attr('required', true);
 			})
-			$(this).closest('.data-active-wrapper').find('[data-option-field]').slideDown(300);
+			$(this).closest('.form-chunk-wrapper-item').find('[data-option-field]').slideDown(300);
 			$('input[required]').trigger('input');
 		} else {
-			$(this).closest('.data-active-wrapper').find('[data-option-field]').slideUp(300, function() {
-			$(this).closest('.data-active-wrapper').find('[data-option-field]').find('input').each(function() {
+			$(this).closest('.form-chunk-wrapper-item').find('[data-option-field]').slideUp(300, function() {
+			$(this).closest('.form-chunk-wrapper-item').find('[data-option-field]').find('input').each(function() {
+				$(this).attr('required', false);
+			});
+			$('input[required]').trigger('input');
+			});
+		}
+	});
+
+	$(document).on('change', '[data-option-1]', function() {
+		if ($(this).prop('checked')) {
+			$(this).closest('.form-row').find('[data-option-field-1]').find('input').each(function() {
+				$(this).attr('required', true);
+			})
+			$(this).closest('.form-row').find('[data-option-field-1]').slideDown(300);
+			$('input[required]').trigger('input');
+		} else {
+			$(this).closest('.form-row').find('[data-option-field-1]').slideUp(300, function() {
+			$(this).closest('.form-row').find('[data-option-field-1]').find('input').each(function() {
 				$(this).attr('required', false);
 			});
 			$('input[required]').trigger('input');
@@ -1015,15 +1033,32 @@ function init() {
 
 	$(document).on('change', 'input[type="file"]', function() {
 		let titleWrapper = $(this).closest('.form-group__file-label');
-		console.log(this.files[0].name);
-		// $.each(this.files, function(index) {
-		// 		titleWrapper.append(`<div class="file-uploaded">${this.files[index].name}</div>`)
-		// });
 
 		for (let i = 0; i < this.files.length; i++) {
 			titleWrapper.append(`<div class="file-uploaded">${this.files[i].name}</div>`)
 		}
 		
+	});
+
+
+
+	$(document).on('click', '.form-chunk-btn', function() {
+		let item = $(this).closest('.form-chunk').find('.form-chunk-wrapper-item').eq(0).clone();
+		let index = $(this).closest('.form-chunk').find('.form-chunk-wrapper-item').length;
+
+		item.find('input').each(function() {
+			$(this).val('');
+			let oldID = $(this).prop('id');
+			let oldName = $(this).prop('name');
+			if ($(this).prop('type') == 'radio') {
+				$(this).prop('id', `${oldID}--${index}`);
+				$(this).prop('name', `${oldName}--${index}`);
+				$(this).siblings('label').prop('for', `${oldID}--${index}`);
+			}
+		});
+
+		$(this).closest('.form-chunk').find('.form-chunk-wrapper').append(item.clone())
+		$('input[required]').trigger('input');
 	});
 
 
@@ -1081,6 +1116,7 @@ function getChildrenInfo() {
 
             if($(this).data("step-name") == "Документы") return;
             if($(this).data("step-name") == "ЛичныеДанные") return;
+      			if($(this).data("step-name") == "КредитнаяИстори") return;
 
             nameStep = $(this).data("step-name");
             massData[nameStep] = {};
@@ -1107,6 +1143,32 @@ function getChildrenInfo() {
         });
         /*ЛичныеДанные END*/
 
+
+    /*Кредиты START*/
+      nameStep = "КредитнаяИстори";
+      massData[nameStep] = {};
+      $("[data-credit-type]").each(function(key,item){
+        var name = $(this).data("title");
+        massData[nameStep][key] = {};
+        massData[nameStep][key]['ВидКредита'] = name;
+        $(this).find("input,select").each(function () {
+          var namefild = $(this).attr("name");
+          var type = $(this).attr("type");
+          switch(type){
+            case "checkbox":
+            case "radio":
+              if($(this).prop("checked")) {
+                massData[nameStep][key][namefild] = $(this).val();
+              }
+            break;
+            default:
+              massData[nameStep][key][namefild] = $(this).val();
+            break;
+          }
+
+        })
+      })
+    /*Кредиты END*/
 
 /*Созаемщики START*/
       nameStep = "Созаемщики";

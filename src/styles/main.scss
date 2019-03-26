@@ -302,4 +302,24 @@ input::selection {
   overflow: hidden;
 }
 
+.form-chunk {
+	&-wrapper {
+		padding: 10px 0;
+		&-item {
+			padding: 10px 0;
+		}
+	}
+
+
+	&-btn {
+		color: #fd7902;
+		cursor: pointer;
+		padding: 10px 0;
+		transition: .3s;
+		&:hover {
+			text-shadow: 0px 0px 3px #fd7902;
+		}
+	}
+}
+
 

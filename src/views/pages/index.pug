@@ -547,9 +547,9 @@ block contain
                             input(type="checkbox", id="tourism", name="СДОрганизацииТуризм" data-input-group="SDO")
                             label(for="tourism") Туризм
                         div.form-group__check
-                            input(type="checkbox", id="other", name="СДОрганизацииИное" data-option data-input-group="SDO")
+                            input(type="checkbox", id="other", name="СДОрганизацииИное" data-option-1 data-input-group="SDO")
                             label(for="other") Иное
-                        div.form-group__text(data-option-field)
+                        div.form-group__text(data-option-field-1)
                             input(type="text", autocomplete="off", name="СДОрганизацииИное" data-input-group="SDO")
                             .form-cross
                     .form-row(data-group="СведенияООсновнойРаботе")
@@ -672,81 +672,98 @@ block contain
                                 input(type="checkbox", id="apartment", name="Квартира" data-active)
                                 label(for="apartment") Квартира
                             .form-group__active
-                                div.form-group__text                   
-                                    input(type="text", autocomplete="off", name="Адрес")
-                                    label(for="Адрес") Адрес
-                                    .form-cross
-                                .form-group_hidden                
-                                    div.form-group__check
-                                        input(type="radio", id="private-property", name="ТипСобственности" data-add-name="ТипСобственности" value="Частная собственность" data-close)
-                                        label(for="private-property") Частная собственность
-                                    div.form-group__check
-                                        input(type="radio", id="share-property", name="ТипСобственности" data-add-name="ТипСобственности" value="Долевая собственность" data-option)
-                                        label(for="share-property") Долевая собственность
-                                    div.form-group__text.form-group__text_pt(data-option-field)
-                                        input(type="text", autocomplete="off", name="РазмерДоли" data-procenty)
-                                        label(for="РазмерДоли") Указать размер доли
-                                        .form-cross
+                                .form-chunk
+                                    .form-chunk-wrapper
+                                        .form-chunk-wrapper-item
+                                            div.form-group__text                   
+                                                input(type="text", autocomplete="off", name="Адрес")
+                                                label(for="Адрес") Адрес
+                                                .form-cross
+                                            .form-group_hidden                
+                                                div.form-group__check
+                                                    input(type="radio", id="private-property", name="ТипСобственности" data-add-name="ТипСобственности" value="Частная собственность" data-close)
+                                                    label(for="private-property") Частная собственность
+                                                div.form-group__check
+                                                    input(type="radio", id="share-property", name="ТипСобственности" data-add-name="ТипСобственности" value="Долевая собственность" data-option)
+                                                    label(for="share-property") Долевая собственность
+                                                div.form-group__text.form-group__text_pt(data-option-field)
+                                                    input(type="text", autocomplete="off", name="РазмерДоли" data-procenty)
+                                                    label(for="РазмерДоли") Указать размер доли
+                                                    .form-cross
+                                    .form-chunk-btn Добавить
                         .data-active-wrapper               
                             div.form-group__check
                                 input(type="checkbox", id="room", name="Комната" data-active)
                                 label(for="room") Комната
                             .form-group__active
-                                div.form-group__text                   
-                                    input(type="text", autocomplete="off", name="Адрес")
-                                    label(for="Адрес") Адрес
-                                    .form-cross
-                                .form-group_hidden                
-                                    div.form-group__check
-                                        input(type="radio", id="private-property-1", name="ТипСобственности1" data-add-name="ТипСобственности" value="Частная собственность" data-close)
-                                        label(for="private-property-1") Частная собственность
-                                    div.form-group__check
-                                        input(type="radio", id="share-property-1", name="ТипСобственности1" data-add-name="ТипСобственности" value="Долевая собственность" data-option)
-                                        label(for="share-property-1") Долевая собственность
-                                    div.form-group__text.form-group__text_pt(data-option-field)
-                                        input(type="text", autocomplete="off", name="РазмерДоли" data-procenty)
-                                        label(for="РазмерДоли") Указать размер доли
-                                        .form-cross
+                                .form-chunk
+                                    .form-chunk-wrapper
+                                        .form-chunk-wrapper-item
+                                            div.form-group__text                   
+                                                input(type="text", autocomplete="off", name="Адрес")
+                                                label(for="Адрес") Адрес
+                                                .form-cross
+                                            .form-group_hidden                
+                                                div.form-group__check
+                                                    input(type="radio", id="private-property-1", name="ТипСобственности1" data-add-name="ТипСобственности" value="Частная собственность" data-close)
+                                                    label(for="private-property-1") Частная собственность
+                                                div.form-group__check
+                                                    input(type="radio", id="share-property-1", name="ТипСобственности1" data-add-name="ТипСобственности" value="Долевая собственность" data-option)
+                                                    label(for="share-property-1") Долевая собственность
+                                                div.form-group__text.form-group__text_pt(data-option-field)
+                                                    input(type="text", autocomplete="off", name="РазмерДоли" data-procenty)
+                                                    label(for="РазмерДоли") Указать размер доли
+                                                    .form-cross
+                                    .form-chunk-btn Добавить
                         .data-active-wrapper 
                             div.form-group__check
                                 input(type="checkbox", id="house", name="Дом" data-active)
                                 label(for="house") Дом
                             .form-group__active
-                                div.form-group__text                   
-                                    input(type="text", autocomplete="off", name="Адрес")
-                                    label(for="Адрес") Адрес
-                                    .form-cross
-                                .form-group_hidden                
-                                    div.form-group__check
-                                        input(type="radio", id="private-property-2", name="ТипСобственности2" data-add-name="ТипСобственности" value="Частная собственность" data-close)
-                                        label(for="private-property-2") Частная собственность
-                                    div.form-group__check
-                                        input(type="radio", id="share-property-2", name="ТипСобственности2" data-add-name="ТипСобственности" value="Долевая собственность" data-option)
-                                        label(for="share-property-2") Долевая собственность
-                                    div.form-group__text.form-group__text_pt(data-option-field)
-                                        input(type="text", autocomplete="off", name="РазмерДоли" data-procenty)
-                                        label(for="РазмерДоли") Указать размер доли
-                                        .form-cross
+                                .form-chunk
+                                    .form-chunk-wrapper
+                                        .form-chunk-wrapper-item
+                                            div.form-group__text                   
+                                                input(type="text", autocomplete="off", name="Адрес")
+                                                label(for="Адрес") Адрес
+                                                .form-cross
+                                            .form-group_hidden                
+                                                div.form-group__check
+                                                    input(type="radio", id="private-property-2", name="ТипСобственности2" data-add-name="ТипСобственности" value="Частная собственность" data-close)
+                                                    label(for="private-property-2") Частная собственность
+                                                div.form-group__check
+                                                    input(type="radio", id="share-property-2", name="ТипСобственности2" data-add-name="ТипСобственности" value="Долевая собственность" data-option)
+                                                    label(for="share-property-2") Долевая собственность
+                                                div.form-group__text.form-group__text_pt(data-option-field)
+                                                    input(type="text", autocomplete="off", name="РазмерДоли" data-procenty)
+                                                    label(for="РазмерДоли") Указать размер доли
+                                                    .form-cross
+                                    .form-chunk-btn Добавить
                         .data-active-wrapper            
                             div.form-group__check
                                 input(type="checkbox", id="land", name="ЗемельныйУчасток" data-active)
                                 label(for="land") Земельный участок
                             .form-group__active
-                                div.form-group__text                   
-                                    input(type="text", autocomplete="off", name="Адрес")
-                                    label(for="Адрес") Адрес
-                                    .form-cross
-                                .form-group_hidden                
-                                    div.form-group__check
-                                        input(type="radio", id="private-property-3", name="ТипСобственности3" data-add-name="ТипСобственности" value="Частная собственность" data-close)
-                                        label(for="private-property-3") Частная собственность
-                                    div.form-group__check
-                                        input(type="radio", id="share-property-3", name="ТипСобственности3" data-add-name="ТипСобственности" value="Долевая собственность" data-option)
-                                        label(for="share-property-3") Долевая собственность
-                                    div.form-group__text.form-group__text_pt(data-option-field)
-                                        input(type="text", autocomplete="off", name="РазмерДоли" data-procenty)
-                                        label(for="РазмерДоли") Указать размер доли
-                                        .form-cross
+                                .form-chunk
+                                    .form-chunk-wrapper
+                                        .form-chunk-wrapper-item
+                                            div.form-group__text                   
+                                                input(type="text", autocomplete="off", name="Адрес")
+                                                label(for="Адрес") Адрес
+                                                .form-cross
+                                            .form-group_hidden
+                                                div.form-group__check
+                                                    input(type="radio", id="private-property-3", name="ТипСобственности3" data-add-name="ТипСобственности" value="Частная собственность" data-close)
+                                                    label(for="private-property-3") Частная собственность
+                                                div.form-group__check
+                                                    input(type="radio", id="share-property-3", name="ТипСобственности3" data-add-name="ТипСобственности" value="Долевая собственность" data-option)
+                                                    label(for="share-property-3") Долевая собственность
+                                                div.form-group__text.form-group__text_pt(data-option-field)
+                                                    input(type="text", autocomplete="off", name="РазмерДоли" data-procenty)
+                                                    label(for="РазмерДоли") Указать размер доли
+                                                    .form-cross
+                                    .form-chunk-btn Добавить
+
                             
                     .form-row
                         h3.auto Транспорт в собственности
@@ -755,14 +772,18 @@ block contain
                                 input(type="checkbox", id="auto-property", name="Авто" data-hidden)
                                 label(for="auto-property") Транспорт в собственности
                             .form-group_hidden-content(data-hidden-content)
-                                div.form-group__text  
-                                    input(type="text", autocomplete="off", name="МодельАвто")
-                                    label(for="model") Марка / модель
-                                    .form-cross
-                                div.form-group__text                    
-                                    input(type="text", autocomplete="off", name="ГодВыпускаАвто")
-                                    label(for="age") Год выпуска / год приобретения
-                                    .form-cross
+                                .form-chunk
+                                    .form-chunk-wrapper
+                                        .form-chunk-wrapper-item
+                                            div.form-group__text  
+                                                input(type="text", autocomplete="off", name="МодельАвто")
+                                                label(for="model") Марка / модель
+                                                .form-cross
+                                            div.form-group__text                    
+                                                input(type="text", autocomplete="off", name="ГодВыпускаАвто")
+                                                label(for="age") Год выпуска / год приобретения
+                                                .form-cross
+                                    .form-chunk-btn Добавить
             .form-row_bb
                 .form-btns
                     .form-btn.form-btn__prev
