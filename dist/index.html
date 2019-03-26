@@ -310,7 +310,7 @@
                           <label for="widower">Вдовец / Вдова</label>
                         </div>
                       </div>
-                      <div class="form-row">
+                      <div class="form-row" data-group="ИзменениеФамилии">
                         <h3 class="name-change">Менялись ли ФИО</h3>
                         <div class="form-group_hidden">
                           <div class="form-group__check">
@@ -323,7 +323,7 @@
                                 <div class="form-cross"></div>
                               </div>
                               <div class="form-group__text">                                   
-                                <input type="text" autocomplete="off" name="ДатаИзменения" data-date>
+                                <input type="text" autocomplete="off" name="ДатаИзменения" data-passport-date>
                                 <label for="change-date">Дата изменения</label>
                                 <div class="form-cross"></div>
                               </div>
@@ -353,14 +353,14 @@
                               <div class="form-cross"></div>
                             </div>
                             <div class="form-group__text">                   
-                              <input type="text" autocomplete="off" name="ДатаРождения" data-date>
+                              <input type="text" autocomplete="off" name="ДатаРождения" data-passport-date>
                               <label for="child-birth-date">Дата рождения</label>
                               <div class="form-cross"></div>
                             </div>
                           </div>
                         </div>
                       </div>
-                      <div class="form-row">
+                      <div class="form-row" data-group="Образование">
                         <h3 class="education">Образование          </h3>
                         <div class="form-group__check">
                           <input type="radio" id="middle" name="ТипОбразования" data-add-name="ТипОбразования" value="среднее / неполное среднее" data-education>
@@ -388,7 +388,7 @@
                           <div class="form-cross">                  </div>
                         </div>
                       </div>
-                      <div class="form-row">
+                      <div class="form-row" data-group="АдрессРегистрации">
                         <h3 class="registration-adress">Адрес регистрации</h3>
                         <div class="form-group__text">                   
                           <input type="text" required data-required="1" data-type-required="" autocomplete="off" name="Индекс">
@@ -426,7 +426,7 @@
                           <div class="form-cross"></div>
                         </div>
                       </div>
-                      <div class="form-row">
+                      <div class="form-row" data-group="АдрессФактический">
                         <h3 class="real-registration-adress">Адрес фактического проживания совпадает с адресом регистрации?  </h3>
                         <div class="form-group_show">             
                           <div class="form-group__check">
@@ -491,7 +491,7 @@
           </div>
           <div class="form-block__content">
             <div class="form form-job-data">
-              <div class="form-row">
+              <div class="form-row" data-group="СведенияООсновнойРаботе">
                 <h3 class="name">Постоянное место работы</h3>
                 <div class="form-group__text">                   
                   <input type="text" required data-required="1" data-type-required="" autocomplete="off" name="МестоРаботыНаименование">
@@ -506,28 +506,28 @@
                   </select>
                 </div>
               </div>
-              <div class="form-row">
+              <div class="form-row" data-group="СведенияООсновнойРаботе">
                 <h3 class="employer-inn">ИНН работодателя</h3>
                 <div class="form-group__text">
                   <input type="text" autocomplete="off" name="ИННРаботодателя" placeholder="000000000000" data-inn>
                   <div class="form-cross"></div>
                 </div>
               </div>
-              <div class="form-row">
+              <div class="form-row" data-group="СведенияООсновнойРаботе">
                 <h3 class="employer-phone">Телефон организации-работодателя</h3>
                 <div class="form-group__text">
                   <input type="text" autocomplete="off" name="ТелефонРаботодателя" data-phone data-phone-city>
                   <div class="form-cross"></div>
                 </div>
               </div>
-              <div class="form-row">
+              <div class="form-row" data-group="СведенияООсновнойРаботе">
                 <h3 class="employer-site">Сайт организации-работодателя</h3>
                 <div class="form-group__text">
                   <input type="text" autocomplete="off" name="СайтРаботодателя" placeholder="google.ru">
                   <div class="form-cross"></div>
                 </div>
               </div>
-              <div class="form-row">
+              <div class="form-row" data-group="СведенияООсновнойРаботе">
                 <h3 class="employer-adress">Юридический адрес организации и фактический адрес    </h3>
                 <h3 class="employer-adress-legal">Юридический адрес</h3>
                 <div class="form-group__text">
@@ -566,7 +566,7 @@
                   <div class="form-cross"></div>
                 </div>
               </div>
-              <div class="form-row">
+              <div class="form-row" data-group="СведенияООсновнойРаботе">
                 <h3 class="employer-adress-real">Фактический адрес      </h3>
                 <div class="form-group_show">         
                   <div class="form-group__check">
@@ -612,90 +612,90 @@
                   </div>
                 </div>
               </div>
-              <div class="form-row">
+              <div class="form-row" data-group="СведенияООсновнойРаботе">
                 <h3 class="branch">Сфера деятельности организации                </h3>
                 <div class="form-group__check">
-                  <input type="checkbox" id="finance" name="СДОрганизацииФинансы">
+                  <input type="checkbox" id="finance" name="СДОрганизацииФинансы" data-input-group="SDO">
                   <label for="finance">Финансы / Банки / Страхование                </label>
                 </div>
                 <div class="form-group__check">
-                  <input type="checkbox" id="police" name="СДОрганизацииПравоохранительныеОрганы">
+                  <input type="checkbox" id="police" name="СДОрганизацииПравоохранительныеОрганы" data-input-group="SDO">
                   <label for="police">Правоохранительные органы                </label>
                 </div>
                 <div class="form-group__check">
-                  <input type="checkbox" id="education" name="СДОрганизацииОбразование">
+                  <input type="checkbox" id="education" name="СДОрганизацииОбразование" data-input-group="SDO">
                   <label for="education">Образование                </label>
                 </div>
                 <div class="form-group__check">
-                  <input type="checkbox" id="farming" name="СДОрганизацииХозяйство">
+                  <input type="checkbox" id="farming" name="СДОрганизацииХозяйство" data-input-group="SDO">
                   <label for="farming">Сельское хозяйство                </label>
                 </div>
                 <div class="form-group__check">
-                  <input type="checkbox" id="culture" name="СДОрганизацииКультура">
+                  <input type="checkbox" id="culture" name="СДОрганизацииКультура" data-input-group="SDO">
                   <label for="culture">Культура и искусство                </label>
                 </div>
                 <div class="form-group__check">
-                  <input type="checkbox" id="security" name="СДОрганизацииОхраннаяД">
+                  <input type="checkbox" id="security" name="СДОрганизацииОхраннаяД" data-input-group="SDO">
                   <label for="security">Охранная деятельность                </label>
                 </div>
                 <div class="form-group__check">
-                  <input type="checkbox" id="authorities" name="СДОрганизацииУправления">
+                  <input type="checkbox" id="authorities" name="СДОрганизацииУправления" data-input-group="SDO">
                   <label for="authorities">Органы власти и управления                </label>
                 </div>
                 <div class="form-group__check">
-                  <input type="checkbox" id="it" name="СДОрганизацииИТ">
+                  <input type="checkbox" id="it" name="СДОрганизацииИТ" data-input-group="SDO">
                   <label for="it">Информационные технологии                </label>
                 </div>
                 <div class="form-group__check">
-                  <input type="checkbox" id="trading" name="СДОрганизацииТорговля">
+                  <input type="checkbox" id="trading" name="СДОрганизацииТорговля" data-input-group="SDO">
                   <label for="trading">Оптовая и розничная торговля                </label>
                 </div>
                 <div class="form-group__check">
-                  <input type="checkbox" id="medicine" name="СДОрганизацииМедицина">
+                  <input type="checkbox" id="medicine" name="СДОрганизацииМедицина" data-input-group="SDO">
                   <label for="medicine">Медицина                </label>
                 </div>
                 <div class="form-group__check">
-                  <input type="checkbox" id="production" name="СДОрганизацииПроизводство">
+                  <input type="checkbox" id="production" name="СДОрганизацииПроизводство" data-input-group="SDO">
                   <label for="production">Производство                </label>
                 </div>
                 <div class="form-group__check">
-                  <input type="checkbox" id="transport" name="СДОрганизацииТранспорт">
+                  <input type="checkbox" id="transport" name="СДОрганизацииТранспорт" data-input-group="SDO">
                   <label for="transport">Транспорт                </label>
                 </div>
                 <div class="form-group__check">
-                  <input type="checkbox" id="industry" name="СДОрганизацииПромышленность">
+                  <input type="checkbox" id="industry" name="СДОрганизацииПромышленность" data-input-group="SDO">
                   <label for="industry">Промышленность                </label>
                 </div>
                 <div class="form-group__check">
-                  <input type="checkbox" id="law" name="СДОрганизацииЮриспруденция">
+                  <input type="checkbox" id="law" name="СДОрганизацииЮриспруденция" data-input-group="SDO">
                   <label for="law">Юриспруденция                </label>
                 </div>
                 <div class="form-group__check">
-                  <input type="checkbox" id="construction" name="СДОрганизацииСтроительство">
+                  <input type="checkbox" id="construction" name="СДОрганизацииСтроительство" data-input-group="SDO">
                   <label for="construction">Строительство                </label>
                 </div>
                 <div class="form-group__check">
-                  <input type="checkbox" id="science" name="СДОрганизацииНаука">
-                  <label for="science">Наука                </label>
+                  <input type="checkbox" id="science" name="СДОрганизацииНаука" data-input-group="SDO">
+                  <label for="science">Наука</label>
                 </div>
                 <div class="form-group__check">
-                  <input type="checkbox" id="service" name="СДОрганизацииУслуги">
-                  <label for="service">Услуги                </label>
+                  <input type="checkbox" id="service" name="СДОрганизацииУслуги" data-input-group="SDO">
+                  <label for="service">Услуги</label>
                 </div>
                 <div class="form-group__check">
-                  <input type="checkbox" id="tourism" name="СДОрганизацииТуризм">
-                  <label for="tourism">Туризм                </label>
+                  <input type="checkbox" id="tourism" name="СДОрганизацииТуризм" data-input-group="SDO">
+                  <label for="tourism">Туризм</label>
                 </div>
                 <div class="form-group__check">
-                  <input type="checkbox" id="other" name="СДОрганизацииИное" data-option>
+                  <input type="checkbox" id="other" name="СДОрганизацииИное" data-option data-input-group="SDO">
                   <label for="other">Иное</label>
                 </div>
                 <div class="form-group__text" data-option-field>
-                  <input type="text" autocomplete="off" name="СДОрганизацииИное">
+                  <input type="text" autocomplete="off" name="СДОрганизацииИное" data-input-group="SDO">
                   <div class="form-cross"></div>
                 </div>
               </div>
-              <div class="form-row">
+              <div class="form-row" data-group="СведенияООсновнойРаботе">
                 <h3 class="employer-size">Численность персонала</h3>
                 <div class="form-group__radio">                   
                   <input type="radio" id="employer-size-1" name="Численность персонала" value="до 10">
@@ -791,8 +791,8 @@
                   <div class="form-cross"></div>
                 </div>
               </div>
-              <div class="form-row">
-                <h3 class="additional-income">Дополнительный доход (необязательно)        </h3>
+              <div class="form-row" data-group="СведенияОДополнительномДоходе">
+                <h3 class="additional-income">Дополнительный доход (необязательно)</h3>
                 <div class="form-group__text">                   
                   <input type="text" autocomplete="off" name="ДДНаименованиеРаботодателя" placeholder="ОАО Газпром">
                   <label for="additional-employer-name">Наименование работодателя</label>
@@ -1021,14 +1021,14 @@
                 </div>
               </div>
               <div class="form-hidden-content">
-                <div class="form-content-credit">
+                <div class="form-content-credit" data-credit-type="1">
                   <div class="form-row">
                     <div class="form-content-credit__head">Ипотечный кредит</div>
                   </div>
                   <div class="form-row">
                     <h3 class="bank">Банк</h3>
                     <div class="form-group__text">
-                      <input type="text" autocomplete="off" name="Банк" data-add-name="Банк" placeholder="Сбербанк">
+                      <input type="text" required autocomplete="off" name="Банк" data-add-name="Банк" placeholder="Сбербанк">
                       <div class="form-cross"></div>
                     </div>
                   </div>
@@ -1050,28 +1050,28 @@
                   <div class="form-row">
                     <h3 class="credit-sum">Сумма кредита</h3>
                     <div class="form-group__text">
-                      <input type="text" autocomplete="off" name="СуммаКредита" data-add-name="СуммаКредита" data-cost data-minimum placeholder="1 000 000 руб.">
+                      <input type="text" required autocomplete="off" name="СуммаКредита" data-add-name="СуммаКредита" data-cost data-minimum placeholder="1 000 000 руб.">
                       <div class="form-cross"></div>
                     </div>
                   </div>
                   <div class="form-row">
                     <h3 class="monthly-payment">Ежемесячная сумма к погашению</h3>
                     <div class="form-group__text">
-                      <input type="text" autocomplete="off" name="ЕжемСуммаПогашения" data-add-name="ЕжемСуммаПогашения" data-cost data-minimum placeholder="20 000 руб.">
+                      <input type="text" required autocomplete="off" name="ЕжемСуммаПогашения" data-add-name="ЕжемСуммаПогашения" data-cost data-minimum placeholder="20 000 руб.">
                       <div class="form-cross"></div>
                     </div>
                   </div>
                   <div class="form-row">
                     <h3 class="loan-balance">Остаток непогашенной задолженности</h3>
                     <div class="form-group__text">
-                      <input type="text" autocomplete="off" name="ОстатокЗадолжности" data-add-name="ОстатокЗадолжности" data-cost data-minimum placeholder="300 000 руб.">
+                      <input type="text" required autocomplete="off" name="ОстатокЗадолжности" data-add-name="ОстатокЗадолжности" data-cost data-minimum placeholder="300 000 руб.">
                       <div class="form-cross"></div>
                     </div>
                   </div>
                   <div class="form-row">
                     <h3 class="repayment-period">Срок погашения</h3>
                     <div class="form-group__text">
-                      <input type="text" autocomplete="off" name="СрокПогашения" data-add-name="СрокПогашения" placeholder="2 года">
+                      <input type="text" required autocomplete="off" name="СрокПогашения" data-add-name="СрокПогашения" placeholder="2 года">
                       <div class="form-cross"></div>
                     </div>
                   </div>
@@ -1096,7 +1096,6 @@
                 <h3 class="comments">Коментарии</h3>
                 <div class="form-group__text">
                   <input type="text" autocomplete="off" name="Коментарии">
-                  <div class="form-cross"></div>
                 </div>
               </div>
             </div>
@@ -1118,49 +1117,49 @@
                 <h3 class="passport">Паспорт</h3>
                 <div class="form-group__file">
                   <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить паспорт</span>
-                    <input type="file" name="Паспорт" multiple>
+                    <input type="file" name="Паспорт" multiple><span class="file-uploaded"></span>
                   </label>
                 </div>
                 <h3 class="passport">Трудовая книга</h3>
                 <div class="form-group__file">
                   <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить трудовую книгу</span>
-                    <input type="file" name="ТрудоваяКнига" multiple>
+                    <input type="file" name="ТрудоваяКнига" multiple><span class="file-uploaded"></span>
                   </label>
                 </div>
                 <h3 class="passport">Свидетельство о браке</h3>
                 <div class="form-group__file">
                   <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить свидетельство о браке</span>
-                    <input type="file" name="СвидетельсвоОБраке" multiple>
+                    <input type="file" name="СвидетельсвоОБраке" multiple><span class="file-uploaded"></span>
                   </label>
                 </div>
                 <h3 class="passport">Свидетельство о рождении детей</h3>
                 <div class="form-group__file">
                   <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить свидетельство о рождении детей</span>
-                    <input type="file" name="СвидетельствоДетей" multiple>
+                    <input type="file" name="СвидетельствоДетей" multiple><span class="file-uploaded"></span>
                   </label>
                 </div>
                 <h3 class="passport">СНИЛС</h3>
                 <div class="form-group__file">
                   <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить СНИЛС</span>
-                    <input type="file" name="СНИЛС" multiple>
+                    <input type="file" name="СНИЛС" multiple><span class="file-uploaded"></span>
                   </label>
                 </div>
                 <h3 class="passport">ИНН</h3>
                 <div class="form-group__file">
                   <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить ИНН</span>
-                    <input type="file" name="ИНН" multiple>
+                    <input type="file" name="ИНН" multiple><span class="file-uploaded"></span>
                   </label>
                 </div>
                 <h3 class="passport">Документ, подтверждающий доход</h3>
                 <div class="form-group__file">
                   <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить документ, подтверждающий доход</span>
-                    <input type="file" name="Доход" multiple>
+                    <input type="file" name="Доход" multiple><span class="file-uploaded"></span>
                   </label>
                 </div>
                 <h3 class="passport">Накопительная Ипотечная Система, Материнский капитал, выписка со счета Материнского капитала, субсидии, памятки</h3>
                 <div class="form-group__file">
                   <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить другие документы</span>
-                    <input type="file" name="ДопДокументы" multiple>
+                    <input type="file" name="ДопДокументы" multiple><span class="file-uploaded"></span>
                   </label>
                 </div>
               </div>

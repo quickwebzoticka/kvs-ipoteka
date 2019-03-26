@@ -736,10 +736,13 @@ function init() {
 			}
 		});
 		let compare = countInputs == countFilledInputs;
+		console.log(`${compare} : ${countInputs} : ${countFilledInputs}`);
 		if (compare || (countInputs == 0 && countFilledInputs == 0)) {
-			$(this).closest('.form-block.active').find('.form-btn.form-btn__next').addClass('active');
+			console.log(1);
+			$('.form-block.active').find('.form-btn.form-btn__next').addClass('active');
 		} else {
-			$(this).closest('.form-block.active').find('.form-btn.form-btn__next').removeClass('active');
+			console.log(2);
+			$('.form-block.active').find('.form-btn.form-btn__next').removeClass('active');
 		}
 	});
 
@@ -820,12 +823,16 @@ function init() {
 
 	$(document).on('change', '[data-option]', function() {
 		if ($(this).prop('checked')) {
-			$(this).closest('.form-row').find('[data-option-field]').find('input').attr('required', true);
-			$(this).closest('.form-row').find('[data-option-field]').slideDown(300);
+			$(this).closest('.data-active-wrapper').find('[data-option-field]').find('input').each(function() {
+				$(this).attr('required', true);
+			})
+			$(this).closest('.data-active-wrapper').find('[data-option-field]').slideDown(300);
 			$('input[required]').trigger('input');
 		} else {
-			$(this).closest('.form-row').find('[data-option-field]').slideUp(300, function() {
-			$(this).closest('.form-row').find('[data-option-field]').find('input').attr('required', false);
+			$(this).closest('.data-active-wrapper').find('[data-option-field]').slideUp(300, function() {
+			$(this).closest('.data-active-wrapper').find('[data-option-field]').find('input').each(function() {
+				$(this).attr('required', false);
+			});
 			$('input[required]').trigger('input');
 			});
 		}
@@ -875,12 +882,16 @@ function init() {
 	$(document).on('change', '[data-active]', function() {
 		if ($(this).prop('checked')) {
 			$(this).closest('.data-active-wrapper').find('.form-group__active').slideDown(300, function() {
-				$(this).closest('.data-active-wrapper').find('.form-group__active').find('input').attr('required', true);
+				$(this).closest('.data-active-wrapper').find('.form-group__active').find('input[type="text"]:not([data-procenty])').each(function() {
+					$(this).attr('required', true);
+				});
 				$('input[required]').trigger('input');
 			});
 		} else {
 			$(this).closest('.data-active-wrapper').find('.form-group__active').slideUp(300, function() {
-				$(this).closest('.data-active-wrapper').find('.form-group__active').find('input').attr('required', false);
+				$(this).closest('.data-active-wrapper').find('.form-group__active').find('input[type="text"]').each(function() {
+					$(this).attr('required', false);
+				});
 				$('input[required]').trigger('input');
 			});
 		}
@@ -905,7 +916,7 @@ function init() {
 			$('[data-credit-trigger]').eq(0).prop('checked', false);
 			let tempContent = creditHistory.clone();
 
-			tempContent.attr('data-credit-type', `${tempIndex}`);
+			
 			tempContent.find('input[type="radio"]').each(function() {
 				let tempName = $(this).attr('id');
 				$(this).attr('id', `${tempName}-${tempIndex}`);
@@ -914,48 +925,74 @@ function init() {
 
 			if (tempIndex == 1) {
 				tempContent.find('.form-content-credit__head').text('Ипотечный кредит');
+				tempContent.attr('data-title', `Ипотечный кредит`);
+				tempContent.attr('data-credit-type', `${tempIndex}`);
+
 			}
 
 			if (tempIndex == 2) {
 				tempContent.find('.form-content-credit__head').text('Автокредит');
+				tempContent.attr('data-title', `Автокредит`);
+				tempContent.attr('data-credit-type', `${tempIndex}`);
+
 			}
 
 			if (tempIndex == 3) {
 				tempContent.find('.form-content-credit__head').text('Потребительский кредит');
+				tempContent.attr('data-title', `Потребительский кредит`);
+				tempContent.attr('data-credit-type', `${tempIndex}`);
+
 			}
 
 			if (tempIndex == 4) {
 				tempContent.find('.form-content-credit__head').text('Кредитная карта');
+				tempContent.attr('data-title', `Кредитная карта`);
+				tempContent.attr('data-credit-type', `${tempIndex}`);
 			}
 
 			tempWrapper.append(tempContent);
 			tempWrapper.slideDown(300);
+			$('input[required]').trigger('input');
 		}
 
 		if (tempIndex !== 0 && !$(this).prop('checked')) {
 			$(document).find(`[data-credit-type="${tempIndex}"]`).slideUp(300, function() {
 				$(this).remove();
+				$('input[required]').trigger('input');
+				let count = 0;
+
+				$('[data-credit-trigger]').each(function() {
+					if ($(this).prop('checked')) {
+						++count;
+					}
+				});
+
+				if (!count) {
+					$('[data-credit-trigger]').eq(0).prop('checked', true);
+				}
 			})
 		}
 
 		if (tempIndex == 0 && $(this).prop('checked')) {
-			e.preventDefault();
 			tempWrapper.slideUp(300, function() {
 				$('.form-content-credit').remove();
+				$('input[required]').trigger('input');
 			});
 			$('[data-credit-trigger]').prop('checked', false);
 			$(this).prop('checked', true);
-			return false;
+
+			
+			// $('.form-block.active').find('.form-btn.form-btn__next').addClass('active');
 		}
 
 		if (tempIndex == 0 && !$(this).prop('checked')) {
-			e.preventDefault();
 			tempWrapper.slideUp(300, function() {
 				$('.form-content-credit').remove();
 			});
 			$('[data-credit-trigger]').prop('checked', false);
 			$(this).prop('checked', true);
-			return false;
+
+			$('input[required]').trigger('input');
 		}
 	});
 
@@ -972,6 +1009,20 @@ function init() {
 		}
 
 		$(this).val(`${val} %`);
+		
+	});
+
+
+	$(document).on('change', 'input[type="file"]', function() {
+		let titleWrapper = $(this).closest('.form-group__file-label');
+		console.log(this.files[0].name);
+		// $.each(this.files, function(index) {
+		// 		titleWrapper.append(`<div class="file-uploaded">${this.files[index].name}</div>`)
+		// });
+
+		for (let i = 0; i < this.files.length; i++) {
+			titleWrapper.append(`<div class="file-uploaded">${this.files[i].name}</div>`)
+		}
 		
 	});
 
