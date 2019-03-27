@@ -19,10 +19,14 @@ block contain
                             input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="Имя", data-name id="main-name-2")
                             label(for="name") Имя
                             .form-cross
-                        div.form-group__text         
-                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="Отчество", data-name id="main-name-3")
-                            label(for="name") Отчество
-                            .form-cross
+                        .form-group_show
+                            div.form-group__text(data-show-content)
+                                input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="Отчество", data-name id="main-name-3")
+                                label(for="name") Отчество
+                                .form-cross
+                            div.form-group__check.form-group__check_pt
+                                input(type="checkbox", id="exist-middle-name", name="НаличиеОтчества ???" data-show)
+                                label(for="exist-middle-name") Нет отчества
                         div.form-group__text                    
                             input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="ДеньРождения", data-date)
                             label(for="birth-date") Дата рождения
@@ -55,13 +59,13 @@ block contain
                             input(type="radio", id="credit-target-commers", name="ЦельКредита" value="Покупка коммерческой недвижимости")
                             label(for="credit-target-commers") Покупка коммерческой недвижимости
                     .form-row
-                        h3.cost Стоимость ОН в новостройке
+                        h3.cost Стоимость квартиры в новостройке
                         div.form-group__text                    
                             input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="СтоимостьОН" data-cost data-credit-main)
                             label(for="СтоимостьОН") Стоимость
                             .form-cross
                     .form-row
-                        h3.initial-contribution Первоначальный взнос, в руб.
+                        h3.initial-contribution Первоначальный взнос, в руб. <span class="text-small">(только собственные денежные средства)</span>
                         div.form-group__text                    
                             input(type="text", autocomplete="off", name="ПервоначальныйВзносР" data-cost data-credit-first disabled)
                             label(for="ПервоначальныйВзносР") Первоначальный взнос

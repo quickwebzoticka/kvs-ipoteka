@@ -131,6 +131,11 @@ function init() {
 	$('[data-hidden-radio-content]').hide();
 
 
+	$(document).on('click', '[data-mono]', function() {
+
+	});
+
+
 	let anketa = $('.form-tabs-container').clone();
 	let link = $('.form-tabs-nav__link-add').clone();
 
@@ -162,7 +167,7 @@ function init() {
 			});
 
 			$('.form-tabs-container').eq(count).find('input[type="radio"]').each(function(index) {
-				console.log($(this).attr('name'))
+				//console.log($(this).attr('name'))
 				if (!$(this).attr('name') == 0) {
 
 					let temp = $(this).attr('name');
@@ -183,7 +188,7 @@ function init() {
 
 		let thisIndex = $(this).index('.form-tabs-nav__link');
 
-		console.log(thisIndex);
+		//console.log(thisIndex);
 
 		$('.form-tabs-container').removeClass('active').eq(thisIndex).addClass('active');
 	});
@@ -192,8 +197,8 @@ function init() {
 	$(document).on('change', '[name="ЦельКредита"]', function() {
 		let temp = $(this).index('[name="ЦельКредита"]')
 
-		if (temp == 0) return $('.cost').text('Стоимость квартиры в новостройке')
-		if (temp == 1) return $('.cost').text('Стоимость квартиры в готовой недвижимости')
+		if (temp == 0) return $('.cost').text('Стоимость ОН в новостройке')
+		if (temp == 1) return $('.cost').text('Стоимость ОН в готовой недвижимости')
 		if (temp == 2) return $('.cost').text('Стоимость коммерческой недвижимости')
 
 
@@ -206,7 +211,7 @@ function init() {
 		let science = $(this).closest('.form-row').find('[data-science]');
 		let scienceWrapper = $(this).closest('.form-row').find('.form-group__check_sd');
 
-		console.log(11);
+		//console.log(11);
 
 
 
@@ -249,12 +254,6 @@ function init() {
 
 	$(document).on('change', '[data-date]', function(){
 			let val = $(this).val();
-			let date = new Date();
-
-			let currentYear = date.getFullYear();
-
-			let maxAge = currentYear - 75;
-			let minAge = currentYear - 18;
 
 			val = val.split('.');
 
@@ -266,12 +265,8 @@ function init() {
 				val[1] = 12;
 			}
 
-			if (val[2] > minAge) {
+			if (val[2] > 2001) {
 				val[2] = 2001;
-			}
-
-			if (val[2] < maxAge) {
-				val[2] = maxAge;
 			}
 
 			val = val.join('.');
@@ -742,12 +737,12 @@ function init() {
 			}
 		});
 		let compare = countInputs == countFilledInputs;
-		console.log(`${compare} : ${countInputs} : ${countFilledInputs}`);
+		//console.log(`${compare} : ${countInputs} : ${countFilledInputs}`);
 		if (compare || (countInputs == 0 && countFilledInputs == 0)) {
-			console.log(1);
+			//console.log(1);
 			$('.form-block.active').find('.form-btn.form-btn__next').addClass('active');
 		} else {
-			console.log(2);
+			//console.log(2);
 			$('.form-block.active').find('.form-btn.form-btn__next').removeClass('active');
 		}
 	});
@@ -905,6 +900,7 @@ function init() {
 	$(document).on('change', '[data-active]', function() {
 		if ($(this).prop('checked')) {
 			$(this).closest('.data-active-wrapper').find('.form-group__active').slideDown(300, function() {
+                $(this).addClass("visible-active-wrapper");
 				$(this).closest('.data-active-wrapper').find('.form-group__active').find('input[type="text"]:not([data-procenty])').each(function() {
 					$(this).attr('required', true);
 				});
@@ -912,6 +908,7 @@ function init() {
 			});
 		} else {
 			$(this).closest('.data-active-wrapper').find('.form-group__active').slideUp(300, function() {
+                $(this).removeClass("visible-active-wrapper");
 				$(this).closest('.data-active-wrapper').find('.form-group__active').find('input[type="text"]').each(function() {
 					$(this).attr('required', false);
 				});
@@ -1071,7 +1068,7 @@ function init() {
 
 
 
-function getChildrenInfo() {
+	function getChildrenInfo() {
         var massDopData = {};
         var data = $('.form-block[data-step-name="ЛичныеДанные"]'),
             children = data.find(".form-tabs-container:not(.soz) .children-wrapper");

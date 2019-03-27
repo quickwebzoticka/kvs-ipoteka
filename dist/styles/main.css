@@ -1255,4 +1255,8 @@ input::selection {
   .form-chunk-btn:hover {
     text-shadow: 0px 0px 3px #fd7902; }
 
+.text-small {
+  font-size: 12px;
+  color: #999999; }
+
 /*# sourceMappingURL=maps/main.css.map */

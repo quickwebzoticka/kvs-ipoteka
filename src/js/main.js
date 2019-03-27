@@ -131,11 +131,6 @@ function init() {
 	$('[data-hidden-radio-content]').hide();
 
 
-	$(document).on('click', '[data-mono]', function() {
-
-	});
-
-
 	let anketa = $('.form-tabs-container').clone();
 	let link = $('.form-tabs-nav__link-add').clone();
 
@@ -197,8 +192,8 @@ function init() {
 	$(document).on('change', '[name="ЦельКредита"]', function() {
 		let temp = $(this).index('[name="ЦельКредита"]')
 
-		if (temp == 0) return $('.cost').text('Стоимость ОН в новостройке')
-		if (temp == 1) return $('.cost').text('Стоимость ОН в готовой недвижимости')
+		if (temp == 0) return $('.cost').text('Стоимость квартиры в новостройке')
+		if (temp == 1) return $('.cost').text('Стоимость квартиры в готовой недвижимости')
 		if (temp == 2) return $('.cost').text('Стоимость коммерческой недвижимости')
 
 
@@ -254,6 +249,12 @@ function init() {
 
 	$(document).on('change', '[data-date]', function(){
 			let val = $(this).val();
+			let date = new Date();
+
+			let currentYear = date.getFullYear();
+
+			let maxAge = currentYear - 75;
+			let minAge = currentYear - 18;
 
 			val = val.split('.');
 
@@ -265,8 +266,12 @@ function init() {
 				val[1] = 12;
 			}
 
-			if (val[2] > 2001) {
+			if (val[2] > minAge) {
 				val[2] = 2001;
+			}
+
+			if (val[2] < maxAge) {
+				val[2] = maxAge;
 			}
 
 			val = val.join('.');
@@ -1109,6 +1114,34 @@ function getChildrenInfo() {
         /*Документы END*/
     }
 
+    function getData(obj) {
+        var namefild = $(obj).attr("name");
+        if(!namefild) return false;
+        var type = $(obj).attr("type");
+        var result = [];
+        switch(type){
+            case "checkbox":
+                if ($(obj).prop("checked")) {
+                    result['data'] = 1;
+                }else{
+                    result['data'] = 0;
+				}
+                break;
+            case "radio":
+                if($(obj).prop("checked")) {
+                    result['data'] = $(obj).val();
+                }else{
+                	return false;
+				}
+            break;
+            default:
+                result['data'] = $(obj).val();
+            break;
+        }
+        result['name'] = namefild;
+        return result;
+    }
+
     function readForm(){
         /*Чтение данных START*/
         var massData = {}
@@ -1116,154 +1149,200 @@ function getChildrenInfo() {
 
             if($(this).data("step-name") == "Документы") return;
             if($(this).data("step-name") == "ЛичныеДанные") return;
-      			if($(this).data("step-name") == "КредитнаяИстори") return;
+            if($(this).data("step-name") == "КредитнаяИстори") return;
+            if($(this).data("step-name") == "Активы") return;
 
             nameStep = $(this).data("step-name");
             massData[nameStep] = {};
             $(this).find(".form-row:not(.children-wrapper):not([data-group]) input, .form-row:not(.children-wrapper):not([data-group]) select").each(function () {
-                var namefild = $(this).attr("name");
-                if(!massData[nameStep][namefild]) massData[nameStep][namefild] = {};
-                if(namefild) {
-                    massData[nameStep][namefild] = $(this).val();
+                var itemData = getData(this);
+                if(itemData !== false) {
+                    massData[nameStep][itemData['name']] = itemData['data'];
                 }
             })
         });
         /*Чтение данных END*/
 
         /*ЛичныеДанные START*/
+        massData = {};
         nameStep = "ЛичныеДанные";
         massData[nameStep] = {};
         var data = $('.form-block[data-step-name="ЛичныеДанные"]');
         data.find(".form-tabs-container:not(.soz) .form-row:not(.children-wrapper):not([data-group]) input, .form-tabs-container:not(.soz) .form-row:not(.children-wrapper):not([data-group]) select").each(function () {
-          var namefild = $(this).attr("name");
-            if(!massData[nameStep][namefild]) massData[nameStep][namefild] = {};
-            if(namefild) {
-                massData[nameStep][namefild] = $(this).val();
-            }
-        });
-        /*ЛичныеДанные END*/
-
-
-    /*Кредиты START*/
-      nameStep = "КредитнаяИстори";
-      massData[nameStep] = {};
-      $("[data-credit-type]").each(function(key,item){
-        var name = $(this).data("title");
-        massData[nameStep][key] = {};
-        massData[nameStep][key]['ВидКредита'] = name;
-        $(this).find("input,select").each(function () {
-          var namefild = $(this).attr("name");
-          var type = $(this).attr("type");
-          switch(type){
-            case "checkbox":
-            case "radio":
-              if($(this).prop("checked")) {
-                massData[nameStep][key][namefild] = $(this).val();
-              }
-            break;
-            default:
-              massData[nameStep][key][namefild] = $(this).val();
-            break;
+          var itemData = getData(this);
+          if(itemData !== false) {
+              massData[nameStep][itemData['name']] = itemData['data'];
           }
-
-        })
-      })
-    /*Кредиты END*/
-
-/*Созаемщики START*/
-      nameStep = "Созаемщики";
-      massData[nameStep] = {};
-      data = $('.form-block[data-step-name="ЛичныеДанные"] .form-tabs-container.soz');
-      $.each(data,function (key,value) {
-        massData[nameStep][key] = {};
-        $(this).find(".form-row:not(.children-wrapper):not([data-group]) input,.form-row:not(.children-wrapper):not([data-group]) select").each(function () {
-            var namefild = $(this).attr("name");
-            if(!massData[nameStep][key][namefild]) massData[nameStep][key][namefild] = {};
-            if(namefild) {
-                massData[nameStep][key][namefild] = $(this).val();
-            }
         });
-        $(this).find("[data-group]").each(function () {
-            var stepName = nameStep;
-            var groupName = $(this).data("group");
-            if(!massData[stepName][key][groupName]) massData[stepName][key][groupName] = {};
-            $(this).find(" input, select").each(function () {
-                var namefild = $(this).attr("name");
-                if(!massData[stepName][key][groupName][namefild]) massData[stepName][key][groupName][namefild] = {};
-                if(namefild) {
-                    massData[stepName][key][groupName][namefild] = $(this).val();
+        console.log(massData);
+        /*ЛичныеДанные END*/
+		/*Кредиты START*/
+		  nameStep = "КредитнаяИстори";
+		  massData[nameStep] = {};
+		  $("[data-credit-type]").each(function(key,item){
+			var name = $(this).data("title");
+			massData[nameStep][key] = {};
+			massData[nameStep][key]['ВидКредита'] = name;
+			$(this).find("input,select").each(function () {
+                var itemData = getData(this);
+                if(itemData !== false) {
+                    massData[nameStep][itemData['name']] = itemData['data'];
                 }
+			})
+		  })
+		/*Кредиты END*/
+		/*Активы START*/
+			nameStep = "Активы";
+			massData[nameStep] = {};
+			data = $('.form-block[data-step-name="Активы"]');
+			/*Недвижимость START*/
+			$(data).find(".data-active-wrapper").each(function(){
+				var typecredit = $(this).find(".form-group__check input").attr("name");
+				var item = $(this).find(".visible-active-wrapper .form-chunk-wrapper-item");
+				if(item.length) {
+                    massData[nameStep][typecredit] = {};
+                    $.each(item,function (key,item) {
+                        massData[nameStep][typecredit][key] = {};
+                        $(this).find("input,select").each(function () {
+                            var itemData = getData(this);
+                            if(itemData !== false) {
+                                massData[nameStep][typecredit][key][itemData['name']] = itemData['data'];
+                            }
+                        });
+                    });
+				}
+			});
+			/*Недвижимость END*/
+			/*Транспорт в собственности START*/
+			var avtoinput = $("#auto-property");
+       		var contaner = $(avtoinput).parents(".form-row");
+        	typecredit = $(avtoinput).attr("name");
+        	massData[nameStep][typecredit] ={};
+            contaner.find(".form-chunk-wrapper-item").each(function (key,item) {
+                massData[nameStep][typecredit][key] = {};
+                $(this).find("input,select").each(function () {
+                    var itemData = getData(this);
+                    if(itemData !== false) {
+                        massData[nameStep][typecredit][key][itemData['name']] = itemData['data'];
+                    }
+				});
             });
-        });
-    })
-        /*Созаемщики END*/
-
-    /*Чтение групп*/
-    $("[data-group]").each(function () {
-      var stepName = $(this).parents(".form-block").data("step-name");
-      var groupName = $(this).data("group");
+			/*Транспорт в собственности END*/
+		/*Активы END*/
+		/*Созаемщики START*/
+			nameStep = "Созаемщики";
+			massData[nameStep] = {};
+			data = $('.form-block[data-step-name="ЛичныеДанные"] .form-tabs-container.soz');
+			$.each(data,function (key,value) {
+				massData[nameStep][key] = {};
+				$(this).find(".form-row:not(.children-wrapper):not([data-group]) input,.form-row:not(.children-wrapper):not([data-group]) select").each(function () {
+                    var itemData = getData(this);
+                    if(itemData !== false) {
+                        massData[nameStep][key][namefild] = itemData;
+					}
+				});
+				$(this).find("[data-group]").each(function () {
+					var stepName = nameStep;
+					var groupName = $(this).data("group");
+					if(!massData[stepName][key][groupName]) massData[stepName][key][groupName] = {};
+					$(this).find(" input, select").each(function () {
+                        var itemData = getData(this);
+                        if(itemData !== false) {
+                            massData[nameStep][key][itemData['name']] = itemData['data'];
+                        }
+					});
+				});
+			})
+		/*Созаемщики END*/
+    	/*Чтение групп*/
+		$("[data-group]").each(function () {
+		  var stepName = $(this).parents(".form-block").data("step-name");
+		  var groupName = $(this).data("group");
             var type = "";
             if(!massData[stepName][groupName]) massData[stepName][groupName] = {};
             $(this).find("input,select").each(function () {
                 var namefild = $(this).attr("name");
+                var type = $(this).attr("type");
                 if(namefild) {
-                    inputgroup = $(this).attr('data-input-group');
-                  if (typeof inputgroup !== typeof undefined && inputgroup !== false) {
-                        type = $(this).attr("type");
-                        id = $(this).attr("id");
-            switch (type) {
-              case "checkbox":
-                var label = $("label[for="+id+"]");
-                if(id && label.length && $(this).prop('checked')) {
-                    str = $(label).text().replace(/\s+/g, '');
-                    massData[stepName][groupName][inputgroup] += massData[stepName][groupName][inputgroup] ? str : ", " + str;
-                }
-              break;
+                      inputgroup = $(this).attr('data-input-group');
+					  if (typeof inputgroup !== typeof undefined && inputgroup !== false) {
+                          	// Запись значений в строку сейчас работает тольк для checkbox все остальные параметры
+                          	// Будут обрабатываться как обычно
+							id = $(this).attr("id");
+							switch (type) {
+							  	case "checkbox":
+									var label = $("label[for="+id+"]");
+									if(id && label.length && $(this).prop('checked')) {
+										str = $(label).text().replace(/\s+/g, '');
+										massData[stepName][groupName][inputgroup] += massData[stepName][groupName][inputgroup] ? str : ", " + str;
+									}
+								break;
+								default:
+                                    massData[stepName][groupName][namefild] = $(this).val();
+								break;
+							}
+					  }else{
+                        switch(type){
+                            case "checkbox":
+                                if ($(this).prop("checked")) {
+                                    result = 1;
+                                }else{
+                                    result = 0;
+                                }
+                                break;
+                            case "radio":
+                                if($(this).prop("checked")) {
+                                    result = $(this).val();
+                                }
+                                break;
+                            default:
+                                result = $(this).val();
+                            break;
                         }
-                    }else{
-                        massData[stepName][groupName][namefild] = $(this).val();
-          }
+						massData[stepName][groupName][namefild] = result;
+					  }
                 }
             });
         });
         /*Чтение групп*/
-        var children = getChildrenInfo();
-    if(children){
-      massData["ЛичныеДанные"]["Дети"] = children;
-    }
+		var children = getChildrenInfo();
+	    if(children){
+	      massData["ЛичныеДанные"]["Дети"] = children;
+	    }
+	    return massData;
+  	}
 
-    return massData;
-  }
-
-  function mainReadForm() {
-        var formData = getDocument();
-        jsondata = JSON.stringify(readForm());
-        formData.append('data', jsondata);
-        return formData;
-    }
-
-
+	function mainReadForm() {
+		var formData = getDocument();
+		jsondata = JSON.stringify(readForm());
+		formData.append('data', jsondata);
+		return formData;
+	}
+    $.ajax({
+        type: form.attr('method'),
+        url: form.attr('action'),
+        data: mainReadForm(),
+        dataType: 'json',
+        cache: false,
+        contentType: false, // важно - убираем форматирование данных по умолчанию
+        processData: false, // важно - убираем преобразование строк по умолчанию
+    })
 	$(document).on('submit', '#form-ipoteka-main', function() {
 		var form = $(this);
-    $.ajax({
-      type: form.attr('method'),
-      url: form.attr('action'),
-      data: mainReadForm(),
-      dataType: 'json',
-      cache: false,
-      contentType: false, // важно - убираем форматирование данных по умолчанию
-      processData: false, // важно - убираем преобразование строк по умолчанию
-    }).done(function() {
-    	//
-    	// Тут будет вызов попапа с удачной отправкой
-    	//
-      console.log('Ушла ипотека')
-    }).fail(function() {
-    	//
-    	// Тут будет вызов попапа с неудачей
-    	//
-      console.log('Осталась ипотека');
-    });
-    e.preventDefault(); 
+		$.ajax({
+		  type: form.attr('method'),
+		  url: form.attr('action'),
+		  data: mainReadForm(),
+		  dataType: 'json',
+		  cache: false,
+		  contentType: false, // важно - убираем форматирование данных по умолчанию
+		  processData: false, // важно - убираем преобразование строк по умолчанию
+		}).
+		done(function() {
+			alert('Данные отправлены');
+		}).fail(function() {
+			alert('Произошла ошибка');
+		});
+    	e.preventDefault();
 	});
 });
