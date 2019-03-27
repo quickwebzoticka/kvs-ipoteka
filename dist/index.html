@@ -29,7 +29,7 @@
                   <label for="name">Имя</label>
                   <div class="form-cross"></div>
                 </div>
-                <div class="form-group_show">
+                <div class="form-group_show form-group_show-padding">
                   <div class="form-group__text" data-show-content>
                     <input type="text" required data-required="1" data-type-required="" autocomplete="off" name="Отчество" data-name id="main-name-3">
                     <label for="name">Отчество</label>
@@ -180,7 +180,7 @@
                 </div>
               </div>
               <div class="form-row">
-                <h3 class="insurance">Страхование квартиры    </h3>
+                <h3 class="insurance">Страхование жизни и здоровья   </h3>
                 <div class="form-group__check">
                   <input type="radio" id="insurance-yes" name="СтрахованиеКвартиры" value="1" checked>
                   <label for="insurance-yes">Да                </label>
@@ -216,12 +216,43 @@
                   <div class="form-tabs-nav">
                     <div class="form-tabs-nav__link-wrapper">
                       <div class="form-tabs-nav__link active">Заёмщик</div>
-                      <div class="form-tabs-nav__link form-tabs-nav__link-add">Созаёмщик</div>
+                      <div class="form-tabs-nav__link form-tabs-nav__link-add">Созаёмщик
+                        <div class="form-tabs-nav__link-add-cross"></div>
+                      </div>
                     </div>
                     <div class="form-tabs-nav__btn">Добавить созаёмщика</div>
                   </div>
                   <div class="form-tabs-container-wrapper">
                     <div class="form-tabs-container active">
+                      <div class="form-row name-wrapper">
+                        <h3 class="name">ФИО</h3>
+                        <div class="form-group__text">                   
+                          <input type="text" required data-required="1" data-type-required="" autocomplete="off" name="ИмяСозаемщика" data-name id="main-name-surname">
+                          <label for="main-name-surname">Фамилия</label>
+                          <div class="form-cross"></div>
+                        </div>
+                        <div class="form-group__text">                   
+                          <input type="text" required data-required="1" data-type-required="" autocomplete="off" name="ФамилияСозаемщика" data-name id="main-name-name">
+                          <label for="main-name-name">Имя</label>
+                          <div class="form-cross"></div>
+                        </div>
+                        <div class="form-group_show form-group_show-padding">
+                          <div class="form-group__text" data-show-content>
+                            <input type="text" required data-required="1" data-type-required="" autocomplete="off" name="ОтчествоСозаемщика" data-name id="main-name-patronym">
+                            <label for="name">Отчество</label>
+                            <div class="form-cross"></div>
+                          </div>
+                          <div class="form-group__check form-group__check_pt">
+                            <input type="checkbox" id="exist-main-middle-name" name="НаличиеОтчестваСозаемщика ???" data-show>
+                            <label for="exist-main-middle-name">Нет отчества</label>
+                          </div>
+                        </div>
+                        <div class="form-group__text">                   
+                          <input type="text" required data-required="1" data-type-required="" autocomplete="off" name="ДеньРожденияСозаемщика" data-date>
+                          <label for="main-name-birth-date">Дата рождения</label>
+                          <div class="form-cross"></div>
+                        </div>
+                      </div>
                       <div class="form-row">
                         <h3 class="passport-data">Паспортные данные</h3>
                         <div class="form-group__text">
@@ -391,6 +422,11 @@
                         <div class="form-group__text form-group__text_pt">                   
                           <input type="text" autocomplete="off" name="НаимУчебЗавед" placeholder="СПБГУ">
                           <label for="institution-name">Наименование учебного заведения</label>
+                          <div class="form-cross"></div>
+                        </div>
+                        <div class="form-group__text form-group__text_pt">                   
+                          <input type="text" autocomplete="off" name="ДатаОкончУчеб" placeholder="Дата окончания" data-passport-date>
+                          <label for="institution-finish-date">Дата окончания</label>
                           <div class="form-cross">                  </div>
                         </div>
                       </div>
@@ -478,6 +514,12 @@
                           </div>
                         </div>
                       </div>
+                      <div class="form-row account-soz">
+                        <div class="form-group__check">
+                          <input type="checkbox" id="account-soz" name="НеУчитыватьДоходСозаем" data-soz-add>
+                          <label for="account-soz">Не учитывать доход</label>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -498,18 +540,23 @@
           <div class="form-block__content">
             <div class="form form-job-data">
               <div class="form-row" data-group="СведенияООсновнойРаботе">
-                <h3 class="name">Постоянное место работы</h3>
+                <h3 class="name">Основное место работы</h3>
                 <div class="form-group__text">                   
-                  <input type="text" required data-required="1" data-type-required="" autocomplete="off" name="МестоРаботыНаименование">
-                  <label for="МестоРаботыНаименование">Наименование</label>
+                  <input type="text" required data-required="1" data-type-required="" autocomplete="off" name="МестоРаботыНаименование" placeholder="Включая организационно-правовую форму или вписать пример ООО газпром">
                   <div class="form-cross"></div>
                 </div>
                 <div class="form-group__text form-group__text_bb">
-                  <select name="ТипЗанятости">
-                    <option value="Полная занятость">Полная занятость</option>
-                    <option value="Частичная занятость">Частичная занятость</option>
-                    <option value="Не занят">Не занят</option>
+                  <select name="ТипЗанятости" data-type-job>
+                    <option value="Работник по найму">Работник по найму</option>
+                    <option value="Собственник бизнеса">Собственник бизнеса</option>
+                    <option value="ИП">ИП</option>
+                    <option value="Другое">Другое</option>
                   </select>
+                </div>
+                <div class="form-group__text form-group__text_pt" data-type-job-field>
+                  <input type="text" autocomplete="off" name="ДоляВладенияБизнеса" data-procenty>
+                  <label for="РазмерДоли">Доля владения</label>
+                  <div class="form-cross"></div>
                 </div>
               </div>
               <div class="form-row" data-group="СведенияООсновнойРаботе">
@@ -733,7 +780,7 @@
                 </div>
               </div>
               <div class="form-row">
-                <h3 class="employer-duration">Трудовой стаж</h3>
+                <h3 class="employer-duration">Стаж работы в организации</h3>
                 <div class="form-group__radio">                   
                   <input type="radio" id="employer-duration-1" name="ТрудовойСтаж" value="до 2-х лет">
                   <label for="employer-duration-1">до 2-х лет</label>
@@ -800,35 +847,53 @@
               <div class="form-row" data-group="СведенияОДополнительномДоходе">
                 <h3 class="additional-income">Дополнительный доход (необязательно)</h3>
                 <div class="form-group__text">                   
-                  <input type="text" autocomplete="off" name="ДДНаименованиеРаботодателя" placeholder="ОАО Газпром">
-                  <label for="additional-employer-name">Наименование работодателя</label>
+                  <input type="text" autocomplete="off" name="ДДСуммаМесяц" placeholder="50 000 руб." data-cost>
+                  <label for="additional-employer-name">Сумма в месяц</label>
                   <div class="form-cross"></div>
                 </div>
                 <div class="form-group__text">                   
-                  <input type="text" autocomplete="off" name="ДДДолжность" placeholder="Директор">
-                  <label for="additional-appointment">Должность</label>
+                  <input type="text" autocomplete="off" name="ДДИсточникДохода" placeholder="Пенсия/Сдача квартиры">
+                  <label for="additional-appointment">Источник дохода</label>
                   <div class="form-cross"></div>
                 </div>
-                <div class="form-group__text">                   
-                  <input type="text" autocomplete="off" name="ДДИНН" placeholder="000000000000" data-inn>
-                  <label for="additional-employer-inn">ИНН работодателя</label>
-                  <div class="form-cross"></div>
+              </div>
+              <div class="form-add-job-wrapper" data-group="РаботаПоСовместительству">
+                <div class="form-row form-add-job">
+                  <h3 class="additional-income">Работа по совместительству</h3>
+                  <div class="form-group__text">                   
+                    <input type="text" autocomplete="off" name="ДДНаименованиеРаботодателя" placeholder="ОАО Газпром">
+                    <label for="additional-employer-name">Наименование работодателя</label>
+                    <div class="form-cross"></div>
+                  </div>
+                  <div class="form-group__text">                   
+                    <input type="text" autocomplete="off" name="ДДДолжность" placeholder="Директор">
+                    <label for="additional-appointment">Должность</label>
+                    <div class="form-cross"></div>
+                  </div>
+                  <div class="form-group__text">                   
+                    <input type="text" autocomplete="off" name="ДДИНН" placeholder="000000000000" data-inn>
+                    <label for="additional-employer-inn">ИНН работодателя</label>
+                    <div class="form-cross"></div>
+                  </div>
+                  <div class="form-group__text">                   
+                    <input type="text" autocomplete="off" name="ДДФактическийАдресс" placeholder="Россия г.Москва ул.Ленина д 21">
+                    <label for="additional-employer-real-adress">Фактический адрес</label>
+                    <div class="form-cross"></div>
+                  </div>
+                  <div class="form-group__text">                   
+                    <input type="text" autocomplete="off" name="ДДСфераДеятельности" placeholder="Глобальная энергетическая компания">
+                    <label for="additional-employer-branch">Сфера деятельности организации</label>
+                    <div class="form-cross"></div>
+                  </div>
+                  <div class="form-group__text">                   
+                    <input type="text" autocomplete="off" name="ДДДоход" placeholder="50 000 руб." data-cost>
+                    <label for="additional-income">Доход по совместительству</label>
+                    <div class="form-cross"></div>
+                  </div>
                 </div>
-                <div class="form-group__text">                   
-                  <input type="text" autocomplete="off" name="ДДФактическийАдресс" placeholder="Россия г.Москва ул.Ленина д 21">
-                  <label for="additional-employer-real-adress">Фактический адрес</label>
-                  <div class="form-cross"></div>
-                </div>
-                <div class="form-group__text">                   
-                  <input type="text" autocomplete="off" name="ДДСфераДеятельности" placeholder="Глобальная энергетическая компания">
-                  <label for="additional-employer-branch">Сфера деятельности организации</label>
-                  <div class="form-cross"></div>
-                </div>
-                <div class="form-group__text">                   
-                  <input type="text" autocomplete="off" name="ДДДоход" placeholder="50 000 руб." data-cost>
-                  <label for="additional-income">Доход по совместительству</label>
-                  <div class="form-cross"></div>
-                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-btn btn-add-job">Работа по совместительству</div>
               </div>
               <div class="form-row">
                 <h3 class="sberbank-number">Номер карты сбербанка (если Вы являетесь з/п клиентом банка, или у вас начисляется пенсия на карту ПАО Сбербанк)</h3>

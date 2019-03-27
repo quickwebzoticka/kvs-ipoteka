@@ -12,14 +12,14 @@ block contain
                .form.form-general
                     .form-row
                         div.form-group__text         
-                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="Фамилия", data-name id="main-name-1")
+                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="Фамилия", data-name id="main-name-1" )
                             label(for="name") Фамилия
                             .form-cross
                         div.form-group__text         
                             input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="Имя", data-name id="main-name-2")
                             label(for="name") Имя
                             .form-cross
-                        .form-group_show
+                        .form-group_show.form-group_show-padding
                             div.form-group__text(data-show-content)
                                 input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="Отчество", data-name id="main-name-3")
                                 label(for="name") Отчество
@@ -137,7 +137,7 @@ block contain
                                     label(for="СубсидииИмя") Название субсидии
                                     .form-cross
                     .form-row
-                        h3.insurance Страхование квартиры    
+                        h3.insurance Страхование жизни и здоровья   
                         div.form-group__check
                             input(type="radio", id="insurance-yes", name="СтрахованиеКвартиры" value="1", checked)
                             label(for="insurance-yes") Да                
@@ -170,6 +170,7 @@ block contain
                                         | Заёмщик
                                     .form-tabs-nav__link.form-tabs-nav__link-add
                                         | Созаёмщик
+                                        .form-tabs-nav__link-add-cross
                                 .form-tabs-nav__btn
                                     | Добавить созаёмщика
                                 //- div.form-group__radio
@@ -180,19 +181,28 @@ block contain
                                 //-     label(for="private-data-person-1") Созаемщик
                             .form-tabs-container-wrapper
                                 .form-tabs-container.active
-                                    //- h3.name ФИО
-                                    //- div.form-group__text                    
-                                    //-     input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="surname-personal" id="main-name-surname")
-                                    //-     label(for="surname") Фамилия
-                                    //-     .form-cross
-                                    //- div.form-group__text                    
-                                    //-     input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="name-personal" id="main-name-name")
-                                    //-     label(for="name") Имя
-                                    //-     .form-cross
-                                    //- div.form-group__text                    
-                                    //-     input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="patronym-personal" id="main-name-patronym")
-                                    //-     label(for="patronym") Отчество
-                                    //-     .form-cross
+                                    .form-row.name-wrapper
+                                        h3.name ФИО
+                                        div.form-group__text                    
+                                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="ИмяСозаемщика" data-name id="main-name-surname")
+                                            label(for="main-name-surname") Фамилия
+                                            .form-cross
+                                        div.form-group__text                    
+                                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="ФамилияСозаемщика" data-name id="main-name-name")
+                                            label(for="main-name-name") Имя
+                                            .form-cross
+                                        .form-group_show.form-group_show-padding
+                                            div.form-group__text(data-show-content)
+                                                input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="ОтчествоСозаемщика", data-name id="main-name-patronym")
+                                                label(for="name") Отчество
+                                                .form-cross
+                                            div.form-group__check.form-group__check_pt
+                                                input(type="checkbox", id="exist-main-middle-name", name="НаличиеОтчестваСозаемщика ???" data-show)
+                                                label(for="exist-main-middle-name") Нет отчества
+                                        div.form-group__text                    
+                                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="ДеньРожденияСозаемщика", data-date)
+                                            label(for="main-name-birth-date") Дата рождения
+                                            .form-cross
                                     .form-row
                                         h3.passport-data Паспортные данные
                                         div.form-group__text
@@ -324,6 +334,10 @@ block contain
                                         div.form-group__text.form-group__text_pt                    
                                             input(type="text",  autocomplete="off", name="НаимУчебЗавед" placeholder="СПБГУ") 
                                             label(for="institution-name") Наименование учебного заведения
+                                            .form-cross
+                                        div.form-group__text.form-group__text_pt                    
+                                            input(type="text",  autocomplete="off", name="ДатаОкончУчеб" placeholder="Дата окончания" data-passport-date) 
+                                            label(for="institution-finish-date") Дата окончания
                                             .form-cross                   
                                     .form-row(data-group="АдрессРегистрации")
                                         h3.registration-adress Адрес регистрации
@@ -390,6 +404,10 @@ block contain
                                                     input(type="text", required data-required="1" data-type-required="" autocomplete="off", name="Квартира")
                                                     label(for="apartment") Квартира
                                                     .form-cross
+                                    .form-row.account-soz
+                                        div.form-group__check
+                                            input(type="checkbox", id="account-soz", name="НеУчитыватьДоходСозаем" data-soz-add)
+                                            label(for="account-soz") Не учитывать доход
             .form-row_bb
                 .form-btns
                     .form-btn.form-btn__prev
@@ -403,16 +421,21 @@ block contain
             div.form-block__content
                 .form.form-job-data
                     .form-row(data-group="СведенияООсновнойРаботе")
-                        h3.name Постоянное место работы
-                        div.form-group__text                    
-                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="МестоРаботыНаименование")
-                            label(for="МестоРаботыНаименование") Наименование
+                        h3.name Основное место работы
+                        div.form-group__text
+                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="МестоРаботыНаименование" placeholder="Включая организационно-правовую форму")
+                            //- label(for="МестоРаботыНаименование") Наименование
                             .form-cross
                         div.form-group__text.form-group__text_bb
-                            select(name="ТипЗанятости")
-                                option(value="Полная занятость") Полная занятость
-                                option(value="Частичная занятость") Частичная занятость
-                                option(value="Не занят") Не занят
+                            select(name="ТипЗанятости" data-type-job)
+                                option(value="Работник по найму") Работник по найму
+                                option(value="Собственник бизнеса") Собственник бизнеса
+                                option(value="ИП") ИП
+                                option(value="Другое") Другое
+                        div.form-group__text.form-group__text_pt(data-type-job-field)
+                            input(type="text", autocomplete="off", name="ДоляВладенияБизнеса" data-procenty)
+                            label(for="РазмерДоли") Доля владения
+                            .form-cross
                     .form-row(data-group="СведенияООсновнойРаботе")
                         h3.employer-inn ИНН работодателя
                         div.form-group__text
@@ -471,7 +494,7 @@ block contain
                                     label(for="zip-code") Почтовый индекс
                                     .form-cross
                                 div.form-group__text                    
-                                    input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="СубъектФедерацииФакт")
+                                    input(type="text", autocomplete="off", name="СубъектФедерацииФакт")
                                     label(for="city") Республика/Край/Область
                                     .form-cross
                                 div.form-group__text                    
@@ -580,7 +603,7 @@ block contain
                             input(type="radio", id="employer-size-7", name="Численность персонала", value="более 1000")
                             label(for="employer-size-7") более 1000
                     .form-row
-                        h3.employer-duration Трудовой стаж
+                        h3.employer-duration Стаж работы в организации
                         div.form-group__radio                    
                             input(type="radio", id="employer-duration-1", name="ТрудовойСтаж", value="до 2-х лет")
                             label(for="employer-duration-1") до 2-х лет
@@ -629,29 +652,42 @@ block contain
                     .form-row(data-group="СведенияОДополнительномДоходе")
                         h3.additional-income Дополнительный доход (необязательно)
                         div.form-group__text                    
-                            input(type="text", autocomplete="off", name="ДДНаименованиеРаботодателя" placeholder="ОАО Газпром")
-                            label(for="additional-employer-name") Наименование работодателя
+                            input(type="text", autocomplete="off", name="ДДСуммаМесяц" placeholder="50 000 руб." data-cost)
+                            label(for="additional-employer-name") Сумма в месяц
                             .form-cross
                         div.form-group__text                    
-                            input(type="text", autocomplete="off", name="ДДДолжность" placeholder="Директор")
-                            label(for="additional-appointment") Должность
+                            input(type="text", autocomplete="off", name="ДДИсточникДохода" placeholder="Пенсия/Сдача квартиры")
+                            label(for="additional-appointment") Источник дохода
                             .form-cross
-                        div.form-group__text                    
-                            input(type="text", autocomplete="off", name="ДДИНН"  placeholder="000000000000" data-inn)
-                            label(for="additional-employer-inn") ИНН работодателя
-                            .form-cross
-                        div.form-group__text                    
-                            input(type="text", autocomplete="off", name="ДДФактическийАдресс" placeholder="Россия г.Москва ул.Ленина д 21")
-                            label(for="additional-employer-real-adress") Фактический адрес
-                            .form-cross
-                        div.form-group__text                    
-                            input(type="text", autocomplete="off", name="ДДСфераДеятельности" placeholder="Глобальная энергетическая компания")
-                            label(for="additional-employer-branch") Сфера деятельности организации
-                            .form-cross
-                        div.form-group__text                    
-                            input(type="text", autocomplete="off", name="ДДДоход" placeholder="50 000 руб." data-cost)
-                            label(for="additional-income") Доход по совместительству
-                            .form-cross
+                    .form-add-job-wrapper(data-group="РаботаПоСовместительству")
+                        .form-row.form-add-job
+                            h3.additional-income Работа по совместительству
+                            div.form-group__text                    
+                                input(type="text", autocomplete="off", name="ДДНаименованиеРаботодателя" placeholder="ОАО Газпром")
+                                label(for="additional-employer-name") Наименование работодателя
+                                .form-cross
+                            div.form-group__text                    
+                                input(type="text", autocomplete="off", name="ДДДолжность" placeholder="Директор")
+                                label(for="additional-appointment") Должность
+                                .form-cross
+                            div.form-group__text                    
+                                input(type="text", autocomplete="off", name="ДДИНН"  placeholder="000000000000" data-inn)
+                                label(for="additional-employer-inn") ИНН работодателя
+                                .form-cross
+                            div.form-group__text                    
+                                input(type="text", autocomplete="off", name="ДДФактическийАдресс" placeholder="Россия г.Москва ул.Ленина д 21")
+                                label(for="additional-employer-real-adress") Фактический адрес
+                                .form-cross
+                            div.form-group__text                    
+                                input(type="text", autocomplete="off", name="ДДСфераДеятельности" placeholder="Глобальная энергетическая компания")
+                                label(for="additional-employer-branch") Сфера деятельности организации
+                                .form-cross
+                            div.form-group__text                    
+                                input(type="text", autocomplete="off", name="ДДДоход" placeholder="50 000 руб." data-cost)
+                                label(for="additional-income") Доход по совместительству
+                                .form-cross
+                    .form-row
+                        .form-btn.btn-add-job Работа по совместительству
                     .form-row
                         h3.sberbank-number Номер карты сбербанка (если Вы являетесь з/п клиентом банка, или у вас начисляется пенсия на карту ПАО Сбербанк)
                         div.form-group__text

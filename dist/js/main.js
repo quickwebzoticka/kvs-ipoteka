@@ -105,8 +105,9 @@ $(document).ready(function() {
 
 
 function init() {
-
-	$('[data-name]').inputmask({"mask": "Aa{1,}[-Aa{1,}]", showMaskOnHover: false, greedy: false});
+	//data-inputmask-regex="[А-Яа-я]{1,}"
+	// $('[data-name]').inputmask({"mask": "Aa{1,}[-Aa{1,}]", showMaskOnHover: false, greedy: false});
+	$('[data-name]').inputmask({regex: "[А-Яа-я]{1,}", showMaskOnHover: false, greedy: false});
 	$('[data-date]').inputmask({"mask": "99.99.9999", showMaskOnHover: false});
 	$('[data-phone]').inputmask({"mask": "+7 (999) 999-9999", showMaskOnHover: false});
 	$('[data-count]').inputmask({"mask": "9[9]", showMaskOnHover: false});
@@ -130,6 +131,42 @@ function init() {
 	$('[data-option-field-1]').hide();
 	$('[data-hidden-radio-content]').hide();
 
+	let formAddJob = $('.form-add-job').clone();
+
+	$('.form-add-job').remove();
+
+	$(document).on('click', '.btn-add-job', function() {
+		let count = $('.form-add-job').length;
+		if (count < 3) {
+			$('.form-add-job-wrapper').append(formAddJob.clone());
+			if (count == 2) {
+				$(this).addClass('disabled');		
+			}
+		}
+
+	});
+
+	$(document).on('change', '[data-type-job]', function() {
+		if (this.value == 'Собственник бизнеса') {
+			$(this).closest('.form-row').find('[data-type-job-field]').slideDown(300);
+			$(this).closest('.form-row').find('[data-type-job-field]').find('input').attr('required', true);
+		} else {
+			$(this).closest('.form-row').find('[data-type-job-field]').slideUp(300);
+			$(this).closest('.form-row').find('[data-type-job-field]').find('input').attr('required', false);
+		}
+	});
+
+
+	$(document).on('change', '[data-period]', function() {
+		let count = parseInt($(this).val());
+
+		if (count > 30) {
+			count = 30
+		}
+
+		$(this).val(count);
+	});
+
 
 	let anketa = $('.form-tabs-container').clone();
 	let link = $('.form-tabs-nav__link-add').clone();
@@ -138,17 +175,17 @@ function init() {
 	link.removeClass('active');
 
 	$('.form-tabs-nav__link-add').remove();
+	$('.name-wrapper').remove();
+	$('.account-soz').remove();
 
 	$(document).on('click', '.form-tabs-nav__btn', function() {
 		let count = $('.form-tabs-nav__link').length;
-
 
 		if ($('.form-tabs-nav__link-add').length < 3) {
 			$('.form-tabs-nav__link-wrapper').append(link.clone());
 			$('.form-tabs-container-wrapper').append(anketa.clone().addClass("soz"));
 			$(document).find('.soz').find('.form-row.children-wrapper').remove();
-
-
+			// $('.form-tabs-container').eq(count).prepend(naming.clone());
 
 			$('.form-tabs-container').eq(count).find('input').each(function(index) {
 
@@ -162,7 +199,6 @@ function init() {
 			});
 
 			$('.form-tabs-container').eq(count).find('input[type="radio"]').each(function(index) {
-				console.log($(this).attr('name'))
 				if (!$(this).attr('name') == 0) {
 
 					let temp = $(this).attr('name');
@@ -177,15 +213,38 @@ function init() {
 		
 	});
 
-	$(document).on('click', '.form-tabs-nav__link:not(.active)', function() {
+
+
+
+	$(document).on('click', '.form-tabs-nav__link:not(.active)', function(e) {
+
+		if(e.target.closest('.form-tabs-nav__link-add-cross')) {
+			return false;
+		}
+
 		$('.form-tabs-nav__link').removeClass('active');
 		$(this).addClass('active');
 
 		let thisIndex = $(this).index('.form-tabs-nav__link');
 
-		console.log(thisIndex);
-
 		$('.form-tabs-container').removeClass('active').eq(thisIndex).addClass('active');
+	});
+
+
+	$(document).on('click', '.form-tabs-nav__link-add-cross', function() {
+		let index = $(this).closest('.form-tabs-nav__link')
+					 						 .index('.form-tabs-nav__link');
+
+		$('.form-tabs-container').removeClass('active');
+		$('.form-tabs-container').eq(0).addClass('active');
+
+		$('.form-tabs-nav__link').removeClass('active');
+		$('.form-tabs-nav__link').eq(0).addClass('active');
+
+		$('.form-tabs-nav__link').eq(index).remove();
+		$('.form-tabs-container').eq(index).remove();
+
+		$('input[required]').trigger('input');
 	});
 
 
@@ -205,10 +264,6 @@ function init() {
 		let trigger = $(this).closest('.form-row').find('[data-education-trigger]');
 		let science = $(this).closest('.form-row').find('[data-science]');
 		let scienceWrapper = $(this).closest('.form-row').find('.form-group__check_sd');
-
-		console.log(11);
-
-
 
 		if (trigger.prop('checked')) {
 			science.prop('disabled', 0);
@@ -285,6 +340,7 @@ function init() {
 			$('[data-credit-first]').attr('disabled', false);
 			$('[data-credit-procent]').attr('disabled', false);
 			$('[data-credit-summ]').attr('disabled', false);
+
 			return false;
 
 		} 
@@ -338,9 +394,18 @@ function init() {
 			let tempCredit = $(this).val();
 			let tempTotal = $('[data-credit-main]').val();
 			let tempFirst = $('[data-credit-first]').val();
+			let tempSubsidy;
 			let tempProcent;
 
+			if ($('[data-military-summ]').val()) {
+				tempSubsidy = $('[data-military-summ]').val();
+			}
+			if ($('[data-subsidy-summ]').val()) {
+				tempSubsidy = $('[data-subsidy-summ]').val();
+			}
+
 			tempCredit = tempCredit || 0;
+			tempSubsidy = tempSubsidy || '0';
 
 			tempCredit = tempCredit.replace(/\s+/g,'');
 			tempCredit = parseInt(tempCredit);
@@ -348,13 +413,15 @@ function init() {
 			tempTotal = tempTotal.replace(/\s+/g,'');
 			tempTotal = parseInt(tempTotal);
 
+			tempSubsidy = tempSubsidy.replace(/\s+/g,'');
+			tempSubsidy = parseInt(tempSubsidy);
+
 			if (tempCredit > tempTotal) {
-					$(this).val('Сумма кредита не может быть больше стоимости ОН');
+					$(this).val('Сумма кредита не может быть больше стоимости недвижимости');
 					return false;
 			}
 
-			tempFirst = tempTotal - tempCredit;
-
+			tempFirst = tempTotal - tempCredit - tempSubsidy;
 
 			tempProcent = (tempFirst * 100) / tempTotal;
 
@@ -379,7 +446,14 @@ function init() {
 		if (parseInt($('[data-credit-main]').val()) > 0) {
 			let tempFirst = $(this).val();
 			let tempTotal = $('[data-credit-main]').val();
+			let tempTotalCredit = $('[data-credit-summ]').val();
+			let tempFirstPart = $('[data-credit-first]').val();
 			let tempProcent;
+			let tempDiff;
+
+			tempTotalCredit = tempTotalCredit || '0';
+			tempFirstPart = tempFirstPart || '0';
+			tempFirst = tempFirst || '0';
 
 			tempFirst = tempFirst.replace(/\s+/g,'');
 			tempFirst = parseInt(tempFirst);
@@ -387,13 +461,31 @@ function init() {
 			tempTotal = tempTotal.replace(/\s+/g,'');
 			tempTotal = parseInt(tempTotal);
 
+			tempTotalCredit = tempTotalCredit.replace(/\s+/g,'');
+			tempTotalCredit = parseInt(tempTotalCredit);
+
+			tempFirstPart = tempFirstPart.replace(/\s+/g,'');
+			tempFirstPart = parseInt(tempFirstPart);
+
+
+			tempTotalCredit = tempTotal - tempFirstPart;
+
+			if (tempTotalCredit <= 0) {
+				tempTotalCredit = tempTotal;
+			}
+
 			if (tempFirst > tempTotal) {
-					$(this).val('НИС не может быть больше стоимости ОН');
+					$(this).val('НИС не может быть больше стоимости недвижимости');
 					return false;
 			}
 
 			tempProcent = (tempFirst * 100) / tempTotal;
 			tempProcent = Math.round(tempProcent);
+
+			tempDiff = tempTotalCredit - tempFirst;
+
+			$('[data-credit-summ]').val(tempDiff.toLocaleString());
+			$('[data-credit-summ]').trigger('change');
 
 			if (tempProcent > 0) {
 				$('[data-military-procent]').val(`${tempProcent} %`);
@@ -411,6 +503,8 @@ function init() {
 			let tempFirst ;
 			let tempTotal = $('[data-credit-main]').val();
 			let tempProcent = $(this).val();
+
+			tempProcent = tempProcent || '0';
 
 			tempProcent = tempProcent.replace(/\s+/g,'');
 			tempProcent = parseInt(tempProcent);
@@ -433,7 +527,8 @@ function init() {
 			}
 
 			$(this).val(`${tempProcent} %`);
-			$('[data-military-summ]').val(`${tempFirst.toLocaleString()} руб.`);
+			$('[data-military-summ]').val(`${tempFirst.toLocaleString()}`);
+			$('[data-military-summ]').trigger('change');
 		}
 	});
 
@@ -442,6 +537,13 @@ function init() {
 			let tempFirst = $(this).val();
 			let tempTotal = $('[data-credit-main]').val();
 			let tempProcent;
+			let tempTotalCredit = $('[data-credit-summ]').val();
+			let tempFirstPart = $('[data-credit-first]').val();
+			let tempDiff;
+
+			tempTotalCredit = tempTotalCredit || '0';
+			tempFirstPart = tempFirstPart || '0';
+			tempFirst = tempFirst || '0';
 
 			tempFirst = tempFirst.replace(/\s+/g,'');
 			tempFirst = parseInt(tempFirst);
@@ -449,13 +551,31 @@ function init() {
 			tempTotal = tempTotal.replace(/\s+/g,'');
 			tempTotal = parseInt(tempTotal);
 
+			tempTotalCredit = tempTotalCredit.replace(/\s+/g,'');
+			tempTotalCredit = parseInt(tempTotalCredit);
+
+			tempFirstPart = tempFirstPart.replace(/\s+/g,'');
+			tempFirstPart = parseInt(tempFirstPart);
+
+
+			tempTotalCredit = tempTotal - tempFirstPart;
+
+			if (tempTotalCredit <= 0) {
+				tempTotalCredit = tempTotal;
+			}
+
 			if (tempFirst > tempTotal) {
-					$(this).val('Размер субсидии не может быть больше стоимости ОН');
+					$(this).val('Размер субсидии не может быть больше стоимости недвижимости');
 					return false;
 			}
 
 			tempProcent = (tempFirst * 100) / tempTotal;
 			tempProcent = Math.round(tempProcent);
+
+			tempDiff = tempTotalCredit - tempFirst;
+
+			$('[data-credit-summ]').val(tempDiff.toLocaleString());
+			$('[data-credit-summ]').trigger('change');
 
 			if (tempProcent > 0) {
 				$('[data-subsidy-procent]').val(`${tempProcent} %`);
@@ -473,6 +593,8 @@ function init() {
 			let tempFirst ;
 			let tempTotal = $('[data-credit-main]').val();
 			let tempProcent = $(this).val();
+
+			tempProcent = tempProcent || '0';
 
 			tempProcent = tempProcent.replace(/\s+/g,'');
 			tempProcent = parseInt(tempProcent);
@@ -495,7 +617,8 @@ function init() {
 			}
 
 			$(this).val(`${tempProcent} %`);
-			$('[data-subsidy-summ]').val(`${tempFirst.toLocaleString()} руб.`);
+			$('[data-subsidy-summ]').val(`${tempFirst.toLocaleString()}`);
+			$('[data-subsidy-summ]').trigger('change');
 		}
 	});
 
@@ -512,7 +635,7 @@ function init() {
 			tempTotal = parseInt(tempTotal);
 
 			if (tempFirst > tempTotal) {
-					$(this).val('Размер материнского капитала не может быть больше стоимости ОН');
+					$(this).val('Размер материнского капитала не может быть больше стоимости недвижимости');
 					return false;
 			}
 
@@ -576,22 +699,34 @@ function init() {
 			let tempFirst = $(this).val();
 			let tempTotal = $('[data-credit-main]').val();
 			let tempCredit = $('[data-credit-summ]').val();
+			let tempSubsidy = undefined;
 			let tempProcent;
 
+			if ($('[data-military-summ]').val()) {
+				tempSubsidy = $('[data-military-summ]').val();
+			}
+			if ($('[data-subsidy-summ]').val()) {
+				tempSubsidy = $('[data-subsidy-summ]').val();
+			}
+
+			tempSubsidy = tempSubsidy || '0';
 			tempCredit = tempCredit || 0;
 
 			tempFirst = tempFirst.replace(/\s+/g,'');
 			tempFirst = parseInt(tempFirst);
 
+			tempSubsidy = tempSubsidy.replace(/\s+/g,'');
+			tempSubsidy = parseInt(tempSubsidy);
+
 			tempTotal = tempTotal.replace(/\s+/g,'');
 			tempTotal = parseInt(tempTotal);
 
 			if (tempFirst > tempTotal) {
-					$(this).val('Первоначальный взнос не может быть больше стоимости ОН');
+					$(this).val('Первоначальный взнос не может быть больше стоимости недвижимости');
 					return false;
 			}
 
-			tempCredit = tempTotal - tempFirst;
+			tempCredit = tempTotal - tempFirst - tempSubsidy;
 
 
 			tempProcent = (tempFirst * 100) / tempTotal;
@@ -618,12 +753,23 @@ function init() {
 			let tempProcent = $(this).val();
 			let tempTotal = $('[data-credit-main]').val();
 			let tempCredit = $('[data-credit-summ]').val();
+			let tempSubsidy;
 			let tempFirst;
 
+			if ($('[data-military-summ]').val()) {
+				tempSubsidy = $('[data-military-summ]').val();
+			}
+			if ($('[data-subsidy-summ]').val()) {
+				tempSubsidy = $('[data-subsidy-summ]').val();
+			}
+			tempSubsidy = tempSubsidy || '0';
 			tempCredit = tempCredit || 0;
 
 			tempProcent = tempProcent.replace(/\s+/g,'');
 			tempProcent = parseInt(tempProcent);
+
+			tempSubsidy = tempSubsidy.replace(/\s+/g,'');
+			tempSubsidy = parseInt(tempSubsidy);
 
 			if (tempProcent > 100) {
 				$(this).val('Не может быть больше 100%');
@@ -635,7 +781,7 @@ function init() {
 
 			tempFirst = (tempTotal / 100) * tempProcent;
 
-			tempCredit = tempTotal - tempFirst;
+			tempCredit = tempTotal - tempFirst - tempSubsidy;
 
 			tempFirst = Math.round(tempFirst);
 			tempFirst = tempFirst.toLocaleString('ru');
@@ -742,12 +888,9 @@ function init() {
 			}
 		});
 		let compare = countInputs == countFilledInputs;
-		console.log(`${compare} : ${countInputs} : ${countFilledInputs}`);
 		if (compare || (countInputs == 0 && countFilledInputs == 0)) {
-			console.log(1);
 			$('.form-block.active').find('.form-btn.form-btn__next').addClass('active');
 		} else {
-			console.log(2);
 			$('.form-block.active').find('.form-btn.form-btn__next').removeClass('active');
 		}
 	});
@@ -797,6 +940,15 @@ function init() {
 			$(this).closest('.form-group_hidden').find('[data-hidden-content]').slideUp(300, function() {
 			$(this).closest('.form-group_hidden').find('.form-group__text').find('input').attr('required', false);
 			$('input[required]').trigger('input');
+			});
+		}
+	});
+
+	$(document).on('change', '[data-mono]', function() {
+		if (!$(this).prop('checked')) {
+			$(this).closest('.form-group_hidden').find('.form-group__text').find('input').each(function(){
+				$(this).val('');
+				$(this).trigger('change');
 			});
 		}
 	});
@@ -1318,15 +1470,6 @@ function getChildrenInfo() {
 		formData.append('data', jsondata);
 		return formData;
 	}
-    $.ajax({
-        type: form.attr('method'),
-        url: form.attr('action'),
-        data: mainReadForm(),
-        dataType: 'json',
-        cache: false,
-        contentType: false, // важно - убираем форматирование данных по умолчанию
-        processData: false, // важно - убираем преобразование строк по умолчанию
-    })
 	$(document).on('submit', '#form-ipoteka-main', function() {
 		var form = $(this);
 		$.ajax({

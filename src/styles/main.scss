@@ -327,3 +327,78 @@ input::selection {
 	font-size: 12px;
 	color: #999999;
 }
+
+.form-group_show-padding {
+	.form-group__check_pt {
+		margin-bottom: 30px;
+		label {
+			font-size: 14px;
+			color: #999999;
+		}
+	}
+	.form-group__text {
+		margin-bottom: 20px;
+	}
+}
+
+.form-tabs-nav__link-add {
+	position: relative;
+	&-cross {
+		position: absolute;
+		top: 0;
+		left: 100%;
+		border-radius: 50%;
+		background: #ad2b2b;
+		border: 1px solid #FFF;
+		transform: translate(-50%, -50%);
+		cursor: pointer;
+		width: 20px;
+		height: 20px;
+		&:before, &:after {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 10px;
+			height: 2px;
+			background: #FFFFFF;
+		}
+		&:before {
+			transform: translate(-50%, -50%) rotate(45deg);
+		}
+		&:after {
+			transform: translate(-50%, -50%) rotate(-45deg);
+		}
+	}
+}
+
+[data-name] {
+	text-transform: capitalize;
+}
+
+[data-type-job-field] {
+	display: none;
+}
+
+.btn-add-job {
+	white-space: nowrap;
+	padding: 10px 15px;
+	border-radius: 2px;
+  color: #ff8000;
+	border: 1px solid #ff8000;
+	cursor: pointer;
+	transition: .3s;
+	width: 300px;
+
+
+	&:hover {
+		color: #FFF;
+		background: #ff8000;
+	}
+
+	&.disabled {
+		background: grey;
+    color: #FFFFFF;
+    border: 1px solid grey;
+	}
+}

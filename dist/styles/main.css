@@ -1259,4 +1259,62 @@ input::selection {
   font-size: 12px;
   color: #999999; }
 
+.form-group_show-padding .form-group__check_pt {
+  margin-bottom: 30px; }
+  .form-group_show-padding .form-group__check_pt label {
+    font-size: 14px;
+    color: #999999; }
+
+.form-group_show-padding .form-group__text {
+  margin-bottom: 20px; }
+
+.form-tabs-nav__link-add {
+  position: relative; }
+  .form-tabs-nav__link-add-cross {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    border-radius: 50%;
+    background: #ad2b2b;
+    border: 1px solid #FFF;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    width: 20px;
+    height: 20px; }
+    .form-tabs-nav__link-add-cross:before, .form-tabs-nav__link-add-cross:after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 10px;
+      height: 2px;
+      background: #FFFFFF; }
+    .form-tabs-nav__link-add-cross:before {
+      transform: translate(-50%, -50%) rotate(45deg); }
+    .form-tabs-nav__link-add-cross:after {
+      transform: translate(-50%, -50%) rotate(-45deg); }
+
+[data-name] {
+  text-transform: capitalize; }
+
+[data-type-job-field] {
+  display: none; }
+
+.btn-add-job {
+  white-space: nowrap;
+  padding: 10px 15px;
+  border-radius: 2px;
+  color: #ff8000;
+  border: 1px solid #ff8000;
+  cursor: pointer;
+  transition: .3s;
+  width: 300px; }
+  .btn-add-job:hover {
+    color: #FFF;
+    background: #ff8000; }
+  .btn-add-job.disabled {
+    background: grey;
+    color: #FFFFFF;
+    border: 1px solid grey; }
+
 /*# sourceMappingURL=maps/main.css.map */
