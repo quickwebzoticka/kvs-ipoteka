@@ -502,10 +502,10 @@ function init() {
 			let tempSubsidy;
 			let tempProcent;
 
-			if ($('[data-military-summ]').val()) {
+			if (parseInt($('[data-military-summ]').val())) {
 				tempSubsidy = $('[data-military-summ]').val();
 			}
-			if ($('[data-subsidy-summ]').val()) {
+			if (parseInt($('[data-subsidy-summ]').val())) {
 				tempSubsidy = $('[data-subsidy-summ]').val();
 			}
 
@@ -807,10 +807,10 @@ function init() {
 			let tempSubsidy = undefined;
 			let tempProcent;
 
-			if ($('[data-military-summ]').val()) {
+			if (parseInt($('[data-military-summ]').val())) {
 				tempSubsidy = $('[data-military-summ]').val();
 			}
-			if ($('[data-subsidy-summ]').val()) {
+			if (parseInt($('[data-subsidy-summ]').val())) {
 				tempSubsidy = $('[data-subsidy-summ]').val();
 			}
 
@@ -861,10 +861,10 @@ function init() {
 			let tempSubsidy;
 			let tempFirst;
 
-			if ($('[data-military-summ]').val()) {
+			if (parseInt($('[data-military-summ]').val())) {
 				tempSubsidy = $('[data-military-summ]').val();
 			}
-			if ($('[data-subsidy-summ]').val()) {
+			if (parseInt($('[data-subsidy-summ]').val())) {
 				tempSubsidy = $('[data-subsidy-summ]').val();
 			}
 			tempSubsidy = tempSubsidy || '0';
