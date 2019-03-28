@@ -843,8 +843,16 @@ function init() {
 				val[0] = 31;
 			}
 
+			if (val[0] == 0) {
+				val[0] = '01';
+			}
+
 			if (val[1] > 12) {
 				val[1] = 12;
+			}
+
+			if (val[1] == 0) {
+				val[1] = '01';
 			}
 
 			if (val[2] > currentYear) {
