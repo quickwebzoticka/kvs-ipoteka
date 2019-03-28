@@ -345,19 +345,19 @@ block contain
                                     .form-row(data-group="АдрессРегистрации")
                                         h3.registration-adress Адрес регистрации
                                         div.form-group__text                    
-                                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="Индекс")
+                                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="Индекс" data-autocomplete-zip)
                                             label(for="zip-code") Почтовый индекс
                                             .form-cross
                                         div.form-group__text                    
-                                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="СубъектФедерации")
+                                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="СубъектФедерации" data-autocomplete-region)
                                             label(for="city") Республика/Край/Область
                                             .form-cross
                                         div.form-group__text
-                                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="Город")
+                                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="Город" data-autocomplete-city)
                                             label(for="city") Город
                                             .form-cross
                                         div.form-group__text                    
-                                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="Улица")
+                                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="Улица" data-autocomplete-street)
                                             label(for="street") Улица
                                             .form-cross
                                         div.form-group__text                    
@@ -380,19 +380,19 @@ block contain
                                                 label(for="match") Да
                                             .form-group_show-content(data-show-content)
                                                 div.form-group__text                    
-                                                    input(type="text", required data-required="1" data-type-required="" autocomplete="off", name="Индекс")
+                                                    input(type="text", required data-required="1" data-type-required="" autocomplete="off", name="Индекс" data-autocomplete-zip)
                                                     label(for="zip-code") Почтовый индекс
                                                     .form-cross
                                                 div.form-group__text                    
-                                                    input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="СубъектФедерации")
+                                                    input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="СубъектФедерации" data-autocomplete-region)
                                                     label(for="city") Республика/Край/Область
                                                     .form-cross
                                                 div.form-group__text                    
-                                                    input(type="text", required data-required="1" data-type-required="" autocomplete="off", name="Город")
+                                                    input(type="text", required data-required="1" data-type-required="" autocomplete="off", name="Город" data-autocomplete-city)
                                                     label(for="city") Город
                                                     .form-cross
                                                 div.form-group__text                    
-                                                    input(type="text", required data-required="1" data-type-required="" autocomplete="off", name="Улица")
+                                                    input(type="text", required data-required="1" data-type-required="" autocomplete="off", name="Улица" data-autocomplete-street)
                                                     label(for="street") Улица
                                                     .form-cross
                                                 div.form-group__text                    
@@ -436,7 +436,7 @@ block contain
                             .form-row(data-group="СведенияООсновнойРаботе")
                                 h3.name Основное место работы
                                 div.form-group__text
-                                    input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="МестоРаботыНаименование" placeholder="Включая организационно-правовую форму")
+                                    input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="МестоРаботыНаименование" placeholder="Наименование (включая организационно-правовую форму)")
                                     .form-cross
                                 div.form-group__text.form-group__text_bb
                                     select(name="ТипЗанятости" data-type-job)
@@ -467,19 +467,19 @@ block contain
                                 h3.employer-adress Юридический адрес организации и фактический адрес    
                                 h3.employer-adress-legal Юридический адрес
                                 div.form-group__text
-                                    input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="ПочтовыйИндексЮР")
+                                    input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="ПочтовыйИндексЮР" data-autocomplete-zip)
                                     label(for="zip-code") Почтовый индекс
                                     .form-cross
                                 div.form-group__text                    
-                                    input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="СубъектФедерацииЮР")
+                                    input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="СубъектФедерацииЮР" data-autocomplete-region)
                                     label(for="city") Республика/Край/Область
                                     .form-cross
                                 div.form-group__text                    
-                                    input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="ГородЮР")
+                                    input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="ГородЮР" data-autocomplete-city)
                                     label(for="city") Город
                                     .form-cross
                                 div.form-group__text                    
-                                    input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="УлицаЮР")
+                                    input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="УлицаЮР" data-autocomplete-street)
                                     label(for="street") Улица
                                     .form-cross
                                 div.form-group__text                    
@@ -502,19 +502,19 @@ block contain
                                         label(for="employer-match") Совпадает с юридическим адресом  
                                     .form-group_show-content(data-show-content)     
                                         div.form-group__text                    
-                                            input(type="text",  autocomplete="off", name="ПочтовыйИндексФакт")
+                                            input(type="text",  autocomplete="off", name="ПочтовыйИндексФакт" data-autocomplete-zip)
                                             label(for="zip-code") Почтовый индекс
                                             .form-cross
                                         div.form-group__text                    
-                                            input(type="text", autocomplete="off", name="СубъектФедерацииФакт")
+                                            input(type="text", autocomplete="off", name="СубъектФедерацииФакт" data-autocomplete-region)
                                             label(for="city") Республика/Край/Область
                                             .form-cross
                                         div.form-group__text                    
-                                            input(type="text",  autocomplete="off", name="ГородФакт")
+                                            input(type="text",  autocomplete="off", name="ГородФакт" data-autocomplete-city)
                                             label(for="city") Город
                                             .form-cross
                                         div.form-group__text                    
-                                            input(type="text",  autocomplete="off", name="УлицаФакт")
+                                            input(type="text",  autocomplete="off", name="УлицаФакт" data-autocomplete-street)
                                             label(for="street") Улица
                                             .form-cross
                                         div.form-group__text                    
