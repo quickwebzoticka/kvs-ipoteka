@@ -173,12 +173,6 @@ block contain
                                         .form-tabs-nav__link-add-cross
                                 .form-tabs-nav__btn
                                     | Добавить созаёмщика
-                                //- div.form-group__radio
-                                //-     input(type="radio", id="private-data-person", name="private-data" value="zaemschik" checked)
-                                //-     label(for="private-data-person") Заёмщик
-                                //- div.form-group__radio
-                                //-     input(type="radio", id="private-data-person-1", name="private-data" value="private-data[1]")
-                                //-     label(for="private-data-person-1") Созаемщик
                             .form-tabs-container-wrapper
                                 .form-tabs-container.active
                                     .form-row.name-wrapper
@@ -261,10 +255,19 @@ block contain
                                             input(type="text", autocomplete="off", name="Почта" placeholder="example@mail.com" data-email data-inputmask-regex="[A-Za-z0-9]{1,}@[A-Za-z0-9]{1,}[.][A-Za-z]{1,}")
                                             .form-cross
                                     .form-row
-                                        h3.civil-status Статус семейного положения                
-                                        div.form-group__check
-                                            input(type="radio", id="marriage", name="СемейноеПоложение" data-add-name="СемейноеПоложение" value="Женат / Замужем ")
-                                            label(for="marriage") Женат / Замужем          
+                                        h3.civil-status Статус семейного положения   
+                                        .form-group_hidden             
+                                            div.form-group__check
+                                                input(type="radio", id="marriage", name="СемейноеПоложение" data-add-name="СемейноеПоложение" value="Женат / Замужем " data-marriage)
+                                                label(for="marriage") Женат / Замужем          
+                                                .form-group_hidden-content(data-marriage-content)
+                                                    div.form-group__check
+                                                        input(type="radio", id="marriage-contract-0", name="БрачныйКонтракт" data-add-name="БрачныйКонтракт" value="0" checked)
+                                                        label(for="marriage-contract-0") Не будет заключаться брачный контракт
+                                                    div.form-group__check
+                                                        input(type="radio", id="marriage-contract-1", name="БрачныйКонтракт" data-add-name="БрачныйКонтракт" value="1")
+                                                        label(for="marriage-contract-1") Будет заключаться брачный контракт
+
                                         div.form-group__check
                                             input(type="radio", id="civil-marriage", name="СемейноеПоложение" data-add-name="СемейноеПоложение" value="Гражданский брак ")
                                             label(for="civil-marriage") Гражданский брак                
@@ -419,280 +422,293 @@ block contain
             div.form-block__header
                 h2 Сведения о работе Заемщика / Созаемщика
             div.form-block__content
-                .form.form-job-data
-                    .form-row(data-group="СведенияООсновнойРаботе")
-                        h3.name Основное место работы
-                        div.form-group__text
-                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="МестоРаботыНаименование" placeholder="Включая организационно-правовую форму")
-                            //- label(for="МестоРаботыНаименование") Наименование
-                            .form-cross
-                        div.form-group__text.form-group__text_bb
-                            select(name="ТипЗанятости" data-type-job)
-                                option(value="Работник по найму") Работник по найму
-                                option(value="Собственник бизнеса") Собственник бизнеса
-                                option(value="ИП") ИП
-                                option(value="Другое") Другое
-                        div.form-group__text.form-group__text_pt(data-type-job-field)
-                            input(type="text", autocomplete="off", name="ДоляВладенияБизнеса" data-procenty)
-                            label(for="РазмерДоли") Доля владения
-                            .form-cross
-                    .form-row(data-group="СведенияООсновнойРаботе")
-                        h3.employer-inn ИНН работодателя
-                        div.form-group__text
-                            input(type="text", autocomplete="off", name="ИННРаботодателя" placeholder="000000000000" data-inn)
-                            .form-cross
-                    .form-row(data-group="СведенияООсновнойРаботе")
-                        h3.employer-phone Телефон организации-работодателя
-                        div.form-group__text
-                            input(type="text", autocomplete="off", name="ТелефонРаботодателя" data-phone data-phone-city)
-                            .form-cross
-                    .form-row(data-group="СведенияООсновнойРаботе")
-                        h3.employer-site Сайт организации-работодателя
-                        div.form-group__text
-                            input(type="text", autocomplete="off", name="СайтРаботодателя" placeholder="google.ru")
-                            .form-cross
-                    .form-row(data-group="СведенияООсновнойРаботе")
-                        h3.employer-adress Юридический адрес организации и фактический адрес    
-                        h3.employer-adress-legal Юридический адрес
-                        div.form-group__text
-                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="ПочтовыйИндексЮР")
-                            label(for="zip-code") Почтовый индекс
-                            .form-cross
-                        div.form-group__text                    
-                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="СубъектФедерацииЮР")
-                            label(for="city") Республика/Край/Область
-                            .form-cross
-                        div.form-group__text                    
-                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="ГородЮР")
-                            label(for="city") Город
-                            .form-cross
-                        div.form-group__text                    
-                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="УлицаЮР")
-                            label(for="street") Улица
-                            .form-cross
-                        div.form-group__text                    
-                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="ДомЮР")
-                            label(for="building") Дом
-                            .form-cross
-                        div.form-group__text                    
-                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="КорпусЮР")
-                            label(for="facility") Корпус
-                            .form-cross
-                        div.form-group__text                    
-                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="ОфисЮР")
-                            label(for="office") Офис
-                            .form-cross
-                    .form-row(data-group="СведенияООсновнойРаботе")
-                        h3.employer-adress-real Фактический адрес      
-                        .form-group_show          
-                            div.form-group__check
-                                input(type="checkbox", id="employer-match", name="СовпадаетАдресЮР !!!" data-show)
-                                label(for="employer-match") Совпадает с юридическим адресом  
-                            .form-group_show-content(data-show-content)     
-                                div.form-group__text                    
-                                    input(type="text",  autocomplete="off", name="ПочтовыйИндексФакт")
+                .form-row
+                    .form-tabs
+                        .form-tabs-nav
+                            .form-tabs-nav__link-wrapper.form-tabs-nav__link-wrapper-job
+                                .form-tabs-nav__link.active
+                                    | Заёмщик
+                                .form-tabs-nav__link.form-tabs-nav__link-job
+                                    | Созаёмщик
+                .form-tabs-container-wrapper.form-tabs-container-wrapper_job
+                    .form-tabs-container.form-tabs-container_job.active
+                        .form.form-job-data
+                            .form-row(data-group="СведенияООсновнойРаботе")
+                                h3.name Основное место работы
+                                div.form-group__text
+                                    input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="МестоРаботыНаименование" placeholder="Включая организационно-правовую форму")
+                                    .form-cross
+                                div.form-group__text.form-group__text_bb
+                                    select(name="ТипЗанятости" data-type-job)
+                                        option(value="Работник по найму") Работник по найму
+                                        option(value="Собственник бизнеса") Собственник бизнеса
+                                        option(value="ИП") ИП
+                                        option(value="Другое") Другое
+                                div.form-group__text.form-group__text_pt(data-type-job-field)
+                                    input(type="text", autocomplete="off", name="ДоляВладенияБизнеса" data-procenty)
+                                    label(for="РазмерДоли") Доля владения
+                                    .form-cross
+                            .form-row(data-group="СведенияООсновнойРаботе")
+                                h3.employer-inn ИНН работодателя
+                                div.form-group__text
+                                    input(type="text", autocomplete="off", name="ИННРаботодателя" placeholder="000000000000" data-inn)
+                                    .form-cross
+                            .form-row(data-group="СведенияООсновнойРаботе")
+                                h3.employer-phone Телефон организации-работодателя
+                                div.form-group__text
+                                    input(type="text", autocomplete="off", name="ТелефонРаботодателя" data-phone data-phone-city)
+                                    .form-cross
+                            .form-row(data-group="СведенияООсновнойРаботе")
+                                h3.employer-site Сайт организации-работодателя
+                                div.form-group__text
+                                    input(type="text", autocomplete="off", name="СайтРаботодателя" placeholder="google.ru")
+                                    .form-cross
+                            .form-row(data-group="СведенияООсновнойРаботе")
+                                h3.employer-adress Юридический адрес организации и фактический адрес    
+                                h3.employer-adress-legal Юридический адрес
+                                div.form-group__text
+                                    input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="ПочтовыйИндексЮР")
                                     label(for="zip-code") Почтовый индекс
                                     .form-cross
                                 div.form-group__text                    
-                                    input(type="text", autocomplete="off", name="СубъектФедерацииФакт")
+                                    input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="СубъектФедерацииЮР")
                                     label(for="city") Республика/Край/Область
                                     .form-cross
                                 div.form-group__text                    
-                                    input(type="text",  autocomplete="off", name="ГородФакт")
+                                    input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="ГородЮР")
                                     label(for="city") Город
                                     .form-cross
                                 div.form-group__text                    
-                                    input(type="text",  autocomplete="off", name="УлицаФакт")
+                                    input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="УлицаЮР")
                                     label(for="street") Улица
                                     .form-cross
                                 div.form-group__text                    
-                                    input(type="text",  autocomplete="off", name="ДомФакт")
+                                    input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="ДомЮР")
                                     label(for="building") Дом
                                     .form-cross
                                 div.form-group__text                    
-                                    input(type="text",  autocomplete="off", name="КорпусФакт")
+                                    input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="КорпусЮР")
                                     label(for="facility") Корпус
                                     .form-cross
                                 div.form-group__text                    
-                                    input(type="text",  autocomplete="off", name="ОфисФакт")
+                                    input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="ОфисЮР")
                                     label(for="office") Офис
                                     .form-cross
-                    .form-row(data-group="СведенияООсновнойРаботе")
-                        h3.branch Сфера деятельности организации                
-                        div.form-group__check
-                            input(type="checkbox", id="finance", name="СДОрганизацииФинансы" data-input-group="SDO")
-                            label(for="finance") Финансы / Банки / Страхование                
-                        div.form-group__check
-                            input(type="checkbox", id="police", name="СДОрганизацииПравоохранительныеОрганы" data-input-group="SDO")
-                            label(for="police") Правоохранительные органы                
-                        div.form-group__check
-                            input(type="checkbox", id="education", name="СДОрганизацииОбразование" data-input-group="SDO")
-                            label(for="education") Образование                
-                        div.form-group__check
-                            input(type="checkbox", id="farming", name="СДОрганизацииХозяйство" data-input-group="SDO")
-                            label(for="farming") Сельское хозяйство                
-                        div.form-group__check
-                            input(type="checkbox", id="culture", name="СДОрганизацииКультура" data-input-group="SDO")
-                            label(for="culture") Культура и искусство                
-                        div.form-group__check
-                            input(type="checkbox", id="security", name="СДОрганизацииОхраннаяД" data-input-group="SDO")
-                            label(for="security") Охранная деятельность                
-                        div.form-group__check
-                            input(type="checkbox", id="authorities", name="СДОрганизацииУправления" data-input-group="SDO")
-                            label(for="authorities") Органы власти и управления                
-                        div.form-group__check
-                            input(type="checkbox", id="it", name="СДОрганизацииИТ" data-input-group="SDO")
-                            label(for="it") Информационные технологии                
-                        div.form-group__check
-                            input(type="checkbox", id="trading", name="СДОрганизацииТорговля" data-input-group="SDO")
-                            label(for="trading") Оптовая и розничная торговля                
-                        div.form-group__check
-                            input(type="checkbox", id="medicine", name="СДОрганизацииМедицина" data-input-group="SDO")
-                            label(for="medicine") Медицина                
-                        div.form-group__check
-                            input(type="checkbox", id="production", name="СДОрганизацииПроизводство" data-input-group="SDO")
-                            label(for="production") Производство                
-                        div.form-group__check
-                            input(type="checkbox", id="transport", name="СДОрганизацииТранспорт" data-input-group="SDO")
-                            label(for="transport") Транспорт                
-                        div.form-group__check
-                            input(type="checkbox", id="industry", name="СДОрганизацииПромышленность" data-input-group="SDO")
-                            label(for="industry") Промышленность                
-                        div.form-group__check
-                            input(type="checkbox", id="law", name="СДОрганизацииЮриспруденция" data-input-group="SDO")
-                            label(for="law") Юриспруденция                
-                        div.form-group__check
-                            input(type="checkbox", id="construction", name="СДОрганизацииСтроительство" data-input-group="SDO")
-                            label(for="construction") Строительство                
-                        div.form-group__check
-                            input(type="checkbox", id="science", name="СДОрганизацииНаука" data-input-group="SDO")
-                            label(for="science") Наука
-                        div.form-group__check
-                            input(type="checkbox", id="service", name="СДОрганизацииУслуги" data-input-group="SDO")
-                            label(for="service") Услуги
-                        div.form-group__check
-                            input(type="checkbox", id="tourism", name="СДОрганизацииТуризм" data-input-group="SDO")
-                            label(for="tourism") Туризм
-                        div.form-group__check
-                            input(type="checkbox", id="other", name="СДОрганизацииИное" data-option-1 data-input-group="SDO")
-                            label(for="other") Иное
-                        div.form-group__text(data-option-field-1)
-                            input(type="text", autocomplete="off", name="СДОрганизацииИное" data-input-group="SDO")
-                            .form-cross
-                    .form-row(data-group="СведенияООсновнойРаботе")
-                        h3.employer-size Численность персонала
-                        div.form-group__radio                    
-                            input(type="radio", id="employer-size-1", name="Численность персонала", value="до 10")
-                            label(for="employer-size-1") до 10
-                        div.form-group__radio                    
-                            input(type="radio", id="employer-size-2", name="Численность персонала", value="11-30")
-                            label(for="employer-size-2") 11-30
-                        div.form-group__radio                    
-                            input(type="radio", id="employer-size-3", name="Численность персонала", value="31-50")
-                            label(for="employer-size-3") 31-50
-                        div.form-group__radio                    
-                            input(type="radio", id="employer-size-4", name="Численность персонала", value="51-100")
-                            label(for="employer-size-4") 51-100
-                        div.form-group__radio                    
-                            input(type="radio", id="employer-size-5", name="Численность персонала", value="101-500")
-                            label(for="employer-size-5") 101-500
-                        div.form-group__radio                    
-                            input(type="radio", id="employer-size-6", name="Численность персонала", value="501-1000")
-                            label(for="employer-size-6") 501-1000
-                        div.form-group__radio                    
-                            input(type="radio", id="employer-size-7", name="Численность персонала", value="более 1000")
-                            label(for="employer-size-7") более 1000
-                    .form-row
-                        h3.employer-duration Стаж работы в организации
-                        div.form-group__radio                    
-                            input(type="radio", id="employer-duration-1", name="ТрудовойСтаж", value="до 2-х лет")
-                            label(for="employer-duration-1") до 2-х лет
-                        div.form-group__radio                    
-                            input(type="radio", id="employer-duration-2", name="ТрудовойСтаж", value="от 2-5 лет")
-                            label(for="employer-duration-2") от 2-5 лет
-                        div.form-group__radio                    
-                            input(type="radio", id="employer-duration-3", name="ТрудовойСтаж", value="более 5 лет")
-                            label(for="employer-duration-3") более 5 лет 
-                    .form-row
-                        h3.appointment Должность
-                        div.form-group__text
-                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="Должность" placeholder="Веб-разработчик")
-                            .form-cross
-                    .form-row
-                        h3.experience Общий трудовой стаж
-                        div.form-group__text
-                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="ОбщийТрудовойСтаж" placeholder="10 лет")
-                            .form-cross
-                    .form-row
-                        h3.current-experience Стаж в текущей сфере деятельности
-                        div.form-group__text
-                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="СтажВСфере" placeholder="5 лет")
-                            .form-cross
-                    .form-row
-                        h3.job-number Мест работы за последние 3 (три) года
-                        div.form-group__text
-                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="РабочиеМестаЗаТриГода" placeholder="1")
-                            .form-cross
-                    .form-row
-                        h3.income-confimation Справка о доходе
-                        div.form-group__radio                    
-                            input(type="radio", checked id="income-confimation-1", name="СправкаОДоходе", value="2-НДФЛ")
-                            label(for="income-confimation-1") 2-НДФЛ
-                        div.form-group__radio                    
-                            input(type="radio", id="income-confimation-2", name="СправкаОДоходе", value="Справка по форме банка")
-                            label(for="income-confimation-2") Справка по форме банка
-                        div.form-group__radio                    
-                            input(type="radio", id="income-confimation-3", name="СправкаОДоходе", value="Без подтверждения дохода - по двум документам")
-                            label(for="income-confimation-3") Без подтверждения дохода - по двум документам
-                    .form-row
-                        h3.income Среднемесячный доход, руб.
-                        div.form-group__text
-                            input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="СреднийДоходМесяц" data-cost placeholder="15 000 руб.")
-                            .form-cross
-                    .form-row(data-group="СведенияОДополнительномДоходе")
-                        h3.additional-income Дополнительный доход (необязательно)
-                        div.form-group__text                    
-                            input(type="text", autocomplete="off", name="ДДСуммаМесяц" placeholder="50 000 руб." data-cost)
-                            label(for="additional-employer-name") Сумма в месяц
-                            .form-cross
-                        div.form-group__text                    
-                            input(type="text", autocomplete="off", name="ДДИсточникДохода" placeholder="Пенсия/Сдача квартиры")
-                            label(for="additional-appointment") Источник дохода
-                            .form-cross
-                    .form-add-job-wrapper(data-group="РаботаПоСовместительству")
-                        .form-row.form-add-job
-                            h3.additional-income Работа по совместительству
-                            div.form-group__text                    
-                                input(type="text", autocomplete="off", name="ДДНаименованиеРаботодателя" placeholder="ОАО Газпром")
-                                label(for="additional-employer-name") Наименование работодателя
-                                .form-cross
-                            div.form-group__text                    
-                                input(type="text", autocomplete="off", name="ДДДолжность" placeholder="Директор")
-                                label(for="additional-appointment") Должность
-                                .form-cross
-                            div.form-group__text                    
-                                input(type="text", autocomplete="off", name="ДДИНН"  placeholder="000000000000" data-inn)
-                                label(for="additional-employer-inn") ИНН работодателя
-                                .form-cross
-                            div.form-group__text                    
-                                input(type="text", autocomplete="off", name="ДДФактическийАдресс" placeholder="Россия г.Москва ул.Ленина д 21")
-                                label(for="additional-employer-real-adress") Фактический адрес
-                                .form-cross
-                            div.form-group__text                    
-                                input(type="text", autocomplete="off", name="ДДСфераДеятельности" placeholder="Глобальная энергетическая компания")
-                                label(for="additional-employer-branch") Сфера деятельности организации
-                                .form-cross
-                            div.form-group__text                    
-                                input(type="text", autocomplete="off", name="ДДДоход" placeholder="50 000 руб." data-cost)
-                                label(for="additional-income") Доход по совместительству
-                                .form-cross
-                    .form-row
-                        .form-btn.btn-add-job Работа по совместительству
-                    .form-row
-                        h3.sberbank-number Номер карты сбербанка (если Вы являетесь з/п клиентом банка, или у вас начисляется пенсия на карту ПАО Сбербанк)
-                        div.form-group__text
-                            input(type="text", autocomplete="off", name="НомКартыСбербанка" placeholder="4276 0000 0000 0000")
-                            .form-cross
+                            .form-row(data-group="СведенияООсновнойРаботе")
+                                h3.employer-adress-real Фактический адрес      
+                                .form-group_show          
+                                    div.form-group__check
+                                        input(type="checkbox", id="employer-match", name="СовпадаетАдресЮР !!!" data-show)
+                                        label(for="employer-match") Совпадает с юридическим адресом  
+                                    .form-group_show-content(data-show-content)     
+                                        div.form-group__text                    
+                                            input(type="text",  autocomplete="off", name="ПочтовыйИндексФакт")
+                                            label(for="zip-code") Почтовый индекс
+                                            .form-cross
+                                        div.form-group__text                    
+                                            input(type="text", autocomplete="off", name="СубъектФедерацииФакт")
+                                            label(for="city") Республика/Край/Область
+                                            .form-cross
+                                        div.form-group__text                    
+                                            input(type="text",  autocomplete="off", name="ГородФакт")
+                                            label(for="city") Город
+                                            .form-cross
+                                        div.form-group__text                    
+                                            input(type="text",  autocomplete="off", name="УлицаФакт")
+                                            label(for="street") Улица
+                                            .form-cross
+                                        div.form-group__text                    
+                                            input(type="text",  autocomplete="off", name="ДомФакт")
+                                            label(for="building") Дом
+                                            .form-cross
+                                        div.form-group__text                    
+                                            input(type="text",  autocomplete="off", name="КорпусФакт")
+                                            label(for="facility") Корпус
+                                            .form-cross
+                                        div.form-group__text                    
+                                            input(type="text",  autocomplete="off", name="ОфисФакт")
+                                            label(for="office") Офис
+                                            .form-cross
+                            .form-row(data-group="СведенияООсновнойРаботе")
+                                h3.branch Сфера деятельности организации                
+                                div.form-group__check
+                                    input(type="checkbox", id="finance", name="СДОрганизацииФинансы" data-input-group="SDO")
+                                    label(for="finance") Финансы / Банки / Страхование                
+                                div.form-group__check
+                                    input(type="checkbox", id="police", name="СДОрганизацииПравоохранительныеОрганы" data-input-group="SDO")
+                                    label(for="police") Правоохранительные органы                
+                                div.form-group__check
+                                    input(type="checkbox", id="education", name="СДОрганизацииОбразование" data-input-group="SDO")
+                                    label(for="education") Образование                
+                                div.form-group__check
+                                    input(type="checkbox", id="farming", name="СДОрганизацииХозяйство" data-input-group="SDO")
+                                    label(for="farming") Сельское хозяйство                
+                                div.form-group__check
+                                    input(type="checkbox", id="culture", name="СДОрганизацииКультура" data-input-group="SDO")
+                                    label(for="culture") Культура и искусство                
+                                div.form-group__check
+                                    input(type="checkbox", id="security", name="СДОрганизацииОхраннаяД" data-input-group="SDO")
+                                    label(for="security") Охранная деятельность                
+                                div.form-group__check
+                                    input(type="checkbox", id="authorities", name="СДОрганизацииУправления" data-input-group="SDO")
+                                    label(for="authorities") Органы власти и управления                
+                                div.form-group__check
+                                    input(type="checkbox", id="it", name="СДОрганизацииИТ" data-input-group="SDO")
+                                    label(for="it") Информационные технологии                
+                                div.form-group__check
+                                    input(type="checkbox", id="trading", name="СДОрганизацииТорговля" data-input-group="SDO")
+                                    label(for="trading") Оптовая и розничная торговля                
+                                div.form-group__check
+                                    input(type="checkbox", id="medicine", name="СДОрганизацииМедицина" data-input-group="SDO")
+                                    label(for="medicine") Медицина                
+                                div.form-group__check
+                                    input(type="checkbox", id="production", name="СДОрганизацииПроизводство" data-input-group="SDO")
+                                    label(for="production") Производство                
+                                div.form-group__check
+                                    input(type="checkbox", id="transport", name="СДОрганизацииТранспорт" data-input-group="SDO")
+                                    label(for="transport") Транспорт                
+                                div.form-group__check
+                                    input(type="checkbox", id="industry", name="СДОрганизацииПромышленность" data-input-group="SDO")
+                                    label(for="industry") Промышленность                
+                                div.form-group__check
+                                    input(type="checkbox", id="law", name="СДОрганизацииЮриспруденция" data-input-group="SDO")
+                                    label(for="law") Юриспруденция                
+                                div.form-group__check
+                                    input(type="checkbox", id="construction", name="СДОрганизацииСтроительство" data-input-group="SDO")
+                                    label(for="construction") Строительство                
+                                div.form-group__check
+                                    input(type="checkbox", id="science", name="СДОрганизацииНаука" data-input-group="SDO")
+                                    label(for="science") Наука
+                                div.form-group__check
+                                    input(type="checkbox", id="service", name="СДОрганизацииУслуги" data-input-group="SDO")
+                                    label(for="service") Услуги
+                                div.form-group__check
+                                    input(type="checkbox", id="tourism", name="СДОрганизацииТуризм" data-input-group="SDO")
+                                    label(for="tourism") Туризм
+                                div.form-group__check
+                                    input(type="checkbox", id="other", name="СДОрганизацииИное" data-option-1 data-input-group="SDO")
+                                    label(for="other") Иное
+                                div.form-group__text(data-option-field-1)
+                                    input(type="text", autocomplete="off", name="СДОрганизацииИное" data-input-group="SDO")
+                                    .form-cross
+                            .form-row(data-group="СведенияООсновнойРаботе")
+                                h3.employer-size Численность персонала
+                                div.form-group__radio                    
+                                    input(type="radio", id="employer-size-1", name="Численность персонала", value="до 10")
+                                    label(for="employer-size-1") до 10
+                                div.form-group__radio                    
+                                    input(type="radio", id="employer-size-2", name="Численность персонала", value="11-30")
+                                    label(for="employer-size-2") 11-30
+                                div.form-group__radio                    
+                                    input(type="radio", id="employer-size-3", name="Численность персонала", value="31-50")
+                                    label(for="employer-size-3") 31-50
+                                div.form-group__radio                    
+                                    input(type="radio", id="employer-size-4", name="Численность персонала", value="51-100")
+                                    label(for="employer-size-4") 51-100
+                                div.form-group__radio                    
+                                    input(type="radio", id="employer-size-5", name="Численность персонала", value="101-500")
+                                    label(for="employer-size-5") 101-500
+                                div.form-group__radio                    
+                                    input(type="radio", id="employer-size-6", name="Численность персонала", value="501-1000")
+                                    label(for="employer-size-6") 501-1000
+                                div.form-group__radio                    
+                                    input(type="radio", id="employer-size-7", name="Численность персонала", value="более 1000")
+                                    label(for="employer-size-7") более 1000
+                            .form-row
+                                h3.employer-duration Стаж работы в организации
+                                div.form-group__radio                    
+                                    input(type="radio", id="employer-duration-1", name="ТрудовойСтаж", value="до 2-х лет")
+                                    label(for="employer-duration-1") до 2-х лет
+                                div.form-group__radio                    
+                                    input(type="radio", id="employer-duration-2", name="ТрудовойСтаж", value="от 2-5 лет")
+                                    label(for="employer-duration-2") от 2-5 лет
+                                div.form-group__radio                    
+                                    input(type="radio", id="employer-duration-3", name="ТрудовойСтаж", value="более 5 лет")
+                                    label(for="employer-duration-3") более 5 лет 
+                            .form-row
+                                h3.appointment Должность
+                                div.form-group__text
+                                    input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="Должность" placeholder="Веб-разработчик")
+                                    .form-cross
+                            .form-row
+                                h3.experience Общий трудовой стаж
+                                div.form-group__text
+                                    input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="ОбщийТрудовойСтаж" placeholder="10 лет")
+                                    .form-cross
+                            .form-row
+                                h3.current-experience Стаж в текущей сфере деятельности
+                                div.form-group__text
+                                    input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="СтажВСфере" placeholder="5 лет")
+                                    .form-cross
+                            .form-row
+                                h3.job-number Мест работы за последние 3 (три) года
+                                div.form-group__text
+                                    input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="РабочиеМестаЗаТриГода" placeholder="1")
+                                    .form-cross
+                            .form-row
+                                h3.income-confimation Справка о доходе
+                                div.form-group__radio                    
+                                    input(type="radio", checked id="income-confimation-1", name="СправкаОДоходе", value="2-НДФЛ")
+                                    label(for="income-confimation-1") 2-НДФЛ
+                                div.form-group__radio                    
+                                    input(type="radio", id="income-confimation-2", name="СправкаОДоходе", value="Справка по форме банка")
+                                    label(for="income-confimation-2") Справка по форме банка
+                                div.form-group__radio                    
+                                    input(type="radio", id="income-confimation-3", name="СправкаОДоходе", value="Без подтверждения дохода - по двум документам")
+                                    label(for="income-confimation-3") Без подтверждения дохода - по двум документам
+                            .form-row
+                                h3.income Среднемесячный доход, руб.
+                                div.form-group__text
+                                    input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="СреднийДоходМесяц" data-cost placeholder="15 000 руб.")
+                                    .form-cross
+                            .form-row(data-group="СведенияОДополнительномДоходе")
+                                h3.additional-income Дополнительный доход (необязательно)
+                                div.form-group__text                    
+                                    input(type="text", autocomplete="off", name="ДДСуммаМесяц" placeholder="50 000 руб." data-cost)
+                                    label(for="additional-employer-name") Сумма в месяц
+                                    .form-cross
+                                div.form-group__text                    
+                                    input(type="text", autocomplete="off", name="ДДИсточникДохода" placeholder="Пенсия/Сдача квартиры")
+                                    label(for="additional-appointment") Источник дохода
+                                    .form-cross
+                            .form-add-job-wrapper(data-group="РаботаПоСовместительству")
+                                .form-row.form-add-job
+                                    h3.additional-income Работа по совместительству
+                                    div.form-group__text                    
+                                        input(type="text", autocomplete="off", name="ДДНаименованиеРаботодателя" placeholder="ОАО Газпром")
+                                        label(for="additional-employer-name") Наименование работодателя
+                                        .form-cross
+                                    div.form-group__text                    
+                                        input(type="text", autocomplete="off", name="ДДДолжность" placeholder="Директор")
+                                        label(for="additional-appointment") Должность
+                                        .form-cross
+                                    div.form-group__text                    
+                                        input(type="text", autocomplete="off", name="ДДИНН"  placeholder="000000000000" data-inn)
+                                        label(for="additional-employer-inn") ИНН работодателя
+                                        .form-cross
+                                    div.form-group__text                    
+                                        input(type="text", autocomplete="off", name="ДДФактическийАдресс" placeholder="Россия г.Москва ул.Ленина д 21")
+                                        label(for="additional-employer-real-adress") Фактический адрес
+                                        .form-cross
+                                    div.form-group__text                    
+                                        input(type="text", autocomplete="off", name="ДДСфераДеятельности" placeholder="Глобальная энергетическая компания")
+                                        label(for="additional-employer-branch") Сфера деятельности организации
+                                        .form-cross
+                                    div.form-group__text                    
+                                        input(type="text", autocomplete="off", name="ДДДоход" placeholder="50 000 руб." data-cost)
+                                        label(for="additional-income") Доход по совместительству
+                                        .form-cross
+                            .form-row
+                                .form-btn.btn-add-job Работа по совместительству
+                            .form-row
+                                .form-group_hidden
+                                    div.form-group__check
+                                        input(type="checkbox", id="sberbank-zp", name="СбербанкЗП" data-hidden)
+                                        label(for="sberbank-zp") Получаю заработную плату/пенсию на карту Сбербанка
+                                    .form-group_hidden-content(data-hidden-content)
+                                        div.form-group__text  
+                                            input(type="text", autocomplete="off", name="НомКартыСбербанка" placeholder="4276 0000 0000 0000")
+                                            .form-cross
             .form-row_bb
                 .form-btns
                     .form-btn.form-btn__prev
@@ -704,126 +720,136 @@ block contain
             div.form-block__header
                 h2 Активы Заемщика / Созаемщика
             div.form-block__content
-                .form.form-resources
-                    .form-row
-                        h3.realty Недвижимость
-                        .data-active-wrapper       
-                            div.form-group__check
-                                input(type="checkbox", id="apartment", name="Квартира" data-active)
-                                label(for="apartment") Квартира
-                            .form-group__active
-                                .form-chunk
-                                    .form-chunk-wrapper
-                                        .form-chunk-wrapper-item
-                                            div.form-group__text                   
-                                                input(type="text", autocomplete="off", name="Адрес")
-                                                label(for="Адрес") Адрес
-                                                .form-cross
-                                            .form-group_hidden                
-                                                div.form-group__check
-                                                    input(type="radio", id="private-property", name="ТипСобственности" data-add-name="ТипСобственности" value="Частная собственность" data-close)
-                                                    label(for="private-property") Частная собственность
-                                                div.form-group__check
-                                                    input(type="radio", id="share-property", name="ТипСобственности" data-add-name="ТипСобственности" value="Долевая собственность" data-option)
-                                                    label(for="share-property") Долевая собственность
-                                                div.form-group__text.form-group__text_pt(data-option-field)
-                                                    input(type="text", autocomplete="off", name="РазмерДоли" data-procenty)
-                                                    label(for="РазмерДоли") Указать размер доли
-                                                    .form-cross
-                                    .form-chunk-btn Добавить
-                        .data-active-wrapper               
-                            div.form-group__check
-                                input(type="checkbox", id="room", name="Комната" data-active)
-                                label(for="room") Комната
-                            .form-group__active
-                                .form-chunk
-                                    .form-chunk-wrapper
-                                        .form-chunk-wrapper-item
-                                            div.form-group__text                   
-                                                input(type="text", autocomplete="off", name="Адрес")
-                                                label(for="Адрес") Адрес
-                                                .form-cross
-                                            .form-group_hidden                
-                                                div.form-group__check
-                                                    input(type="radio", id="private-property-1", name="ТипСобственности1" data-add-name="ТипСобственности" value="Частная собственность" data-close)
-                                                    label(for="private-property-1") Частная собственность
-                                                div.form-group__check
-                                                    input(type="radio", id="share-property-1", name="ТипСобственности1" data-add-name="ТипСобственности" value="Долевая собственность" data-option)
-                                                    label(for="share-property-1") Долевая собственность
-                                                div.form-group__text.form-group__text_pt(data-option-field)
-                                                    input(type="text", autocomplete="off", name="РазмерДоли" data-procenty)
-                                                    label(for="РазмерДоли") Указать размер доли
-                                                    .form-cross
-                                    .form-chunk-btn Добавить
-                        .data-active-wrapper 
-                            div.form-group__check
-                                input(type="checkbox", id="house", name="Дом" data-active)
-                                label(for="house") Дом
-                            .form-group__active
-                                .form-chunk
-                                    .form-chunk-wrapper
-                                        .form-chunk-wrapper-item
-                                            div.form-group__text                   
-                                                input(type="text", autocomplete="off", name="Адрес")
-                                                label(for="Адрес") Адрес
-                                                .form-cross
-                                            .form-group_hidden                
-                                                div.form-group__check
-                                                    input(type="radio", id="private-property-2", name="ТипСобственности2" data-add-name="ТипСобственности" value="Частная собственность" data-close)
-                                                    label(for="private-property-2") Частная собственность
-                                                div.form-group__check
-                                                    input(type="radio", id="share-property-2", name="ТипСобственности2" data-add-name="ТипСобственности" value="Долевая собственность" data-option)
-                                                    label(for="share-property-2") Долевая собственность
-                                                div.form-group__text.form-group__text_pt(data-option-field)
-                                                    input(type="text", autocomplete="off", name="РазмерДоли" data-procenty)
-                                                    label(for="РазмерДоли") Указать размер доли
-                                                    .form-cross
-                                    .form-chunk-btn Добавить
-                        .data-active-wrapper            
-                            div.form-group__check
-                                input(type="checkbox", id="land", name="ЗемельныйУчасток" data-active)
-                                label(for="land") Земельный участок
-                            .form-group__active
-                                .form-chunk
-                                    .form-chunk-wrapper
-                                        .form-chunk-wrapper-item
-                                            div.form-group__text                   
-                                                input(type="text", autocomplete="off", name="Адрес")
-                                                label(for="Адрес") Адрес
-                                                .form-cross
-                                            .form-group_hidden
-                                                div.form-group__check
-                                                    input(type="radio", id="private-property-3", name="ТипСобственности3" data-add-name="ТипСобственности" value="Частная собственность" data-close)
-                                                    label(for="private-property-3") Частная собственность
-                                                div.form-group__check
-                                                    input(type="radio", id="share-property-3", name="ТипСобственности3" data-add-name="ТипСобственности" value="Долевая собственность" data-option)
-                                                    label(for="share-property-3") Долевая собственность
-                                                div.form-group__text.form-group__text_pt(data-option-field)
-                                                    input(type="text", autocomplete="off", name="РазмерДоли" data-procenty)
-                                                    label(for="РазмерДоли") Указать размер доли
-                                                    .form-cross
-                                    .form-chunk-btn Добавить
+                .form-row
+                    .form-tabs
+                        .form-tabs-nav
+                            .form-tabs-nav__link-wrapper.form-tabs-nav__link-wrapper-actives
+                                .form-tabs-nav__link.active
+                                    | Заёмщик
+                                .form-tabs-nav__link.form-tabs-nav__link-actives
+                                    | Созаёмщик
+                .form-tabs-container-wrapper.form-tabs-container-wrapper_actives
+                    .form-tabs-container.form-tabs-container_actives.active
+                        .form.form-resources
+                            .form-row
+                                h3.realty Недвижимость
+                                .data-active-wrapper       
+                                    div.form-group__check
+                                        input(type="checkbox", id="apartment", name="Квартира" data-active)
+                                        label(for="apartment") Квартира
+                                    .form-group__active
+                                        .form-chunk
+                                            .form-chunk-wrapper
+                                                .form-chunk-wrapper-item
+                                                    div.form-group__text                   
+                                                        input(type="text", autocomplete="off", name="Адрес")
+                                                        label(for="Адрес") Адрес
+                                                        .form-cross
+                                                    .form-group_hidden                
+                                                        div.form-group__check
+                                                            input(type="radio", id="private-property-1", name="ТипСобственности" data-add-name="ТипСобственности" value="Частная собственность" data-close)
+                                                            label(for="private-property-1") Частная собственность
+                                                        div.form-group__check
+                                                            input(type="radio", id="share-property-1", name="ТипСобственности" data-add-name="ТипСобственности" value="Долевая собственность" data-option)
+                                                            label(for="share-property-1") Долевая собственность
+                                                        div.form-group__text.form-group__text_pt(data-option-field)
+                                                            input(type="text", autocomplete="off", name="РазмерДоли" data-procenty)
+                                                            label(for="РазмерДоли") Указать размер доли
+                                                            .form-cross
+                                            .form-chunk-btn Добавить
+                                .data-active-wrapper               
+                                    div.form-group__check
+                                        input(type="checkbox", id="room", name="Комната" data-active)
+                                        label(for="room") Комната
+                                    .form-group__active
+                                        .form-chunk
+                                            .form-chunk-wrapper
+                                                .form-chunk-wrapper-item
+                                                    div.form-group__text                   
+                                                        input(type="text", autocomplete="off", name="Адрес")
+                                                        label(for="Адрес") Адрес
+                                                        .form-cross
+                                                    .form-group_hidden                
+                                                        div.form-group__check
+                                                            input(type="radio", id="private-property-2", name="ТипСобственности1" data-add-name="ТипСобственности" value="Частная собственность" data-close)
+                                                            label(for="private-property-2") Частная собственность
+                                                        div.form-group__check
+                                                            input(type="radio", id="share-property-2", name="ТипСобственности1" data-add-name="ТипСобственности" value="Долевая собственность" data-option)
+                                                            label(for="share-property-2") Долевая собственность
+                                                        div.form-group__text.form-group__text_pt(data-option-field)
+                                                            input(type="text", autocomplete="off", name="РазмерДоли" data-procenty)
+                                                            label(for="РазмерДоли") Указать размер доли
+                                                            .form-cross
+                                            .form-chunk-btn Добавить
+                                .data-active-wrapper 
+                                    div.form-group__check
+                                        input(type="checkbox", id="house", name="Дом" data-active)
+                                        label(for="house") Дом
+                                    .form-group__active
+                                        .form-chunk
+                                            .form-chunk-wrapper
+                                                .form-chunk-wrapper-item
+                                                    div.form-group__text                   
+                                                        input(type="text", autocomplete="off", name="Адрес")
+                                                        label(for="Адрес") Адрес
+                                                        .form-cross
+                                                    .form-group_hidden                
+                                                        div.form-group__check
+                                                            input(type="radio", id="private-property-3", name="ТипСобственности2" data-add-name="ТипСобственности" value="Частная собственность" data-close)
+                                                            label(for="private-property-3") Частная собственность
+                                                        div.form-group__check
+                                                            input(type="radio", id="share-property-3", name="ТипСобственности2" data-add-name="ТипСобственности" value="Долевая собственность" data-option)
+                                                            label(for="share-property-3") Долевая собственность
+                                                        div.form-group__text.form-group__text_pt(data-option-field)
+                                                            input(type="text", autocomplete="off", name="РазмерДоли" data-procenty)
+                                                            label(for="РазмерДоли") Указать размер доли
+                                                            .form-cross
+                                            .form-chunk-btn Добавить
+                                .data-active-wrapper            
+                                    div.form-group__check
+                                        input(type="checkbox", id="land", name="ЗемельныйУчасток" data-active)
+                                        label(for="land") Земельный участок
+                                    .form-group__active
+                                        .form-chunk
+                                            .form-chunk-wrapper
+                                                .form-chunk-wrapper-item
+                                                    div.form-group__text                   
+                                                        input(type="text", autocomplete="off", name="Адрес")
+                                                        label(for="Адрес") Адрес
+                                                        .form-cross
+                                                    .form-group_hidden
+                                                        div.form-group__check
+                                                            input(type="radio", id="private-property-4", name="ТипСобственности3" data-add-name="ТипСобственности" value="Частная собственность" data-close)
+                                                            label(for="private-property-4") Частная собственность
+                                                        div.form-group__check
+                                                            input(type="radio", id="share-property-4", name="ТипСобственности3" data-add-name="ТипСобственности" value="Долевая собственность" data-option)
+                                                            label(for="share-property-4") Долевая собственность
+                                                        div.form-group__text.form-group__text_pt(data-option-field)
+                                                            input(type="text", autocomplete="off", name="РазмерДоли" data-procenty)
+                                                            label(for="РазмерДоли") Указать размер доли
+                                                            .form-cross
+                                            .form-chunk-btn Добавить
 
-                            
-                    .form-row
-                        h3.auto Транспорт в собственности
-                        .form-group_hidden
-                            div.form-group__check
-                                input(type="checkbox", id="auto-property", name="Авто" data-hidden)
-                                label(for="auto-property") Транспорт в собственности
-                            .form-group_hidden-content(data-hidden-content)
-                                .form-chunk
-                                    .form-chunk-wrapper
-                                        .form-chunk-wrapper-item
-                                            div.form-group__text  
-                                                input(type="text", autocomplete="off", name="МодельАвто")
-                                                label(for="model") Марка / модель
-                                                .form-cross
-                                            div.form-group__text                    
-                                                input(type="text", autocomplete="off", name="ГодВыпускаАвто")
-                                                label(for="age") Год выпуска / год приобретения
-                                                .form-cross
-                                    .form-chunk-btn Добавить
+                                    
+                            .form-row
+                                h3.auto Транспорт в собственности
+                                .form-group_hidden
+                                    div.form-group__check
+                                        input(type="checkbox", id="auto-property", name="Авто" data-hidden)
+                                        label(for="auto-property") Транспорт в собственности
+                                    .form-group_hidden-content(data-hidden-content)
+                                        .form-chunk
+                                            .form-chunk-wrapper
+                                                .form-chunk-wrapper-item
+                                                    div.form-group__text  
+                                                        input(type="text", autocomplete="off", name="МодельАвто")
+                                                        label(for="model") Марка / модель
+                                                        .form-cross
+                                                    div.form-group__text                    
+                                                        input(type="text", autocomplete="off", name="ГодВыпускаАвто")
+                                                        label(for="age") Год выпуска / год приобретения
+                                                        .form-cross
+                                            .form-chunk-btn Добавить
             .form-row_bb
                 .form-btns
                     .form-btn.form-btn__prev

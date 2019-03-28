@@ -402,3 +402,12 @@ input::selection {
     border: 1px solid grey;
 	}
 }
+
+
+[data-marriage-content] {
+	display: none;
+
+	.form-group__check:last-child {
+		margin-bottom: 0px;
+	}
+}

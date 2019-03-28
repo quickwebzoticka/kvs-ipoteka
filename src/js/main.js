@@ -135,10 +135,20 @@ function init() {
 
 	$('.form-add-job').remove();
 
+
+	$(document).on('change', '[name="СемейноеПоложение"]', function() {
+
+		if ( $(this).attr('id') === 'marriage') {
+			$('[data-marriage-content]').slideDown(300);
+		} else {
+			$('[data-marriage-content]').slideUp(300);
+		}
+	});
+
 	$(document).on('click', '.btn-add-job', function() {
-		let count = $('.form-add-job').length;
+		let count = $(this).closest('.form-tabs-container_job').find('.form-add-job').length;
 		if (count < 3) {
-			$('.form-add-job-wrapper').append(formAddJob.clone());
+			$(this).closest('.form-tabs-container_job').find('.form-add-job-wrapper').append(formAddJob.clone());
 			if (count == 2) {
 				$(this).addClass('disabled');		
 			}
@@ -167,45 +177,76 @@ function init() {
 		$(this).val(count);
 	});
 
+	let anketa = $('[data-step-name="ЛичныеДанные"]').find('.form-tabs-container').clone();
+	let link = $('[data-step-name="ЛичныеДанные"]').find('.form-tabs-nav__link-add').clone();
 
-	let anketa = $('.form-tabs-container').clone();
-	let link = $('.form-tabs-nav__link-add').clone();
+	let linkSozJob = $('.form-tabs-nav__link-job').clone();
+	let anketJob = $('.form-tabs-container_job').clone();
 
+	let linkSozActives = $('.form-tabs-nav__link-actives').clone();
+	let anketActives = $('.form-tabs-container_actives').clone();
+
+	
 	anketa.removeClass('active');
 	link.removeClass('active');
+	
+
+	anketJob.removeClass('active');
+	linkSozJob.removeClass('active');
+
+
+	linkSozActives.removeClass('active');
+	anketActives.removeClass('active');
+
 
 	$('.form-tabs-nav__link-add').remove();
 	$('.name-wrapper').remove();
 	$('.account-soz').remove();
+	$('.form-tabs-nav__link-job').remove();
+	$('.form-tabs-nav__link-actives').remove();
 
 	$(document).on('click', '.form-tabs-nav__btn', function() {
-		let count = $('.form-tabs-nav__link').length;
+		let count = $(this).closest('.form-block').find('.form-tabs-nav__link').length;
 
-		if ($('.form-tabs-nav__link-add').length < 3) {
-			$('.form-tabs-nav__link-wrapper').append(link.clone());
-			$('.form-tabs-container-wrapper').append(anketa.clone().addClass("soz"));
+		if ($(this).closest('.form-block').find('.form-tabs-nav__link-add').length < 3) {
+			$(this).closest('.form-block').find('.form-tabs-nav__link-wrapper').append(link.clone());
+			$(this).closest('.form-block').find('.form-tabs-container-wrapper').append(anketa.clone().addClass("soz"));
 			$(document).find('.soz').find('.form-row.children-wrapper').remove();
-			// $('.form-tabs-container').eq(count).prepend(naming.clone());
+			$(document).find('.soz').find('[data-marriage-content]').remove();
 
-			$('.form-tabs-container').eq(count).find('input').each(function(index) {
 
-				if (!$(this).attr('id') == 0) {
+			$('.form-tabs-nav__link-wrapper-job').append(linkSozJob.clone());
+			$('.form-tabs-container-wrapper_job').append(anketJob.clone().addClass("soz"));
 
-					let temp = $(this).attr('id');
 
-					$(this).attr('id', `${temp}-${count}`);
-					$(this).siblings('label').attr('for', `${temp}-${count}`);
-				}
-			});
+			$('.form-tabs-nav__link-wrapper-actives').append(linkSozActives.clone());
+			$('.form-tabs-container-wrapper_actives').append(anketActives.clone().addClass("soz"));
 
-			$('.form-tabs-container').eq(count).find('input[type="radio"]').each(function(index) {
-				if (!$(this).attr('name') == 0) {
+			const addID = (container) => {
+				$(container).eq(count).find('input').each(function(index) {
 
-					let temp = $(this).attr('name');
+					if (!$(this).attr('id') == 0) {
 
-					$(this).attr('name', `${temp}-${count}`);
-				}
-			});
+						let temp = $(this).attr('id');
+
+						$(this).attr('id', `${temp}-${count}`);
+						$(this).siblings('label').attr('for', `${temp}-${count}`);
+					}
+				});
+
+				$(container).eq(count).find('input[type="radio"]').each(function(index) {
+					if (!$(this).attr('name') == 0) {
+
+						let temp = $(this).attr('name');
+
+						$(this).attr('name', `${temp}-${count}`);
+					}
+				});
+			};
+
+			addID('.form-tabs-container');
+			addID('.form-tabs-container_job');
+			addID('.form-tabs-container_actives');
 
 			init();
 			$('input[required]').trigger('input');
@@ -213,21 +254,79 @@ function init() {
 		
 	});
 
+	$(document).on('change', '[data-soz-add]', function () {
+		let index = $(this).closest('.form-tabs-container').index('.form-tabs-container');
+		if($(this).prop('checked')) {
+			
+			$('.form-tabs-container_job').eq(index).hide();
+			$('.form-tabs-nav__link-wrapper-job .form-tabs-nav__link').eq(index).hide();
+			$('.form-tabs-container_job').eq(index).find('input[data-required]').each(function() {
+				$(this).attr('required', false);
+			});
+		} else {
+			$('.form-tabs-container_job').eq(index).show();
+			$('.form-tabs-nav__link-wrapper-job .form-tabs-nav__link').eq(index).show();
+			$('.form-tabs-container_job').eq(index).find('input[data-required]').each(function() {
+				$(this).attr('required', true);
+			});
+		}
+	});
 
+
+	$(document).on('change', '[name="БрачныйКонтракт"]', function() {
+		let tempOffset = $('[data-step-name="ЛичныеДанные"]').offset().top;
+		if ($(this).attr('value') === '1') {
+			$('.form-tabs-nav__btn').trigger('click');
+			$('.form-tabs-nav__link-add').eq($('.form-tabs-nav__link-add').length - 1).addClass('marriage-link');
+			$('.form-tabs-container.soz').eq($('.form-tabs-container.soz').length - 1).addClass('marriage-content');
+
+			$('.form-tabs-container_job.soz').eq($('.form-tabs-container_job.soz').length - 1).addClass('marriage-content');
+			$('.form-tabs-nav__link-job').eq($('.form-tabs-nav__link-job').length - 1).addClass('marriage-link');
+
+			$('.form-tabs-container_actives').eq($('.form-tabs-container_actives').length - 1).addClass('marriage-content');
+			$('.form-tabs-nav__link-actives').eq($('.form-tabs-nav__link-actives').length - 1).addClass('marriage-link');
+
+
+			$('html, body').animate({scrollTop: tempOffset}, 1000);
+
+			$(this).prop('checked', true);
+		} else {
+			$('.marriage-link').remove();
+			$('.marriage-content').remove();
+			$(this).prop('checked', true);
+		}
+	});
 
 
 	$(document).on('click', '.form-tabs-nav__link:not(.active)', function(e) {
 
-		if(e.target.closest('.form-tabs-nav__link-add-cross')) {
+		let thisIndex = $(this).index('.form-tabs-nav__link');
+
+		if(e.target.closest('.form-tabs-nav__link-add-cross')
+	  || e.target.closest('.form-tabs-nav__link-wrapper-job')
+	  || e.target.closest('.form-tabs-nav__link-wrapper-actives')) {
 			return false;
 		}
 
-		$('.form-tabs-nav__link').removeClass('active');
+		$(this).siblings('.form-tabs-nav__link').removeClass('active');
 		$(this).addClass('active');
+		$(this).closest('.form-block').find('.form-tabs-container').removeClass('active').eq(thisIndex).addClass('active');
+	});
 
-		let thisIndex = $(this).index('.form-tabs-nav__link');
+	$(document).on('click', '.form-tabs-nav__link-wrapper-job .form-tabs-nav__link', function() {
+		let thisIndex = $(this).index('.form-tabs-nav__link-wrapper-job .form-tabs-nav__link');
 
-		$('.form-tabs-container').removeClass('active').eq(thisIndex).addClass('active');
+		$(this).siblings('.form-tabs-nav__link').removeClass('active');
+		$(this).addClass('active');
+		$(this).closest('.form-block').find('.form-tabs-container').removeClass('active').eq(thisIndex).addClass('active');
+	});
+
+	$(document).on('click', '.form-tabs-nav__link-wrapper-actives .form-tabs-nav__link', function() {
+		let thisIndex = $(this).index('.form-tabs-nav__link-wrapper-actives .form-tabs-nav__link');
+
+		$(this).siblings('.form-tabs-nav__link').removeClass('active');
+		$(this).addClass('active');
+		$(this).closest('.form-block').find('.form-tabs-container').removeClass('active').eq(thisIndex).addClass('active');
 	});
 
 
@@ -235,14 +334,20 @@ function init() {
 		let index = $(this).closest('.form-tabs-nav__link')
 					 						 .index('.form-tabs-nav__link');
 
-		$('.form-tabs-container').removeClass('active');
-		$('.form-tabs-container').eq(0).addClass('active');
+		const removeAnket = (container) => {
+			$(container).find('.form-tabs-container').removeClass('active');
+			$(container).find('.form-tabs-container').eq(0).addClass('active');
 
-		$('.form-tabs-nav__link').removeClass('active');
-		$('.form-tabs-nav__link').eq(0).addClass('active');
+			$(container).find('.form-tabs-nav__link').removeClass('active');
+			$(container).find('.form-tabs-nav__link').eq(0).addClass('active');
 
-		$('.form-tabs-nav__link').eq(index).remove();
-		$('.form-tabs-container').eq(index).remove();
+			$(container).find('.form-tabs-nav__link').eq(index).remove();
+			$(container).find('.form-tabs-container').eq(index).remove();
+		}
+
+		removeAnket('[data-step-name="СведенияРаботе"]');
+		removeAnket('[data-step-name="ЛичныеДанные"]');
+		removeAnket('[data-step-name="Активы"]');
 
 		$('input[required]').trigger('input');
 	});
@@ -1094,7 +1199,9 @@ function init() {
 			
 			tempContent.find('input[type="radio"]').each(function() {
 				let tempName = $(this).attr('id');
+				let tempNameReq = $(this).attr('name');
 				$(this).attr('id', `${tempName}-${tempIndex}`);
+				$(this).attr('name', `${tempNameReq}-${tempIndex}`);
 				$(this).siblings('label').attr('for', `${tempName}-${tempIndex}`);
 			});
 
@@ -1352,16 +1459,16 @@ function getChildrenInfo() {
 				var typecredit = $(this).find(".form-group__check input").attr("name");
 				var item = $(this).find(".visible-active-wrapper .form-chunk-wrapper-item");
 				if(item.length) {
-                    massData[nameStep][typecredit] = {};
-                    $.each(item,function (key,item) {
-                        massData[nameStep][typecredit][key] = {};
-                        $(this).find("input,select").each(function () {
-                            var itemData = getData(this);
-                            if(itemData !== false) {
-                                massData[nameStep][typecredit][key][itemData['name']] = itemData['data'];
-                            }
-                        });
-                    });
+          massData[nameStep][typecredit] = {};
+          $.each(item,function (key,item) {
+              massData[nameStep][typecredit][key] = {};
+              $(this).find("input,select").each(function () {
+                  var itemData = getData(this);
+                  if(itemData !== false) {
+                      massData[nameStep][typecredit][key][itemData['name']] = itemData['data'];
+                  }
+              });
+          });
 				}
 			});
 			/*Недвижимость END*/
