@@ -342,7 +342,7 @@ block contain
                                             input(type="text",  autocomplete="off", name="ДатаОкончУчеб" placeholder="Дата окончания" data-passport-date) 
                                             label(for="institution-finish-date") Дата окончания
                                             .form-cross                   
-                                    .form-row(data-group="АдрессРегистрации")
+                                    .form-row(data-group="АдрессРегистрации" data-form-autocomplete="1")
                                         h3.registration-adress Адрес регистрации
                                         div.form-group__text                    
                                             input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="Индекс" data-autocomplete-zip)
@@ -372,7 +372,7 @@ block contain
                                             input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="Квартира")
                                             label(for="apartment") Квартира
                                             .form-cross
-                                    .form-row(data-group="АдрессФактический")
+                                    .form-row(data-group="АдрессФактический" data-form-autocomplete="2")
                                         h3.real-registration-adress Адрес фактического проживания совпадает с адресом регистрации?  
                                         .form-group_show              
                                             div.form-group__check
@@ -400,7 +400,7 @@ block contain
                                                     label(for="building") Дом
                                                     .form-cross
                                                 div.form-group__text                    
-                                                    input(type="text", required data-required="1" data-type-required="" autocomplete="off", name="Корпус")
+                                                    input(type="text", autocomplete="off", name="Корпус")
                                                     label(for="facility") Корпус
                                                     .form-cross
                                                 div.form-group__text                    
@@ -463,7 +463,7 @@ block contain
                                 div.form-group__text
                                     input(type="text", autocomplete="off", name="СайтРаботодателя" placeholder="google.ru")
                                     .form-cross
-                            .form-row(data-group="СведенияООсновнойРаботе")
+                            .form-row(data-group="СведенияООсновнойРаботе"  data-form-autocomplete="3")
                                 h3.employer-adress Юридический адрес организации и фактический адрес    
                                 h3.employer-adress-legal Юридический адрес
                                 div.form-group__text
@@ -487,14 +487,14 @@ block contain
                                     label(for="building") Дом
                                     .form-cross
                                 div.form-group__text                    
-                                    input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="КорпусЮР")
+                                    input(type="text", autocomplete="off", name="КорпусЮР")
                                     label(for="facility") Корпус
                                     .form-cross
                                 div.form-group__text                    
                                     input(type="text", required data-required="1" data-type-required="", autocomplete="off", name="ОфисЮР")
                                     label(for="office") Офис
                                     .form-cross
-                            .form-row(data-group="СведенияООсновнойРаботе")
+                            .form-row(data-group="СведенияООсновнойРаботе" data-form-autocomplete="4")
                                 h3.employer-adress-real Фактический адрес      
                                 .form-group_show          
                                     div.form-group__check
@@ -742,7 +742,7 @@ block contain
                                             .form-chunk-wrapper
                                                 .form-chunk-wrapper-item
                                                     div.form-group__text                   
-                                                        input(type="text", autocomplete="off", name="Адрес")
+                                                        input(type="text", autocomplete="off", name="Адрес" data-form-autocomplete-row="1")
                                                         label(for="Адрес") Адрес
                                                         .form-cross
                                                     .form-group_hidden                
@@ -766,7 +766,7 @@ block contain
                                             .form-chunk-wrapper
                                                 .form-chunk-wrapper-item
                                                     div.form-group__text                   
-                                                        input(type="text", autocomplete="off", name="Адрес")
+                                                        input(type="text", autocomplete="off", name="Адрес" data-form-autocomplete-row="2")
                                                         label(for="Адрес") Адрес
                                                         .form-cross
                                                     .form-group_hidden                
@@ -790,7 +790,7 @@ block contain
                                             .form-chunk-wrapper
                                                 .form-chunk-wrapper-item
                                                     div.form-group__text                   
-                                                        input(type="text", autocomplete="off", name="Адрес")
+                                                        input(type="text", autocomplete="off", name="Адрес" data-form-autocomplete-row="3")
                                                         label(for="Адрес") Адрес
                                                         .form-cross
                                                     .form-group_hidden                
@@ -814,7 +814,7 @@ block contain
                                             .form-chunk-wrapper
                                                 .form-chunk-wrapper-item
                                                     div.form-group__text                   
-                                                        input(type="text", autocomplete="off", name="Адрес")
+                                                        input(type="text", autocomplete="off", name="Адрес" data-form-autocomplete-row="4")
                                                         label(for="Адрес") Адрес
                                                         .form-cross
                                                     .form-group_hidden
@@ -856,8 +856,6 @@ block contain
                         | Назад
                     .form-btn.form-btn__next
                         | Вперед
-                    //- .form-btn__next_static
-                    //-     | Вперед
         
         div.form-block(data-step-name="КредитнаяИстори")
             div.form-block__header
@@ -957,57 +955,65 @@ block contain
                             label.form-group__file-label
                                 i.material-icons attach_file
                                 span.file-title Загрузить паспорт
-                                input(type="file", name="Паспорт", multiple)
+                                input(type="file", name="Паспорт", multiple required)
                                 span.file-uploaded
+                                .file-upload-clear
                         h3.passport Трудовая книга
                         div.form-group__file
                             label.form-group__file-label
                                 i.material-icons attach_file
                                 span.file-title Загрузить трудовую книгу
-                                input(type="file", name="ТрудоваяКнига", multiple)
+                                input(type="file", name="ТрудоваяКнига", multiple required)
                                 span.file-uploaded
+                                .file-upload-clear
                         h3.passport Свидетельство о браке
                         div.form-group__file
                             label.form-group__file-label
                                 i.material-icons attach_file
                                 span.file-title Загрузить свидетельство о браке
-                                input(type="file", name="СвидетельсвоОБраке", multiple)
+                                input(type="file", name="СвидетельсвоОБраке", multiple )
                                 span.file-uploaded
+                                .file-upload-clear
                         h3.passport Свидетельство о рождении детей
                         div.form-group__file
                             label.form-group__file-label
                                 i.material-icons attach_file
                                 span.file-title Загрузить свидетельство о рождении детей
-                                input(type="file", name="СвидетельствоДетей", multiple)
+                                input(type="file", name="СвидетельствоДетей", multiple )
                                 span.file-uploaded
+                                .file-upload-clear
                         h3.passport СНИЛС
                         div.form-group__file
                             label.form-group__file-label
                                 i.material-icons attach_file
                                 span.file-title Загрузить СНИЛС
-                                input(type="file", name="СНИЛС", multiple)
+                                input(type="file", name="СНИЛС", multiple required)
                                 span.file-uploaded
+                                .file-upload-clear
                         h3.passport ИНН
                         div.form-group__file
                             label.form-group__file-label
                                 i.material-icons attach_file
                                 span.file-title Загрузить ИНН
-                                input(type="file", name="ИНН", multiple)
+                                input(type="file", name="ИНН", multiple required)
                                 span.file-uploaded
+                                .file-upload-clear
                         h3.passport Документ, подтверждающий доход
                         div.form-group__file
                             label.form-group__file-label
                                 i.material-icons attach_file
                                 span.file-title Загрузить документ, подтверждающий доход
-                                input(type="file", name="Доход", multiple)
+                                input(type="file", name="Доход", multiple required)
                                 span.file-uploaded
+                                .file-upload-clear
                         h3.passport Накопительная Ипотечная Система, Материнский капитал, выписка со счета Материнского капитала, субсидии, памятки
                         div.form-group__file
                             label.form-group__file-label
                                 i.material-icons attach_file
                                 span.file-title Загрузить другие документы
-                                input(type="file", name="ДопДокументы", multiple)
+                                input(type="file", name="ДопДокументы", multiple )
                                 span.file-uploaded
+                                .file-upload-clear
             .form-row_bb
                 .form-btns
                     .form-btn.form-btn__prev
