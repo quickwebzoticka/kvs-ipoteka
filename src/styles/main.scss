@@ -447,3 +447,21 @@ input::selection {
     	transform: translate(-50%, -50%) rotate(-45deg);
     }
 }
+
+.form-group__text.required {
+	label {
+		color: red !important;
+	}
+	&:before {
+		background: red;
+	}
+}
+
+.form-group__text.completed {
+	label {
+		color: #1bc01b !important;
+	}
+	&:after {
+		background: #1bc01b;
+	}
+}
