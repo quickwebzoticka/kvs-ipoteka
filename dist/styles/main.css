@@ -1349,4 +1349,20 @@ input::selection {
   .file-upload-clear:after {
     transform: translate(-50%, -50%) rotate(-45deg); }
 
+
+	.form-group__text.required label {
+		color: red !important;
+	}
+	.form-group__text.required:before {
+		background: red;
+	}
+
+
+	.form-group__text.completed label {
+		color: #1bc01b !important;
+	}
+	.form-group__text.completed:after {
+		background: #1bc01b;
+	}
+
 /*# sourceMappingURL=maps/main.css.map */
