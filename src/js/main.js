@@ -1070,11 +1070,18 @@ function init() {
 				|| this.hasAttribute('data-snils')
 				|| this.hasAttribute('data-email')) {
 					if($(this).inputmask("isComplete")) {
+						$(this).closest('.form-group__text').removeClass('required');
+						$(this).closest('.form-group__text').addClass('completed');
 						return countFilledInputs++;
 					}
 					return false;
 				}
+				$(this).closest('.form-group__text').removeClass('required');
+				$(this).closest('.form-group__text').addClass('completed');
 				return countFilledInputs++;
+			} else {
+				$(this).closest('.form-group__text').removeClass('completed');
+				$(this).closest('.form-group__text').addClass('required');
 			}
 		});
 		let compare = countInputs == countFilledInputs;
