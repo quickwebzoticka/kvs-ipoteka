@@ -177,6 +177,7 @@ function init() {
 	$('[data-option-field]').hide();
 	$('[data-option-field-1]').hide();
 	$('[data-hidden-radio-content]').hide();
+	$('[data-hidden-content-pensiya]').hide();
 
 	let formAddJob = $('.form-add-job').clone();
 
@@ -187,7 +188,9 @@ function init() {
 
 		if ( $(this).attr('id') === 'marriage') {
 			$('[data-marriage-content]').slideDown(300);
+			$('.document-about-marriage').show();
 		} else {
+			$('.document-about-marriage').hide();
 			$('[data-marriage-content]').slideUp(300);
 		}
 	});
@@ -210,6 +213,24 @@ function init() {
 		} else {
 			$(this).closest('.form-row').find('[data-type-job-field]').slideUp(300);
 			$(this).closest('.form-row').find('[data-type-job-field]').find('input').attr('required', false);
+		}
+
+		if (this.value == 'ИП') {
+			$('[data-type-job-radio-1]').find('label').text('3-НДФЛ');
+			$('[data-type-job-radio-2]').hide();
+		} else {
+			$('[data-type-job-radio-1]').find('label').text('2-НДФЛ');
+			$('[data-type-job-radio-2]').show();
+		}
+	});
+
+	$(document).on('change', '[data-type-home]', function() {
+		if (this.value == 'Другое') {
+			$(this).closest('.form-row').find('[data-type-home-field]').slideDown(300);
+			$(this).closest('.form-row').find('[data-type-home-field]').find('input').attr('required', true);
+		} else {
+			$(this).closest('.form-row').find('[data-type-home-field]').slideUp(300);
+			$(this).closest('.form-row').find('[data-type-home-field]').find('input').attr('required', false);
 		}
 	});
 
@@ -1269,6 +1290,18 @@ function init() {
 				$('input[required]').trigger('input');
 			});
 		}
+
+		if ($(this).attr('name') == 'Квартира' && $(this).closest('.data-active-wrapper').find('.form-chunk').length <= 1) {
+			let address = [];
+
+			$('[data-form-autocomplete="1"]').find('input[required]').each(function(index, element) {
+				address.push($(this).val());
+			})
+			
+			address = address.join(' ');
+
+			$(this).closest('.data-active-wrapper').find('.form-chunk').eq(0).find('input[name="Адрес"]').val(address);
+		}
 	});
 
 
@@ -1428,6 +1461,53 @@ function init() {
 		$(this).closest('.form-chunk').find('.form-chunk-wrapper').append(item.clone());
 		$('input[required]').trigger('input');
 		kladrOneStringInit(`[data-form-autocomplete-row]`);
+	});
+
+
+	$(document).on('change', '#children-exist', function() {
+		if (!($(this).prop('checked'))) {
+			$('.document-about-children').hide();
+			$('.document-about-children').find('input').attr('required', false);
+		} else {
+			$('.document-about-children').show();
+			$('.document-about-children').find('input').attr('required', true);
+		}
+	});
+
+
+
+	$(document).on('input', '[data-pensiya]', function() {
+		let string = $(this).val();
+
+		string = string.toLowerCase();
+		string = string.indexOf('пенси');
+
+		if (string) {
+			$('[data-hidden-content-pensiya]').hide();
+		} else {
+			$('[data-hidden-content-pensiya]').show();
+		}
+	});
+
+
+	$(document).on('change', 'input[data-type-reg]',function() {
+		if ($(this).attr('value') == 'Временная') {
+			$('.document-about-reg').show();
+			$('.document-about-reg').find('input').attr('required', true);
+		} else {
+			$('.document-about-reg').hide();
+			$('.document-about-reg').find('input').attr('required', false);
+		}
+
+		if ($(this).attr('value') == 'Отсутствует') {
+			$(this).closest('.form-tabs-container').find('[data-reg-content]').slideUp(300);
+			$(this).closest('.form-tabs-container').find('.real-registration-adress').text('Адрес фактического проживания');
+			$(this).closest('.form-tabs-container').find('[data-show]').closest('.form-group__check').hide();
+		} else {
+			$(this).closest('.form-tabs-container').find('[data-reg-content]').slideDown(300);
+			$(this).closest('.form-tabs-container').find('.real-registration-adress').text('Адрес фактического проживания совпадает с адресом регистрации?');
+			$(this).closest('.form-tabs-container').find('[data-show]').closest('.form-group__check').show();
+		}
 	});
 
 
