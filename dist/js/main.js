@@ -204,7 +204,7 @@ kladrOneStringInit('[data-form-autocomplete-row="4"]');
 function init() {
 	//data-inputmask-regex="[А-Яа-я]{1,}"
 	// $('[data-name]').inputmask({"mask": "Aa{1,}[-Aa{1,}]", showMaskOnHover: false, greedy: false});
-	$('[data-name]').inputmask({regex: "[А-Яа-я]{1,}[-][А-Яа-я]{1,}", showMaskOnHover: false, placeholder: ' ', greedy: false});
+	$('[data-name]').inputmask({regex: "[А-Яа-я]{2,}[-][А-Яа-я]{2,}", showMaskOnHover: false, placeholder: '', greedy: false});
 	$('[data-date]').inputmask({"mask": "99.99.9999", showMaskOnHover: false});
 	$('[data-phone]').inputmask({"mask": "+7 (999) 999-9999", showMaskOnHover: false});
 	$('[data-count]').inputmask({"mask": "9[9]", showMaskOnHover: false});
@@ -1140,7 +1140,19 @@ function init() {
 				|| this.hasAttribute('data-passport')
 				|| this.hasAttribute('data-inn')
 				|| this.hasAttribute('data-snils')
-				|| this.hasAttribute('data-email')) {
+				|| this.hasAttribute('data-email')
+				|| this.hasAttribute('data-name')) {
+					if (this.hasAttribute('data-name')) {
+						if ($(this).val().length >=2) {
+							$(this).closest('.form-group__text').removeClass('required');
+							$(this).closest('.form-group__text').addClass('completed');
+							return countFilledInputs++;
+						} else {
+							$(this).closest('.form-group__text').removeClass('completed');
+							$(this).closest('.form-group__text').addClass('required');
+						}
+						return false;
+					}
 					if($(this).inputmask("isComplete")) {
 						$(this).closest('.form-group__text').removeClass('required');
 						$(this).closest('.form-group__text').addClass('completed');
@@ -1216,12 +1228,12 @@ function init() {
 	});
 
 	$(document).on('change', '[data-mono]', function() {
-		if (!$(this).prop('checked')) {
-			$(this).closest('.form-group_hidden').find('.form-group__text').find('input').each(function(){
+		
+			$('[data-mono]').closest('.form-group_hidden').find('.form-group__text').find('input').each(function(){
 				$(this).val('');
 				$(this).trigger('change');
 			});
-		}
+		
 	});
 
 	$(document).on('change', '[data-close]', function() {
@@ -1558,6 +1570,13 @@ function init() {
 			$(this).closest('.form-tabs-container').find('[data-reg-content]').slideDown(300);
 			$(this).closest('.form-tabs-container').find('.real-registration-adress').text('Адрес фактического проживания совпадает с адресом регистрации?');
 			$(this).closest('.form-tabs-container').find('[data-show]').closest('.form-group__check').show();
+		}
+	});
+
+
+	$(document).on('change', '#exist-middle-name', function() {
+		if ($(this).prop('checked')) {
+			$('#main-name-3').val('');
 		}
 	});
 
