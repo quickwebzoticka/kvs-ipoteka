@@ -137,11 +137,41 @@ kladrInit('[data-form-autocomplete="4"]');
 kladrInit('[data-form-autocomplete="1"]');
 
 
+$("[data-country]").suggestions({
+    token: "91550cba21ac13e43e9546eb1433fb2799efee56",
+    type: "country"
+});
+
+
+$("[data-passport-who]").suggestions({
+    token: "91550cba21ac13e43e9546eb1433fb2799efee56",
+    type: "fms_unit"
+});
+
+
+$("[data-party-name]").suggestions({
+    token: "91550cba21ac13e43e9546eb1433fb2799efee56",
+    type: "PARTY",
+    /* Вызывается, когда пользователь выбирает одну из подсказок */
+    onSelect: function(suggestion) {
+        console.log(suggestion);
+
+        $(this).closest('.form').find('[data-autocomplete-zip]').eq(0).val(suggestion.data.address.data.postal_code);
+        $(this).closest('.form').find('[data-autocomplete-region]').eq(0).val(suggestion.data.address.data.region);
+        $(this).closest('.form').find('[data-autocomplete-city]').eq(0).val(suggestion.data.address.data.city);
+        $(this).closest('.form').find('[data-autocomplete-street]').eq(0).val(suggestion.data.address.data.street);
+        $(this).closest('.form').find('[data-autocomplete-house]').eq(0).val(suggestion.data.address.data.house);
+        $(this).closest('.form').find('[data-inn-party]').eq(0).val(suggestion.data.inn);
+
+
+        $('input[required]').trigger('input');
+    }
+});
 
 function kladrOneStringInit(container) {
 	$(container).kladr({
-			oneString: true
-		});
+		oneString: true
+	});
 }
 
 kladrOneStringInit('[data-form-autocomplete-row="1"]');
@@ -161,6 +191,7 @@ function init() {
 	$('[data-period]').inputmask({"mask": "9[9] год(а)/лет", showMaskOnHover: false});
 	$('[data-passport]').inputmask({"mask": "9999 999999", showMaskOnHover: false});
 	$('[data-inn]').inputmask({"mask": "999999999999", showMaskOnHover: false});
+	$('[data-inn-party]').inputmask({"mask": "9999999999", showMaskOnHover: false});
 	$('[data-snils]').inputmask({"mask": "999 999 999 99", showMaskOnHover: false});
 	$('[data-email]').inputmask();
 	$('[data-passport-date]').inputmask({"mask": "99.99.9999", showMaskOnHover: false});
