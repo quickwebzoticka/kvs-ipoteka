@@ -14,29 +14,7 @@ function kladrInit(container) {
 
 	$.kladr.setDefault({
 		parentInput: container,
-		verify: false,
-		// select: function (obj) {
-		// 	setLabel($(this), obj.type);
-		// 	tooltip.hide();
-		// },
-		// check: function (obj) {
-			// var input = $(this);
-
-			// if (obj) {
-			// 	setLabel(input, obj.type);
-			// 	tooltip.hide();
-			// }
-			// else {
-			// 	showError(input, 'Введено неверно');
-			// }
-		// },
-		// checkBefore: function () {
-		// 	var input = $(this);
-		// 	if (!$.trim(input.val())) {
-		// 		tooltip.hide();
-		// 		return false;
-		// 	}
-		// }
+		verify: false
 	});
 
 	region.kladr('type', $.kladr.type.region);
@@ -45,90 +23,10 @@ function kladrInit(container) {
 	street.kladr('type', $.kladr.type.street);
 	building.kladr('type', $.kladr.type.building);
 
-	// Отключаем проверку введённых данных для строений
 	building.kladr('verify', false);
 
-	// Подключаем плагин для почтового индекса
 	zip.kladrZip($(container));
-
-	// function setLabel(input, text) {
-	// 	text = text.charAt(0).toUpperCase() + text.substr(1).toLowerCase();
-	// 	input.parent().find('label').text(text);
-	// }
-
-	// function showError(input, message) {
-	// 	tooltip.find('span').text(message);
-
-	// 	var inputOffset = input.offset(),
-	// 		inputWidth = input.outerWidth(),
-	// 		inputHeight = input.outerHeight();
-
-	// 	var tooltipHeight = tooltip.outerHeight();
-
-	// 	tooltip.css({
-	// 		left: (inputOffset.left + inputWidth + 10) + 'px',
-	// 		top: (inputOffset.top + (inputHeight - tooltipHeight) / 2 - 1) + 'px'
-	// 	});
-
-	// 	tooltip.show();
-	// }
 };
-
-
-// function kladrOneStringInit(container) {
-// 	var $address = $('[name="address"]'),
-// 			$parent = $('[name="parent"]');
-
-// 	$address.kladr({
-// 		oneString: true,
-// 		change: function (obj) {
-// 			log(obj);
-// 		}
-// 	});
-
-// 	$parent.change(function () {
-// 		changeParent($(this).val());
-// 	});
-
-// 	changeParent($('[name="parent"]:checked').val());
-
-// 	function changeParent(value) {
-// 		var parentType = null,
-// 			parentId = null;
-
-// 		switch (value) {
-// 			case 'moscow':
-// 				parentType = $.kladr.type.region;
-// 				parentId = '7700000000000';
-// 				break;
-
-// 			case 'petersburg':
-// 				parentType = $.kladr.type.region;
-// 				parentId = '7800000000000';
-// 				break;
-// 		}
-
-// 		$address.kladr({
-// 			parentType: parentType,
-// 			parentId: parentId
-// 		});
-// 	}
-
-// 	function log(obj) {
-// 		var $log, i;
-
-// 		$('.js-log li').hide();
-
-// 		for (i in obj) {
-// 			$log = $('#' + i);
-
-// 			if ($log.length) {
-// 				$log.find('.value').text(obj[i]);
-// 				$log.show();
-// 			}
-// 		}
-// 	}
-// };
 
 
 kladrInit('[data-form-autocomplete="2"]');
@@ -136,6 +34,58 @@ kladrInit('[data-form-autocomplete="3"]');
 kladrInit('[data-form-autocomplete="4"]');
 kladrInit('[data-form-autocomplete="1"]');
 
+
+const initSuggestion = function(container, count) {
+	$(container).eq(count).find("[data-country]").suggestions({
+	    token: "91550cba21ac13e43e9546eb1433fb2799efee56",
+	    type: "country"
+	});
+
+
+	$(container).eq(count).find("[data-passport-who]").suggestions({
+	    token: "91550cba21ac13e43e9546eb1433fb2799efee56",
+	    type: "fms_unit"
+	});
+
+
+	$(container).eq(count).find("[data-party-name]").suggestions({
+	    token: "91550cba21ac13e43e9546eb1433fb2799efee56",
+	    type: "PARTY",
+	    /* Вызывается, когда пользователь выбирает одну из подсказок */
+	    onSelect: function(suggestion) {
+	        console.log(suggestion);
+
+	        $(this).closest('.form').find('[data-autocomplete-zip]').eq(0).val(suggestion.data.address.data.postal_code);
+	        $(this).closest('.form').find('[data-autocomplete-region]').eq(0).val(suggestion.data.address.data.region);
+	        $(this).closest('.form').find('[data-autocomplete-city]').eq(0).val(suggestion.data.address.data.city);
+	        $(this).closest('.form').find('[data-autocomplete-street]').eq(0).val(suggestion.data.address.data.street);
+	        $(this).closest('.form').find('[data-autocomplete-house]').eq(0).val(suggestion.data.address.data.house);
+	        $(this).closest('.form').find('[data-inn-party]').eq(0).val(suggestion.data.inn);
+
+
+	        $('input[required]').trigger('input');
+	    }
+	});
+
+	$(container).eq(count).find("[data-inn-party]").suggestions({
+	    token: "91550cba21ac13e43e9546eb1433fb2799efee56",
+	    type: "PARTY",
+	    /* Вызывается, когда пользователь выбирает одну из подсказок */
+	    onSelect: function(suggestion) {
+	        console.log(suggestion);
+
+	        $(this).closest('.form').find('[data-autocomplete-zip]').eq(0).val(suggestion.data.address.data.postal_code);
+	        $(this).closest('.form').find('[data-autocomplete-region]').eq(0).val(suggestion.data.address.data.region);
+	        $(this).closest('.form').find('[data-autocomplete-city]').eq(0).val(suggestion.data.address.data.city);
+	        $(this).closest('.form').find('[data-autocomplete-street]').eq(0).val(suggestion.data.address.data.street);
+	        $(this).closest('.form').find('[data-autocomplete-house]').eq(0).val(suggestion.data.address.data.house);
+	        $(this).closest('.form').find('[data-party-name]').eq(0).val(suggestion.value);
+
+
+	        $('input[required]').trigger('input');
+	    }
+	});
+};
 
 $("[data-country]").suggestions({
     token: "91550cba21ac13e43e9546eb1433fb2799efee56",
@@ -202,8 +152,6 @@ kladrOneStringInit('[data-form-autocomplete-row="4"]');
 
 
 function init() {
-	//data-inputmask-regex="[А-Яа-я]{1,}"
-	// $('[data-name]').inputmask({"mask": "Aa{1,}[-Aa{1,}]", showMaskOnHover: false, greedy: false});
 	$('[data-name]').inputmask({regex: "[А-Яа-я]{2,}[-][А-Яа-я]{2,}", showMaskOnHover: false, placeholder: '', greedy: false});
 	$('[data-date]').inputmask({"mask": "99.99.9999", showMaskOnHover: false});
 	$('[data-phone]').inputmask({"mask": "+7 (999) 999-9999", showMaskOnHover: false});
@@ -216,7 +164,8 @@ function init() {
 	$('[data-email]').inputmask();
 	$('[data-passport-date]').inputmask({"mask": "99.99.9999", showMaskOnHover: false});
 	$('[data-passport-cod]').inputmask({"mask": "999-999", showMaskOnHover: false});
-
+	$('[data-procenty]').inputmask({"mask": "9[9{1,2}] %", showMaskOnHover: false, placeholder: '', greedy: false});
+	$('[data-children-name]').inputmask({"mask": "Aa{1,} Aa{1,} Aa{1,}", showMaskOnHover: false, placeholder: '', greedy: false});
 }
 
 	init();
@@ -389,6 +338,10 @@ function init() {
 			addID('.form-tabs-container_job');
 			addID('.form-tabs-container_actives');
 
+			initSuggestion('.form-tabs-container', count);
+			initSuggestion('.form-tabs-container_job', count);
+			initSuggestion('.form-tabs-container_actives', count);
+
 			init();
 			$('input[required]').trigger('input');
 		}
@@ -550,6 +503,10 @@ function init() {
 				val[2] = currentYear;
 			}
 
+			if (val[2] < 1944) {
+				val[2] = 1944;
+			}
+
 			val = val.join('.');
 
 			$(this).val(val);
@@ -568,7 +525,9 @@ function init() {
 			val = val.split('.');
 
 			if (val[0] > 31) {
-				val[0] = 31;
+				// $(this).siblings('.alert').fadeIn(300);
+				// $(this).val('');
+				// return false;
 			}
 
 			if (val[0] == 0) {
@@ -599,9 +558,13 @@ function init() {
 	$(document).on('change', '[data-credit-main]', function() {
 		if ($('[data-credit-main]').val().length > 1) {
 
-			$('[data-credit-first]').attr('disabled', false);
-			$('[data-credit-procent]').attr('disabled', false);
-			$('[data-credit-summ]').attr('disabled', false);
+			$('[data-credit-first]').val('');
+			$('[data-credit-procent]').val('');
+			$('[data-credit-summ]').val('');
+
+			$('[data-credit-first]').attr({'disabled': false, required: true});
+			$('[data-credit-procent]').attr({'disabled': false, required: true});
+			$('[data-credit-summ]').attr({'disabled': false, required: true});
 
 			return false;
 
@@ -613,11 +576,13 @@ function init() {
 			$('[data-credit-summ]').val('');
 
 
-			$('[data-credit-first]').attr('disabled', true);
-			$('[data-credit-procent]').attr('disabled', true);
-			$('[data-credit-summ]').attr('disabled', true);
+			$('[data-credit-first]').attr({'disabled': true, required: false});
+			$('[data-credit-procent]').attr({'disabled': true, required: false});
+			$('[data-credit-summ]').attr({'disabled': true, required: false});
 
 		}
+
+		$('input[required]').trigger('input');
 	});
 
 	const clearInputsName = function () {
@@ -695,12 +660,16 @@ function init() {
 
 			if (tempProcent >= 0) {
 				$('[data-credit-procent]').val(`${tempProcent} %`);
+				$('input[required]').trigger('input');
 				return false;
 			} else {
 				$(this).val(`0`);
 				$('[data-credit-procent]').val(`0 %`);
+				$('input[required]').trigger('input');
 				return false;
 			}
+
+			
 		}
 	});
 
@@ -751,12 +720,15 @@ function init() {
 
 			if (tempProcent > 0) {
 				$('[data-military-procent]').val(`${tempProcent} %`);
+				$('input[required]').trigger('input');
 				return false;
 			} else {
 				$(this).val(`0`);
 				$('[data-military-procent]').val(`0 %`);
+				$('input[required]').trigger('input');
 				return false;
 			}
+
 		}
 	});
 
@@ -791,6 +763,8 @@ function init() {
 			$(this).val(`${tempProcent} %`);
 			$('[data-military-summ]').val(`${tempFirst.toLocaleString()}`);
 			$('[data-military-summ]').trigger('change');
+
+			$('input[required]').trigger('input');
 		}
 	});
 
@@ -841,12 +815,15 @@ function init() {
 
 			if (tempProcent > 0) {
 				$('[data-subsidy-procent]').val(`${tempProcent} %`);
+				$('input[required]').trigger('input');
 				return false;
 			} else {
 				$(this).val(`0`);
 				$('[data-subsidy-procent]').val(`0 %`);
+				$('input[required]').trigger('input');
 				return false;
 			}
+
 		}
 	});
 
@@ -881,6 +858,8 @@ function init() {
 			$(this).val(`${tempProcent} %`);
 			$('[data-subsidy-summ]').val(`${tempFirst.toLocaleString()}`);
 			$('[data-subsidy-summ]').trigger('change');
+
+			$('input[required]').trigger('input');
 		}
 	});
 
@@ -1001,12 +980,15 @@ function init() {
 
 			if (tempProcent > 0) {
 				$('[data-credit-procent]').val(`${tempProcent} %`);
+				$('input[required]').trigger('input');
 				return false;
 			} else {
 				$(this).val(`0`);
 				$('[data-credit-procent]').val(`0 %`);
+				$('input[required]').trigger('input');
 				return false;
 			}
+
 		}
 	});
 
@@ -1058,6 +1040,8 @@ function init() {
 
 			$(this).val(`${tempProcent} %`);
 			$('[data-credit-first]').val(`${tempFirst} руб.`);
+
+			$('input[required]').trigger('input');
 		}
 	});
 
@@ -1152,6 +1136,60 @@ function init() {
 							$(this).closest('.form-group__text').addClass('required');
 						}
 						return false;
+					}
+					if (this.hasAttribute('data-date')) {
+						let val = $(this).val();
+						let date = new Date();
+
+						let currentYear = date.getFullYear();
+
+						let maxAge = currentYear - 75;
+						let minAge = currentYear - 18;
+
+						val = val.split('.');
+
+						if (val[0] > 31) {
+							$(this).siblings('.alert').fadeIn(300);
+							$(this).val('');
+							$(this).closest('.form-group__text').removeClass('completed');
+							$(this).closest('.form-group__text').addClass('required');
+							return false;
+						}
+
+						if (val[0] == 0) {
+							val[0] = '01';
+						}
+
+						if (val[1] > 12) {
+							$(this).siblings('.alert').fadeIn(300);
+							$(this).val('');
+							$(this).closest('.form-group__text').removeClass('completed');
+							$(this).closest('.form-group__text').addClass('required');
+							return false;
+						}
+
+						if (val[1] == 0) {
+							val[1] = '01';
+						}
+
+						if (val[2] > minAge) {
+							val[2] = 2001;
+						}
+
+						if (val[2] < maxAge) {
+							val[2] = maxAge;
+						}
+
+						val = val.join('.');
+
+						$(this).val(val);
+						$(this).siblings('.alert').fadeOut(300);
+						// $(this).closest('.form-group__text').removeClass('required');
+						// $(this).closest('.form-group__text').addClass('completed');
+						// return countFilledInputs++;
+					} else {
+						$(this).closest('.form-group__text').removeClass('completed');
+						$(this).closest('.form-group__text').addClass('required');
 					}
 					if($(this).inputmask("isComplete")) {
 						$(this).closest('.form-group__text').removeClass('required');
@@ -1298,7 +1336,7 @@ function init() {
 
 	let childForm = $('[data-count-contain]').find('.form-group_hidden-content');
 
-	$(document).on('input', '[data-count]', function() {
+	$(document).on('change', '[data-count]', function() {
 		let temp = $(this).val();
 		let i = 0;
 
@@ -1342,6 +1380,7 @@ function init() {
 			$(this).closest('.data-active-wrapper').find('.form-group__active').slideDown(300, function() {
 				$(this).closest('.data-active-wrapper').find('.form-group__active').find('input[type="text"]:not([data-procenty])').each(function() {
 					$(this).attr('required', true);
+					$(this).val('');
 				});
 				$('input[required]').trigger('input');
 			});
@@ -1509,21 +1548,29 @@ function init() {
 			let oldID = $(this).prop('id');
 			let oldRowID = $(this).attr('data-form-autocomplete-row');
 			let oldName = $(this).prop('name');
-			console.log(oldRowID);
 			if ($(this).prop('type') == 'radio') {
 				$(this).prop('id', `${oldID}--${index}`);
 				$(this).prop('name', `${oldName}--${index}`);
 				$(this).siblings('label').prop('for', `${oldID}--${index}`);
 			}
 			if ($(this).attr('data-form-autocomplete-row')) {
-				console.log(1);
 				$(this).attr('data-form-autocomplete-row', `${oldRowID}--${index}`);
 			}
 		});
 
 		$(this).closest('.form-chunk').find('.form-chunk-wrapper').append(item.clone());
 		$('input[required]').trigger('input');
+		init();
 		kladrOneStringInit(`[data-form-autocomplete-row]`);
+	});
+
+	$(document).on('click', '.form-chunk-btn_remove', function() {
+		let index = $(this).closest('.form-chunk').find('.form-chunk-wrapper-item').length;
+
+		if (index > 1) {
+			$(this).closest('.form-chunk').find('.form-chunk-wrapper-item').eq(index - 1).remove();
+			$('input[required]').trigger('input');
+		}
 	});
 
 
@@ -1566,6 +1613,7 @@ function init() {
 			$(this).closest('.form-tabs-container').find('[data-reg-content]').slideUp(300);
 			$(this).closest('.form-tabs-container').find('.real-registration-adress').text('Адрес фактического проживания');
 			$(this).closest('.form-tabs-container').find('[data-show]').closest('.form-group__check').hide();
+			$(this).closest('.form-tabs-container').find('.form-group_show').find('.form-group_show-content').show();
 		} else {
 			$(this).closest('.form-tabs-container').find('[data-reg-content]').slideDown(300);
 			$(this).closest('.form-tabs-container').find('.real-registration-adress').text('Адрес фактического проживания совпадает с адресом регистрации?');

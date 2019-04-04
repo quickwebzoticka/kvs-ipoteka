@@ -1590,6 +1590,16 @@ input::selection {
   transition: .3s; }
   .form-chunk-btn:hover {
     text-shadow: 0px 0px 3px #fd7902; }
+  .form-chunk-btn_remove {
+    color: #fd7902;
+    cursor: pointer;
+    padding: 10px 0;
+    -webkit-transition: .3s;
+    -o-transition: .3s;
+    transition: .3s;
+    margin-left: 40px; }
+    .form-chunk-btn_remove:hover {
+      text-shadow: 0px 0px 3px #fd7902; }
 
 .text-small {
   font-size: 12px;
@@ -1729,3 +1739,30 @@ input::selection {
 
 .suggestions-promo {
   display: none !important; }
+
+.form-group__radio_bb {
+  margin-bottom: 40px; }
+
+.form-group__text input {
+  padding: 0 40px 0 10px; }
+
+.alert {
+  display: none;
+  font-size: 12px;
+  color: red;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%); }
+
+.form-chunk-btn-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center; }
