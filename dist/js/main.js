@@ -161,12 +161,22 @@ function init() {
 	$('[data-inn]').inputmask({"mask": "999999999999", showMaskOnHover: false});
 	$('[data-inn-party]').inputmask({"mask": "9999999999", showMaskOnHover: false, greedy: false, placeholder: ''});
 	$('[data-snils]').inputmask({"mask": "999 999 999 99", showMaskOnHover: false});
-	$('[data-email]').inputmask();
+	// $('[data-email]').inputmask({showMaskOnHover: false, greedy: false, placeholder: ''});
+	$('[data-email]').inputmask('email');
 	$('[data-passport-date]').inputmask({"mask": "99.99.9999", showMaskOnHover: false});
 	$('[data-passport-cod]').inputmask({"mask": "999-999", showMaskOnHover: false});
 	$('[data-procenty]').inputmask({"mask": "9[9{1,2}] %", showMaskOnHover: false, placeholder: '', greedy: false});
 	$('[data-children-name]').inputmask({"mask": "Aa{1,} Aa{1,} Aa{1,}", showMaskOnHover: false, placeholder: '', greedy: false});
 }
+
+	$("[data-email]").on("keypress", function(e) {
+	  
+	  var char = /["a-zA-Z]/;
+	  var val = String.fromCharCode(e.which);
+	  var test = char.test(val);
+	  
+	  if(!test) return false
+	})
 
 	init();
 
@@ -513,7 +523,7 @@ function init() {
 	});
 
 
-	$(document).on('change', '[data-date]', function(){
+	$(document).on('change', '[data-date]', function() {
 			let val = $(this).val();
 			let date = new Date();
 
