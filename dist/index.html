@@ -152,6 +152,11 @@
                     <label for="initial-contribution-percent">В процентах</label>
                     <div class="form-cross"></div>
                   </div>
+                  <div class="form-group__text" data-hidden-content>
+                    <input type="text" autocomplete="off" name="ДатаВыдачиНИС" data-passport-date>
+                    <label for="initial-contribution-percent">Дата выдачи НИС</label>
+                    <div class="form-cross"></div>
+                  </div>
                 </div>
               </div>
               <div class="form-row">
@@ -173,8 +178,18 @@
                       <div class="form-cross"></div>
                     </div>
                     <div class="form-group__text">                   
-                      <input type="text" autocomplete="off" name="СубсидииИмя">
-                      <label for="СубсидииИмя">Название субсидии</label>
+                      <select name="НаименованиеСубсидии" data-type-subsidy>
+                        <option value="Молодёжи – доступное жильё">Молодёжи – доступное жильё</option>
+                        <option value="Соц. выплата «Развитие долгосрочного жилищного кредитования в СПБ»">Соц. выплата «Развитие долгосрочного жилищного кредитования в СПБ»</option>
+                        <option value="Соц. выплата «Расселение коммунальных квартир»">Соц. выплата «Расселение коммунальных квартир»</option>
+                        <option value="Соц. выплата «Обеспечение жильём молодых семей»">Соц. выплата «Обеспечение жильём молодых семей»</option>
+                        <option value="Субсидия на приобретение строительство (312)">Субсидия на приобретение строительство (312)</option>
+                        <option value="Другое">Другое</option>
+                      </select>
+                    </div>
+                    <div class="form-group__text form-group__text--subsidy">                   
+                      <input type="text" autocomplete="off" name="НаименованиеСубсидии">
+                      <label for="main-name-surname">Наименование субсидии</label>
                       <div class="form-cross"></div>
                     </div>
                   </div>
@@ -248,20 +263,25 @@
                             <label for="exist-main-middle-name">Нет отчества</label>
                           </div>
                         </div>
-                        <div class="form-group__text">                   
+                        <div class="form-group__text">
+                          <div class="alert">Некорректная дата</div>              
                           <input type="text" required data-required="1" data-type-required="" autocomplete="off" name="ДеньРожденияСозаемщика" data-date>
                           <label for="main-name-birth-date">Дата рождения</label>
                           <div class="form-cross"></div>
                         </div>
                       </div>
-                      <div class="form-row">
+                      <div class="form-row form-row_relative">
+                        <div class="tumbler-wrapper">
+                          <div class="tumbler active">Паспорт РФ</div>
+                          <div class="tumbler">Паспорт иного гос-ва</div>
+                        </div>
                         <h3 class="passport-data">Паспортные данные</h3>
                         <div class="form-group__text">
-                          <input type="text" required data-required="1" data-type-required="" autocomplete="off" name="Паспорт" placeholder="0000 000000" data-passport>
+                          <input type="text" required data-required="1" data-type-required="" autocomplete="off" name="Паспорт" placeholder="Серия (если имеется) номер паспорта 0000 000000" data-passport>
                           <div class="form-cross"></div>
                         </div>
                         <div class="form-group__text">
-                          <input type="text" required data-required="1" data-type-required="" autocomplete="off" name="ПаспортКод" placeholder="000-000" data-passport-cod>
+                          <input type="text" required data-required="1" data-type-required="" autocomplete="off" name="ПаспортКод" placeholder="Код подразделения (если имеется) 000-000" data-passport-cod>
                           <div class="form-cross"></div>
                         </div>
                         <div class="form-group__text">
@@ -313,7 +333,7 @@
                           <div class="form-cross"></div>
                         </div>
                         <div class="form-group__text">
-                          <input type="text" autocomplete="off" name="ДопТелефон" data-phone>
+                          <input type="text" autocomplete="off" name="ДопТелефон" data-phone data-phone-city>
                           <label for="phone-main">Дополнительный</label>
                           <div class="form-cross"></div>
                         </div>
@@ -339,6 +359,9 @@
                               <div class="form-group__check">
                                 <input type="radio" id="marriage-contract-1" name="БрачныйКонтракт" data-add-name="БрачныйКонтракт" value="1">
                                 <label for="marriage-contract-1">Будет заключаться брачный контракт</label>
+                                <div class="alert-marriage">
+                                  Необходимо заполнить информацию о супруге в разделе "созаёмщик"
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -401,12 +424,12 @@
                                 <div class="form-group_hidden-content" data-children-form>
                                   <h3 class="child">Ребенок</h3>
                                   <div class="form-group__text">                   
-                                    <input type="text" autocomplete="off" required name="ФИО" data-children-name>
+                                    <input type="text" autocomplete="off" name="ФИО" data-children-name>
                                     <label for="child-name">ФИО</label>
                                     <div class="form-cross"></div>
                                   </div>
                                   <div class="form-group__text">                   
-                                    <input type="text" autocomplete="off" required name="ДатаРождения" data-passport-date>
+                                    <input type="text" autocomplete="off" name="ДатаРождения" data-passport-date>
                                     <label for="child-birth-date">Дата рождения</label>
                                     <div class="form-cross"></div>
                                   </div>
@@ -443,9 +466,10 @@
                           <label for="institution-name">Наименование учебного заведения</label>
                           <div class="form-cross"></div>
                         </div>
-                        <div class="form-group__text form-group__text_pt">                   
-                          <input type="text" autocomplete="off" name="ДатаОкончУчеб" placeholder="Дата окончания" data-passport-date>
-                          <label for="institution-finish-date">Дата окончания</label>
+                        <div class="form-group__text form-group__text_pt">  
+                          <div class="alert">Некорректная дата</div>                 
+                          <input type="text" autocomplete="off" name="ДатаОкончУчеб" placeholder="Год окончания"  data-date-year>
+                          <label for="institution-finish-date">Год окончания</label>
                           <div class="form-cross">                  </div>
                         </div>
                       </div>
@@ -672,7 +696,7 @@
                       <div class="form-cross"></div>
                     </div>
                     <div class="form-group__text">                   
-                      <input type="text" required data-required="1" data-type-required="" autocomplete="off" name="ОфисЮР">
+                      <input type="text" data-required="1" data-type-required="" autocomplete="off" name="ОфисЮР">
                       <label for="office">Офис</label>
                       <div class="form-cross"></div>
                     </div>
@@ -838,7 +862,7 @@
                     </div>
                   </div>
                   <div class="form-row">
-                    <h3 class="employer-duration">Стаж работы в организации</h3>
+                    <h3 class="employer-duration">Срок существования организации</h3>
                     <div class="form-group__radio">                   
                       <input type="radio" id="employer-duration-1" name="ТрудовойСтаж" value="до 2-х лет">
                       <label for="employer-duration-1">до 2-х лет</label>
@@ -867,7 +891,7 @@
                     </div>
                   </div>
                   <div class="form-row">
-                    <h3 class="current-experience">Стаж в текущей сфере деятельности</h3>
+                    <h3 class="current-experience">Стаж по текущему месту работы</h3>
                     <div class="form-group__text">
                       <input type="text" required data-required="1" data-type-required="" autocomplete="off" name="СтажВСфере" placeholder="5 лет">
                       <div class="form-cross"></div>
@@ -957,7 +981,7 @@
                     <div class="form-group_hidden">
                       <div class="form-group__check">
                         <input type="checkbox" id="sberbank-zp" name="СбербанкЗП" data-hidden>
-                        <label for="sberbank-zp">Получаю заработную плату на карту Сбербанка</label>
+                        <label for="sberbank-zp">Получаю заработную плату/пенсию на карту Сбербанка</label>
                       </div>
                       <div class="form-group_hidden-content" data-hidden-content>
                         <div class="form-group__text"> 

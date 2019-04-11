@@ -1766,3 +1766,49 @@ input::selection {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center; }
+
+
+.form-row_relative {
+  position: relative;
+}
+
+.tumbler-wrapper {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  z-index: 10;
+}
+
+.tumbler {
+  cursor: pointer;
+  padding: 10px 20px;
+  border: 1px solid #999;
+  color: #999;
+  transition: .3s;
+  font-size: 14px;
+}
+
+.tumbler:first-child {
+  margin-right: 10px;
+}
+
+.tumbler.active {
+  color: #fd7902;
+  border: 1px solid #fd7902;
+  
+}
+
+
+.alert-marriage {
+  margin-top: 10px;
+  display: none;
+  color: red;
+  font-size: 14px;
+}
+
+
+.form-group__text--subsidy {
+  display: none;
+}

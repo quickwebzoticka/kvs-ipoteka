@@ -167,6 +167,8 @@ function init() {
 	$('[data-passport-cod]').inputmask({"mask": "999-999", showMaskOnHover: false});
 	$('[data-procenty]').inputmask({"mask": "9[9{1,2}] %", showMaskOnHover: false, placeholder: '', greedy: false});
 	$('[data-children-name]').inputmask({"mask": "Aa{1,} Aa{1,} Aa{1,}", showMaskOnHover: false, placeholder: '', greedy: false});
+	$('[data-date-year]').inputmask({"mask": "9999", showMaskOnHover: false, placeholder: '', greedy: false})
+
 }
 
 	$("[data-email]").on("keypress", function(e) {
@@ -181,6 +183,16 @@ function init() {
 	init();
 
 	$('select').SumoSelect();
+
+	$('[data-type-subsidy]').on('change', function() {
+		if ($(this).val() == 'Другое') {
+			$('.form-group__text--subsidy').slideDown(300);
+			$('.form-group__text--subsidy').find('input').attr('required', true);
+		} else {
+			$('.form-group__text--subsidy').slideUp(300);
+			$('.form-group__text--subsidy').find('input').attr('required', false);
+		}
+	});
 
 	$('[data-hidden-content]').hide();
 	$('[data-count-contain]').hide();
@@ -202,6 +214,9 @@ function init() {
 		} else {
 			$('.document-about-marriage').hide();
 			$('[data-marriage-content]').slideUp(300);
+			$('.alert-marriage').slideUp(300);
+			$('.marriage-link').remove();
+			$('.marriage-content').remove();
 		}
 	});
 
@@ -380,6 +395,7 @@ function init() {
 	$(document).on('change', '[name="БрачныйКонтракт"]', function() {
 		let tempOffset = $('[data-step-name="ЛичныеДанные"]').offset().top;
 		if ($(this).attr('value') === '1') {
+			$('.alert-marriage').slideDown(300);
 			$('.form-tabs-nav__btn').trigger('click');
 			$('.form-tabs-nav__link-add').eq($('.form-tabs-nav__link-add').length - 1).addClass('marriage-link');
 			$('.form-tabs-container.soz').eq($('.form-tabs-container.soz').length - 1).addClass('marriage-content');
@@ -395,6 +411,7 @@ function init() {
 
 			$(this).prop('checked', true);
 		} else {
+			$('.alert-marriage').slideUp(300);
 			$('.marriage-link').remove();
 			$('.marriage-content').remove();
 			$(this).prop('checked', true);
@@ -1182,12 +1199,12 @@ function init() {
 							val[1] = '01';
 						}
 
-						if (val[2] > minAge) {
-							val[2] = 2001;
-						}
-
-						if (val[2] < maxAge) {
-							val[2] = maxAge;
+						if (val[2] > minAge || val[2] < maxAge) {
+							$(this).siblings('.alert').fadeIn(300);
+							$(this).val('');
+							$(this).closest('.form-group__text').removeClass('completed');
+							$(this).closest('.form-group__text').addClass('required');
+							return false;
 						}
 
 						val = val.join('.');
@@ -1217,6 +1234,7 @@ function init() {
 			}
 		});
 		let compare = countInputs == countFilledInputs;
+		console.log(`${countInputs} : ${countFilledInputs}`);
 		if (compare || (countInputs == 0 && countFilledInputs == 0)) {
 			$('.form-block.active').find('.form-btn.form-btn__next').addClass('active');
 		} else {
@@ -1380,7 +1398,7 @@ function init() {
 		if (temp !== "9" && tempLength == 0) {
 				$(this).inputmask('');			
 		}
-		if (temp == "9" && $(this).val().length == 0) {
+		if ((temp == "9" || temp == "+") && $(this).val().length == 0) {
 			$(this).inputmask({"mask": "+7 (999) 999-9999", showMaskOnHover: false,});
 		}
 	});
@@ -1639,6 +1657,56 @@ function init() {
 	});
 
 
+
+	$(document).on('change', '[data-date-year]', function() {
+		let value = $(this).val();
+		let currentYear = new Date();
+
+		currentYear = currentYear.getFullYear();
+
+		if (value > currentYear || value < 1944) {
+			$(this).siblings('.alert').fadeIn(300);
+			$(this).val('');
+		} else {
+			$(this).siblings('.alert').fadeOut(300);
+			$(this).val(value);
+		}
+
+
+	});
+
+
+	$(document).on('click', '.tumbler:not(.active)', function() {
+		$(this).addClass('active')
+			   .siblings()
+			   .removeClass('active');
+
+		if ($(this).index() == 1) {
+			$(this).closest('.form-row').find('[data-passport]').inputmask('remove');
+			$(this).closest('.form-row').find('[data-passport-cod]').inputmask('remove');
+			$(this).closest('.form-row').find('[data-passport-who]').suggestions().disable();
+		} else {
+			$(this).closest('.form-row').find('[data-passport]').inputmask({"mask": "9999 999999", showMaskOnHover: false});
+			$(this).closest('.form-row').find('[data-passport-cod]').inputmask({"mask": "999-999", showMaskOnHover: false});
+			$(this).closest('.form-row').find('[data-passport-who]').suggestions({
+			    token: "91550cba21ac13e43e9546eb1433fb2799efee56",
+			    type: "fms_unit"
+			});
+		}
+		
+	});
+
+
+//------------------------------------------------------------ILIYA-CODER-IN-ACTIVE-----------------------------------
+//------------------------------------------------------------ILIYA-CODER-IN-ACTIVE-----------------------------------
+//------------------------------------------------------------ILIYA-CODER-IN-ACTIVE-----------------------------------
+//------------------------------------------------------------ILIYA-CODER-IN-ACTIVE-----------------------------------
+//------------------------------------------------------------ILIYA-CODER-IN-ACTIVE-----------------------------------
+//------------------------------------------------------------ILIYA-CODER-IN-ACTIVE-----------------------------------
+//------------------------------------------------------------ILIYA-CODER-IN-ACTIVE-----------------------------------
+//------------------------------------------------------------ILIYA-CODER-IN-ACTIVE-----------------------------------
+//------------------------------------------------------------ILIYA-CODER-IN-ACTIVE-----------------------------------
+//------------------------------------------------------------ILIYA-CODER-IN-ACTIVE-----------------------------------
 //------------------------------------------------------------ILIYA-CODER-IN-ACTIVE-----------------------------------
 
 
