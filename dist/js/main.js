@@ -394,7 +394,7 @@ function init() {
 
 	$(document).on('change', '[name="БрачныйКонтракт"]', function() {
 		let tempOffset = $('[data-step-name="ЛичныеДанные"]').offset().top;
-		if ($(this).attr('value') === '1') {
+		if ($(this).attr('value') === '0') {
 			$('.alert-marriage').slideDown(300);
 			$('.form-tabs-nav__btn').trigger('click');
 			$('.form-tabs-nav__link-add').eq($('.form-tabs-nav__link-add').length - 1).addClass('marriage-link');
@@ -1171,7 +1171,9 @@ function init() {
 						let currentYear = date.getFullYear();
 
 						let maxAge = currentYear - 75;
-						let minAge = currentYear - 18;
+						// let minAge = currentYear - 18;
+
+						let minAge = currentYear;
 
 						val = val.split('.');
 

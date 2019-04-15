@@ -153,7 +153,8 @@
                     <div class="form-cross"></div>
                   </div>
                   <div class="form-group__text" data-hidden-content>
-                    <input type="text" autocomplete="off" name="ДатаВыдачиНИС" data-passport-date>
+                    <div class="alert">Некорректная дата</div> 
+                    <input type="text" autocomplete="off" name="ДатаВыдачиНИС" data-date>
                     <label for="initial-contribution-percent">Дата выдачи НИС</label>
                     <div class="form-cross"></div>
                   </div>
@@ -289,7 +290,8 @@
                           <div class="form-cross"></div>
                         </div>
                         <div class="form-group__text">
-                          <input type="text" required data-required="1" data-type-required="" autocomplete="off" name="ПаспортДата" placeholder="Дата выдачи" data-passport-date>
+                          <div class="alert">Некорректная дата</div>  
+                          <input type="text" required data-required="1" data-type-required="" autocomplete="off" name="ПаспортДата" placeholder="Дата выдачи" data-date>
                           <div class="form-cross"></div>
                         </div>
                       </div>
@@ -353,15 +355,15 @@
                             <label for="marriage">Женат / Замужем          </label>
                             <div class="form-group_hidden-content" data-marriage-content>
                               <div class="form-group__check">
-                                <input type="radio" id="marriage-contract-0" name="БрачныйКонтракт" data-add-name="БрачныйКонтракт" value="0" checked>
+                                <input type="radio" id="marriage-contract-0" name="БрачныйКонтракт" data-add-name="БрачныйКонтракт" value="0">
                                 <label for="marriage-contract-0">Не будет заключаться брачный контракт</label>
-                              </div>
-                              <div class="form-group__check">
-                                <input type="radio" id="marriage-contract-1" name="БрачныйКонтракт" data-add-name="БрачныйКонтракт" value="1">
-                                <label for="marriage-contract-1">Будет заключаться брачный контракт</label>
                                 <div class="alert-marriage">
                                   Необходимо заполнить информацию о супруге в разделе "созаёмщик"
                                 </div>
+                              </div>
+                              <div class="form-group__check">
+                                <input type="radio" id="marriage-contract-1" name="БрачныйКонтракт" data-add-name="БрачныйКонтракт" value="1" checked>
+                                <label for="marriage-contract-1">Будет заключаться брачный контракт</label>
                               </div>
                             </div>
                           </div>
@@ -395,8 +397,9 @@
                                 <label for="previous-name">Прежние ФИО</label>
                                 <div class="form-cross"></div>
                               </div>
-                              <div class="form-group__text">                                   
-                                <input type="text" autocomplete="off" name="ДатаИзменения" data-passport-date>
+                              <div class="form-group__text">
+                                <div class="alert">Некорректная дата</div>
+                                <input type="text" autocomplete="off" name="ДатаИзменения" data-date>
                                 <label for="change-date">Дата изменения</label>
                                 <div class="form-cross"></div>
                               </div>
@@ -428,8 +431,9 @@
                                     <label for="child-name">ФИО</label>
                                     <div class="form-cross"></div>
                                   </div>
-                                  <div class="form-group__text">                   
-                                    <input type="text" autocomplete="off" name="ДатаРождения" data-passport-date>
+                                  <div class="form-group__text">
+                                    <div class="alert">Некорректная дата</div> 
+                                    <input type="text" autocomplete="off" name="ДатаРождения" data-date>
                                     <label for="child-birth-date">Дата рождения</label>
                                     <div class="form-cross"></div>
                                   </div>
