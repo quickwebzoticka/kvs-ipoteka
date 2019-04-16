@@ -540,47 +540,47 @@ function init() {
 	});
 
 
-	$(document).on('change', '[data-date]', function() {
-			let val = $(this).val();
-			let date = new Date();
+	// $(document).on('change', '[data-date]', function() {
+	// 		let val = $(this).val();
+	// 		let date = new Date();
 
-			let currentYear = date.getFullYear();
+	// 		let currentYear = date.getFullYear();
 
-			let maxAge = currentYear - 75;
-			let minAge = currentYear - 18;
+	// 		let maxAge = currentYear - 75;
+	// 		let minAge = currentYear - 18;
 
-			val = val.split('.');
+	// 		val = val.split('.');
 
-			if (val[0] > 31) {
-				// $(this).siblings('.alert').fadeIn(300);
-				// $(this).val('');
-				// return false;
-			}
+	// 		if (val[0] > 31) {
+	// 			// $(this).siblings('.alert').fadeIn(300);
+	// 			// $(this).val('');
+	// 			// return false;
+	// 		}
 
-			if (val[0] == 0) {
-				val[0] = '01';
-			}
+	// 		if (val[0] == 0) {
+	// 			val[0] = '01';
+	// 		}
 
-			if (val[1] > 12) {
-				val[1] = 12;
-			}
+	// 		if (val[1] > 12) {
+	// 			val[1] = 12;
+	// 		}
 
-			if (val[1] == 0) {
-				val[1] = '01';
-			}
+	// 		if (val[1] == 0) {
+	// 			val[1] = '01';
+	// 		}
 
-			if (val[2] > minAge) {
-				val[2] = 2001;
-			}
+	// 		if (val[2] > minAge) {
+	// 			val[2] = 2001;
+	// 		}
 
-			if (val[2] < maxAge) {
-				val[2] = maxAge;
-			}
+	// 		if (val[2] < maxAge) {
+	// 			val[2] = maxAge;
+	// 		}
 
-			val = val.join('.');
+	// 		val = val.join('.');
 
-			$(this).val(val);
-	});
+	// 		$(this).val(val);
+	// });
 
 	$(document).on('change', '[data-credit-main]', function() {
 		if ($('[data-credit-main]').val().length > 1) {
@@ -1694,6 +1694,24 @@ function init() {
 			    token: "91550cba21ac13e43e9546eb1433fb2799efee56",
 			    type: "fms_unit"
 			});
+		}
+		
+	});
+
+	let changeNameTemplate = $('[data-change-name]').clone();
+
+	$(document).on('click', '[data-change-name-add]', function() {		
+		$(this).closest('.form-row').find('.change-name-wrapper').append(changeNameTemplate.clone());
+		$('.change-name-item').eq($('.change-name-item').length - 1).find('input').attr('required', true);
+		init();
+		$('input[required]').trigger('input');
+	});
+
+	$(document).on('click', '[data-change-name-remove]', function() {
+		let count = $('.change-name-item').length;
+
+		if (count > 1) {
+			$(this).closest('.form-row').find('.change-name-item').eq(count - 1).remove();
 		}
 		
 	});

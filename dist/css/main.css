@@ -1835,3 +1835,30 @@ input::selection {
   #data-tab div:hover {
     border: 1px solid #ff8000
   }
+
+
+.change-name-btn {
+    color: #fd7902;
+    cursor: pointer;
+    padding: 10px 0;
+    -webkit-transition: .3s;
+    -o-transition: .3s;
+    transition: .3s;
+}
+
+.change-name-btn:first-child {
+  margin-right: 30px;
+}
+
+.change-name-btn:hover {
+    text-shadow: 0px 0px 3px #fd7902;
+}
+
+.change-name-btns {
+  display: flex;
+  align-items: center;
+}
+
+.change-name-item {
+  padding: 20px 0;
+}

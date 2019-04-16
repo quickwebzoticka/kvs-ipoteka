@@ -389,28 +389,36 @@
                       <div class="form-row" data-group="ИзменениеФамилии">
                         <h3 class="name-change">Менялись ли ФИО</h3>
                         <div class="form-group_hidden">
-                          <div class="form-group__check">
-                            <input type="checkbox" id="name-change" name="ИзменениеФамилии" data-hidden>
-                            <label for="name-change">Да </label>
-                            <div class="form-group_hidden-content" data-hidden-content>
-                              <div class="form-group__text">                                  
-                                <input type="text" autocomplete="off" name="ФИО">
-                                <label for="previous-name">Прежние ФИО</label>
-                                <div class="form-cross"></div>
-                              </div>
-                              <div class="form-group__text">
-                                <div class="alert">Некорректная дата</div>
-                                <input type="text" autocomplete="off" name="ДатаИзменения" data-date>
-                                <label for="change-date">Дата изменения</label>
-                                <div class="form-cross"></div>
-                              </div>
-                              <div class="form-group__text">                                 
-                                <input type="text" autocomplete="off" name="Причина">
-                                <label for="change-reason">Причина</label>
-                                <div class="form-cross"></div>
+                            <div class="form-group__check">
+                              <input type="checkbox" id="name-change" name="ИзменениеФамилии" data-hidden>
+                              <label for="name-change">Да</label>
+                              <div class="form-group_hidden-content" data-hidden-content>
+                                <div class="change-name-wrapper">
+                                  <div class="change-name-item" data-change-name>
+                                    <div class="form-group__text">                                  
+                                      <input type="text" autocomplete="off" name="ФИО">
+                                      <label for="previous-name">Прежняя Фамилия, Имя или Отчество</label>
+                                      <div class="form-cross"></div>
+                                    </div>
+                                    <div class="form-group__text">
+                                      <div class="alert">Некорректная дата</div>
+                                      <input type="text" autocomplete="off" name="ДатаИзменения" data-date>
+                                      <label for="change-date">Дата изменения</label>
+                                      <div class="form-cross"></div>
+                                    </div>
+                                    <div class="form-group__text">                                 
+                                      <input type="text" autocomplete="off" name="Причина">
+                                      <label for="change-reason">Причина</label>
+                                      <div class="form-cross"></div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="change-name-btns">
+                                  <div class="change-name-btn" data-change-name-add>Добавить</div>
+                                  <div class="change-name-btn" data-change-name-remove>Удалить</div>
+                                </div>
                               </div>
                             </div>
-                          </div>
                         </div>
                       </div>
                       <div class="form-row children-wrapper">
@@ -471,12 +479,12 @@
                           <label for="institution-name">Наименование учебного заведения</label>
                           <div class="form-cross"></div>
                         </div>
-                        <div class="form-group__text form-group__text_pt">  
+                        <!-- <div class="form-group__text form-group__text_pt">  
                           <div class="alert">Некорректная дата</div>                 
                           <input type="text" autocomplete="off" name="ДатаОкончУчеб" placeholder="Год окончания"  data-date-year>
                           <label for="institution-finish-date">Год окончания</label>
                           <div class="form-cross">                  </div>
-                        </div>
+                        </div> -->
                       </div>
                       <div class="form-row" data-group="АдрессРегистрации" data-form-autocomplete="1">
                         <h3 class="registration-adress">Адрес регистрации</h3>
