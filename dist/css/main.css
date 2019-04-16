@@ -1812,3 +1812,26 @@ input::selection {
 .form-group__text--subsidy {
   display: none;
 }
+
+
+#data-tab {
+    display: flex;
+    justify-content: center;
+  }
+  #data-tab div {
+    margin: 0px 20px;
+    cursor: pointer;
+    border: 1px solid white;
+    padding: 13px;
+    border-radius: 41px;
+    height: 1px;
+    line-height: 0px;
+  }
+  #data-tab div.active {
+    border: 1px solid #ff8000;
+    background: #ff8000;
+    color: white;
+  }
+  #data-tab div:hover {
+    border: 1px solid #ff8000
+  }

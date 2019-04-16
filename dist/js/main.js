@@ -1713,269 +1713,543 @@ function init() {
 
 
 
-function getChildrenInfo() {
-        var massDopData = {};
-        var data = $('.form-block[data-step-name="ЛичныеДанные"]'),
-            children = data.find(".form-tabs-container:not(.soz) .children-wrapper");
+var FormReader = {
 
-        massDopData = {};
-        var item = {};
-        var i = 0;
-        children.find("[data-children-form]").each(function () {
-            $(this).find("input").each(function () {
-                var namefild = $(this).attr("name"), value = $(this).val();
-                if(value){
-                    item[namefild] = value;
-                }else{
-                    item = false;
-                }
-            });
-            if(item){
-                massDopData[i] = item;
-                item = {};
-                i++;
-            }
-        });
-        return massDopData;
-    }
+    massData: {},
+    stepBlock: ".form-block",
+    massSkipStep: [
+        "Документы",
+        //"Активы",
+        "КредитнаяИстори",
+        //"СведенияРаботе",
+        //"ЛичныеДанные",
+        //"ИнфоЗапрКред",
+        //"ЕдинаяАнкета",
+        //"ДополнительнаяИнформация",
+    ],
+    formDataFile: {},
+    initShowButton: true,
+    form: "",
 
-    function getDocument() {
-        /*Документы START*/
-        var formDataFile = new FormData();
-        data = $('.form-block[data-step-name="Документы"]');
-        data.find('input[type="file"]').each(function () {
-            var name = $(this).attr("name");
-            var filesArray = this.files;
+    init: function () {
+        this.RunRead();
+    },
+    RunRead: function () {
+
+        this.massData = {},
+            this.formDataFile = new FormData(),
+            this.form = document.getElementById('form-ipotek-main');
+
+        //this.ReadGeneralData();
+        //this.ReadSozData();
+        // this.GetChildren();
+        // this.ReadCreditData();
+        // this.GetDocument();
+        if(this.initShowButton) {
+            this.initButton();
+            this.initTabStep();
+        }
+        obj.SendAjax();
+        console.log(this.formDataFile);
+        console.log(this.massData);
+    },
+    SendAjax: function (){
+        this.ReformData();
+        $.ajax({
+            type: this.form.getAttribute("method"),
+            url:  this.form.getAttribute("action"),
+            data: this.formDataFile,
+            dataType: 'json',
+            cache: false,
+            contentType: false,
+            processData: false,
+        })
+    },
+    ReformData: function (){
+        jsondata = JSON.stringify(this.massData);
+        this.formDataFile.append('data', jsondata);
+    },
+    GetDocument: function () {
+        let data = document.querySelectorAll('.form-block[data-step-name="Документы"] input[type="file"]');
+        for(let j = 0; j < data.length; j++){
+            let name = data[j].getAttribute("name");
+            let filesArray = data[j].files;
             if(filesArray.length){
-                $.each(filesArray,function (index,item) {
-                    formDataFile.append(name+"["+index+"]", item);
-                });
+                for(let i = 0; i < filesArray.length; i++) {
+                    console.log(filesArray[i]);
+                    this.formDataFile.append(name +"["+i+"]", filesArray[i]);
+                }
             }
-        });
-        return formDataFile;
-        /*Документы END*/
-    }
+        }
+    },
+    SetDataFild: function (obj,itemData){
+        if(itemData['checkListTrue']) {
+            let temp = obj[itemData['checkList']];
+            obj[itemData['checkList']] = (!temp) ? itemData['data'] : temp +","+ itemData['data'];
+        } else {
+            obj[itemData['name']] = itemData['data'];
+        }
+    },
+    ReadCreditData: function () {
+        let checkCredit = document.getElementById('no-credits');
+        if(!checkCredit.checked) {
+            let nameStep = "КредитнаяИстори";
+            this.InitElemMass(this.massData,nameStep);
+            let row = document.querySelectorAll(".form-content-credit");
+            for(let i = 0; i < row.length; i++) {
+                let title = row[i].getAttribute("data-title");
+                let fild = row[i].querySelectorAll("input, select");
+                for (var j=0; j < fild.length; j++) {
+                    let felem = fild[j],
+                        itemData = this.getData(felem),
+                        group = this.CheckGroupFiel(felem);
 
-    function getData(obj) {
-        var namefild = $(obj).attr("name");
+                    let exeption = (
+                        this.CExeptionParentSection(felem)
+                        && itemData !== false
+                        && this.CheckDependElem(felem)
+                    );
+                    this.InitElemMass(this.massData[nameStep],title);
+                    if (exeption) {
+                        if(group){
+                            this.InitElemMass(this.massData[nameStep][title],group);
+                            this.SetDataFild(this.massData[nameStep][title][group],itemData);
+                        } else {
+                            this.SetDataFild(this.massData[nameStep][title],itemData);
+                        }
+                    }
+                }
+            }
+        }
+    },
+    ReadGeneralData: function () {
+        let stepBlock = document.querySelectorAll(this.stepBlock);
+        for (var i=0;i<stepBlock.length;i++) {
+            let nameStep = this.getStepName(stepBlock[i]);
+
+            if (!this.SkipStep(nameStep)){
+                this.InitElemMass(this.massData,nameStep);
+
+                this.GetDynamicsInfo(
+                    this.massData,//obj
+                    stepBlock[i],//InnerBlock
+                    nameStep,//StepName
+                )
+
+                let fild = stepBlock[i].querySelectorAll(".form-row:not(.children-wrapper):not([data-group]) input, .form-row:not(.children-wrapper):not([data-group]) select");
+                for (var j=0; j < fild.length; j++) {
+                    let felem = fild[j],
+                        itemData = this.getData(felem),
+                        group = this.CheckGroupFiel(felem);
+
+                    let exeption = (
+                        this.CExeptionParentSection(felem)
+                        && itemData !== false
+                        && this.CheckDependElem(felem)
+                    );
+
+                    if (exeption) {
+                        if(group){
+                            this.InitElemMass(this.massData[nameStep],group);
+                            this.SetDataFild(this.massData[nameStep][group],itemData);
+                        } else {
+                            this.SetDataFild(this.massData[nameStep],itemData);
+                        }
+                    }
+                }
+            }
+        }
+    },
+    CExeptionParentSection: function(elem){
+        return !$(elem).parents(".soz").length && !$(elem).parents(".children-wrapper").length && !$(elem).parents(".form-add-job").length;
+    },
+    CExeptionParentSectionDinamic: function(elem){
+        return !$(elem).parents(".soz").length && !$(elem).parents(".children-wrapper").length;
+    },
+    CExeptionParentSectionSoz: function(elem){
+        return !$(elem).parents(".children-wrapper").length && !$(elem).parents(".form-add-job").length;
+    },
+    CExeptionParentSectionSozDinamic: function(elem){
+        return !$(elem).parents(".children-wrapper").length && $(elem).parents(".soz").length;
+    },
+    ReadSozData: function () {
+        let sozArray = document.querySelectorAll(".form-tabs-container.soz"),
+            nameStep = "Созаемщики",
+            arraycount = [];
+
+        this.InitElemMass(this.massData,nameStep);
+
+        for (var i=0;i<sozArray.length;i++) {
+            let formblock = sozArray[i].closest(".form-block");
+            let ns = formblock.getAttribute("data-step-name");
+            arraycount[ns] = !arraycount[ns] ? 0 : arraycount[ns];
+
+            this.GetDynamicsInfoSoz(
+                this.massData[nameStep],//obj
+                formblock,//InnerBlock
+                ns,//StepName
+                arraycount[ns]//userID
+            )
+
+            let fild = sozArray[i].querySelectorAll(".form-row:not(.children-wrapper):not([data-group]) input, .form-row:not(.children-wrapper):not([data-group]) select");
+            for (var j=0; j < fild.length; j++) {
+                let felem = fild[j],
+                    itemData = this.getData(felem),
+                    group = this.CheckGroupFiel(felem);
+
+                let exeption = (
+                    this.CExeptionParentSectionSoz(felem)
+                    && itemData !== false
+                    && this.CheckDependElem(felem)
+                );
+                if(exeption){
+                    if(group){
+                        this.InitElemMass(this.massData[nameStep],arraycount[ns]);
+                        this.InitElemMass(this.massData[nameStep][arraycount[ns]],ns);
+                        this.InitElemMass(this.massData[nameStep][arraycount[ns]][ns],group);
+                        this.SetDataFild(this.massData[nameStep][arraycount[ns]][ns][group],itemData);
+                    } else {
+                        if(!this.massData[nameStep][arraycount[ns]]) this.massData[nameStep][arraycount[ns]] = {};
+                        if(!this.massData[nameStep][arraycount[ns]][ns]) this.massData[nameStep][arraycount[ns]][ns] = {};
+                        this.SetDataFild(this.massData[nameStep][arraycount[ns]][ns],itemData);
+                    }
+                }
+            }
+            arraycount[ns]++;
+        }
+    },
+    GetDynamicsInfoSoz: function (obj,InnerBlock,StepName,userID) {
+        this.InitElemMass(obj,userID);
+        this.InitElemMass(obj[userID],StepName);
+        let innerPath = "ДопДоход";
+        if("СведенияРаботе" == StepName) {
+            let row = InnerBlock.querySelectorAll(".form-add-job-wrapper .form-add-job");
+            for (var i=0; i < row.length; i++) {
+                let fild = row[i].querySelectorAll("input, select");
+                for (var j=0; j < fild.length; j++) {
+                    let felem = fild[j],
+                        itemData = this.getData(felem),
+                        group = this.CheckGroupFiel(felem);
+
+                    let exeption = (
+                        this.CExeptionParentSectionSozDinamic(felem)
+                        && itemData !== false
+                        && this.CheckDependElem(felem)
+                    );
+                    if(exeption){
+                        this.InitElemMass(obj[userID][StepName],innerPath);
+                        this.InitElemMass(obj[userID][StepName][innerPath],i);
+                        if(group){
+                            this.InitElemMass(obj[userID][StepName][innerPath][i],group);
+                            this.SetDataFild(obj[userID][StepName][innerPath][i][group],itemData);
+                        } else {
+                            this.SetDataFild(obj[userID][StepName][innerPath][i],itemData);
+                        }
+                    }
+                }
+            }
+        }
+        if("Активы" == StepName) {
+            let block = InnerBlock.querySelectorAll(".data-active-wrapper");
+            let innerPath = "Недвижимость";
+            for (var i=0; i < block.length; i++) {
+                let contener = block[i].querySelector(".form-group__check [type=checkbox]");
+                if(contener.checked !== false) {
+                    let contenerName = contener.getAttribute("data-name-new");
+                    let row = block[i].querySelectorAll(".form-chunk-wrapper-item");
+                    for(var j=0; j < row.length; j++) {
+                        let fild = row[j].querySelectorAll("input, select");
+                        for (var c=0; c < fild.length; c++) {
+                            let felem = fild[c],
+                                itemData = this.getData(felem),
+                                group = this.CheckGroupFiel(felem);
+                            let exeption = (
+                                this.CExeptionParentSectionSoz(felem)
+                                && itemData !== false
+                                && this.CheckDependElem(felem)
+                            );
+                            if(exeption){
+                                this.InitElemMass(obj[userID][StepName],innerPath);
+                                this.InitElemMass(obj[userID][StepName][innerPath],contenerName);
+                                this.InitElemMass(obj[userID][StepName][innerPath][contenerName],j);
+                                if(group){
+                                    this.InitElemMass(obj[userID][StepName][innerPath][contenerName][j],group);
+                                    this.SetDataFild(obj[userID][StepName][innerPath][contenerName][j][group],itemData);
+                                } else {
+                                    this.SetDataFild(obj[userID][StepName][innerPath][contenerName][j],itemData);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            block = InnerBlock.querySelector("[data-group=ТранспортВСобственности] .form-group_hidden");
+            innerPath = "ТранспортВСобственности";
+
+            let contener = block.querySelector(".form-group__check [type=checkbox]");
+
+            if(contener.checked !== false) {
+                let contenerName = contener.getAttribute("data-name-new");
+                let row = block.querySelectorAll(".form-chunk-wrapper-item");
+                for(var j=0; j < row.length; j++) {
+                    let fild = row[j].querySelectorAll("input, select");
+                    for (var c=0; c < fild.length; c++) {
+                        let felem = fild[c],
+                            itemData = this.getData(felem),
+                            group = this.CheckGroupFiel(felem);
+                        let exeption = (
+                            this.CExeptionParentSectionSoz(felem)
+                            && itemData !== false
+                            && this.CheckDependElem(felem)
+                        );
+                        if(exeption){
+                            this.InitElemMass(obj[userID][StepName],innerPath);
+                            this.InitElemMass(obj[userID][StepName][innerPath],contenerName);
+                            this.InitElemMass(obj[userID][StepName][innerPath][contenerName],j);
+                            if(group){
+                                this.InitElemMass(obj[userID][StepName][innerPath][contenerName][j],group);
+                                this.SetDataFild(obj[userID][StepName][innerPath][contenerName][j][group],itemData);
+                            } else {
+                                this.SetDataFild(obj[userID][StepName][innerPath][contenerName][j],itemData);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    GetDynamicsInfo: function (obj,InnerBlock,StepName) {
+        this.InitElemMass(obj,StepName);
+        let innerPath = "ДопДоход";
+        if("СведенияРаботе" == StepName) {
+            let row = InnerBlock.querySelectorAll(".form-add-job-wrapper .form-add-job");
+            for (var i=0; i < row.length; i++) {
+                let fild = row[i].querySelectorAll("input, select");
+                for (var j=0; j < fild.length; j++) {
+                    let felem = fild[j],
+                        itemData = this.getData(felem),
+                        group = this.CheckGroupFiel(felem);
+
+                    let exeption = (
+                        this.CExeptionParentSectionDinamic(felem)
+                        && itemData !== false
+                        && this.CheckDependElem(felem)
+                    );
+                    if(exeption){
+                        this.InitElemMass(obj[StepName],innerPath);
+                        this.InitElemMass(obj[StepName][innerPath],i);
+                        if(group){
+                            this.InitElemMass(obj[StepName][innerPath][i],group);
+                            this.SetDataFild(obj[StepName][innerPath][i][group],itemData);
+                        } else {
+                            this.SetDataFild(obj[StepName][innerPath][i],itemData);
+                        }
+                    }
+                }
+            }
+        }
+        if("Активы" == StepName) {
+            let block = InnerBlock.querySelectorAll(".data-active-wrapper");
+            let innerPath = "Недвижимость";
+            for (var i=0; i < block.length; i++) {
+                let contener = block[i].querySelector(".form-group__check [type=checkbox]");
+                if(contener.checked !== false) {
+                    let contenerName = contener.getAttribute("data-name-new");
+                    let row = block[i].querySelectorAll(".form-chunk-wrapper-item");
+                    for(var j=0; j < row.length; j++) {
+                        let fild = row[j].querySelectorAll("input, select");
+                        for (var c=0; c < fild.length; c++) {
+                            let felem = fild[c],
+                                itemData = this.getData(felem),
+                                group = this.CheckGroupFiel(felem);
+
+                            let exeption = (
+                                this.CExeptionParentSection(felem)
+                                && itemData !== false
+                                && this.CheckDependElem(felem)
+                            );
+
+                            if(exeption){
+                                this.InitElemMass(obj[StepName],innerPath);
+                                this.InitElemMass(obj[StepName][innerPath],contenerName);
+                                this.InitElemMass(obj[StepName][innerPath][contenerName],j);
+                                if(group){
+                                    this.InitElemMass(obj[StepName][innerPath][contenerName][j],group);
+                                    this.SetDataFild(obj[StepName][innerPath][contenerName][j][group],itemData);
+                                } else {
+                                    this.SetDataFild(obj[StepName][innerPath][contenerName][j],itemData);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            block = InnerBlock.querySelector("[data-group=ТранспортВСобственности] .form-group_hidden");
+            innerPath = "ТранспортВСобственности";
+            console.log(block);
+            let contener = block.querySelector(".form-group__check [type=checkbox]");
+            console.log(contener);
+            if(contener.checked !== false) {
+                let contenerName = contener.getAttribute("data-name-new");
+                let row = block.querySelectorAll(".form-chunk-wrapper-item");
+                for(var j=0; j < row.length; j++) {
+                    let fild = row[j].querySelectorAll("input, select");
+                    for (var c=0; c < fild.length; c++) {
+                        let felem = fild[c],
+                            itemData = this.getData(felem),
+                            group = this.CheckGroupFiel(felem);
+                        let exeption = (
+                            this.CExeptionParentSectionSoz()
+                            && itemData !== false
+                            && this.CheckDependElem(felem)
+                        );
+                        if(exeption){
+                            this.InitElemMass(obj[StepName],innerPath);
+                            this.InitElemMass(obj[StepName][innerPath],contenerName);
+                            this.InitElemMass(obj[StepName][innerPath][contenerName],j);
+                            if(group){
+                                this.InitElemMass(obj[StepName][innerPath][contenerName][j],group);
+                                this.SetDataFild(obj[StepName][innerPath][contenerName][j][group],itemData);
+                            } else {
+                                this.SetDataFild(obj[StepName][innerPath][contenerName][j],itemData);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    GetChildren: function () {
+        let children = document.querySelectorAll(".form-tabs-container:not(.soz) .children-wrapper"),
+            nameStep = "ЛичныеДанные",
+            group = "Дети";
+
+        this.InitElemMass(this.massData, nameStep);
+
+        for (let i=0;i<children.length;i++){
+            countChildren = children[i].querySelector('[name="КоличествоДетей"]')
+            if(countChildren.value) {
+                let childrenItem = children[i].querySelectorAll("[data-children-form]");
+                for(let k = 0; k < childrenItem.length;k++){
+                    fild = childrenItem[k].querySelectorAll("input, select");
+                    for (let j=0;j<fild.length;j++){
+
+                        let felem = fild[j],
+                            itemData = this.getData(felem);
+
+                        if (itemData !== false && this.CheckDependElem(felem)) {
+                            this.InitElemMass(this.massData[nameStep], group);
+                            this.InitElemMass(this.massData[nameStep][group], k);
+                            this.massData[nameStep][group][k][itemData['name']] = itemData['data'];
+                        }
+
+                    }
+                }
+            }
+        }
+    },
+    InitElemMass: function (obj,item) {
+        if(!obj[item]) obj[item] = {};
+    },
+    CheckGroupFiel: function (elem) {
+        return elem.getAttribute("data-group-fild") ? elem.getAttribute("data-group-fild") : false;
+    },
+    CheckDependElem: function (elem) {
+        let selector = elem.getAttribute("data-depend");
+        let selector2 = elem.getAttribute("data-depend-rev");
+        if(selector) {
+            let depend = document.querySelector('[name='+selector+']');
+            if(depend.checked === false) {
+                return false;
+            } else {
+                return true;
+            }
+        } else if(selector2) {
+            let depend = document.querySelector('[name='+selector2+']');
+            if(depend.checked !== false) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return true;
+        }
+    },
+    getData: function(obj) {
+        let namefild = obj.getAttribute("data-name-new"),
+            type = obj.getAttribute("type"),
+            result = [];
+
         if(!namefild) return false;
-        var type = $(obj).attr("type");
-        var result = [];
+
         switch(type){
             case "checkbox":
-                if ($(obj).prop("checked")) {
-                    result['data'] = 1;
-                }else{
-                    result['data'] = 0;
-				}
+                let LineList = obj.getAttribute("data-input-group");
+                if(LineList && $(obj).prop("checked")) {
+                    result['checkListTrue'] = true;
+                    result['checkList'] = LineList;
+                    let label = $('label[for='+$(obj).attr("id")+"]");
+                    if(label.length){
+                        str = $('label[for='+$(obj).attr("id")+"]").text().replace(/\s+/g, '');
+                        result['data'] = str;
+                    } else {
+                        result['checkListTrue'] = false;
+                    }
+                } else if (LineList) {
+                    result['checkList'] = false;
+                } else {
+                    result['data'] = ($(obj).prop("checked")) ? 1 : 0;
+                }
                 break;
             case "radio":
-                if($(obj).prop("checked")) {
-                    result['data'] = $(obj).val();
-                }else{
-                	return false;
-				}
-            break;
+                result['data'] = $(obj).prop("checked") ? $(obj).val() : false;
+                break;
             default:
-                result['data'] = $(obj).val();
-            break;
+                result['data'] = $(obj).val() ? $(obj).val() : false;
+                break;
         }
+
+        if(result['data'] === false || result['checkList'] === false) return false;
+
         result['name'] = namefild;
         return result;
-    }
+    },
+    SkipStep: function (stepName) {
+        return ((this.massSkipStep.indexOf(stepName) != -1) || !stepName);
+    },
+    getStepName: function (item) {
+        return item.getAttribute("data-step-name");
+    },
+    initButton: function() {
+        this.initShowButton = false;
+        let elem = document.createElement('div');
+        elem.classList.add('bottomOut');
+        elem.style.cssText = "width: 200px;margin: 20px auto;padding: 20px;text-align: center;border: 1px dashed;";
+        elem.innerHTML = "Вывести";
+        document.body.insertBefore(elem, document.body.firstChild);
+    },
+    initTabStep: function () {
+        let stepBlock = document.querySelectorAll(this.stepBlock);
+        let blocTab = document.getElementById('data-tab');
+        for (var i=0;i<stepBlock.length;i++) {
+            let elem = document.createElement('div');
+            elem.innerHTML = this.getStepName(stepBlock[i]);
+            elem.setAttribute("data-step", this.getStepName(stepBlock[i]));
+            blocTab.appendChild(elem)
+        }
+        $(document).on("click","[data-step]",function () {
+            $("[data-step]").removeClass("active");
+            $(this).addClass("active");
+            $("[data-step-name]").removeClass("active");
+            $("[data-step-name="+$(this).data("step")+"]").addClass("active");
+        })
+    },
+};
 
-    function readForm(){
-        /*Чтение данных START*/
-        var massData = {}
-        $(".form-block").each(function () {
+var obj = Object.create(FormReader);
+obj.init();
 
-            if($(this).data("step-name") == "Документы") return;
-            if($(this).data("step-name") == "ЛичныеДанные") return;
-            if($(this).data("step-name") == "КредитнаяИстори") return;
-            if($(this).data("step-name") == "Активы") return;
-
-            nameStep = $(this).data("step-name");
-            massData[nameStep] = {};
-            $(this).find(".form-row:not(.children-wrapper):not([data-group]) input, .form-row:not(.children-wrapper):not([data-group]) select").each(function () {
-                var itemData = getData(this);
-                if(itemData !== false) {
-                    massData[nameStep][itemData['name']] = itemData['data'];
-                }
-            })
-        });
-        /*Чтение данных END*/
-
-        /*ЛичныеДанные START*/
-        massData = {};
-        nameStep = "ЛичныеДанные";
-        massData[nameStep] = {};
-        var data = $('.form-block[data-step-name="ЛичныеДанные"]');
-        data.find(".form-tabs-container:not(.soz) .form-row:not(.children-wrapper):not([data-group]) input, .form-tabs-container:not(.soz) .form-row:not(.children-wrapper):not([data-group]) select").each(function () {
-          var itemData = getData(this);
-          if(itemData !== false) {
-              massData[nameStep][itemData['name']] = itemData['data'];
-          }
-        });
-        console.log(massData);
-        /*ЛичныеДанные END*/
-		/*Кредиты START*/
-		  nameStep = "КредитнаяИстори";
-		  massData[nameStep] = {};
-		  $("[data-credit-type]").each(function(key,item){
-			var name = $(this).data("title");
-			massData[nameStep][key] = {};
-			massData[nameStep][key]['ВидКредита'] = name;
-			$(this).find("input,select").each(function () {
-                var itemData = getData(this);
-                if(itemData !== false) {
-                    massData[nameStep][itemData['name']] = itemData['data'];
-                }
-			})
-		  })
-		/*Кредиты END*/
-		/*Активы START*/
-			nameStep = "Активы";
-			massData[nameStep] = {};
-			data = $('.form-block[data-step-name="Активы"]');
-			/*Недвижимость START*/
-			$(data).find(".data-active-wrapper").each(function(){
-				var typecredit = $(this).find(".form-group__check input").attr("name");
-				var item = $(this).find(".visible-active-wrapper .form-chunk-wrapper-item");
-				if(item.length) {
-          massData[nameStep][typecredit] = {};
-          $.each(item,function (key,item) {
-              massData[nameStep][typecredit][key] = {};
-              $(this).find("input,select").each(function () {
-                  var itemData = getData(this);
-                  if(itemData !== false) {
-                      massData[nameStep][typecredit][key][itemData['name']] = itemData['data'];
-                  }
-              });
-          });
-				}
-			});
-			/*Недвижимость END*/
-			/*Транспорт в собственности START*/
-			var avtoinput = $("#auto-property");
-       		var contaner = $(avtoinput).parents(".form-row");
-        	typecredit = $(avtoinput).attr("name");
-        	massData[nameStep][typecredit] ={};
-            contaner.find(".form-chunk-wrapper-item").each(function (key,item) {
-                massData[nameStep][typecredit][key] = {};
-                $(this).find("input,select").each(function () {
-                    var itemData = getData(this);
-                    if(itemData !== false) {
-                        massData[nameStep][typecredit][key][itemData['name']] = itemData['data'];
-                    }
-				});
-            });
-			/*Транспорт в собственности END*/
-		/*Активы END*/
-		/*Созаемщики START*/
-			nameStep = "Созаемщики";
-			massData[nameStep] = {};
-			data = $('.form-block[data-step-name="ЛичныеДанные"] .form-tabs-container.soz');
-			$.each(data,function (key,value) {
-				massData[nameStep][key] = {};
-				$(this).find(".form-row:not(.children-wrapper):not([data-group]) input,.form-row:not(.children-wrapper):not([data-group]) select").each(function () {
-                    var itemData = getData(this);
-                    if(itemData !== false) {
-                        massData[nameStep][key][namefild] = itemData;
-					}
-				});
-				$(this).find("[data-group]").each(function () {
-					var stepName = nameStep;
-					var groupName = $(this).data("group");
-					if(!massData[stepName][key][groupName]) massData[stepName][key][groupName] = {};
-					$(this).find(" input, select").each(function () {
-                        var itemData = getData(this);
-                        if(itemData !== false) {
-                            massData[nameStep][key][itemData['name']] = itemData['data'];
-                        }
-					});
-				});
-			})
-		/*Созаемщики END*/
-    	/*Чтение групп*/
-		$("[data-group]").each(function () {
-		  var stepName = $(this).parents(".form-block").data("step-name");
-		  var groupName = $(this).data("group");
-            var type = "";
-            if(!massData[stepName][groupName]) massData[stepName][groupName] = {};
-            $(this).find("input,select").each(function () {
-                var namefild = $(this).attr("name");
-                var type = $(this).attr("type");
-                if(namefild) {
-                      inputgroup = $(this).attr('data-input-group');
-					  if (typeof inputgroup !== typeof undefined && inputgroup !== false) {
-                          	// Запись значений в строку сейчас работает тольк для checkbox все остальные параметры
-                          	// Будут обрабатываться как обычно
-							id = $(this).attr("id");
-							switch (type) {
-							  	case "checkbox":
-									var label = $("label[for="+id+"]");
-									if(id && label.length && $(this).prop('checked')) {
-										str = $(label).text().replace(/\s+/g, '');
-										massData[stepName][groupName][inputgroup] += massData[stepName][groupName][inputgroup] ? str : ", " + str;
-									}
-								break;
-								default:
-                                    massData[stepName][groupName][namefild] = $(this).val();
-								break;
-							}
-					  }else{
-                        switch(type){
-                            case "checkbox":
-                                if ($(this).prop("checked")) {
-                                    result = 1;
-                                }else{
-                                    result = 0;
-                                }
-                                break;
-                            case "radio":
-                                if($(this).prop("checked")) {
-                                    result = $(this).val();
-                                }
-                                break;
-                            default:
-                                result = $(this).val();
-                            break;
-                        }
-						massData[stepName][groupName][namefild] = result;
-					  }
-                }
-            });
-        });
-        /*Чтение групп*/
-		var children = getChildrenInfo();
-	    if(children){
-	      massData["ЛичныеДанные"]["Дети"] = children;
-	    }
-	    return massData;
-  	}
-
-	function mainReadForm() {
-		var formData = getDocument();
-		jsondata = JSON.stringify(readForm());
-		formData.append('data', jsondata);
-		return formData;
-	}
-	$(document).on('submit', '#form-ipoteka-main', function() {
-		var form = $(this);
-		$.ajax({
-		  type: form.attr('method'),
-		  url: form.attr('action'),
-		  data: mainReadForm(),
-		  dataType: 'json',
-		  cache: false,
-		  contentType: false, // важно - убираем форматирование данных по умолчанию
-		  processData: false, // важно - убираем преобразование строк по умолчанию
-		}).
-		done(function() {
-			alert('Данные отправлены');
-		}).fail(function() {
-			alert('Произошла ошибка');
-		});
-    	e.preventDefault();
-	});
+$("body").on("click",".bottomOut",function () {
+    obj.RunRead();
+})
 });
