@@ -1862,3 +1862,14 @@ input::selection {
 .change-name-item {
   padding: 20px 0;
 }
+
+.form-group__text_no-border:before {
+  display: none;
+}
+
+select {
+    outline: none;
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #fd7902;
+}

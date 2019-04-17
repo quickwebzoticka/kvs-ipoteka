@@ -179,7 +179,7 @@
                       <label for="СубсидииПроценты">В процентах</label>
                       <div class="form-cross"></div>
                     </div>
-                    <div class="form-group__text">                   
+                    <div class="form-group__text form-group__text_no-border">                   
                       <select name="НаименованиеСубсидии" data-type-subsidy>
                         <option value="Молодёжи – доступное жильё">Молодёжи – доступное жильё</option>
                         <option value="Соц. выплата «Развитие долгосрочного жилищного кредитования в СПБ»">Соц. выплата «Развитие долгосрочного жилищного кредитования в СПБ»</option>
@@ -272,11 +272,18 @@
                           <div class="form-cross"></div>
                         </div>
                       </div>
+                      <div class="form-row">
+                        <h3 class="citezenship">Гражданство</h3>
+                        <div class="form-group__text">
+                          <input type="text" required data-required="1" data-type-required="" autocomplete="off" name="Гражданство" placeholder="Россия" data-country>
+                          <div class="form-cross"></div>
+                        </div>
+                      </div>
                       <div class="form-row form-row_relative">
-                        <div class="tumbler-wrapper">
+<!--                         <div class="tumbler-wrapper">
                           <div class="tumbler active">Паспорт РФ</div>
                           <div class="tumbler">Паспорт иного гос-ва</div>
-                        </div>
+                        </div> -->
                         <h3 class="passport-data">Паспортные данные</h3>
                         <div class="form-group__text">
                           <input type="text" required data-required="1" data-type-required="" autocomplete="off" name="Паспорт" placeholder="Серия (если имеется) номер паспорта 0000 000000" data-passport>
@@ -307,13 +314,13 @@
                           <label for="sex-female">Женский</label>
                         </div>
                       </div>
-                      <div class="form-row">
+                      <!-- <div class="form-row">
                         <h3 class="citezenship">Гражданство</h3>
                         <div class="form-group__text">
                           <input type="text" required data-required="1" data-type-required="" autocomplete="off" name="Гражданство" placeholder="Россия" data-country>
                           <div class="form-cross"></div>
                         </div>
-                      </div>
+                      </div> -->
                       <div class="form-row">
                         <h3 class="citezenship">ИНН</h3>
                         <div class="form-group__text">
@@ -501,6 +508,19 @@
                           <label for="type-reg-3">Отсутствует</label>
                         </div>
                         <div class="form-group__hidden-content" data-reg-content>
+                          <div class="form-group__text form-group__text_no-border">
+                            <select name="ВидЖилья" data-type-home>
+                              <option value="Собственное жилье">Собственное жилье</option>
+                              <option value="Жилье родственников">Жилье родственников</option>
+                              <option value="Социальный найм">Социальный найм</option>
+                              <option value="Аренда">Аренда</option>
+                              <option value="Другое">Другое</option>
+                            </select>
+                            <div class="form-group__text form-group__text_pt" data-type-home-field>
+                              <input type="text" autocomplete="off" name="ВидЖильяДругое" placeholder="Другое">
+                              <div class="form-cross"></div>
+                            </div>
+                          </div>
                           <div class="form-group__text">                   
                             <input type="text" required data-required="1" data-type-required="" autocomplete="off" name="Индекс" data-autocomplete-zip>
                             <label for="zip-code">Почтовый индекс</label>
@@ -546,7 +566,7 @@
                             <label for="match">Да</label>
                           </div>
                           <div class="form-group_show-content" data-show-content>
-                            <div class="form-group__text">
+                            <div class="form-group__text form-group__text_no-border">
                               <select name="ВидЖилья" data-type-home>
                                 <option value="Собственное жилье">Собственное жилье</option>
                                 <option value="Жилье родственников">Жилье родственников</option>
@@ -998,13 +1018,13 @@
                       </div>
                       <div class="form-group_hidden-content" data-hidden-content>
                         <div class="form-group__text"> 
-                          <input type="text" autocomplete="off" name="НомКартыСбербанка" placeholder="4276 0000 0000 0000">
+                          <input type="text" autocomplete="off" name="НомКартыСбербанка" data-pensiya-mask>
                           <div class="form-cross"></div>
                         </div>
                       </div>
                       <div class="form-group_hidden-content" data-hidden-content-pensiya>
                         <div class="form-group__text">
-                          <input type="text" autocomplete="off" name="НомКартыСбербанкаПенсия" placeholder="4276 0000 0000 0000">
+                          <input type="text" autocomplete="off" name="НомКартыСбербанкаПенсия" data-pensiya-mask>
                           <label for="additional-income">Номер пенсионной карты Сбербанка</label>
                           <div class="form-cross"></div>
                         </div>

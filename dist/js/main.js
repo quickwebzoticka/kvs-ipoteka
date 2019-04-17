@@ -168,7 +168,7 @@ function init() {
 	$('[data-procenty]').inputmask({"mask": "9[9{1,2}] %", showMaskOnHover: false, placeholder: '', greedy: false});
 	$('[data-children-name]').inputmask({"mask": "Aa{1,} Aa{1,} Aa{1,}", showMaskOnHover: false, placeholder: '', greedy: false});
 	$('[data-date-year]').inputmask({"mask": "9999", showMaskOnHover: false, placeholder: '', greedy: false})
-
+	$('[data-pensiya-mask]').inputmask({"mask": "4276 9999 9999 9999[99]", showMaskOnHover: false, placeholder: '', greedy: false});
 }
 
 	$("[data-email]").on("keypress", function(e) {
@@ -182,7 +182,7 @@ function init() {
 
 	init();
 
-	$('select').SumoSelect();
+	// $('select').SumoSelect();
 
 	$('[data-type-subsidy]').on('change', function() {
 		if ($(this).val() == 'Другое') {
@@ -1152,7 +1152,8 @@ function init() {
 				|| this.hasAttribute('data-inn')
 				|| this.hasAttribute('data-snils')
 				|| this.hasAttribute('data-email')
-				|| this.hasAttribute('data-name')) {
+				|| this.hasAttribute('data-name')
+				|| this.hasAttribute('data-pensiya-mask')) {
 					if (this.hasAttribute('data-name')) {
 						if ($(this).val().length >=2) {
 							$(this).closest('.form-group__text').removeClass('required');
@@ -1714,6 +1715,27 @@ function init() {
 			$(this).closest('.form-row').find('.change-name-item').eq(count - 1).remove();
 		}
 		
+	});
+
+
+	$(document).on('change', '[data-country]', function() {
+		let string = $(this).val();
+		string = string.toLowerCase();
+
+		console.log(string);
+
+		if (string.indexOf('росси')) {
+				$(this).closest('.form-tabs-container').find('[data-passport]').inputmask('remove');
+				$(this).closest('.form-tabs-container').find('[data-passport-cod]').inputmask('remove');
+				$(this).closest('.form-tabs-container').find('[data-passport-who]').suggestions().disable();
+			} else {
+				$(this).closest('.form-tabs-container').find('[data-passport]').inputmask({"mask": "9999 999999", showMaskOnHover: false});
+				$(this).closest('.form-tabs-container').find('[data-passport-cod]').inputmask({"mask": "999-999", showMaskOnHover: false});
+				$(this).closest('.form-tabs-container').find('[data-passport-who]').suggestions({
+				    token: "91550cba21ac13e43e9546eb1433fb2799efee56",
+				    type: "fms_unit"
+				});
+			}
 	});
 
 
