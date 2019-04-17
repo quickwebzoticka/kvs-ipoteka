@@ -1678,27 +1678,6 @@ function init() {
 
 	});
 
-
-	$(document).on('click', '.tumbler:not(.active)', function() {
-		$(this).addClass('active')
-			   .siblings()
-			   .removeClass('active');
-
-		if ($(this).index() == 1) {
-			$(this).closest('.form-row').find('[data-passport]').inputmask('remove');
-			$(this).closest('.form-row').find('[data-passport-cod]').inputmask('remove');
-			$(this).closest('.form-row').find('[data-passport-who]').suggestions().disable();
-		} else {
-			$(this).closest('.form-row').find('[data-passport]').inputmask({"mask": "9999 999999", showMaskOnHover: false});
-			$(this).closest('.form-row').find('[data-passport-cod]').inputmask({"mask": "999-999", showMaskOnHover: false});
-			$(this).closest('.form-row').find('[data-passport-who]').suggestions({
-			    token: "91550cba21ac13e43e9546eb1433fb2799efee56",
-			    type: "fms_unit"
-			});
-		}
-		
-	});
-
 	let changeNameTemplate = $('[data-change-name]').clone();
 
 	$(document).on('click', '[data-change-name-add]', function() {		
@@ -1727,10 +1706,12 @@ function init() {
 		if (string.indexOf('росси')) {
 				$(this).closest('.form-tabs-container').find('[data-passport]').inputmask('remove');
 				$(this).closest('.form-tabs-container').find('[data-passport-cod]').inputmask('remove');
+				$(this).closest('.form-tabs-container').find('[data-passport-cod]').attr('required', false)
 				$(this).closest('.form-tabs-container').find('[data-passport-who]').suggestions().disable();
 			} else {
 				$(this).closest('.form-tabs-container').find('[data-passport]').inputmask({"mask": "9999 999999", showMaskOnHover: false});
 				$(this).closest('.form-tabs-container').find('[data-passport-cod]').inputmask({"mask": "999-999", showMaskOnHover: false});
+				$(this).closest('.form-tabs-container').find('[data-passport-cod]').attr('required', true);
 				$(this).closest('.form-tabs-container').find('[data-passport-who]').suggestions({
 				    token: "91550cba21ac13e43e9546eb1433fb2799efee56",
 				    type: "fms_unit"
