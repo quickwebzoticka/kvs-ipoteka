@@ -178,7 +178,7 @@ function init() {
 	$('[data-procenty]').inputmask({"mask": "9[9{1,2}] %", showMaskOnHover: false, placeholder: '', greedy: false});
 	$('[data-children-name]').inputmask({"mask": "Aa{1,} Aa{1,} Aa{1,}", showMaskOnHover: false, placeholder: '', greedy: false});
 	$('[data-date-year]').inputmask({"mask": "9999", showMaskOnHover: false, placeholder: '', greedy: false})
-	$('[data-pensiya-mask]').inputmask({"mask": "4276 9999 9999 9999[99]", showMaskOnHover: false, placeholder: '', greedy: false});
+	$('[data-pensiya-mask]').inputmask({"mask": "9999 9999 9999 9999[99]", showMaskOnHover: false, placeholder: '', greedy: false});
 }
 
 	$("[data-email]").on("keypress", function(e) {
@@ -1293,8 +1293,13 @@ function init() {
 		if ($(this).prop('checked')) {
 			$(this).closest('.form-block__content').find('[data-mono]').prop('checked', false);
 			$(this).prop('checked', true);
-			$(this).closest('.form-block__content').find('[data-hidden-content]').slideUp(300);
-			$(this).closest('.form-block__content').find('.form-group_hidden').find('.form-group__text').find('input').attr('required', false);
+			if ( $('.form-block.active').index('.form-block') == 1 ) {
+				$(this).closest('.form-block__content').find('[data-hidden-content]').slideUp(300);
+				$(this).closest('.form-block__content').find('.form-group_hidden').find('.form-group__text').find('input').attr('required', false);
+			} else {
+				
+			}
+			
 			$(this).closest('.form-group_hidden').find('.form-group__text').find('input').attr('required', true);
 			$(this).closest('.form-group_hidden').find('[data-hidden-content]').slideDown(300);
 			$('input[required]').trigger('input');
