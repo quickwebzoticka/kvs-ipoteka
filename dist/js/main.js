@@ -10,8 +10,6 @@ function kladrInit(container) {
 				street = $(container).find('[data-autocomplete-street]'),
 				building = $(container).find('[data-autocomplete-building]');
 
-	var tooltip = $('.tooltip');
-
 	$.kladr.setDefault({
 		parentInput: container,
 		verify: false
@@ -133,7 +131,6 @@ $("[data-inn-party]").suggestions({
         $(this).closest('.form').find('[data-autocomplete-house]').eq(0).val(suggestion.data.address.data.house);
         $(this).closest('.form').find('[data-party-name]').eq(0).val(suggestion.value);
 
-
         $('input[required]').trigger('input');
     }
 });
@@ -157,14 +154,27 @@ function init() {
 	$('[data-phone]').inputmask({"mask": "+7 (999) 999-9999", showMaskOnHover: false});
 	$('[data-count]').inputmask({"mask": "9[9]", showMaskOnHover: false});
 	$('[data-period]').inputmask({"mask": "9[9] год(а)/лет", showMaskOnHover: false});
-	$('[data-passport]').inputmask({"mask": "9999 999999", showMaskOnHover: false});
+	$('[data-passport]').each(function() {
+		if ($(this).attr('data-disabled-mask') == true) {
+			$(this).inputmask('remove');
+		} else {
+			$(this).inputmask({"mask": "9999 999999", showMaskOnHover: false});
+		}
+	})
 	$('[data-inn]').inputmask({"mask": "999999999999", showMaskOnHover: false});
 	$('[data-inn-party]').inputmask({"mask": "9999999999", showMaskOnHover: false, greedy: false, placeholder: ''});
 	$('[data-snils]').inputmask({"mask": "999 999 999 99", showMaskOnHover: false});
-	// $('[data-email]').inputmask({showMaskOnHover: false, greedy: false, placeholder: ''});
 	$('[data-email]').inputmask('email');
 	$('[data-passport-date]').inputmask({"mask": "99.99.9999", showMaskOnHover: false});
-	$('[data-passport-cod]').inputmask({"mask": "999-999", showMaskOnHover: false});
+	$('[data-passport-cod]').each(function() {
+		if ($(this).attr('data-disabled-mask') == true) {
+			$(this).inputmask('remove');
+		} else {
+			$(this).inputmask({"mask": "999-999", showMaskOnHover: false});
+		}
+		
+	});
+	
 	$('[data-procenty]').inputmask({"mask": "9[9{1,2}] %", showMaskOnHover: false, placeholder: '', greedy: false});
 	$('[data-children-name]').inputmask({"mask": "Aa{1,} Aa{1,} Aa{1,}", showMaskOnHover: false, placeholder: '', greedy: false});
 	$('[data-date-year]').inputmask({"mask": "9999", showMaskOnHover: false, placeholder: '', greedy: false})
@@ -1399,7 +1409,13 @@ function init() {
 		let tempLength = $(this).val().split('_').length - 1;
 
 		if (temp !== "9" && tempLength == 0) {
-				$(this).inputmask('');			
+			$(this).inputmask('');			
+		}
+		if ($(this).val() == '8812' || $(this).val() == '8 812' || $(this).val() == '812') {
+			if ($(this).val() == '812') {
+				$(this).val('8812');
+			}
+			$(this).inputmask({"mask": "+8 (999) 999-9999", showMaskOnHover: false,});
 		}
 		if ((temp == "9" || temp == "+") && $(this).val().length == 0) {
 			$(this).inputmask({"mask": "+7 (999) 999-9999", showMaskOnHover: false,});
@@ -1704,14 +1720,14 @@ function init() {
 		console.log(string);
 
 		if (string.indexOf('росси')) {
-				$(this).closest('.form-tabs-container').find('[data-passport]').inputmask('remove');
-				$(this).closest('.form-tabs-container').find('[data-passport-cod]').inputmask('remove');
-				$(this).closest('.form-tabs-container').find('[data-passport-cod]').attr('required', false)
+				$(this).closest('.form-tabs-container').find('[data-passport]').inputmask('remove').attr('data-disabled-mask', 1);
+				$(this).closest('.form-tabs-container').find('[data-passport-cod]').inputmask('remove').attr('data-disabled-mask', 1);
+				$(this).closest('.form-tabs-container').find('[data-passport-cod]').attr('required', false).attr('data-disabled-mask', 1);
 				$(this).closest('.form-tabs-container').find('[data-passport-who]').suggestions().disable();
 			} else {
-				$(this).closest('.form-tabs-container').find('[data-passport]').inputmask({"mask": "9999 999999", showMaskOnHover: false});
-				$(this).closest('.form-tabs-container').find('[data-passport-cod]').inputmask({"mask": "999-999", showMaskOnHover: false});
-				$(this).closest('.form-tabs-container').find('[data-passport-cod]').attr('required', true);
+				$(this).closest('.form-tabs-container').find('[data-passport]').inputmask({"mask": "9999 999999", showMaskOnHover: false}).attr('data-disabled-mask', 0);
+				$(this).closest('.form-tabs-container').find('[data-passport-cod]').inputmask({"mask": "999-999", showMaskOnHover: false}).attr('data-disabled-mask', 0);
+				$(this).closest('.form-tabs-container').find('[data-passport-cod]').attr('required', true).attr('data-disabled-mask', 0);
 				$(this).closest('.form-tabs-container').find('[data-passport-who]').suggestions({
 				    token: "91550cba21ac13e43e9546eb1433fb2799efee56",
 				    type: "fms_unit"
