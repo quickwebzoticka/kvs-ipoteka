@@ -1330,12 +1330,22 @@ function init() {
 
 	$(document).on('change', '[data-show]', function() {
 		if ($(this).prop('checked')) {
-			$(this).closest('.form-group_show').find('.form-group__text').find('input').attr('required', false);
+			$(this).closest('.form-group_show').find('.form-group__text').find('input').each(function() {
+				if (!$(this).attr('data-disabled-require')) {
+					$(this).attr('required', false);
+				}
+			})
+			// $(this).closest('.form-group_show').find('.form-group__text').find('input').attr('required', false);
 			$(this).closest('.form-group_show').find('[data-show-content]').slideUp(300);
 			$('input[required]').trigger('input');
 		} else {
 			$(this).closest('.form-group_show').find('[data-show-content]').slideDown(300, function() {
-			$(this).closest('.form-group_show').find('.form-group__text').find('input').attr('required', true);
+			// $(this).closest('.form-group_show').find('.form-group__text').find('input').attr('required', true);
+			$(this).closest('.form-group_show').find('.form-group__text').find('input').each(function() {
+				if (!$(this).attr('data-disabled-require')) {
+					$(this).attr('required', true);
+				}
+			})
 			$('input[required]').trigger('input');
 			});
 		}
