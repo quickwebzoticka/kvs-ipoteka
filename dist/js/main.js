@@ -1728,7 +1728,7 @@ function init() {
 	});
 
 
-	$(document).on('change', '[data-country]', function() {
+	$(document).on('input change', '[data-country]', function() {
 		let string = $(this).val();
 		string = string.toLowerCase();
 

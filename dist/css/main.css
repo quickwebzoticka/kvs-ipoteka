@@ -808,7 +808,7 @@ h3 {
   transition: 0.3s ease-in-out;
   opacity: 1; }
 
-.form-group__text:after {
+/* .form-group__text:after {
   content: '';
   display: block;
   position: absolute;
@@ -820,7 +820,7 @@ h3 {
   -webkit-transition: 0.3s ease-in-out;
   -o-transition: 0.3s ease-in-out;
   transition: 0.3s ease-in-out;
-  opacity: 0; }
+  opacity: 0; } */
 
 .form-group__text.active:after {
   width: 100%;
@@ -1723,6 +1723,15 @@ input::selection {
 
 .form-group__text.required:before {
   background: red; }
+
+  .form-group__text.required:after {
+    content: 'Обязательное поле'; 
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    font-size: 14px;
+    color: red;
+  }
 
 .form-group__text.completed label {
   color: #1bc01b !important; }
