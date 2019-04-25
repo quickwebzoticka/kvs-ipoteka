@@ -1855,12 +1855,25 @@ input::selection {
     transition: .3s;
 }
 
+.btn-remove {
+  color: #fd7902;
+  cursor: pointer;
+  padding: 10px 0;
+  -webkit-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s;
+}
+
 .change-name-btn:first-child {
   margin-right: 30px;
 }
 
 .change-name-btn:hover {
     text-shadow: 0px 0px 3px #fd7902;
+}
+
+.btn-remove:hover {
+  text-shadow: 0px 0px 3px #fd7902;
 }
 
 .change-name-btns {

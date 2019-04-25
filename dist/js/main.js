@@ -1662,9 +1662,15 @@ function init() {
 		string = string.indexOf('пенси');
 
 		if (string) {
-			$('[data-hidden-content-pensiya]').hide();
+			$('[data-hidden-content-pensiya]').slideUp(300, function() {
+				$('input[required]').trigger('input');
+			});
+			$('[data-hidden-content-pensiya]').find('input').attr('required', false)
 		} else {
-			$('[data-hidden-content-pensiya]').show();
+			$('[data-hidden-content-pensiya]').slideDown(300, function() {
+				$('input[required]').trigger('input');
+			});
+			$('[data-hidden-content-pensiya]').find('input').attr('required', true)
 		}
 	});
 
@@ -1759,6 +1765,12 @@ function init() {
 					});
 				}
 			}
+	});
+
+
+	$(document).on('click', '.btn-remove', function() {
+		$(this).closest('.form-add-job').remove();
+		$('.form-btn.btn-add-job.disabled').removeClass('disabled');
 	});
 
 
