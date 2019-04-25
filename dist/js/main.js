@@ -1296,11 +1296,18 @@ function init() {
 			if ( $('.form-block.active').index('.form-block') == 1 ) {
 				$(this).closest('.form-block__content').find('[data-hidden-content]').slideUp(300);
 				$(this).closest('.form-block__content').find('.form-group_hidden').find('.form-group__text').find('input').attr('required', false);
-			} else {
-				
 			}
 			
-			$(this).closest('.form-group_hidden').find('.form-group__text').find('input').attr('required', true);
+			$(this).closest('.form-group_hidden').find('.form-group__text').find('input').each(function(index, item) {
+				console.log(item);
+				if (item.hasAttribute('data-disabled-require')) {
+					return false;
+				} else {
+					$(item).attr('required', true);
+				}
+				
+			})
+			// $(this).closest('.form-group_hidden').find('.form-group__text').find('input').attr('required', true);
 			$(this).closest('.form-group_hidden').find('[data-hidden-content]').slideDown(300);
 			$('input[required]').trigger('input');
 		} else {
