@@ -1726,8 +1726,8 @@ function init() {
 	});
 
 	$(document).on('click', '[data-change-name-remove]', function() {
-		let count = $('.change-name-item').length;
-
+		let count = $(this).closest('.form-group_hidden-content').find('.change-name-item').length;
+		console.log(count);
 		if (count > 1) {
 			$(this).closest('.form-row').find('.change-name-item').eq(count - 1).remove();
 		}
