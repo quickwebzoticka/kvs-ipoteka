@@ -1686,11 +1686,21 @@ function init() {
 
 		if ($(this).attr('value') == 'Отсутствует') {
 			$(this).closest('.form-tabs-container').find('[data-reg-content]').slideUp(300);
+			$(this).closest('.form-tabs-container').find('[data-reg-content]').find('input').each(function() {
+				if (!$(this).attr('data-disabled-require')) {
+					$(this).attr('required', false);
+				}
+			})
 			$(this).closest('.form-tabs-container').find('.real-registration-adress').text('Адрес фактического проживания');
 			$(this).closest('.form-tabs-container').find('[data-show]').closest('.form-group__check').hide();
 			$(this).closest('.form-tabs-container').find('.form-group_show').find('.form-group_show-content').show();
 		} else {
 			$(this).closest('.form-tabs-container').find('[data-reg-content]').slideDown(300);
+			$(this).closest('.form-tabs-container').find('[data-reg-content]').find('input').each(function() {
+				if (!$(this).attr('data-disabled-require')) {
+					$(this).attr('required', true);
+				}
+			})
 			$(this).closest('.form-tabs-container').find('.real-registration-adress').text('Адрес фактического проживания совпадает с адресом регистрации?');
 			$(this).closest('.form-tabs-container').find('[data-show]').closest('.form-group__check').show();
 		}
