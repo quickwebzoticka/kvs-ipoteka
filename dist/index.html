@@ -241,7 +241,7 @@
                     <div class="form-tabs-nav__btn">Добавить созаёмщика</div>
                   </div>
                   <div class="form-tabs-container-wrapper">
-                    <div class="form-tabs-container active">
+                    <div class="form-tabs-container active" anketa-id="0">
                       <div class="form-row name-wrapper">
                         <h3 class="name">ФИО</h3>
                         <div class="form-group__text">                   
@@ -641,7 +641,7 @@
               </div>
             </div>
             <div class="form-tabs-container-wrapper form-tabs-container-wrapper_job">
-              <div class="form-tabs-container form-tabs-container_job active">
+              <div class="form-tabs-container form-tabs-container_job active" anketa-id="0">
                 <div class="form form-job-data">
                   <div class="form-row" data-group="СведенияООсновнойРаботе">
                     <h3 class="name">Основное место работы</h3>
@@ -1058,7 +1058,7 @@
               </div>
             </div>
             <div class="form-tabs-container-wrapper form-tabs-container-wrapper_actives">
-              <div class="form-tabs-container form-tabs-container_actives active">
+              <div class="form-tabs-container form-tabs-container_actives active" anketa-id="0">
                 <div class="form form-resources">
                   <div class="form-row">
                     <h3 class="realty">Недвижимость</h3>
@@ -1379,77 +1379,89 @@
             <h2>Документы</h2>
           </div>
           <div class="form-block__content">
-            <div class="form form-documents">
-              <div class="form-row form-row-center">
-                <h3 class="passport">Паспорт</h3>
-                <div class="form-group__file">
-                  <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить паспорт</span>
-                    <div class="file-description">(Все развороты паспорта включая пустые, без обложки)</div>
-                    <input type="file" name="Паспорт" multiple required><span class="file-uploaded"></span>
-                    <div class="file-upload-clear"></div>
-                  </label>
-                </div>
-                <h3 class="passport">Заверенная копия трудовой книжки</h3>
-                <div class="form-group__file">
-                  <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить трудовую книгу</span>
-                    <input type="file" name="ТрудоваяКнига" multiple required><span class="file-uploaded"></span>
-                    <div class="file-upload-clear"></div>
-                  </label>
-                </div>
-                <div class="document-about-marriage">
-                  <h3 class="passport">Свидетельство о браке</h3>
-                  <div class="form-group__file">
-                    <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить свидетельство о браке</span>
-                      <input type="file" name="СвидетельсвоОБраке" multiple><span class="file-uploaded"></span>
-                      <div class="file-upload-clear"></div>
-                    </label>
+            <div class="form-tabs">
+                <div class="form-tabs-nav">
+                  <div class="form-tabs-nav__link-wrapper form-tabs-nav__link-wrapper-document">
+                    <div class="form-tabs-nav__link active">Заёмщик</div>
+                    <div class="form-tabs-nav__link form-tabs-nav__link-document">Созаёмщик</div>
                   </div>
                 </div>
-                <div class="document-about-children">
-                  <h3 class="passport">Свидетельство о рождении детей</h3>
-                  <div class="form-group__file">
-                    <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить свидетельство о рождении детей</span>
-                      <input type="file" name="СвидетельствоДетей" multiple><span class="file-uploaded"></span>
-                      <div class="file-upload-clear"></div>
-                    </label>
+              <div class="form-tabs-container-wrapper form-tabs-container-wrapper_document">
+                <div class="form-tabs-container form-tabs-container_document active" anketa-id="0">
+                  <div class="form form-documents">
+                    <div class="form-row form-row-center">
+                      <h3 class="passport">Паспорт</h3>
+                      <div class="form-group__file">
+                        <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить паспорт</span>
+                          <div class="file-description">(Все развороты паспорта включая пустые, без обложки)</div>
+                          <input type="file" name="Паспорт" multiple required><span class="file-uploaded"></span>
+                          <div class="file-upload-clear"></div>
+                        </label>
+                      </div>
+                      <h3 class="passport">Заверенная копия трудовой книжки</h3>
+                      <div class="form-group__file">
+                        <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить трудовую книгу</span>
+                          <input type="file" name="ТрудоваяКнига" multiple required><span class="file-uploaded"></span>
+                          <div class="file-upload-clear"></div>
+                        </label>
+                      </div>
+                      <div class="document-about-marriage">
+                        <h3 class="passport">Свидетельство о браке</h3>
+                        <div class="form-group__file">
+                          <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить свидетельство о браке</span>
+                            <input type="file" name="СвидетельсвоОБраке" multiple><span class="file-uploaded"></span>
+                            <div class="file-upload-clear"></div>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="document-about-children">
+                        <h3 class="passport">Свидетельство о рождении детей</h3>
+                        <div class="form-group__file">
+                          <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить свидетельство о рождении детей</span>
+                            <input type="file" name="СвидетельствоДетей" multiple><span class="file-uploaded"></span>
+                            <div class="file-upload-clear"></div>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="document-about-reg">
+                        <h3 class="passport">Временная регистрация</h3>
+                        <div class="form-group__file">
+                          <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить отсканированную временную регистрацию</span>
+                            <input type="file" name="ВременнаяРегистрация" multiple><span class="file-uploaded"></span>
+                            <div class="file-upload-clear"></div>
+                          </label>
+                        </div>
+                      </div>
+                      <h3 class="passport">СНИЛС</h3>
+                      <div class="form-group__file">
+                        <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить СНИЛС</span>
+                          <input type="file" name="СНИЛС" multiple required><span class="file-uploaded"></span>
+                          <div class="file-upload-clear"></div>
+                        </label>
+                      </div>
+                      <h3 class="passport">ИНН</h3>
+                      <div class="form-group__file">
+                        <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить ИНН</span>
+                          <input type="file" name="ИНН" multiple required><span class="file-uploaded"></span>
+                          <div class="file-upload-clear"></div>
+                        </label>
+                      </div>
+                      <h3 class="passport">Документ, подтверждающий доход</h3>
+                      <div class="form-group__file">
+                        <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить документ, подтверждающий доход</span>
+                          <input type="file" name="Доход" multiple required><span class="file-uploaded"></span>
+                          <div class="file-upload-clear"></div>
+                        </label>
+                      </div>
+                      <h3 class="passport">Накопительная Ипотечная Система, Материнский капитал, выписка со счета Материнского капитала, субсидии, памятки и прочие документы</h3>
+                      <div class="form-group__file">
+                        <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить прочие документы</span>
+                          <input type="file" name="ДопДокументы" multiple><span class="file-uploaded"></span>
+                          <div class="file-upload-clear"></div>
+                        </label>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div class="document-about-reg">
-                  <h3 class="passport">Временная регистрация</h3>
-                  <div class="form-group__file">
-                    <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить отсканированную временную регистрацию</span>
-                      <input type="file" name="ВременнаяРегистрация" multiple><span class="file-uploaded"></span>
-                      <div class="file-upload-clear"></div>
-                    </label>
-                  </div>
-                </div>
-                <h3 class="passport">СНИЛС</h3>
-                <div class="form-group__file">
-                  <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить СНИЛС</span>
-                    <input type="file" name="СНИЛС" multiple required><span class="file-uploaded"></span>
-                    <div class="file-upload-clear"></div>
-                  </label>
-                </div>
-                <h3 class="passport">ИНН</h3>
-                <div class="form-group__file">
-                  <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить ИНН</span>
-                    <input type="file" name="ИНН" multiple required><span class="file-uploaded"></span>
-                    <div class="file-upload-clear"></div>
-                  </label>
-                </div>
-                <h3 class="passport">Документ, подтверждающий доход</h3>
-                <div class="form-group__file">
-                  <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить документ, подтверждающий доход</span>
-                    <input type="file" name="Доход" multiple required><span class="file-uploaded"></span>
-                    <div class="file-upload-clear"></div>
-                  </label>
-                </div>
-                <h3 class="passport">Накопительная Ипотечная Система, Материнский капитал, выписка со счета Материнского капитала, субсидии, памятки и прочие документы</h3>
-                <div class="form-group__file">
-                  <label class="form-group__file-label"><i class="material-icons">attach_file</i><span class="file-title">Загрузить прочие документы</span>
-                    <input type="file" name="ДопДокументы" multiple><span class="file-uploaded"></span>
-                    <div class="file-upload-clear"></div>
-                  </label>
                 </div>
               </div>
             </div>

@@ -289,41 +289,47 @@ function init() {
 	let linkSozActives = $('.form-tabs-nav__link-actives').clone();
 	let anketActives = $('.form-tabs-container_actives').clone();
 
-	
+	let linkSozDocuments = $('.form-tabs-nav__link-document').clone();
+	let anketDocuments = $('.form-tabs-container_document').clone();
+
 	anketa.removeClass('active');
 	link.removeClass('active');
 	
-
 	anketJob.removeClass('active');
 	linkSozJob.removeClass('active');
-
 
 	linkSozActives.removeClass('active');
 	anketActives.removeClass('active');
 
+	linkSozDocuments.removeClass('active');
+	anketDocuments.removeClass('active');
 
 	$('.form-tabs-nav__link-add').remove();
 	$('.name-wrapper').remove();
 	$('.account-soz').remove();
 	$('.form-tabs-nav__link-job').remove();
 	$('.form-tabs-nav__link-actives').remove();
+	$('.form-tabs-nav__link-document').remove();
 
 	$(document).on('click', '.form-tabs-nav__btn', function() {
 		let count = $(this).closest('.form-block').find('.form-tabs-nav__link').length;
 
 		if ($(this).closest('.form-block').find('.form-tabs-nav__link-add').length < 3) {
 			$(this).closest('.form-block').find('.form-tabs-nav__link-wrapper').append(link.clone());
-			$(this).closest('.form-block').find('.form-tabs-container-wrapper').append(anketa.clone().addClass("soz"));
+			$(this).closest('.form-block').find('.form-tabs-container-wrapper').append(anketa.clone().addClass("soz").attr('anketa-id', count));
 			$(document).find('.soz').find('.form-row.children-wrapper').remove();
 			$(document).find('.soz').find('[data-marriage-content]').remove();
 
 
 			$('.form-tabs-nav__link-wrapper-job').append(linkSozJob.clone());
-			$('.form-tabs-container-wrapper_job').append(anketJob.clone().addClass("soz"));
+			$('.form-tabs-container-wrapper_job').append(anketJob.clone().addClass("soz").attr('anketa-id', count));
 
 
 			$('.form-tabs-nav__link-wrapper-actives').append(linkSozActives.clone());
-			$('.form-tabs-container-wrapper_actives').append(anketActives.clone().addClass("soz"));
+			$('.form-tabs-container-wrapper_actives').append(anketActives.clone().addClass("soz").attr('anketa-id', count));
+
+			$('.form-tabs-nav__link-wrapper-document').append(linkSozDocuments.clone());
+			$('.form-tabs-container-wrapper_document').append(anketDocuments.clone().addClass("soz").attr('anketa-id', count));
 
 			const addID = (container) => {
 				$(container).eq(count).find('input').each(function(index) {
@@ -435,7 +441,8 @@ function init() {
 
 		if(e.target.closest('.form-tabs-nav__link-add-cross')
 	  || e.target.closest('.form-tabs-nav__link-wrapper-job')
-	  || e.target.closest('.form-tabs-nav__link-wrapper-actives')) {
+	  || e.target.closest('.form-tabs-nav__link-wrapper-actives')
+	  || e.target.closest('.form-tabs-nav__link-wrapper-document')) {
 			return false;
 		}
 
@@ -454,6 +461,14 @@ function init() {
 
 	$(document).on('click', '.form-tabs-nav__link-wrapper-actives .form-tabs-nav__link', function() {
 		let thisIndex = $(this).index('.form-tabs-nav__link-wrapper-actives .form-tabs-nav__link');
+
+		$(this).siblings('.form-tabs-nav__link').removeClass('active');
+		$(this).addClass('active');
+		$(this).closest('.form-block').find('.form-tabs-container').removeClass('active').eq(thisIndex).addClass('active');
+	});
+
+	$(document).on('click', '.form-tabs-nav__link-wrapper-document .form-tabs-nav__link', function() {
+		let thisIndex = $(this).index('.form-tabs-nav__link-wrapper-document .form-tabs-nav__link');
 
 		$(this).siblings('.form-tabs-nav__link').removeClass('active');
 		$(this).addClass('active');
