@@ -541,7 +541,7 @@
                             <div class="form-cross"></div>
                           </div>
                           <div class="form-group__text">                   
-                            <input type="text" required data-required="1" data-type-required="" autocomplete="off" name="Квартира">
+                            <input type="text" autocomplete="off" name="Квартира" data-disabled-require>
                             <label for="apartment">Квартира</label>
                             <div class="form-cross"></div>
                           </div>
@@ -599,7 +599,7 @@
                               <div class="form-cross"></div>
                             </div>
                             <div class="form-group__text">                   
-                              <input type="text" required data-required="1" data-type-required="" autocomplete="off" name="Квартира">
+                              <input type="text" data-disabled-require autocomplete="off" name="Квартира">
                               <label for="apartment">Квартира</label>
                               <div class="form-cross"></div>
                             </div>
@@ -956,7 +956,7 @@
                       <div class="form-cross"></div>
                     </div>
                     <div class="form-group__text">                   
-                      <input type="text" autocomplete="off" name="ДДИсточникДохода" placeholder="Пенсия/Сдача квартиры" data-pensiya>
+                      <input type="text" autocomplete="off" name="ДДИсточникДохода" placeholder="Пенсия/Сдача квартиры/иное">
                       <label for="additional-appointment">Источник дохода</label>
                       <div class="form-cross"></div>
                     </div>
@@ -1007,7 +1007,7 @@
                     <div class="form-group_hidden">
                       <div class="form-group__check">
                         <input type="checkbox" id="sberbank-zp" name="СбербанкЗП" data-hidden>
-                        <label for="sberbank-zp">Получаю заработную плату/пенсию на карту Сбербанка</label>
+                        <label for="sberbank-zp">Получаю заработную плату на карту Сбербанка</label>
                       </div>
                       <div class="form-group_hidden-content" data-hidden-content>
                         <div class="form-group__text"> 
@@ -1016,9 +1016,15 @@
                           <div class="form-cross"></div>
                         </div>
                       </div>
-                      <div class="form-group_hidden-content" data-hidden-content-pensiya>
+                    </div>
+                    <div class="form-group_hidden">
+                      <div class="form-group__check">
+                        <input type="checkbox" id="sberbank-pensiya" name="СбербанкПенсия" data-hidden>
+                        <label for="sberbank-pensiya">Получаю пенсию на карту Сбербанка</label>
+                      </div>
+                      <div class="form-group_hidden-content" data-hidden-content>
                         <div class="form-group__text">
-                          <input type="text" autocomplete="off" name="НомКартыСбербанкаПенсия" data-pensiya-mask data-disabled-require>
+                          <input type="text" autocomplete="off" name="НомКартыСбербанкаПенсия" data-pensiya-mask>
                           <label for="additional-income">Номер пенсионной карты Сбербанка</label>
                           <div class="form-cross"></div>
                         </div>
