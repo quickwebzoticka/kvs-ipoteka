@@ -303,6 +303,7 @@ function init() {
 
 	linkSozDocuments.removeClass('active');
 	anketDocuments.removeClass('active');
+	anketDocuments.find('h3').last().text('Прочие документы');
 
 	$('.form-tabs-nav__link-add').remove();
 	$('.name-wrapper').remove();
