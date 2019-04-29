@@ -1694,10 +1694,18 @@ function init() {
 	$(document).on('change', 'input[data-type-reg]',function() {
 		if ($(this).attr('value') == 'Временная') {
 			$('.document-about-reg').show();
-			$('.document-about-reg').find('input').attr('required', true);
+			$('.document-about-reg').find('input').find('input').each(function() {
+				if (!$(this).attr('data-disabled-require')) {
+					$(this).attr('required', true);
+				}
+			})
 		} else {
 			$('.document-about-reg').hide();
-			$('.document-about-reg').find('input').attr('required', false);
+			$('.document-about-reg').find('input').find('input').each(function() {
+				if (!$(this).attr('data-disabled-require')) {
+					$(this).attr('required', false);
+				}
+			})
 		}
 
 		if ($(this).attr('value') == 'Отсутствует') {
