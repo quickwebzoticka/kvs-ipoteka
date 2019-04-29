@@ -149,7 +149,7 @@ kladrOneStringInit('[data-form-autocomplete-row="4"]');
 
 
 function init() {
-	$('[data-name]').inputmask({regex: "[А-Яа-я]{2,}[-][А-Яа-я]{2,}", showMaskOnHover: false, placeholder: '', greedy: false});
+	$('[data-name]').inputmask({regex: "[А-Яа-я]{2,}[-, ][А-Яа-я]{2,}", showMaskOnHover: false, placeholder: '', greedy: false});
 	$('[data-date]').inputmask({"mask": "99.99.9999", showMaskOnHover: false});
 	$('[data-phone]').inputmask({"mask": "+7 (999) 999-9999", showMaskOnHover: false});
 	$('[data-count]').inputmask({"mask": "9[9]", showMaskOnHover: false});
